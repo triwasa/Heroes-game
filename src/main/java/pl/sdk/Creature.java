@@ -16,7 +16,11 @@ public class Creature {
 
 
     void attack(Creature aDefender) {
-        aDefender.currentHp = aDefender.currentHp - this.stats.getAttack() + aDefender.stats.getArmor();
+        int damageToDeal = this.stats.getAttack() - aDefender.stats.getArmor();
+        if (damageToDeal < 0){
+            damageToDeal = 0;
+        }
+        aDefender.currentHp = aDefender.currentHp - damageToDeal;
     }
 
     int getCurrentHp() {
