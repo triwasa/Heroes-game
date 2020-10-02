@@ -13,9 +13,9 @@ class AttackCreatureTest {
         Creature attacker = new Creature("Attacker",20,NOT_IMPORTANT,100,NOT_IMPORTANT);
         Creature defender = new Creature("Defender",NOT_IMPORTANT,10,100, NOT_IMPORTANT);
 
-        attacker.atack(defender);
+        attacker.attack(defender);
 
-        assertEquals(10,defender.getCurrenthp(10));
+        assertEquals(90,defender.getCurrentHp());
     }
 
 }
