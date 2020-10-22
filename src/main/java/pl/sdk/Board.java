@@ -1,7 +1,7 @@
 package pl.sdk;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 class Board {
 
@@ -29,7 +29,11 @@ class Board {
     }
 
     Point get(Creature aCreature){
-        return null;
+        return map.keySet().stream().filter(p -> map.get(p).equals(aCreature)).findAny().get();
+    }
+
+    void move(Creature aCreature, Point aTargetPoint1){
+        move(get(aCreature), aTargetPoint1);
     }
 
     void move(Point aSourcePoint, Point aTargetPoint1) {
