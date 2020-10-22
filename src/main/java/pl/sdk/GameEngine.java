@@ -21,6 +21,14 @@ public class GameEngine {
         board.move(queue.getActiveCreature(), aTargetPoint);
     }
 
+    void pass(){
+        queue.next();
+    }
+
+    void attack(int x, int y){
+        queue.getActiveCreature().attack(board.get(x,y));
+    }
+
     private void putCreaturesToBoard(List<Creature> aCreatures1, List<Creature> aCreatures2) {
         putCreaturesFromOneSideToBoard(aCreatures1, 0);
         putCreaturesFromOneSideToBoard(aCreatures2, Board.WIDTH-1);
