@@ -1,6 +1,6 @@
 package pl.sdk;
 
-public class Creature {
+class Creature {
 
     private final CreatureStatistic stats;
     private int currentHp;

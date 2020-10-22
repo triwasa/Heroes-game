@@ -1,7 +1,6 @@
 package pl.sdk;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 class Board {
 

@@ -8,7 +8,7 @@ public class GameEngine {
     private final Board board;
     private final CreatureTurnQueue queue;
 
-    GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
+    public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
         board = new Board();
         putCreaturesToBoard(aCreatures1, aCreatures2);
         List<Creature> twoSidesCreatures = new ArrayList<>();
@@ -17,15 +17,15 @@ public class GameEngine {
         queue = new CreatureTurnQueue(twoSidesCreatures);
     }
 
-    void move(Point aTargetPoint){
+    public void move(Point aTargetPoint){
         board.move(queue.getActiveCreature(), aTargetPoint);
     }
 
-    void pass(){
+    public void pass(){
         queue.next();
     }
 
-    void attack(int x, int y){
+    public void attack(int x, int y){
         queue.getActiveCreature().attack(board.get(x,y));
     }
 
