@@ -1,12 +1,12 @@
 package pl.sdk;
 
-class Creature {
+public class Creature {
 
     private final CreatureStatistic stats;
     private int currentHp;
     private boolean counterAttackedInThisTurn;
 
-    Creature(){
+    public Creature(){
         stats = new CreatureStatistic("DefName",1,1,10,100);
     }
 
@@ -43,5 +43,9 @@ class Creature {
 
     int getCurrentHp() {
         return currentHp;
+    }
+
+    public String getName(){
+        return stats.getName();
     }
 }
