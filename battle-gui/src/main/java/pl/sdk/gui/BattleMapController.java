@@ -1,8 +1,10 @@
 package pl.sdk.gui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import pl.sdk.Creature;
 import pl.sdk.GameEngine;
 
@@ -13,6 +15,9 @@ public class BattleMapController {
 
     @FXML
     private GridPane gridMap;
+
+    @FXML
+    private Button passButton;
 
     private final GameEngine gameEngine;
 
@@ -26,10 +31,20 @@ public class BattleMapController {
         creatures2.add(new Creature());
         creatures2.add(new Creature());
         gameEngine = new GameEngine(creatures1, creatures2);
+
     }
 
     @FXML
     void initialize() {
+        passButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+            gameEngine.pass();
+            refreshGui();
+        });
+
+        refreshGui();
+    }
+
+    private void refreshGui() {
         for (int x = 0; x < 20; x++) {
             for (int y = 0; y < 15; y++) {
                 MapTile rec = new MapTile();
@@ -38,6 +53,10 @@ public class BattleMapController {
                 Creature c = gameEngine.get(x, y);
                 if (c != null) {
                     rec.addCreature(c.getName());
+
+                    if(c == gameEngine.getActiveCreature()){
+                        rec.setBackground(Color.GREEN);
+                    }
                 }
             }
         }
