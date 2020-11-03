@@ -48,4 +48,5 @@ public class Creature {
     public String getName(){
         return stats.getName();
     }
+
 }
