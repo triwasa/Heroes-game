@@ -2,7 +2,6 @@ package pl.sdk;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,6 +18,7 @@ public class EndOfTurnTests {
         attacker.attack(defender);
         assertEquals(false, defender.canCounterAttack());
 
+        engine.pass();
         engine.pass();
         assertEquals(true, defender.canCounterAttack());
     }
