@@ -52,4 +52,8 @@ public class Creature {
     boolean canCounterAttack() {
         return !counterAttackedInThisTurn;
     }
+
+    void update() {
+        counterAttackedInThisTurn = false;
+    }
 }
