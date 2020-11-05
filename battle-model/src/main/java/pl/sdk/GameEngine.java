@@ -15,6 +15,8 @@ public class GameEngine {
         twoSidesCreatures.addAll(aCreatures1);
         twoSidesCreatures.addAll(aCreatures2);
         queue = new CreatureTurnQueue(twoSidesCreatures);
+
+        twoSidesCreatures.forEach(c -> queue.addObserver(c));
     }
 
     public void move(Point aTargetPoint){

@@ -7,7 +7,7 @@ public class Creature {
     private boolean counterAttackedInThisTurn;
 
     public Creature(){
-        stats = new CreatureStatistic("DefName",1,1,10,100);
+        this("DefName",1,1,10,100);
     }
 
     Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange) {
@@ -47,5 +47,13 @@ public class Creature {
 
     public String getName(){
         return stats.getName();
+    }
+
+    boolean canCounterAttack() {
+        return !counterAttackedInThisTurn;
+    }
+
+    void update() {
+        counterAttackedInThisTurn = false;
     }
 }

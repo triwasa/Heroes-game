@@ -1,8 +1,6 @@
 package pl.sdk;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 class CreatureTurnQueue {
 
@@ -10,12 +8,26 @@ class CreatureTurnQueue {
     private final Collection<Creature> creatures;
     private final Queue<Creature> creaturesQueue;
     private Creature activeCreature;
+    private Set<Creature> observers;
 
     public CreatureTurnQueue(Collection<Creature> aCreatureList) {
         creatures = aCreatureList;
         creaturesQueue = new LinkedList<>();
+        observers = new HashSet<>();
         initQueue();
         next();
+    }
+
+    void addObserver(Creature aObserver){
+        observers.add(aObserver);
+    }
+
+    void removeObserver(Creature aObserver){
+        observers.remove(aObserver);
+    }
+
+    void notifyObservers(){
+        observers.forEach(o -> o.update());
     }
 
     private void initQueue() {
@@ -29,6 +41,7 @@ class CreatureTurnQueue {
     void next() {
         if (creaturesQueue.isEmpty()){
             initQueue();
+            notifyObservers();
         }
         activeCreature = creaturesQueue.poll();
     }
