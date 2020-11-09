@@ -1,5 +1,7 @@
 package pl.sdk;
 
+import com.google.common.collect.Range;
+
 class CreatureStatistic {
 
     private final String name;
@@ -7,9 +9,9 @@ class CreatureStatistic {
     private final int armor;
     private final int maxHp;
     private final int moveRange;
-    private final int damage;
+    private final Range<Integer> damage;
 
-    CreatureStatistic(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, int aDamage) {
+    CreatureStatistic(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, Range<Integer> aDamage) {
         name = aName;
         attack = aAttack;
         armor = aArmor;
@@ -38,7 +40,7 @@ class CreatureStatistic {
         return moveRange;
     }
 
-    int getDamage(){
+    Range<Integer> getDamage(){
         return damage;
     }
 }
