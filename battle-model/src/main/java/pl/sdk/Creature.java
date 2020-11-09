@@ -1,13 +1,16 @@
 package pl.sdk;
 
-public class Creature {
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class Creature implements PropertyChangeListener {
 
     private final CreatureStatistic stats;
     private int currentHp;
     private boolean counterAttackedInThisTurn;
 
     public Creature(){
-        this("DefName",1,1,10,10);
+        this("Name",2,1,10,10);
     }
 
     Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange) {
@@ -41,7 +44,7 @@ public class Creature {
         return currentHp > 0;
     }
 
-    int getCurrentHp() {
+    public int getCurrentHp() {
         return currentHp;
     }
 
@@ -53,11 +56,23 @@ public class Creature {
         return !counterAttackedInThisTurn;
     }
 
-    void update() {
-        counterAttackedInThisTurn = false;
-    }
-
     int getMoveRange() {
         return stats.getMoveRange();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(stats.getName());
+        sb.append(System.lineSeparator());
+        sb.append(getCurrentHp());
+        sb.append("/");
+        sb.append(stats.getMaxHp());
+        return sb.toString();
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
+        counterAttackedInThisTurn = false;
     }
 }

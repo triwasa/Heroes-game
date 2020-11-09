@@ -41,6 +41,7 @@ public class BattleMapController implements PropertyChangeListener {
     void initialize() {
         gameEngine.addObserver(GameEngine.CURRENT_CREATURE_CHANGED,this);
         gameEngine.addObserver(GameEngine.CREATURE_MOVED,this);
+        gameEngine.addObserver(GameEngine.CREATURE_ATTACKED,this);
 
         passButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             gameEngine.pass();
@@ -57,18 +58,25 @@ public class BattleMapController implements PropertyChangeListener {
 
                 Creature c = gameEngine.get(x, y);
                 if (c != null) {
-                    rec.addCreature(c.getName());
+                    rec.addCreature(c.toString());
 
                     if(c == gameEngine.getActiveCreature()){
                         rec.setBackground(Color.GREEN);
                     }
+                    else if(gameEngine.canAttack(x,y)){
+                        final int x1 = x;
+                        final int y1 = y;
+                        rec.setBackground(Color.RED);
+                        rec.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> gameEngine.attack(x1,y1));
+                    }
                 }
-                else if( gameEngine.canMove(x,y)){
+                else if(gameEngine.canMove(x,y)){
                     final int x1 = x;
                     final int y1 = y;
                     rec.setBackground(Color.GREY);
                     rec.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> gameEngine.move(new Point(x1,y1)));
                 }
+
             }
         }
     }
