@@ -53,6 +53,7 @@ public class GameEngine {
 
     public void attack(int x, int y){
         queue.getActiveCreature().attack(board.get(x,y));
+
     }
 
     private void putCreaturesToBoard(List<Creature> aCreatures1, List<Creature> aCreatures2) {
