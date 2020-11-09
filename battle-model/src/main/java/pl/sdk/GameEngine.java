@@ -14,6 +14,8 @@ public class GameEngine {
     private final Board board;
     private final CreatureTurnQueue queue;
     private final PropertyChangeSupport observerSupport;
+    private boolean blockMoving;
+    private boolean blockAttacking;
 
     public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
         board = new Board();
@@ -40,20 +42,31 @@ public class GameEngine {
     }
 
     public void move(Point aTargetPoint){
+        if (blockMoving){
+            return;
+        }
         Point oldPosition = board.get(queue.getActiveCreature());
         board.move(queue.getActiveCreature(), aTargetPoint);
+        blockMoving = true;
         notifyObservers(new PropertyChangeEvent(this, CREATURE_MOVED, oldPosition, aTargetPoint) );
     }
 
     public void pass(){
         Creature oldActiveCreature = queue.getActiveCreature();
         queue.next();
+        blockAttacking = false;
+        blockMoving = false;
         Creature newActiveCreature = queue.getActiveCreature();
         notifyObservers(new PropertyChangeEvent(this, CURRENT_CREATURE_CHANGED,oldActiveCreature,newActiveCreature));
     }
 
     public void attack(int x, int y){
+        if (blockAttacking){
+            return;
+        }
         queue.getActiveCreature().attack(board.get(x,y));
+        blockAttacking = true;
+        blockMoving = true;
         notifyObservers(new PropertyChangeEvent(this, CREATURE_ATTACKED, null, null));
     }
 
