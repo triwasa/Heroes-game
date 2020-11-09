@@ -40,6 +40,7 @@ public class BattleMapController implements PropertyChangeListener {
     @FXML
     void initialize() {
         gameEngine.addObserver(GameEngine.CURRENT_CREATURE_CHANGED,this);
+        gameEngine.addObserver(GameEngine.CREATURE_MOVED,this);
 
         passButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             gameEngine.pass();
