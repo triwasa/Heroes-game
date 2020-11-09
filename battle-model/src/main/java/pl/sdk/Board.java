@@ -14,7 +14,18 @@ class Board {
 
     void add(Point aPoint, Creature aCreature) {
         throwExceptionWhenIsOutsideMap(aPoint);
+        throwExceptionIfTileIsTaken(aPoint);
         map.put(aPoint,aCreature);
+    }
+
+    private void throwExceptionIfTileIsTaken(Point aPoint) {
+        if (isTileTaken(aPoint)){
+            throw new IllegalArgumentException("Tile isn't empty");
+        }
+    }
+
+    private boolean isTileTaken(Point aPoint) {
+        return map.containsKey(aPoint);
     }
 
     private void throwExceptionWhenIsOutsideMap(Point aPoint) {
@@ -37,9 +48,8 @@ class Board {
 
     void move(Point aSourcePoint, Point aTargetPoint1) {
         throwExceptionWhenIsOutsideMap(aTargetPoint1);
-        if (map.containsKey(aTargetPoint1)){
-            throw new IllegalArgumentException("Tile is taken");
-        }
+        throwExceptionIfTileIsTaken(aTargetPoint1);
+
         Creature creatureFromSourcePoint = map.get(aSourcePoint);
         map.remove(aSourcePoint);
         map.put(aTargetPoint1,creatureFromSourcePoint);
@@ -52,6 +62,6 @@ class Board {
         }
         Point currentPosition = get(aCreature);
         double distance = currentPosition.distance(new Point(aX,aY));
-        return distance < aCreature.getMoveRange();
+        return distance <= aCreature.getMoveRange() && !isTileTaken(new Point(aX,aY));
     }
 }
