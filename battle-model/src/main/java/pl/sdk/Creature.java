@@ -56,4 +56,8 @@ public class Creature {
     void update() {
         counterAttackedInThisTurn = false;
     }
+
+    int getMoveRange() {
+        return stats.getMoveRange();
+    }
 }

@@ -13,13 +13,13 @@ class Board {
     }
 
     void add(Point aPoint, Creature aCreature) {
-        throwExceptionWhenFieldIsTakenOrIsOutsideMap(aPoint);
+        throwExceptionWhenIsOutsideMap(aPoint);
         map.put(aPoint,aCreature);
     }
 
-    private void throwExceptionWhenFieldIsTakenOrIsOutsideMap(Point aPoint) {
-        if (aPoint.getX() < 0 || aPoint.getX() > WIDTH || aPoint.getY() < 0 || aPoint.getY() > HEIGHT || map.containsKey(aPoint)) {
-            throw new IllegalArgumentException();
+    private void throwExceptionWhenIsOutsideMap(Point aPoint) {
+        if (aPoint.getX() < 0 || aPoint.getX() > WIDTH || aPoint.getY() < 0 || aPoint.getY() > HEIGHT ) {
+            throw new IllegalArgumentException("You are trying to works outside the map");
         }
     }
 
@@ -36,13 +36,22 @@ class Board {
     }
 
     void move(Point aSourcePoint, Point aTargetPoint1) {
-        throwExceptionWhenFieldIsTakenOrIsOutsideMap(aTargetPoint1);
+        throwExceptionWhenIsOutsideMap(aTargetPoint1);
+        if (map.containsKey(aTargetPoint1)){
+            throw new IllegalArgumentException("Tile is taken");
+        }
         Creature creatureFromSourcePoint = map.get(aSourcePoint);
         map.remove(aSourcePoint);
         map.put(aTargetPoint1,creatureFromSourcePoint);
     }
 
-    boolean canMove(Creature aActiveCreature, int aX, int aY) {
-        return true;
+    boolean canMove(Creature aCreature, int aX, int aY) {
+        throwExceptionWhenIsOutsideMap(new Point(aX,aY));
+        if (!map.containsValue(aCreature)){
+            throw new IllegalStateException("Creature isn't in board");
+        }
+        Point currentPosition = get(aCreature);
+        double distance = currentPosition.distance(new Point(aX,aY));
+        return distance < aCreature.getMoveRange();
     }
 }
