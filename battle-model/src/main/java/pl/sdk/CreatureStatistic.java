@@ -37,4 +37,8 @@ class CreatureStatistic {
     int getMoveRange() {
         return moveRange;
     }
+
+    int getDamage(){
+        return damage;
+    }
 }
