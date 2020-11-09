@@ -19,9 +19,13 @@ public class Creature implements PropertyChangeListener {
     }
 
     Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, int aDamage) {
+        this(aName,aAttack,aArmor,aMaxHp,aMoveRange,aDamage, new NewDamageCalc());
+    }
+
+    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, int aDamage, DamageCalculator aCalc) {
         stats = new CreatureStatistic(aName,aAttack,aArmor,aMaxHp,aMoveRange,aDamage);
         currentHp = stats.getMaxHp();
-        calc = new DamageCalculator();
+        calc = aCalc;
     }
 
 
@@ -80,5 +84,9 @@ public class Creature implements PropertyChangeListener {
 
     int getArmor() {
         return stats.getArmor();
+    }
+
+    int getDamage() {
+        return stats.getDamage();
     }
 }
