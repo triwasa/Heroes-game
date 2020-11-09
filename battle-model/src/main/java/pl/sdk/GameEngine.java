@@ -11,6 +11,7 @@ public class GameEngine {
     public static final String CURRENT_CREATURE_CHANGED = "CURRENT_CREATURE_CHANGED";
     public static final String CREATURE_MOVED = "CREATURE_MOVED";
     public static final String CREATURE_ATTACKED = "CREATURE_ATTACKED";
+    public static final String END_OF_TURN = "END_OF_TURN";
     private final Board board;
     private final CreatureTurnQueue queue;
     private final PropertyChangeSupport observerSupport;
@@ -25,12 +26,17 @@ public class GameEngine {
         twoSidesCreatures.addAll(aCreatures2);
         queue = new CreatureTurnQueue(twoSidesCreatures);
 
-        twoSidesCreatures.forEach(c -> queue.addObserver(c));
+        twoSidesCreatures.forEach(queue::addObserver);
         observerSupport = new PropertyChangeSupport(this);
     }
 
     public void addObserver(String aEventType, PropertyChangeListener aObs){
-        observerSupport.addPropertyChangeListener(aEventType, aObs);
+        if (END_OF_TURN.equals(aEventType)){
+            queue.addObserver(aObs);
+        }
+        else {
+            observerSupport.addPropertyChangeListener(aEventType, aObs);
+        }
     }
 
     public void removeObserver(PropertyChangeListener aObs){

@@ -1,5 +1,8 @@
 package pl.sdk;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.*;
 
 class CreatureTurnQueue {
@@ -8,26 +11,26 @@ class CreatureTurnQueue {
     private final Collection<Creature> creatures;
     private final Queue<Creature> creaturesQueue;
     private Creature activeCreature;
-    private Set<Creature> observers;
+    private final PropertyChangeSupport observerSupport;
 
     public CreatureTurnQueue(Collection<Creature> aCreatureList) {
         creatures = aCreatureList;
         creaturesQueue = new LinkedList<>();
-        observers = new HashSet<>();
+        observerSupport = new PropertyChangeSupport(this);
         initQueue();
         next();
     }
 
-    void addObserver(Creature aObserver){
-        observers.add(aObserver);
+    void addObserver(PropertyChangeListener aObserver){
+        observerSupport.addPropertyChangeListener(GameEngine.END_OF_TURN, aObserver);
     }
 
-    void removeObserver(Creature aObserver){
-        observers.remove(aObserver);
+    void removeObserver(PropertyChangeListener aObserver){
+        observerSupport.addPropertyChangeListener(aObserver);
     }
 
     void notifyObservers(){
-        observers.forEach(o -> o.update());
+        observerSupport.firePropertyChange(new PropertyChangeEvent( this, GameEngine.END_OF_TURN, null, null));
     }
 
     private void initQueue() {
