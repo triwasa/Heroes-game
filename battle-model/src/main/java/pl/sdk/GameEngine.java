@@ -10,6 +10,7 @@ public class GameEngine {
 
     public static final String CURRENT_CREATURE_CHANGED = "CURRENT_CREATURE_CHANGED";
     public static final String CREATURE_MOVED = "CREATURE_MOVED";
+    public static final String CREATURE_ATTACKED = "CREATURE_ATTACKED";
     private final Board board;
     private final CreatureTurnQueue queue;
     private final PropertyChangeSupport observerSupport;
@@ -53,7 +54,7 @@ public class GameEngine {
 
     public void attack(int x, int y){
         queue.getActiveCreature().attack(board.get(x,y));
-
+        notifyObservers(new PropertyChangeEvent(this, CREATURE_ATTACKED, null, null));
     }
 
     private void putCreaturesToBoard(List<Creature> aCreatures1, List<Creature> aCreatures2) {
