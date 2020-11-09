@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import pl.sdk.Creature;
 import pl.sdk.GameEngine;
+import pl.sdk.Point;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -62,7 +63,10 @@ public class BattleMapController implements PropertyChangeListener {
                     }
                 }
                 else if( gameEngine.canMove(x,y)){
+                    final int x1 = x;
+                    final int y1 = y;
                     rec.setBackground(Color.GREY);
+                    rec.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> gameEngine.move(new Point(x1,y1)));
                 }
             }
         }
