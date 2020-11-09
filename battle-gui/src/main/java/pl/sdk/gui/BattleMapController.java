@@ -63,11 +63,17 @@ public class BattleMapController implements PropertyChangeListener {
                         rec.setBackground(Color.GREEN);
                     }
                 }
-                else if( gameEngine.canMove(x,y)){
+                else if(gameEngine.canMove(x,y)){
                     final int x1 = x;
                     final int y1 = y;
                     rec.setBackground(Color.GREY);
                     rec.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> gameEngine.move(new Point(x1,y1)));
+                }
+                else if(gameEngine.canAttack(x,y)){
+                    final int x1 = x;
+                    final int y1 = y;
+                    rec.setBackground(Color.RED);
+                    rec.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> gameEngine.attack(x1,y1));
                 }
             }
         }
