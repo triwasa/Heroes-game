@@ -2,15 +2,15 @@ package pl.sdk;
 
 import java.util.Random;
 
-public class NewDamageCalc extends DamageCalculator {
+public class DefaultDamageCalculator extends DamageCalculator {
 
     private final Random rand;
 
-    NewDamageCalc() {
+    DefaultDamageCalculator() {
         this(new Random());
     }
 
-    NewDamageCalc(Random aRand) {
+    DefaultDamageCalculator(Random aRand) {
         rand = aRand;
     }
 

@@ -45,7 +45,7 @@ class AttackCreatureTest {
 
     @Test
     void creatureShouldDealDamageMinus5PercentWhenArmorIsGreaterThenAttackBy2Points(){
-        Creature attacker = new Creature("Attacker",10,NOT_IMPORTANT,100,NOT_IMPORTANT, Range.closed(10,20), new NewDamageCalc(randomizer));
+        Creature attacker = new Creature("Attacker",10,NOT_IMPORTANT,100,NOT_IMPORTANT, Range.closed(10,20), new DefaultDamageCalculator(randomizer));
         Creature defender = new Creature("Defender",NOT_IMPORTANT,12,100, NOT_IMPORTANT,NOT_IMPORTANT);
         attacker.attack(defender);
 
