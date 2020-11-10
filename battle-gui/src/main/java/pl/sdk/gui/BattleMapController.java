@@ -140,7 +140,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .build();
         upgradedCreatures.add(c);
         c = new Creature.Builder()
-                .name("Dead Knight")
+                .name("Dread Knight")
                 .maxHp(120)
                 .attack(18)
                 .armor(18)
