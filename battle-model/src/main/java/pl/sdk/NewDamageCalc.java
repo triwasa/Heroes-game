@@ -4,9 +4,19 @@ import java.util.Random;
 
 public class NewDamageCalc extends DamageCalculator {
 
+    private final Random rand;
+
+    NewDamageCalc() {
+        this(new Random());
+    }
+
+    NewDamageCalc(Random aRand) {
+        rand = aRand;
+    }
+
     @Override
     int calculateDamage(Creature aAttacker, Creature aDefender) {
-        Random rand = new Random();
+
         int randValue = rand.nextInt(aAttacker.getDamage().upperEndpoint() - aAttacker.getDamage().lowerEndpoint() + 1) + aAttacker.getDamage().lowerEndpoint();
 
         double ret;
