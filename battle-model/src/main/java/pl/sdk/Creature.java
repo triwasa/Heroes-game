@@ -112,36 +112,36 @@ public class Creature implements PropertyChangeListener {
         private Range<Integer> damage;
         private DamageCalculator damageCalculator;
 
-        Builder name (String name){
+        public Builder name (String name){
             this.name = name;
             return this;
         }
-        Builder attack (int attack){
+        public Builder attack (int attack){
             this.attack = attack;
             return this;
         }
-        Builder armor (int armor){
+        public Builder armor (int armor){
             this.armor = armor;
             return this;
         }
-        Builder maxHp (int maxHp){
+        public Builder maxHp (int maxHp){
             this.maxHp = maxHp;
             return this;
         }
-        Builder moveRange (int moveRange){
+        public Builder moveRange (int moveRange){
             this.moveRange = moveRange;
             return this;
         }
-        Builder damage (Range<Integer> damage){
+        public Builder damage (Range<Integer> damage){
             this.damage = damage;
             return this;
         };
-        Builder damageCalculator (DamageCalculator damageCalculator){
+        public Builder damageCalculator (DamageCalculator damageCalculator){
             this.damageCalculator = damageCalculator;
             return this;
         }
 
-        Creature build(){
+        public Creature build(){
             Set<String> emptyFields = new HashSet<>();
             if (name == null ){
                 emptyFields.add("name");
@@ -171,7 +171,7 @@ public class Creature implements PropertyChangeListener {
                 ret.calc = damageCalculator;
             }
             else{
-                damageCalculator = new DefaultDamageCalculator();
+                ret.calc = new DefaultDamageCalculator();
             }
             return ret;
         }

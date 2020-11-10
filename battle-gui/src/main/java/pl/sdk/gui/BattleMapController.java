@@ -1,5 +1,6 @@
 package pl.sdk.gui;
 
+import com.google.common.collect.Range;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -25,15 +26,139 @@ public class BattleMapController implements PropertyChangeListener {
     private final GameEngine gameEngine;
 
     public BattleMapController() {
-        List<Creature> creatures1 = new ArrayList<>();
-        creatures1.add(new Creature());
-        creatures1.add(new Creature());
-        creatures1.add(new Creature());
-        List<Creature> creatures2 = new ArrayList<>();
-        creatures2.add(new Creature());
-        creatures2.add(new Creature());
-        creatures2.add(new Creature());
-        gameEngine = new GameEngine(creatures1, creatures2);
+        List<Creature> notUpgradedCreatures = new ArrayList<>();
+
+        Creature c;
+        c = new Creature.Builder()
+                .name("Skeleton")
+                .maxHp(6)
+                .attack(5)
+                .armor(4)
+                .damage(Range.closed(1,3))
+                .moveRange(4)
+                .build();
+        notUpgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Walking Dead")
+                .maxHp(15)
+                .attack(5)
+                .armor(5)
+                .damage(Range.closed(2,3))
+                .moveRange(3)
+                .build();
+        notUpgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Wight")
+                .maxHp(18)
+                .attack(7)
+                .armor(7)
+                .damage(Range.closed(3,5))
+                .moveRange(5)
+                .build();
+        notUpgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Vampire")
+                .maxHp(30)
+                .attack(10)
+                .armor(9)
+                .damage(Range.closed(5,8))
+                .moveRange(6)
+                .build();
+        notUpgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Lich")
+                .maxHp(30)
+                .attack(13)
+                .armor(10)
+                .damage(Range.closed(11,13))
+                .moveRange(6)
+                .build();
+        notUpgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Black Knight")
+                .maxHp(120)
+                .attack(16)
+                .armor(16)
+                .damage(Range.closed(15,30))
+                .moveRange(7)
+                .build();
+        notUpgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Bone Dragon")
+                .maxHp(150)
+                .attack(17)
+                .armor(15)
+                .damage(Range.closed(25,50))
+                .moveRange(9)
+                .build();
+        notUpgradedCreatures.add(c);
+
+        List<Creature> upgradedCreatures = new ArrayList<>();
+        c = new Creature.Builder()
+                .name("Skeleton Warrior")
+                .maxHp(6)
+                .attack(6)
+                .armor(6)
+                .damage(Range.closed(1,3))
+                .moveRange(5)
+                .build();
+        upgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Zombie")
+                .maxHp(20)
+                .attack(5)
+                .armor(5)
+                .damage(Range.closed(2,3))
+                .moveRange(4)
+                .build();
+        upgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Wraith")
+                .maxHp(18)
+                .attack(7)
+                .armor(7)
+                .damage(Range.closed(3,5))
+                .moveRange(7)
+                .build();
+        upgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Vampire Lord")
+                .maxHp(40)
+                .attack(10)
+                .armor(10)
+                .damage(Range.closed(5,8))
+                .moveRange(9)
+                .build();
+        upgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Power Lich")
+                .maxHp(40)
+                .attack(13)
+                .armor(10)
+                .damage(Range.closed(11,15))
+                .moveRange(7)
+                .build();
+        upgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Dead Knight")
+                .maxHp(120)
+                .attack(18)
+                .armor(18)
+                .damage(Range.closed(15,30))
+                .moveRange(9)
+                .build();
+        upgradedCreatures.add(c);
+        c = new Creature.Builder()
+                .name("Bone Dragon")
+                .maxHp(200)
+                .attack(19)
+                .armor(17)
+                .damage(Range.closed(25,50))
+                .moveRange(14)
+                .build();
+        upgradedCreatures.add(c);
+
+        gameEngine = new GameEngine(notUpgradedCreatures, upgradedCreatures);
 
     }
 
