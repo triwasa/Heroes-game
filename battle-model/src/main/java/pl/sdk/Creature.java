@@ -74,17 +74,6 @@ public class Creature implements PropertyChangeListener {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(stats.getName());
-        sb.append(System.lineSeparator());
-        sb.append(getCurrentHp());
-        sb.append("/");
-        sb.append(stats.getMaxHp());
-        return sb.toString();
-    }
-
-    @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         counterAttackedInThisTurn = false;
     }
@@ -101,7 +90,24 @@ public class Creature implements PropertyChangeListener {
         return stats.getDamage();
     }
 
+    public String currentHealth() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getCurrentHp());
+        sb.append("/");
+        sb.append(stats.getMaxHp());
+        return sb.toString();
+    }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(stats.getName());
+        sb.append(System.lineSeparator());
+        sb.append(getCurrentHp());
+        sb.append("/");
+        sb.append(stats.getMaxHp());
+        return sb.toString();
+    }
 
     public static final class Builder {
         private String name;
