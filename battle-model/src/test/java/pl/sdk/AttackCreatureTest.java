@@ -25,8 +25,22 @@ class AttackCreatureTest {
 
     @Test
     void creatureShouldDealExactlyDamageWhenAttackAndArmorAreEquals(){
-        Creature attacker = new Creature("Attacker",10,NOT_IMPORTANT,100,NOT_IMPORTANT,20);
-        Creature defender = new Creature("Defender",NOT_IMPORTANT,10,100, NOT_IMPORTANT,NOT_IMPORTANT);
+        Creature attacker = new Creature.Builder()
+                .name("Attacker")
+                .attack(10)
+                .armor(NOT_IMPORTANT)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(20,20))
+                .build();
+        Creature defender = new Creature.Builder()
+                .name("Defender")
+                .attack(NOT_IMPORTANT)
+                .armor(10)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(5,5))
+                .build();
 
         attacker.attack(defender);
 
@@ -35,8 +49,22 @@ class AttackCreatureTest {
 
     @Test
     void creatureShouldDealDamagePlus10PercentWhenAttackIsGreaterThenArmorBy2Points(){
-        Creature attacker = new Creature("Attacker",10,NOT_IMPORTANT,100,NOT_IMPORTANT,20);
-        Creature defender = new Creature("Defender",NOT_IMPORTANT,8,100, NOT_IMPORTANT,NOT_IMPORTANT);
+        Creature attacker = new Creature.Builder()
+                .name("Attacker")
+                .attack(10)
+                .armor(NOT_IMPORTANT)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(20,20))
+                .build();
+        Creature defender = new Creature.Builder()
+                .name("Defender")
+                .attack(NOT_IMPORTANT)
+                .armor(8)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
+                .build();
 
         attacker.attack(defender);
 
@@ -45,10 +73,46 @@ class AttackCreatureTest {
 
     @Test
     void creatureShouldDealDamageMinus5PercentWhenArmorIsGreaterThenAttackBy2Points(){
-        Creature attacker = new Creature("Attacker",10,NOT_IMPORTANT,100,NOT_IMPORTANT, Range.closed(10,20), new DefaultDamageCalculator(randomizer));
-        Creature defender = new Creature("Defender",NOT_IMPORTANT,12,100, NOT_IMPORTANT,NOT_IMPORTANT);
+        Creature attacker = new Creature.Builder()
+                .name("Attacker")
+                .attack(10).armor(NOT_IMPORTANT)
+                .maxHp(100).moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(10,20))
+                .damageCalculator(new DefaultDamageCalculator(randomizer))
+                .build();
+        Creature defender = new Creature.Builder()
+                .name("Defender")
+                .attack(NOT_IMPORTANT)
+                .armor(12)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
+                .build();
         attacker.attack(defender);
 
         assertEquals(87,defender.getCurrentHp());
+    }
+
+    @Test
+    void shouldDealTwoXMoreDamageWhenStackHasTwoUnits(){
+        Creature attacker = new Creature.Builder()
+                .name("Attacker")
+                .attack(10).armor(NOT_IMPORTANT)
+                .maxHp(100).moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(10,20))
+                .damageCalculator(new DefaultDamageCalculator(randomizer))
+                .amount(2)
+                .build();
+        Creature defender = new Creature.Builder()
+                .name("Defender")
+                .attack(NOT_IMPORTANT)
+                .armor(12)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
+                .build();
+        attacker.attack(defender);
+
+        assertEquals(74,defender.getCurrentHp());
     }
 }

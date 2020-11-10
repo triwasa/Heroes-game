@@ -14,6 +14,7 @@ public class Creature implements PropertyChangeListener {
     private int currentHp;
     private boolean counterAttackedInThisTurn;
     private DamageCalculator calc;
+    private int amount;
 
     Creature(CreatureStatistic aStats){
         stats = aStats;
@@ -22,22 +23,24 @@ public class Creature implements PropertyChangeListener {
 
     // reszta konstruktorów do zaorania!
     public Creature(){
-        this("Name",2,1,10,10, 2);
-    }
-
-    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange) {
-        this(aName,aAttack,aArmor,aMaxHp,aMoveRange,aAttack);
-    }
-
-    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, int aDamage) {
-        this(aName,aAttack,aArmor,aMaxHp,aMoveRange,Range.closed(aDamage,aDamage), new DefaultDamageCalculator());
-    }
-
-    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, Range<Integer> aDamage, DamageCalculator aCalc) {
-        stats = new CreatureStatistic(aName,aAttack,aArmor,aMaxHp,aMoveRange,aDamage);
+        stats = new CreatureStatistic("Name",2,1,10,1, Range.closed(2,2));
         currentHp = stats.getMaxHp();
-        calc = aCalc;
+        calc = new DamageCalculator();
     }
+//
+//    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange) {
+//        this(aName,aAttack,aArmor,aMaxHp,aMoveRange,aAttack);
+//    }
+//
+//    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, int aDamage) {
+//        this(aName,aAttack,aArmor,aMaxHp,aMoveRange,Range.closed(aDamage,aDamage), new DefaultDamageCalculator());
+//    }
+//
+//    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, Range<Integer> aDamage, DamageCalculator aCalc) {
+//        stats = new CreatureStatistic(aName,aAttack,aArmor,aMaxHp,aMoveRange,aDamage);
+//        currentHp = stats.getMaxHp();
+//        calc = aCalc;
+//    }
 
 
     void attack(Creature aDefender) {
@@ -90,6 +93,10 @@ public class Creature implements PropertyChangeListener {
         return stats.getDamage();
     }
 
+    public int getAmount(){
+        return amount;
+    }
+
     public String currentHealth() {
         StringBuilder sb = new StringBuilder();
         sb.append(getCurrentHp());
@@ -117,6 +124,7 @@ public class Creature implements PropertyChangeListener {
         private Integer moveRange;
         private Range<Integer> damage;
         private DamageCalculator damageCalculator;
+        private Integer amount;
 
         public Builder name (String name){
             this.name = name;
@@ -142,6 +150,10 @@ public class Creature implements PropertyChangeListener {
             this.damage = damage;
             return this;
         };
+        public Builder amount(int amount){
+            this.amount=amount;
+            return this;
+        }
         public Builder damageCalculator (DamageCalculator damageCalculator){
             this.damageCalculator = damageCalculator;
             return this;
@@ -173,6 +185,12 @@ public class Creature implements PropertyChangeListener {
 
             CreatureStatistic stats = new CreatureStatistic(name, attack, armor, maxHp, moveRange, damage);
             Creature ret = new Creature(stats);
+            if(amount == null){
+                ret.amount=1;
+            }
+            else{
+                ret.amount = amount;
+            }
             if (damageCalculator != null){
                 ret.calc = damageCalculator;
             }

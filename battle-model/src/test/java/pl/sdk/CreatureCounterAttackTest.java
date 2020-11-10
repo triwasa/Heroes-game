@@ -1,5 +1,6 @@
 package pl.sdk;
 
+import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,8 +11,22 @@ class CreatureCounterAttackTest {
 
     @Test
     void creatureShouldCounterAttack(){
-        Creature attacker = new Creature("Attacker",NOT_IMPORTANT,NOT_IMPORTANT,100,NOT_IMPORTANT,NOT_IMPORTANT);
-        Creature defender = new Creature("Defender",NOT_IMPORTANT,NOT_IMPORTANT,100, NOT_IMPORTANT,10);
+        Creature attacker = new Creature.Builder()
+                .name("Attacker")
+                .attack(NOT_IMPORTANT)
+                .armor(NOT_IMPORTANT)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
+                .build();
+        Creature defender = new Creature.Builder()
+                .name("Defender")
+                .attack(NOT_IMPORTANT)
+                .armor(10)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(10,10))
+                .build();
 
         attacker.attack(defender);
 
@@ -20,9 +35,30 @@ class CreatureCounterAttackTest {
 
     @Test
     void creatureShouldCounterAttackOnlyOnceAtTurn(){
-        Creature attacker = new Creature("Attacker",NOT_IMPORTANT,NOT_IMPORTANT,100,NOT_IMPORTANT,NOT_IMPORTANT);
-        Creature attacker2 = new Creature("Attacker2",NOT_IMPORTANT,NOT_IMPORTANT,100,NOT_IMPORTANT,NOT_IMPORTANT);
-        Creature defender = new Creature("Defender",NOT_IMPORTANT,NOT_IMPORTANT,100, NOT_IMPORTANT,10);
+        Creature attacker = new Creature.Builder()
+                .name("Attacker")
+                .attack(NOT_IMPORTANT)
+                .armor(NOT_IMPORTANT)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
+                .build();
+        Creature attacker2 = new Creature.Builder()
+                .name("Attacker")
+                .attack(NOT_IMPORTANT)
+                .armor(NOT_IMPORTANT)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
+                .build();
+        Creature defender = new Creature.Builder()
+                .name("Defender")
+                .attack(NOT_IMPORTANT)
+                .armor(10)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(10,10))
+                .build();
 
         attacker.attack(defender);
         attacker2.attack(defender);
