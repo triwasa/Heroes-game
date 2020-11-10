@@ -24,6 +24,7 @@ public class GameEngine {
         List<Creature> twoSidesCreatures = new ArrayList<>();
         twoSidesCreatures.addAll(aCreatures1);
         twoSidesCreatures.addAll(aCreatures2);
+        twoSidesCreatures.sort((c1, c2) -> c2.getMoveRange() - c1.getMoveRange());
         queue = new CreatureTurnQueue(twoSidesCreatures);
 
         twoSidesCreatures.forEach(queue::addObserver);
@@ -83,7 +84,7 @@ public class GameEngine {
 
     private void putCreaturesFromOneSideToBoard(List<Creature> aCreatures, int aX) {
         for (int i = 0; i < aCreatures.size(); i++) {
-            board.add(new Point(aX,i*2), aCreatures.get(i));
+            board.add(new Point(aX,i*2+1), aCreatures.get(i));
         }
     }
 
