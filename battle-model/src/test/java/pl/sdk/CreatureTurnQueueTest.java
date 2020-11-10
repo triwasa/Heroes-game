@@ -1,5 +1,6 @@
 package pl.sdk;
 
+import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,9 +20,30 @@ class CreatureTurnQueueTest {
 
     @BeforeEach
     void init(){
-        a = new Creature();
-        b = new Creature();
-        c = new Creature();
+        a = new Creature.Builder()
+                .name("Name")
+                .attack(2)
+                .armor(1)
+                .maxHp(10)
+                .moveRange(1)
+                .damage(Range.closed(2,2))
+                .build();
+        b = new Creature.Builder()
+                .name("Name")
+                .attack(2)
+                .armor(1)
+                .maxHp(10)
+                .moveRange(1)
+                .damage(Range.closed(2,2))
+                .build();
+        c = new Creature.Builder()
+                .name("Name")
+                .attack(2)
+                .armor(1)
+                .maxHp(10)
+                .moveRange(1)
+                .damage(Range.closed(2,2))
+                .build();
         creatureList = new ArrayList<>();
         creatureList.add(a);
         creatureList.add(b);

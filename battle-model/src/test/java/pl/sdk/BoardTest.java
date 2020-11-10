@@ -1,5 +1,6 @@
 package pl.sdk;
 
+import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,14 @@ class BoardTest {
     @BeforeEach
     void init() {
         board = new Board();
-        creature = new Creature();
+        creature = new Creature.Builder()
+                .name("Name")
+                .attack(2)
+                .armor(1)
+                .maxHp(10)
+                .moveRange(1)
+                .damage(Range.closed(2,2))
+                .build();
     }
 
     @Test
@@ -35,7 +43,14 @@ class BoardTest {
     @Test
     void shouldThrowIllegalArgumentExceptionWenYouTryAddCreatureToNotEmptyField() {
         board.add(new Point(0, 0), creature);
-        Creature creature2 = new Creature();
+        Creature creature2 = new Creature.Builder()
+                .name("Name")
+                .attack(2)
+                .armor(1)
+                .maxHp(10)
+                .moveRange(1)
+                .damage(Range.closed(2,2))
+                .build();
 
         assertThrows(IllegalArgumentException.class, () -> board.add(new Point(0, 0), creature2));
 

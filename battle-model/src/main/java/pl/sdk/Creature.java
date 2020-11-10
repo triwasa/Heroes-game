@@ -16,32 +16,15 @@ public class Creature implements PropertyChangeListener {
     private DamageCalculator calc;
     private int amount;
 
-    Creature(CreatureStatistic aStats){
+    // Constructor for mockito. Don't use it! You have builder here.
+    Creature(){
+        stats = new CreatureStatistic("name",1,1,1,1,Range.closed(2,2));
+    }
+
+    private Creature(CreatureStatistic aStats){
         stats = aStats;
         currentHp = stats.getMaxHp();
     }
-
-    // reszta konstruktorów do zaorania!
-    public Creature(){
-        stats = new CreatureStatistic("Name",2,1,10,1, Range.closed(2,2));
-        currentHp = stats.getMaxHp();
-        calc = new DamageCalculator();
-    }
-//
-//    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange) {
-//        this(aName,aAttack,aArmor,aMaxHp,aMoveRange,aAttack);
-//    }
-//
-//    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, int aDamage) {
-//        this(aName,aAttack,aArmor,aMaxHp,aMoveRange,Range.closed(aDamage,aDamage), new DefaultDamageCalculator());
-//    }
-//
-//    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, Range<Integer> aDamage, DamageCalculator aCalc) {
-//        stats = new CreatureStatistic(aName,aAttack,aArmor,aMaxHp,aMoveRange,aDamage);
-//        currentHp = stats.getMaxHp();
-//        calc = aCalc;
-//    }
-
 
     void attack(Creature aDefender) {
         if (isAlive()){
@@ -57,7 +40,7 @@ public class Creature implements PropertyChangeListener {
     }
 
     private boolean isAlive() {
-        return currentHp > 0;
+        return amount > 0;
     }
 
     public int getCurrentHp() {
