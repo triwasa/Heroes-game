@@ -1,43 +1,56 @@
 package pl.sdk;
 
+import com.google.common.collect.Range;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Creature implements PropertyChangeListener {
 
     private final CreatureStatistic stats;
     private int currentHp;
     private boolean counterAttackedInThisTurn;
+    private DamageCalculator calc;
 
+    Creature(CreatureStatistic aStats){
+        stats = aStats;
+        currentHp = stats.getMaxHp();
+    }
+
+    // reszta konstruktorów do zaorania!
     public Creature(){
-        this("Name",2,1,10,10);
+        this("Name",2,1,10,10, 2);
     }
 
     Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange) {
-        stats = new CreatureStatistic(aName,aAttack,aArmor,aMaxHp,aMoveRange);
+        this(aName,aAttack,aArmor,aMaxHp,aMoveRange,aAttack);
+    }
+
+    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, int aDamage) {
+        this(aName,aAttack,aArmor,aMaxHp,aMoveRange,Range.closed(aDamage,aDamage), new DefaultDamageCalculator());
+    }
+
+    Creature(String aName, int aAttack, int aArmor, int aMaxHp, int aMoveRange, Range<Integer> aDamage, DamageCalculator aCalc) {
+        stats = new CreatureStatistic(aName,aAttack,aArmor,aMaxHp,aMoveRange,aDamage);
         currentHp = stats.getMaxHp();
+        calc = aCalc;
     }
 
 
     void attack(Creature aDefender) {
         if (isAlive()){
-            int damageToDeal = calculateDamage(aDefender);
+            int damageToDeal = calc.calculateDamage(this,aDefender);
             aDefender.currentHp = aDefender.currentHp - damageToDeal;
 
             if (!aDefender.counterAttackedInThisTurn){
-                int damageToDealInCounterAttack = aDefender.calculateDamage(this);
+                int damageToDealInCounterAttack = calc.calculateDamage(aDefender, this);
                 currentHp = currentHp - damageToDealInCounterAttack;
                 aDefender.counterAttackedInThisTurn = true;
             }
         }
-    }
-
-    private int calculateDamage(Creature aDefender) {
-        int damageToDeal = this.stats.getAttack() - aDefender.stats.getArmor();
-        if (damageToDeal < 0){
-            damageToDeal = 0;
-        }
-        return damageToDeal;
     }
 
     private boolean isAlive() {
@@ -74,5 +87,93 @@ public class Creature implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         counterAttackedInThisTurn = false;
+    }
+
+    int getAttack() {
+        return stats.getAttack();
+    }
+
+    int getArmor() {
+        return stats.getArmor();
+    }
+
+    Range<Integer> getDamage() {
+        return stats.getDamage();
+    }
+
+
+
+    public static final class Builder {
+        private String name;
+        private Integer attack;
+        private Integer armor;
+        private Integer maxHp;
+        private Integer moveRange;
+        private Range<Integer> damage;
+        private DamageCalculator damageCalculator;
+
+        Builder name (String name){
+            this.name = name;
+            return this;
+        }
+        Builder attack (int attack){
+            this.attack = attack;
+            return this;
+        }
+        Builder armor (int armor){
+            this.armor = armor;
+            return this;
+        }
+        Builder maxHp (int maxHp){
+            this.maxHp = maxHp;
+            return this;
+        }
+        Builder moveRange (int moveRange){
+            this.moveRange = moveRange;
+            return this;
+        }
+        Builder damage (Range<Integer> damage){
+            this.damage = damage;
+            return this;
+        };
+        Builder damageCalculator (DamageCalculator damageCalculator){
+            this.damageCalculator = damageCalculator;
+            return this;
+        }
+
+        Creature build(){
+            Set<String> emptyFields = new HashSet<>();
+            if (name == null ){
+                emptyFields.add("name");
+            }
+            if (attack == null){
+                emptyFields.add("attack");
+            }
+            if (armor == null){
+                emptyFields.add("armor");
+            }
+            if (maxHp == null){
+                emptyFields.add("maxHp");
+            }
+            if (moveRange == null){
+                emptyFields.add("moveRange");
+            }
+            if (damage == null){
+                emptyFields.add("damage");
+            }
+            if (!emptyFields.isEmpty()){
+                throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
+            }
+
+            CreatureStatistic stats = new CreatureStatistic(name, attack, armor, maxHp, moveRange, damage);
+            Creature ret = new Creature(stats);
+            if (damageCalculator != null){
+                ret.calc = damageCalculator;
+            }
+            else{
+                damageCalculator = new DefaultDamageCalculator();
+            }
+            return ret;
+        }
     }
 }
