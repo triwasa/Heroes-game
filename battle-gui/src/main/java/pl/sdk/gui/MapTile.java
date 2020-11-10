@@ -21,14 +21,14 @@ class MapTile extends StackPane {
         getChildren().add(rec);
     }
 
-    void addCreature(String aName, String currentHp){
+    void addCreature(String aName, int aAmount){
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
         ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/graphics/creatures/" + aName + ".png")));
         image.setFitHeight(46);
         image.setFitWidth(46);
         vbox.getChildren().add(image);
-        Text text = new Text(currentHp);
+        Text text = new Text(String.valueOf(aAmount));
         text.setFont(new Font(10.0));
         vbox.getChildren().add(text);
         getChildren().add(vbox);

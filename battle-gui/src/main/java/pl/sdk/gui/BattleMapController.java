@@ -36,6 +36,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(4)
                 .damage(Range.closed(1,3))
                 .moveRange(4)
+                .amount(70)
                 .build();
         notUpgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -45,6 +46,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(5)
                 .damage(Range.closed(2,3))
                 .moveRange(3)
+                .amount(60)
                 .build();
         notUpgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -54,6 +56,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(7)
                 .damage(Range.closed(3,5))
                 .moveRange(5)
+                .amount(50)
                 .build();
         notUpgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -63,6 +66,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(9)
                 .damage(Range.closed(5,8))
                 .moveRange(6)
+                .amount(40)
                 .build();
         notUpgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -72,6 +76,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(10)
                 .damage(Range.closed(11,13))
                 .moveRange(6)
+                .amount(30)
                 .build();
         notUpgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -81,6 +86,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(16)
                 .damage(Range.closed(15,30))
                 .moveRange(7)
+                .amount(20)
                 .build();
         notUpgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -90,6 +96,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(15)
                 .damage(Range.closed(25,50))
                 .moveRange(9)
+                .amount(10)
                 .build();
         notUpgradedCreatures.add(c);
 
@@ -101,6 +108,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(6)
                 .damage(Range.closed(1,3))
                 .moveRange(5)
+                .amount(75)
                 .build();
         upgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -110,6 +118,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(5)
                 .damage(Range.closed(2,3))
                 .moveRange(4)
+                .amount(65)
                 .build();
         upgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -119,6 +128,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(7)
                 .damage(Range.closed(3,5))
                 .moveRange(7)
+                .amount(55)
                 .build();
         upgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -128,6 +138,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(10)
                 .damage(Range.closed(5,8))
                 .moveRange(9)
+                .amount(45)
                 .build();
         upgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -137,6 +148,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(10)
                 .damage(Range.closed(11,15))
                 .moveRange(7)
+                .amount(35)
                 .build();
         upgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -146,6 +158,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(18)
                 .damage(Range.closed(15,30))
                 .moveRange(9)
+                .amount(25)
                 .build();
         upgradedCreatures.add(c);
         c = new Creature.Builder()
@@ -155,6 +168,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .armor(17)
                 .damage(Range.closed(25,50))
                 .moveRange(14)
+                .amount(15)
                 .build();
         upgradedCreatures.add(c);
 
@@ -183,7 +197,7 @@ public class BattleMapController implements PropertyChangeListener {
 
                 Creature c = gameEngine.get(x, y);
                 if (c != null) {
-                    rec.addCreature(c.getName(), c.currentHealth());
+                    rec.addCreature(c.getName(), c.getAmount());
 
                     if(c == gameEngine.getActiveCreature()){
                         rec.setBackground(Color.GREEN);
