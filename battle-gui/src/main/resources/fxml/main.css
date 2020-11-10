@@ -7,9 +7,9 @@
     -fx-background-insets: 0,1,2;
     -fx-text-fill: black;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-    -fx-padding: 30px;
+    -fx-padding: 20px;
     -fx-background-insets: 15px;
-    -fx-font: bold 20pt "Arial";
+    -fx-font: bold 15pt "Arial";
 }
 
 .label {
