@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import pl.sdk.Creature;
+import pl.sdk.DamageIncreaseWithRandomChanceCalculator;
 import pl.sdk.GameEngine;
 import pl.sdk.Point;
 
@@ -85,6 +86,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .attack(16)
                 .armor(16)
                 .damage(Range.closed(15,30))
+                .damageCalculator(new DamageIncreaseWithRandomChanceCalculator(0.2,2.0))
                 .moveRange(7)
                 .amount(20)
                 .build();
@@ -157,6 +159,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .attack(18)
                 .armor(18)
                 .damage(Range.closed(15,30))
+                .damageCalculator(new DamageIncreaseWithRandomChanceCalculator(0.2,2.0))
                 .moveRange(9)
                 .amount(25)
                 .build();

@@ -8,7 +8,7 @@ public class DamageIncreaseWithRandomChanceCalculator extends DamageCalculator {
     private final double chanceToIncrease;
     private final double increaseFactor;
 
-    DamageIncreaseWithRandomChanceCalculator(double aChance, double aIncreaseFactor) {
+    public DamageIncreaseWithRandomChanceCalculator(double aChance, double aIncreaseFactor) {
         this(aChance,aIncreaseFactor,new Random());
     }
 
