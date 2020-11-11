@@ -2,20 +2,24 @@ package pl.sdk;
 
 import java.util.Random;
 
-public class DefaultDamageCalculator extends DamageCalculator {
+public class CalculateDamageIncreaseWithRandomChanceStrategy implements CalculateDamageStrategy {
 
     private final Random rand;
+    private final double chanceToIncrease;
+    private final double increaseFactor;
 
-    DefaultDamageCalculator() {
-        this(new Random());
+    public CalculateDamageIncreaseWithRandomChanceStrategy(double aChance, double aIncreaseFactor) {
+        this(aChance,aIncreaseFactor,new Random());
     }
 
-    DefaultDamageCalculator(Random aRand) {
+    public CalculateDamageIncreaseWithRandomChanceStrategy(double aChance, double aIncreaseFactor, Random aRand) {
+        chanceToIncrease = aChance;
+        increaseFactor = aIncreaseFactor;
         rand = aRand;
     }
 
     @Override
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
+    public int calculateDamage(Creature aAttacker, Creature aDefender) {
 
         int randValue = rand.nextInt(aAttacker.getDamage().upperEndpoint() - aAttacker.getDamage().lowerEndpoint() + 1) + aAttacker.getDamage().lowerEndpoint();
 
@@ -32,6 +36,10 @@ public class DefaultDamageCalculator extends DamageCalculator {
                 defencePoints = 12;
             }
             ret = randValue * (1 - defencePoints *0.025);
+        }
+
+        if (rand.nextDouble() <= chanceToIncrease){
+            ret = ret * increaseFactor;
         }
 
         if (ret < 0){

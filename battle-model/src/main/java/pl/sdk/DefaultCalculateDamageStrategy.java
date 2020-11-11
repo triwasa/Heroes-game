@@ -2,22 +2,20 @@ package pl.sdk;
 
 import java.util.Random;
 
-public class DefaultDamageCalculatorWithSelfHealing extends DamageCalculator{
+public class DefaultCalculateDamageStrategy implements CalculateDamageStrategy {
 
     private final Random rand;
-    private final double selfHealingPercentage;
 
-    public DefaultDamageCalculatorWithSelfHealing(double aSelfHealingPercentage) {
-        this(aSelfHealingPercentage, new Random());
+    DefaultCalculateDamageStrategy() {
+        this(new Random());
     }
 
-    DefaultDamageCalculatorWithSelfHealing(double aSelfHealingPercentage, Random aRand) {
+    DefaultCalculateDamageStrategy(Random aRand) {
         rand = aRand;
-        selfHealingPercentage = aSelfHealingPercentage;
     }
 
     @Override
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
+    public int calculateDamage(Creature aAttacker, Creature aDefender) {
 
         int randValue = rand.nextInt(aAttacker.getDamage().upperEndpoint() - aAttacker.getDamage().lowerEndpoint() + 1) + aAttacker.getDamage().lowerEndpoint();
 
@@ -36,14 +34,9 @@ public class DefaultDamageCalculatorWithSelfHealing extends DamageCalculator{
             ret = randValue * (1 - defencePoints *0.025);
         }
 
-        ret = ret * aAttacker.getAmount();
-
         if (ret < 0){
             ret = 0;
         }
-
-        aAttacker.applyDamage((int)-(ret * selfHealingPercentage));
-
-        return (int)ret;
+        return aAttacker.getAmount() * (int)ret;
     }
 }

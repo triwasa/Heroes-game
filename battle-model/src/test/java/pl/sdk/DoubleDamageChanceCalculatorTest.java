@@ -3,7 +3,6 @@ package pl.sdk;
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.util.Random;
 
@@ -47,7 +46,7 @@ public class DoubleDamageChanceCalculatorTest {
     @Test
     void shouldDealDoubleDamageIfRandomPositive(){
         when(rand.nextDouble()).thenReturn(0.19);
-        DamageCalculator calc = new DamageIncreaseWithRandomChanceCalculator(0.2,2.0,rand);
+        CalculateDamageStrategy calc = new CalculateDamageIncreaseWithRandomChanceStrategy(0.2,2.0,rand);
 
         int result = calc.calculateDamage(attacker, defender);
 
@@ -57,7 +56,7 @@ public class DoubleDamageChanceCalculatorTest {
     @Test
     void shouldDealNormalDamageIfRandomNegative(){
         when(rand.nextDouble()).thenReturn(0.21);
-        DamageCalculator calc = new DamageIncreaseWithRandomChanceCalculator(0.2,2.0,rand);
+        CalculateDamageStrategy calc = new CalculateDamageIncreaseWithRandomChanceStrategy(0.2,2.0,rand);
 
         int result = calc.calculateDamage(attacker, defender);
 

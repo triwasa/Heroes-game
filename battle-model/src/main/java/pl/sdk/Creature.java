@@ -13,7 +13,7 @@ public class Creature implements PropertyChangeListener {
     private final CreatureStatistic stats;
     private int currentHp;
     private boolean counterAttackedInThisTurn;
-    private DamageCalculator calc;
+    private CalculateDamageStrategy calculateDamageStrategy;
     private int amount;
 
     // Constructor for mockito. Don't use it! You have builder here.
@@ -28,11 +28,11 @@ public class Creature implements PropertyChangeListener {
 
     void attack(Creature aDefender) {
         if (isAlive()){
-            int damageToDeal = calc.calculateDamage(this,aDefender);
+            int damageToDeal = calculateDamageStrategy.calculateDamage(this,aDefender);
             aDefender.applyDamage(damageToDeal);
 
             if (!aDefender.counterAttackedInThisTurn){
-                int damageToDealInCounterAttack = calc.calculateDamage(aDefender, this);
+                int damageToDealInCounterAttack = calculateDamageStrategy.calculateDamage(aDefender, this);
                 applyDamage(damageToDealInCounterAttack);
                 aDefender.counterAttackedInThisTurn = true;
             }
@@ -131,7 +131,7 @@ public class Creature implements PropertyChangeListener {
         private Integer maxHp;
         private Integer moveRange;
         private Range<Integer> damage;
-        private DamageCalculator damageCalculator;
+        private CalculateDamageStrategy damageCalculator;
         private Integer amount;
 
         public Builder name (String name){
@@ -162,8 +162,8 @@ public class Creature implements PropertyChangeListener {
             this.amount=amount;
             return this;
         }
-        public Builder damageCalculator (DamageCalculator damageCalculator){
-            this.damageCalculator = damageCalculator;
+        public Builder damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
+            this.damageCalculator = aCalculateDamageStrategy;
             return this;
         }
 
@@ -200,10 +200,10 @@ public class Creature implements PropertyChangeListener {
                 ret.amount = amount;
             }
             if (damageCalculator != null){
-                ret.calc = damageCalculator;
+                ret.calculateDamageStrategy = damageCalculator;
             }
             else{
-                ret.calc = new DefaultDamageCalculator();
+                ret.calculateDamageStrategy = new DefaultCalculateDamageStrategy();
             }
             return ret;
         }

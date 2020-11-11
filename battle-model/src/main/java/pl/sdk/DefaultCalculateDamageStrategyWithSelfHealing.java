@@ -2,24 +2,22 @@ package pl.sdk;
 
 import java.util.Random;
 
-public class DamageIncreaseWithRandomChanceCalculator extends DamageCalculator {
+public class DefaultCalculateDamageStrategyWithSelfHealing implements CalculateDamageStrategy {
 
     private final Random rand;
-    private final double chanceToIncrease;
-    private final double increaseFactor;
+    private final double selfHealingPercentage;
 
-    public DamageIncreaseWithRandomChanceCalculator(double aChance, double aIncreaseFactor) {
-        this(aChance,aIncreaseFactor,new Random());
+    public DefaultCalculateDamageStrategyWithSelfHealing(double aSelfHealingPercentage) {
+        this(aSelfHealingPercentage, new Random());
     }
 
-    public DamageIncreaseWithRandomChanceCalculator(double aChance, double aIncreaseFactor, Random aRand) {
-        chanceToIncrease = aChance;
-        increaseFactor = aIncreaseFactor;
+    DefaultCalculateDamageStrategyWithSelfHealing(double aSelfHealingPercentage, Random aRand) {
         rand = aRand;
+        selfHealingPercentage = aSelfHealingPercentage;
     }
 
     @Override
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
+    public int calculateDamage(Creature aAttacker, Creature aDefender) {
 
         int randValue = rand.nextInt(aAttacker.getDamage().upperEndpoint() - aAttacker.getDamage().lowerEndpoint() + 1) + aAttacker.getDamage().lowerEndpoint();
 
@@ -38,13 +36,14 @@ public class DamageIncreaseWithRandomChanceCalculator extends DamageCalculator {
             ret = randValue * (1 - defencePoints *0.025);
         }
 
-        if (rand.nextDouble() <= chanceToIncrease){
-            ret = ret * increaseFactor;
-        }
+        ret = ret * aAttacker.getAmount();
 
         if (ret < 0){
             ret = 0;
         }
-        return aAttacker.getAmount() * (int)ret;
+
+        aAttacker.applyDamage((int)-(ret * selfHealingPercentage));
+
+        return (int)ret;
     }
 }
