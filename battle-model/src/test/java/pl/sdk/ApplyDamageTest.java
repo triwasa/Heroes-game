@@ -8,8 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ApplyDamageTest {
 
-    public static final int NOT_IMPORTANT = 5;
+    private static final int NOT_IMPORTANT = 5;
     private Creature defender;
+    private static final int IMMORTAL=99999;
 
     @BeforeEach
     void init(){
@@ -20,7 +21,7 @@ public class ApplyDamageTest {
                 .maxHp(100)
                 .amount(10)
                 .moveRange(NOT_IMPORTANT)
-                .damage(Range.closed(10,10))
+                .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
                 .build();
     }
     @Test
@@ -89,5 +90,23 @@ public class ApplyDamageTest {
 
         assertEquals(10, defender.getAmount());
         assertEquals(1, defender.getCurrentHp());
+    }
+
+    @Test
+    void shouldLost198HpBecauseAttackTwiceShouldBe9StackAnd2Hp(){
+        Creature attacker = new Creature.Builder()
+                .name("Name")
+                .attack(NOT_IMPORTANT)
+                .armor(NOT_IMPORTANT)
+                .maxHp(IMMORTAL)
+                .moveRange(1)
+                .damage(Range.closed(99, 99))
+                .build();
+
+        attacker.attack(defender);
+        attacker.attack(defender);
+
+        assertEquals(9, defender.getAmount());
+        assertEquals(2, defender.getCurrentHp());
     }
 }

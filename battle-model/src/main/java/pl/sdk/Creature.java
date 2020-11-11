@@ -39,7 +39,7 @@ public class Creature implements PropertyChangeListener {
         }
     }
 
-    void applyDamage(int aDamageToApply) {
+    private void applyDamage(int aDamageToApply) {
         int fullCurrentHp = (stats.getMaxHp() * (amount - 1)) + currentHp - aDamageToApply;
         if (fullCurrentHp <= 0) {
             amount = 0;
