@@ -28,7 +28,7 @@ public class Creature implements PropertyChangeListener {
 
     void attack(Creature aDefender) {
         if (isAlive()){
-            int damageToDeal = calculateDamageStrategy.calculateDamage(this,aDefender);
+            int damageToDeal = calculateDamage(this, aDefender);
             aDefender.applyDamage(damageToDeal);
 
             performAfterAttack(damageToDeal);
@@ -37,9 +37,13 @@ public class Creature implements PropertyChangeListener {
         }
     }
 
+    protected int calculateDamage(Creature aAttacker, Creature aDefender) {
+        return calculateDamageStrategy.calculateDamage(aAttacker, aDefender);
+    }
+
     protected void counterAttack(Creature aDefender) {
         if (!aDefender.counterAttackedInThisTurn){
-            int damageToDealInCounterAttack = calculateDamageStrategy.calculateDamage(aDefender, this);
+            int damageToDealInCounterAttack = calculateDamage(aDefender, this);
             applyDamage(damageToDealInCounterAttack);
             aDefender.counterAttackedInThisTurn = true;
         }
@@ -73,7 +77,7 @@ public class Creature implements PropertyChangeListener {
         }
     }
 
-    private boolean isAlive() {
+    public boolean isAlive() {
         return amount > 0;
     }
 

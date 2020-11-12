@@ -75,7 +75,8 @@ class AttackCreatureTest {
     void creatureShouldDealDamageMinus5PercentWhenArmorIsGreaterThenAttackBy2Points(){
         Creature attacker = new Creature.Builder()
                 .name("Attacker")
-                .attack(10).armor(NOT_IMPORTANT)
+                .attack(10)
+                .armor(NOT_IMPORTANT)
                 .maxHp(100).moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(10,20))
                 .damageCalculator(new DefaultCalculateStrategy(randomizer))
