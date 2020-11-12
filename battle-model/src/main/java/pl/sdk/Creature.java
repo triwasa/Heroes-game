@@ -30,9 +30,6 @@ public class Creature implements PropertyChangeListener {
         if (isAlive()){
             int damageToDeal = calculateDamage(this, aDefender);
             aDefender.applyDamage(damageToDeal);
-
-            performAfterAttack(damageToDeal);
-
             counterAttack(aDefender);
         }
     }
@@ -47,9 +44,6 @@ public class Creature implements PropertyChangeListener {
             applyDamage(damageToDealInCounterAttack);
             aDefender.counterAttackedInThisTurn = true;
         }
-    }
-
-    void performAfterAttack(int aDamageToDeal) {
     }
 
     void applyDamage(int aDamageToApply) {
@@ -139,6 +133,10 @@ public class Creature implements PropertyChangeListener {
 
     double getAttackRange() {
         return 1.0;
+    }
+
+    protected void setCurrentHpToMaximum() {
+        currentHp = stats.getMaxHp();
     }
 
     public static class Builder {

@@ -4,17 +4,28 @@ import com.google.common.collect.Range;
 
 import java.beans.PropertyChangeEvent;
 
-public class ShootingCreatureDecorator extends Creature {
+public class HealAfterAttackCreatureDecorator extends Creature{
 
-    private final Creature decorated;
+    private double selfHealingPercentage;
+    private Creature decorated;
 
-    ShootingCreatureDecorator(Creature aDecorated){
+    HealAfterAttackCreatureDecorator(Creature aDecorated, double aSelfHealingPercentage) {
         decorated = aDecorated;
+        selfHealingPercentage = aSelfHealingPercentage;
     }
 
     @Override
     void attack(Creature aDefender) {
-        decorated.attack(aDefender);
+        if (decorated.isAlive()){
+            int damageToDeal = decorated.calculateDamage(this, aDefender);
+            aDefender.applyDamage(damageToDeal);
+            healAfterAttack(damageToDeal);
+            decorated.counterAttack(aDefender);
+        }
+    }
+
+    private void healAfterAttack(int aDamageToDeal) {
+        applyDamage((int)(-aDamageToDeal * selfHealingPercentage));
     }
 
     @Override
@@ -23,8 +34,18 @@ public class ShootingCreatureDecorator extends Creature {
     }
 
     @Override
+    protected void setCurrentHpToMaximum() {
+        decorated.setCurrentHpToMaximum();
+    }
+
+    @Override
     protected void counterAttack(Creature aDefender) {
         decorated.counterAttack(aDefender);
+    }
+
+    @Override
+    void applyDamage(int aDamageToApply) {
+        decorated.applyDamage(aDamageToApply);
     }
 
     @Override
@@ -35,11 +56,6 @@ public class ShootingCreatureDecorator extends Creature {
     @Override
     public int getCurrentHp() {
         return decorated.getCurrentHp();
-    }
-
-    @Override
-    protected void setCurrentHpToMaximum() {
-        decorated.setCurrentHpToMaximum();
     }
 
     @Override
@@ -90,10 +106,5 @@ public class ShootingCreatureDecorator extends Creature {
     @Override
     public String toString() {
         return decorated.toString();
-    }
-
-    @Override
-    double getAttackRange() {
-        return Double.MAX_VALUE;
     }
 }

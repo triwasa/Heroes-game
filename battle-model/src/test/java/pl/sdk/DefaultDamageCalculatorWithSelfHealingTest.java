@@ -23,8 +23,7 @@ class DefaultDamageCalculatorWithSelfHealingTest {
     void init(){
         rand = mock(Random.class);
         when(rand.nextInt(anyInt())).thenReturn(0);
-        attacker = new CreatureWithSelfHealing.Builder()
-                .selfHealingPercentage(0.5)
+        attacker = new Creature.Builder()
                 .name("Selfheal Test Unit")
                 .maxHp(30)
                 .attack(THE_SAME_FOR_BOTH_CREATURES)
@@ -34,6 +33,7 @@ class DefaultDamageCalculatorWithSelfHealingTest {
                 .moveRange(NOT_IMPORTANT)
                 .amount(10)
                 .build();
+        attacker = new HealAfterAttackCreatureDecorator(attacker, 0.5);
         defender = new Creature.Builder()
                 .name("Defender")
                 .maxHp(NOT_IMPORTANT)

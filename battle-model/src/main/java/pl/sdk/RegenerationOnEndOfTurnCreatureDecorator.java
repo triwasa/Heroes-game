@@ -4,11 +4,11 @@ import com.google.common.collect.Range;
 
 import java.beans.PropertyChangeEvent;
 
-public class ShootingCreatureDecorator extends Creature {
+public class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
 
-    private final Creature decorated;
+    private Creature decorated;
 
-    ShootingCreatureDecorator(Creature aDecorated){
+    RegenerationOnEndOfTurnCreatureDecorator(Creature aDecorated) {
         decorated = aDecorated;
     }
 
@@ -28,6 +28,11 @@ public class ShootingCreatureDecorator extends Creature {
     }
 
     @Override
+    void applyDamage(int aDamageToApply) {
+        decorated.applyDamage(aDamageToApply);
+    }
+
+    @Override
     public boolean isAlive() {
         return decorated.isAlive();
     }
@@ -35,11 +40,6 @@ public class ShootingCreatureDecorator extends Creature {
     @Override
     public int getCurrentHp() {
         return decorated.getCurrentHp();
-    }
-
-    @Override
-    protected void setCurrentHpToMaximum() {
-        decorated.setCurrentHpToMaximum();
     }
 
     @Override
@@ -60,6 +60,7 @@ public class ShootingCreatureDecorator extends Creature {
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         decorated.propertyChange(aPropertyChangeEvent);
+        decorated.setCurrentHpToMaximum();
     }
 
     @Override
@@ -94,6 +95,11 @@ public class ShootingCreatureDecorator extends Creature {
 
     @Override
     double getAttackRange() {
-        return Double.MAX_VALUE;
+        return decorated.getAttackRange();
+    }
+
+    @Override
+    protected void setCurrentHpToMaximum() {
+        decorated.setCurrentHpToMaximum();
     }
 }
