@@ -24,50 +24,24 @@ public class BattleMapController implements PropertyChangeListener {
 
     public BattleMapController() {
         List<Creature> notUpgradedCreatures = new ArrayList<>();
-
-        Creature c;
-        NecropolisFactory factory = new NecropolisFactory();
-        c = factory.create("Skeleton");
-        notUpgradedCreatures.add(c);
-        c = factory.create("Walking Dead");
-        notUpgradedCreatures.add(c);
-        c = factory.create("Wight");
-        notUpgradedCreatures.add(c);
-        c = factory.create("Vampire");
-        notUpgradedCreatures.add(c);
-        c = factory.create("Lich");
-        notUpgradedCreatures.add(c);
-        c = factory.create("Black Knight");
-        notUpgradedCreatures.add(c);
-        c = factory.create("Bone Dragon");
-        notUpgradedCreatures.add(c);
-
-
         List<Creature> upgradedCreatures = new ArrayList<>();
-        c = factory.create("Skeleton Warrior");
-        upgradedCreatures.add(c);
-        c = factory.create("Zombie");
-        upgradedCreatures.add(c);
-        c = factory.create("Wraith");
-        upgradedCreatures.add(c);
-        c = factory.create("Vampire Lord");
-        upgradedCreatures.add(c);
-        c = factory.create("Power Lich");
-        upgradedCreatures.add(c);
-        c = factory.create("Dread Knight");
-        upgradedCreatures.add(c);
-        c = factory.create("Ghost Dragon");
-        upgradedCreatures.add(c);
+        NecropolisFactory factory = new NecropolisFactory();
+        for (int i = 1; i <= 7; i++) {
+            notUpgradedCreatures.add(factory.create(false, i));
+        }
+
+        for (int i = 1; i <= 7; i++) {
+            upgradedCreatures.add(factory.create(true, i));
+        }
 
         gameEngine = new GameEngine(notUpgradedCreatures, upgradedCreatures);
-
     }
 
     @FXML
     void initialize() {
-        gameEngine.addObserver(GameEngine.CURRENT_CREATURE_CHANGED,this);
-        gameEngine.addObserver(GameEngine.CREATURE_MOVED,this);
-        gameEngine.addObserver(GameEngine.CREATURE_ATTACKED,this);
+        gameEngine.addObserver(GameEngine.CURRENT_CREATURE_CHANGED, this);
+        gameEngine.addObserver(GameEngine.CREATURE_MOVED, this);
+        gameEngine.addObserver(GameEngine.CREATURE_ATTACKED, this);
 
         passButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             gameEngine.pass();
@@ -86,21 +60,19 @@ public class BattleMapController implements PropertyChangeListener {
                 if (c != null) {
                     rec.addCreature(c.getName(), c.getAmount());
 
-                    if(c == gameEngine.getActiveCreature()){
+                    if (c == gameEngine.getActiveCreature()) {
                         rec.setBackground(Color.GREEN);
-                    }
-                    else if(gameEngine.canAttack(x,y)){
+                    } else if (gameEngine.canAttack(x, y)) {
                         final int x1 = x;
                         final int y1 = y;
                         rec.setBackground(Color.RED);
-                        rec.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> gameEngine.attack(x1,y1));
+                        rec.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> gameEngine.attack(x1, y1));
                     }
-                }
-                else if(gameEngine.canMove(x,y)){
+                } else if (gameEngine.canMove(x, y)) {
                     final int x1 = x;
                     final int y1 = y;
                     rec.setBackground(Color.GREY);
-                    rec.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> gameEngine.move(new Point(x1,y1)));
+                    rec.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> gameEngine.move(new Point(x1, y1)));
                 }
 
             }
