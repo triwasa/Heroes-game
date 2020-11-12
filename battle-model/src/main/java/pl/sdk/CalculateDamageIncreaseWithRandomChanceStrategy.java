@@ -2,7 +2,7 @@ package pl.sdk;
 
 import java.util.Random;
 
-public class CalculateDamageIncreaseWithRandomChanceStrategy implements CalculateDamageStrategy {
+public class CalculateDamageIncreaseWithRandomChanceStrategy extends AbstractCalculateDamageStrategy {
 
     private final Random rand;
     private final double chanceToIncrease;
@@ -13,38 +13,17 @@ public class CalculateDamageIncreaseWithRandomChanceStrategy implements Calculat
     }
 
     public CalculateDamageIncreaseWithRandomChanceStrategy(double aChance, double aIncreaseFactor, Random aRand) {
+        super(aRand);
         chanceToIncrease = aChance;
         increaseFactor = aIncreaseFactor;
         rand = aRand;
     }
 
     @Override
-    public int calculateDamage(Creature aAttacker, Creature aDefender) {
-
-        int randValue = rand.nextInt(aAttacker.getDamage().upperEndpoint() - aAttacker.getDamage().lowerEndpoint() + 1) + aAttacker.getDamage().lowerEndpoint();
-
-        double ret;
-        if (aAttacker.getAttack() >= aDefender.getArmor()){
-            int attackPoints = aAttacker.getAttack() - aDefender.getArmor();
-            if (attackPoints > 60){
-                attackPoints = 60;
-            }
-            ret = randValue * (1 + (attackPoints)*0.05);
-        }else{
-            int defencePoints = aDefender.getArmor() - aAttacker.getAttack();
-            if (defencePoints > 12){
-                defencePoints = 12;
-            }
-            ret = randValue * (1 - defencePoints *0.025);
-        }
-
+    double changeDamageAfter(double aDamageToChange, Creature aAttacker) {
         if (rand.nextDouble() <= chanceToIncrease){
-            ret = ret * increaseFactor;
+            aDamageToChange = aDamageToChange * increaseFactor;
         }
-
-        if (ret < 0){
-            ret = 0;
-        }
-        return aAttacker.getAmount() * (int)ret;
+        return aDamageToChange;
     }
 }

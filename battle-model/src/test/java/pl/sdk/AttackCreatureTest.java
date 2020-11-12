@@ -78,7 +78,7 @@ class AttackCreatureTest {
                 .attack(10).armor(NOT_IMPORTANT)
                 .maxHp(100).moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(10,20))
-                .damageCalculator(new DefaultCalculateDamageStrategy(randomizer))
+                .damageCalculator(new DefaultCalculateStrategy(randomizer))
                 .build();
         Creature defender = new Creature.Builder()
                 .name("Defender")
@@ -100,7 +100,7 @@ class AttackCreatureTest {
                 .attack(10).armor(NOT_IMPORTANT)
                 .maxHp(100).moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(10,20))
-                .damageCalculator(new DefaultCalculateDamageStrategy(randomizer))
+                .damageCalculator(new DefaultCalculateStrategy(randomizer))
                 .amount(2)
                 .build();
         Creature defender = new Creature.Builder()

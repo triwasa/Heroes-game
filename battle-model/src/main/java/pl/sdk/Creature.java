@@ -203,7 +203,7 @@ public class Creature implements PropertyChangeListener {
                 ret.calculateDamageStrategy = damageCalculator;
             }
             else{
-                ret.calculateDamageStrategy = new DefaultCalculateDamageStrategy();
+                ret.calculateDamageStrategy = new DefaultCalculateStrategy();
             }
             return ret;
         }

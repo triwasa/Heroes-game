@@ -2,15 +2,11 @@ package pl.sdk;
 
 import java.util.Random;
 
-public class DefaultCalculateDamageStrategy implements CalculateDamageStrategy {
+public abstract class AbstractCalculateDamageStrategy implements CalculateDamageStrategy {
 
     private final Random rand;
 
-    DefaultCalculateDamageStrategy() {
-        this(new Random());
-    }
-
-    DefaultCalculateDamageStrategy(Random aRand) {
+    AbstractCalculateDamageStrategy(Random aRand) {
         rand = aRand;
     }
 
@@ -19,24 +15,28 @@ public class DefaultCalculateDamageStrategy implements CalculateDamageStrategy {
 
         int randValue = rand.nextInt(aAttacker.getDamage().upperEndpoint() - aAttacker.getDamage().lowerEndpoint() + 1) + aAttacker.getDamage().lowerEndpoint();
 
-        double ret;
+        double oneCreatureDamageToDeal;
         if (aAttacker.getAttack() >= aDefender.getArmor()){
             int attackPoints = aAttacker.getAttack() - aDefender.getArmor();
             if (attackPoints > 60){
                 attackPoints = 60;
             }
-            ret = randValue * (1 + (attackPoints)*0.05);
+            oneCreatureDamageToDeal = randValue * (1 + (attackPoints)*0.05);
         }else{
             int defencePoints = aDefender.getArmor() - aAttacker.getAttack();
             if (defencePoints > 12){
                 defencePoints = 12;
             }
-            ret = randValue * (1 - defencePoints *0.025);
+            oneCreatureDamageToDeal = randValue * (1 - defencePoints *0.025);
         }
 
-        if (ret < 0){
-            ret = 0;
+        if (oneCreatureDamageToDeal < 0){
+            oneCreatureDamageToDeal = 0;
         }
-        return aAttacker.getAmount() * (int)ret;
+        double wholeStackDamageToDeal = aAttacker.getAmount() * oneCreatureDamageToDeal;
+        double wholeStackDamageToDealAfterChange = changeDamageAfter(wholeStackDamageToDeal, aAttacker);
+        return (int)wholeStackDamageToDealAfterChange;
     }
+
+    abstract double changeDamageAfter(double aWholeStackDamageToDeal, Creature aAttacker);
 }
