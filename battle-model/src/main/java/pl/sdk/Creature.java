@@ -21,7 +21,7 @@ public class Creature implements PropertyChangeListener {
         stats = new CreatureStatistic("name",1,1,1,1,Range.closed(2,2));
     }
 
-    private Creature(CreatureStatistic aStats){
+    protected Creature(CreatureStatistic aStats){
         stats = aStats;
         currentHp = stats.getMaxHp();
     }
@@ -31,12 +31,21 @@ public class Creature implements PropertyChangeListener {
             int damageToDeal = calculateDamageStrategy.calculateDamage(this,aDefender);
             aDefender.applyDamage(damageToDeal);
 
-            if (!aDefender.counterAttackedInThisTurn){
-                int damageToDealInCounterAttack = calculateDamageStrategy.calculateDamage(aDefender, this);
-                applyDamage(damageToDealInCounterAttack);
-                aDefender.counterAttackedInThisTurn = true;
-            }
+            performAfterAttack(damageToDeal);
+
+            counterAttack(aDefender);
         }
+    }
+
+    protected void counterAttack(Creature aDefender) {
+        if (!aDefender.counterAttackedInThisTurn){
+            int damageToDealInCounterAttack = calculateDamageStrategy.calculateDamage(aDefender, this);
+            applyDamage(damageToDealInCounterAttack);
+            aDefender.counterAttackedInThisTurn = true;
+        }
+    }
+
+    void performAfterAttack(int aDamageToDeal) {
     }
 
     void applyDamage(int aDamageToApply) {
@@ -124,7 +133,11 @@ public class Creature implements PropertyChangeListener {
         return sb.toString();
     }
 
-    public static final class Builder {
+    double getAttackRange() {
+        return 1.0;
+    }
+
+    public static class Builder {
         private String name;
         private Integer attack;
         private Integer armor;
@@ -192,7 +205,7 @@ public class Creature implements PropertyChangeListener {
             }
 
             CreatureStatistic stats = new CreatureStatistic(name, attack, armor, maxHp, moveRange, damage);
-            Creature ret = new Creature(stats);
+            Creature ret = createInstance(stats);
             if(amount == null){
                 ret.amount=1;
             }
@@ -206,6 +219,10 @@ public class Creature implements PropertyChangeListener {
                 ret.calculateDamageStrategy = new DefaultCalculateStrategy();
             }
             return ret;
+        }
+
+        protected Creature createInstance(CreatureStatistic aStats) {
+            return new Creature(aStats);
         }
     }
 }
