@@ -57,7 +57,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .amount(50)
                 .build();
         notUpgradedCreatures.add(c);
-        c = new Creature.Builder()
+        c = new BlockCounterAttackCreature.Builder()
                 .name("Vampire")
                 .maxHp(30)
                 .attack(10)
