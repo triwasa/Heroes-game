@@ -140,7 +140,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .amount(45)
                 .build();
         upgradedCreatures.add(c);
-        c = new ShootingCreatureDecorator.Builder()
+        c = new Creature.Builder()
                 .name("Power Lich")
                 .maxHp(40)
                 .attack(13)
@@ -149,6 +149,7 @@ public class BattleMapController implements PropertyChangeListener {
                 .moveRange(7)
                 .amount(35)
                 .build();
+        c = new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(c));
         upgradedCreatures.add(c);
         c = new Creature.Builder()
                 .name("Dread Knight")
