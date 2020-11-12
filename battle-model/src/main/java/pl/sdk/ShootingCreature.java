@@ -2,6 +2,10 @@ package pl.sdk;
 
 public class ShootingCreature extends Creature {
 
+    ShootingCreature(){
+        super();
+    }
+
     ShootingCreature(CreatureStatistic aStats) {
         super(aStats);
     }

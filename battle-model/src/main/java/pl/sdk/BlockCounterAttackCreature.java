@@ -2,6 +2,10 @@ package pl.sdk;
 
 public class BlockCounterAttackCreature extends Creature{
 
+    BlockCounterAttackCreature(){
+        super();
+    }
+
     public BlockCounterAttackCreature(CreatureStatistic aStats) {
         super(aStats);
     }
