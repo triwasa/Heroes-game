@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class CalculateDamageIncreaseWithRandomChanceStrategy extends AbstractCalculateDamageStrategy {
 
-    private final Random rand;
     private final double chanceToIncrease;
     private final double increaseFactor;
 
@@ -16,12 +15,11 @@ public class CalculateDamageIncreaseWithRandomChanceStrategy extends AbstractCal
         super(aRand);
         chanceToIncrease = aChance;
         increaseFactor = aIncreaseFactor;
-        rand = aRand;
     }
 
     @Override
     double changeDamageAfter(double aDamageToChange, Creature aAttacker) {
-        if (rand.nextDouble() <= chanceToIncrease){
+        if (getRand().nextDouble() <= chanceToIncrease){
             aDamageToChange = aDamageToChange * increaseFactor;
         }
         return aDamageToChange;

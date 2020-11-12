@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class DefaultCalculateDamageStrategyWithSelfHealing extends AbstractCalculateDamageStrategy {
 
-    private final Random rand;
     private final double selfHealingPercentage;
 
     public DefaultCalculateDamageStrategyWithSelfHealing(double aSelfHealingPercentage) {
@@ -13,7 +12,6 @@ public class DefaultCalculateDamageStrategyWithSelfHealing extends AbstractCalcu
 
     DefaultCalculateDamageStrategyWithSelfHealing(double aSelfHealingPercentage, Random aRand) {
         super(aRand);
-        rand = aRand;
         selfHealingPercentage = aSelfHealingPercentage;
     }
 

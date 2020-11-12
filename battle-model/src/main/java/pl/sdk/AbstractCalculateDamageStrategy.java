@@ -10,6 +10,10 @@ public abstract class AbstractCalculateDamageStrategy implements CalculateDamage
         rand = aRand;
     }
 
+    protected Random getRand() {
+        return rand;
+    }
+
     @Override
     public int calculateDamage(Creature aAttacker, Creature aDefender) {
 
