@@ -1,6 +1,6 @@
-package pl.sdk;
+package pl.sdk.creatures;
 
-public interface CalculateDamageStrategy {
+interface CalculateDamageStrategy {
 
     int calculateDamage(Creature attacker, Creature aDefender);
 }

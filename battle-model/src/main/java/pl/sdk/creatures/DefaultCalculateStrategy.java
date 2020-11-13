@@ -1,16 +1,16 @@
-package pl.sdk;
+package pl.sdk.creatures;
 
 import java.util.Random;
 
-public class DefaultCalculateStrategy extends AbstractCalculateDamageStrategy {
+class DefaultCalculateStrategy extends AbstractCalculateDamageStrategy {
 
     private final Random rand;
 
-    public DefaultCalculateStrategy(){
+    DefaultCalculateStrategy(){
         this(new Random());
     }
 
-    public DefaultCalculateStrategy(Random aRandomizer) {
+    DefaultCalculateStrategy(Random aRandomizer) {
         super(aRandomizer);
         rand = aRandomizer;
     }

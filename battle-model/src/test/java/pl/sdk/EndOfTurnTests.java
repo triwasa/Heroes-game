@@ -2,6 +2,8 @@ package pl.sdk;
 
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
+import pl.sdk.GameEngine;
+import pl.sdk.creatures.Creature;
 
 import java.beans.PropertyChangeEvent;
 import java.util.List;

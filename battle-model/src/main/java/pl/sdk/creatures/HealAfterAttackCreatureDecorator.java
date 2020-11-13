@@ -1,28 +1,41 @@
-package pl.sdk;
+package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
 import java.beans.PropertyChangeEvent;
 
-public class BlockCounterAttackCreatureDecorator extends Creature{
+class HealAfterAttackCreatureDecorator extends Creature{
 
-    private final Creature decorated;
+    private double selfHealingPercentage;
+    private Creature decorated;
 
-    public BlockCounterAttackCreatureDecorator(Creature aDecorated){
+    HealAfterAttackCreatureDecorator(Creature aDecorated, double aSelfHealingPercentage) {
         decorated = aDecorated;
+        selfHealingPercentage = aSelfHealingPercentage;
+    }
+
+    @Override
+    public void attack(Creature aDefender) {
+        if (decorated.isAlive()){
+            int damageToDeal = decorated.calculateDamage(this, aDefender);
+            aDefender.applyDamage(damageToDeal);
+            healAfterAttack(damageToDeal);
+            decorated.counterAttack(aDefender);
+        }
+    }
+
+    private void healAfterAttack(int aDamageToDeal) {
+        applyDamage((int)(-aDamageToDeal * selfHealingPercentage));
+    }
+
+    @Override
+    protected int calculateDamage(Creature aAttacker, Creature aDefender) {
+        return decorated.calculateDamage(aAttacker, aDefender);
     }
 
     @Override
     protected void setCurrentHpToMaximum() {
         decorated.setCurrentHpToMaximum();
-    }
-
-    @Override
-    void attack(Creature aDefender) {
-        if (decorated.isAlive()){
-            int damageToDeal = decorated.calculateDamage(this,aDefender);
-            aDefender.applyDamage(damageToDeal);
-        }
     }
 
     @Override
@@ -36,6 +49,11 @@ public class BlockCounterAttackCreatureDecorator extends Creature{
     }
 
     @Override
+    public boolean isAlive() {
+        return decorated.isAlive();
+    }
+
+    @Override
     public int getCurrentHp() {
         return decorated.getCurrentHp();
     }
@@ -46,12 +64,12 @@ public class BlockCounterAttackCreatureDecorator extends Creature{
     }
 
     @Override
-    boolean canCounterAttack() {
+    public boolean canCounterAttack() {
         return decorated.canCounterAttack();
     }
 
     @Override
-    int getMoveRange() {
+    public int getMoveRange() {
         return decorated.getMoveRange();
     }
 
@@ -61,17 +79,17 @@ public class BlockCounterAttackCreatureDecorator extends Creature{
     }
 
     @Override
-    int getAttack() {
+    public int getAttack() {
         return decorated.getAttack();
     }
 
     @Override
-    int getArmor() {
+    public int getArmor() {
         return decorated.getArmor();
     }
 
     @Override
-    Range<Integer> getDamage() {
+    public Range<Integer> getDamage() {
         return decorated.getDamage();
     }
 
@@ -88,10 +106,5 @@ public class BlockCounterAttackCreatureDecorator extends Creature{
     @Override
     public String toString() {
         return decorated.toString();
-    }
-
-    @Override
-    double getAttackRange() {
-        return decorated.getAttackRange();
     }
 }

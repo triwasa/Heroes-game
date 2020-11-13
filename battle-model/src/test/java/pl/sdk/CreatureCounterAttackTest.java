@@ -2,6 +2,7 @@ package pl.sdk;
 
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
+import pl.sdk.creatures.Creature;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

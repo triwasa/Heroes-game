@@ -1,4 +1,4 @@
-package pl.sdk;
+package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
@@ -21,12 +21,12 @@ public class Creature implements PropertyChangeListener {
         stats = new CreatureStatistic("name",1,1,1,1,Range.closed(2,2));
     }
 
-    protected Creature(CreatureStatistic aStats){
+    Creature(CreatureStatistic aStats){
         stats = aStats;
         currentHp = stats.getMaxHp();
     }
 
-    void attack(Creature aDefender) {
+    public void attack(Creature aDefender) {
         if (isAlive()){
             int damageToDeal = calculateDamage(this, aDefender);
             aDefender.applyDamage(damageToDeal);
@@ -34,11 +34,11 @@ public class Creature implements PropertyChangeListener {
         }
     }
 
-    protected int calculateDamage(Creature aAttacker, Creature aDefender) {
+    int calculateDamage(Creature aAttacker, Creature aDefender) {
         return calculateDamageStrategy.calculateDamage(aAttacker, aDefender);
     }
 
-    protected void counterAttack(Creature aDefender) {
+    void counterAttack(Creature aDefender) {
         if (!aDefender.counterAttackedInThisTurn){
             int damageToDealInCounterAttack = calculateDamage(aDefender, this);
             applyDamage(damageToDealInCounterAttack);
@@ -83,11 +83,11 @@ public class Creature implements PropertyChangeListener {
         return stats.getName();
     }
 
-    boolean canCounterAttack() {
+    public boolean canCounterAttack() {
         return !counterAttackedInThisTurn;
     }
 
-    int getMoveRange() {
+    public int getMoveRange() {
         return stats.getMoveRange();
     }
 
@@ -96,15 +96,15 @@ public class Creature implements PropertyChangeListener {
         counterAttackedInThisTurn = false;
     }
 
-    int getAttack() {
+    public int getAttack() {
         return stats.getAttack();
     }
 
-    int getArmor() {
+    public int getArmor() {
         return stats.getArmor();
     }
 
-    Range<Integer> getDamage() {
+    public Range<Integer> getDamage() {
         return stats.getDamage();
     }
 
@@ -131,15 +131,15 @@ public class Creature implements PropertyChangeListener {
         return sb.toString();
     }
 
-    double getAttackRange() {
+    public double getAttackRange() {
         return 1.0;
     }
 
-    protected void setCurrentHpToMaximum() {
+    void setCurrentHpToMaximum() {
         currentHp = stats.getMaxHp();
     }
 
-    public static class Builder {
+    static class Builder {
         private String name;
         private Integer attack;
         private Integer armor;
@@ -149,40 +149,40 @@ public class Creature implements PropertyChangeListener {
         private CalculateDamageStrategy damageCalculator;
         private Integer amount;
 
-        public Builder name (String name){
+        Builder name (String name){
             this.name = name;
             return this;
         }
-        public Builder attack (int attack){
+        Builder attack (int attack){
             this.attack = attack;
             return this;
         }
-        public Builder armor (int armor){
+        Builder armor (int armor){
             this.armor = armor;
             return this;
         }
-        public Builder maxHp (int maxHp){
+        Builder maxHp (int maxHp){
             this.maxHp = maxHp;
             return this;
         }
-        public Builder moveRange (int moveRange){
+        Builder moveRange (int moveRange){
             this.moveRange = moveRange;
             return this;
         }
-        public Builder damage (Range<Integer> damage){
+        Builder damage (Range<Integer> damage){
             this.damage = damage;
             return this;
         };
-        public Builder amount(int amount){
+        Builder amount(int amount){
             this.amount=amount;
             return this;
         }
-        public Builder damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
+        Builder damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
             this.damageCalculator = aCalculateDamageStrategy;
             return this;
         }
 
-        public Creature build(){
+        Creature build(){
             Set<String> emptyFields = new HashSet<>();
             if (name == null ){
                 emptyFields.add("name");
@@ -223,7 +223,7 @@ public class Creature implements PropertyChangeListener {
             return ret;
         }
 
-        protected Creature createInstance(CreatureStatistic aStats) {
+        Creature createInstance(CreatureStatistic aStats) {
             return new Creature(aStats);
         }
     }
