@@ -20,14 +20,14 @@ public class NecropolisFactory {
     public static final String GHOST_DRAGON = "Ghost Dragon";
     public static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 7";
 
-    public static Creature createDefaultForTests(){
+    public static Creature createDefaultForTests() {
         return new Creature.Builder()
                 .name("Name")
                 .attack(2)
                 .armor(1)
                 .maxHp(10)
                 .moveRange(1)
-                .damage(Range.closed(2,2))
+                .damage(Range.closed(2, 2))
                 .build();
     }
 
@@ -75,7 +75,7 @@ public class NecropolisFactory {
                             .amount(40)
                             .build();
                 case 5:
-                    Creature lich = new ShootingCreatureDecorator.Builder()
+                    Creature lich = new Creature.Builder()
                             .name(LICH)
                             .maxHp(30)
                             .attack(13)
@@ -84,7 +84,7 @@ public class NecropolisFactory {
                             .moveRange(6)
                             .amount(30)
                             .build();
-                    return new SplashDamageCreatureDecorator(lich,getSplashForLich());
+                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(new SplashDamageCreatureDecorator(lich, getSplashForLich())));
                 case 6:
                     return new Creature.Builder()
                             .name(BLACK_KNIGHT)
@@ -162,7 +162,7 @@ public class NecropolisFactory {
                             .amount(35)
                             .build();
                     boolean[][] splashDamageTable = getSplashForLich();
-                    return new SplashDamageCreatureDecorator(new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(c)),splashDamageTable);
+                    return new SplashDamageCreatureDecorator(new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(c)), splashDamageTable);
                 case 6:
                     return new Creature.Builder()
                             .name(DREAD_KNIGHT)
