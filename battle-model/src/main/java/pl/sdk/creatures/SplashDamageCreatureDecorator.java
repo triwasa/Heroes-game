@@ -4,12 +4,14 @@ import com.google.common.collect.Range;
 
 import java.beans.PropertyChangeEvent;
 
-class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
+public class SplashDamageCreatureDecorator extends Creature {
 
-    private Creature decorated;
+    private final boolean[][] splashDamageTable;
+    private final Creature decorated;
 
-    RegenerationOnEndOfTurnCreatureDecorator(Creature aDecorated) {
+    public SplashDamageCreatureDecorator(Creature aDecorated, boolean[][] aSplashDamageTable) {
         decorated = aDecorated;
+        splashDamageTable = aSplashDamageTable;
     }
 
     @Override
@@ -18,23 +20,18 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
     }
 
     @Override
-    protected int calculateDamage(Creature aAttacker, Creature aDefender) {
+    int calculateDamage(Creature aAttacker, Creature aDefender) {
         return decorated.calculateDamage(aAttacker, aDefender);
     }
 
     @Override
-    protected void counterAttack(Creature aDefender) {
+    void counterAttack(Creature aDefender) {
         decorated.counterAttack(aDefender);
     }
 
     @Override
     public void applyDamage(int aDamageToApply) {
         decorated.applyDamage(aDamageToApply);
-    }
-
-    @Override
-    public boolean[][] getSplashRange() {
-        return decorated.getSplashRange();
     }
 
     @Override
@@ -65,7 +62,6 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         decorated.propertyChange(aPropertyChangeEvent);
-        decorated.setCurrentHpToMaximum();
     }
 
     @Override
@@ -104,7 +100,12 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
     }
 
     @Override
-    protected void setCurrentHpToMaximum() {
+    void setCurrentHpToMaximum() {
         decorated.setCurrentHpToMaximum();
+    }
+
+    @Override
+    public boolean[][] getSplashRange() {
+        return splashDamageTable;
     }
 }

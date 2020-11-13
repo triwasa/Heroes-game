@@ -31,8 +31,23 @@ class BlockCounterAttackCreatureDecorator extends Creature{
     }
 
     @Override
-    void applyDamage(int aDamageToApply) {
+    public void applyDamage(int aDamageToApply) {
         decorated.applyDamage(aDamageToApply);
+    }
+
+    @Override
+    int calculateDamage(Creature aAttacker, Creature aDefender) {
+        return decorated.calculateDamage(aAttacker, aDefender);
+    }
+
+    @Override
+    public boolean isAlive() {
+        return decorated.isAlive();
+    }
+
+    @Override
+    public boolean[][] getSplashRange() {
+        return decorated.getSplashRange();
     }
 
     @Override

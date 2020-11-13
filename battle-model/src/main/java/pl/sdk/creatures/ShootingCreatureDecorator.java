@@ -17,6 +17,8 @@ class ShootingCreatureDecorator extends Creature {
         decorated.attack(aDefender);
     }
 
+
+
     @Override
     protected int calculateDamage(Creature aAttacker, Creature aDefender) {
         return decorated.calculateDamage(aAttacker, aDefender);
@@ -45,6 +47,16 @@ class ShootingCreatureDecorator extends Creature {
     @Override
     public String getName() {
         return decorated.getName();
+    }
+
+    @Override
+    public void applyDamage(int aDamageToApply) {
+        decorated.applyDamage(aDamageToApply);
+    }
+
+    @Override
+    public boolean[][] getSplashRange() {
+        return decorated.getSplashRange();
     }
 
     @Override

@@ -39,12 +39,22 @@ class HealAfterAttackCreatureDecorator extends Creature{
     }
 
     @Override
+    public double getAttackRange() {
+        return decorated.getAttackRange();
+    }
+
+    @Override
+    public boolean[][] getSplashRange() {
+        return decorated.getSplashRange();
+    }
+
+    @Override
     protected void counterAttack(Creature aDefender) {
         decorated.counterAttack(aDefender);
     }
 
     @Override
-    void applyDamage(int aDamageToApply) {
+    public void applyDamage(int aDamageToApply) {
         decorated.applyDamage(aDamageToApply);
     }
 

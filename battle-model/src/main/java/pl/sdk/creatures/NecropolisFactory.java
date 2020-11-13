@@ -75,7 +75,7 @@ public class NecropolisFactory {
                             .amount(40)
                             .build();
                 case 5:
-                    return new ShootingCreatureDecorator.Builder()
+                    Creature lich = new ShootingCreatureDecorator.Builder()
                             .name(LICH)
                             .maxHp(30)
                             .attack(13)
@@ -84,6 +84,7 @@ public class NecropolisFactory {
                             .moveRange(6)
                             .amount(30)
                             .build();
+                    return new SplashDamageCreatureDecorator(lich,getSplashForLich());
                 case 6:
                     return new Creature.Builder()
                             .name(BLACK_KNIGHT)
@@ -160,7 +161,8 @@ public class NecropolisFactory {
                             .moveRange(7)
                             .amount(35)
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(c));
+                    boolean[][] splashDamageTable = getSplashForLich();
+                    return new SplashDamageCreatureDecorator(new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(c)),splashDamageTable);
                 case 6:
                     return new Creature.Builder()
                             .name(DREAD_KNIGHT)
@@ -186,5 +188,15 @@ public class NecropolisFactory {
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
             }
         }
+    }
+
+    private boolean[][] getSplashForLich() {
+        boolean[][] splashDamageTable = new boolean[3][3];
+        splashDamageTable[0][1] = true;
+        splashDamageTable[2][1] = true;
+        splashDamageTable[1][1] = true;
+        splashDamageTable[1][2] = true;
+        splashDamageTable[1][0] = true;
+        return splashDamageTable;
     }
 }

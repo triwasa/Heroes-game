@@ -24,7 +24,11 @@ public class GameEngine {
     private boolean blockAttacking;
 
     public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
-        board = new Board();
+        this(aCreatures1,aCreatures2,new Board());
+    }
+
+    GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2, Board aBoard) {
+        board = aBoard;
         putCreaturesToBoard(aCreatures1, aCreatures2);
         List<Creature> twoSidesCreatures = new ArrayList<>();
         twoSidesCreatures.addAll(aCreatures1);
@@ -72,11 +76,21 @@ public class GameEngine {
         notifyObservers(new PropertyChangeEvent(this, CURRENT_CREATURE_CHANGED,oldActiveCreature,newActiveCreature));
     }
 
-    public void attack(int x, int y){
+    public void attack(int aX, int aY){
         if (blockAttacking){
             return;
         }
-//        queue.getActiveCreature().attack(board.get(x,y));
+        Creature activeCreature = queue.getActiveCreature();
+        boolean[][] splashRange = activeCreature.getSplashRange();
+        for (int x = 0; x < splashRange.length; x++) {
+            for (int y = 0; y < splashRange.length; y++) {
+                if (splashRange[x][y]){
+                    activeCreature.attack(board.get(aX+x-1,aY+y-1));
+                }
+            }
+        }
+
+
         blockAttacking = true;
         blockMoving = true;
         notifyObservers(new PropertyChangeEvent(this, CREATURE_ATTACKED, null, null));
