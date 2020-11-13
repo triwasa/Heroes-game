@@ -20,6 +20,17 @@ public class NecropolisFactory {
     public static final String GHOST_DRAGON = "Ghost Dragon";
     public static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 7";
 
+    public static Creature createDefaultForTests(){
+        return new Creature.Builder()
+                .name("Name")
+                .attack(2)
+                .armor(1)
+                .maxHp(10)
+                .moveRange(1)
+                .damage(Range.closed(2,2))
+                .build();
+    }
+
     public Creature create(boolean aIsUpgraded, int aTier) {
         if (aIsUpgraded) {
             switch (aTier) {

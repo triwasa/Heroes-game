@@ -4,11 +4,11 @@ import com.google.common.collect.Range;
 
 import java.beans.PropertyChangeEvent;
 
-public class ShootingCreatureDecorator extends Creature {
+class ShootingCreatureDecorator extends Creature {
 
     private final Creature decorated;
 
-    public ShootingCreatureDecorator(Creature aDecorated){
+    ShootingCreatureDecorator(Creature aDecorated){
         decorated = aDecorated;
     }
 

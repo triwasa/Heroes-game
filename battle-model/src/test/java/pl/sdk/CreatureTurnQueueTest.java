@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.CreatureTurnQueue;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.NecropolisFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,30 +22,9 @@ class CreatureTurnQueueTest {
 
     @BeforeEach
     void init(){
-        a = new Creature.Builder()
-                .name("Name")
-                .attack(2)
-                .armor(1)
-                .maxHp(10)
-                .moveRange(1)
-                .damage(Range.closed(2,2))
-                .build();
-        b = new Creature.Builder()
-                .name("Name")
-                .attack(2)
-                .armor(1)
-                .maxHp(10)
-                .moveRange(1)
-                .damage(Range.closed(2,2))
-                .build();
-        c = new Creature.Builder()
-                .name("Name")
-                .attack(2)
-                .armor(1)
-                .maxHp(10)
-                .moveRange(1)
-                .damage(Range.closed(2,2))
-                .build();
+        a = NecropolisFactory.createDefaultForTests();
+        b = NecropolisFactory.createDefaultForTests();
+        c = NecropolisFactory.createDefaultForTests();
         creatureList = new ArrayList<>();
         creatureList.add(a);
         creatureList.add(b);

@@ -1,10 +1,8 @@
-package pl.sdk;
+package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
-import pl.sdk.creatures.BlockCounterAttackCreatureDecorator;
-import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.ShootingCreatureDecorator;
+import pl.sdk.GameEngine;
 
 import java.util.List;
 
@@ -38,7 +36,7 @@ public class ShootingAndBlockCounterAttackCreatureTest {
                 .build();
         GameEngine engine = new GameEngine(List.of(shootingCreature), List.of(normalCreature));
 
-        assertTrue(engine.canAttack(Board.WIDTH-1,1));
+        assertTrue(engine.canAttack(GameEngine.BOARD_WIDTH-1,1));
 
         engine.pass();
         assertFalse(engine.canAttack(0,1));

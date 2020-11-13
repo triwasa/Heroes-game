@@ -4,6 +4,7 @@ import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
 import pl.sdk.GameEngine;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.NecropolisFactory;
 
 import java.beans.PropertyChangeEvent;
 import java.util.List;
@@ -17,22 +18,8 @@ public class EndOfTurnTests {
 
     @Test
     void shouldResetCounterAttackFlagAfterEndOfTurn(){
-        Creature attacker = new Creature.Builder()
-                .name("Name")
-                .attack(2)
-                .armor(1)
-                .maxHp(10)
-                .moveRange(1)
-                .damage(Range.closed(2,2))
-                .build();
-        Creature defender = new Creature.Builder()
-                .name("Name")
-                .attack(2)
-                .armor(1)
-                .maxHp(10)
-                .moveRange(1)
-                .damage(Range.closed(2,2))
-                .build();
+        Creature attacker = NecropolisFactory.createDefaultForTests();
+        Creature defender = NecropolisFactory.createDefaultForTests();
         GameEngine engine = new GameEngine(List.of(attacker), List.of(defender));
 
         assertEquals(true, defender.canCounterAttack());
@@ -47,14 +34,7 @@ public class EndOfTurnTests {
     @Test
     void shouldCallPropertyChangeAfterEndOfTurn(){
         Creature attacker = spy(Creature.class);
-        Creature defender = new Creature.Builder()
-                .name("Name")
-                .attack(2)
-                .armor(1)
-                .maxHp(10)
-                .moveRange(1)
-                .damage(Range.closed(2,2))
-                .build();
+        Creature defender = NecropolisFactory.createDefaultForTests();
         GameEngine engine = new GameEngine(List.of(attacker), List.of(defender));
 
         engine.pass();

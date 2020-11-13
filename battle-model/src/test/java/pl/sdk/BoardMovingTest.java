@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import pl.sdk.Board;
 import pl.sdk.Point;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.NecropolisFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,14 +18,7 @@ class BoardMovingTest {
     @BeforeEach
     void init(){
         board = new Board();
-        creature = new Creature.Builder()
-                .name("Name")
-                .attack(2)
-                .armor(1)
-                .maxHp(10)
-                .moveRange(1)
-                .damage(Range.closed(2,2))
-                .build();
+        creature = NecropolisFactory.createDefaultForTests();
         board.add(new Point(0,0), creature);
     }
 
@@ -40,14 +34,7 @@ class BoardMovingTest {
 
     @Test
     void shouldThrowExceptionWhenCreatureTryingToMoveToNotEmptyField(){
-        board.add(new Point(0,1), new Creature.Builder()
-                .name("Name")
-                .attack(2)
-                .armor(1)
-                .maxHp(10)
-                .moveRange(1)
-                .damage(Range.closed(2,2))
-                .build());
+        board.add(new Point(0,1), NecropolisFactory.createDefaultForTests());
 
         assertThrows(IllegalArgumentException.class, () -> board.move(new Point(0,0), new Point(0,1)));
 
@@ -57,14 +44,7 @@ class BoardMovingTest {
 
     @Test
     void canMoveWhenCreatureHasEnoughtMovePoint(){
-        creature = new Creature.Builder()
-                .name("Name")
-                .attack(2)
-                .armor(1)
-                .maxHp(10)
-                .moveRange(1)
-                .damage(Range.closed(2,2))
-                .build();
+        creature = NecropolisFactory.createDefaultForTests();
         board.add(new Point(5,5), creature);
 
         assertTrue(board.canMove(creature, 6,5 ));
@@ -75,14 +55,7 @@ class BoardMovingTest {
 
     @Test
     void cannotMoveWhenCreatureHasNotEnoughtMovePoint(){
-        Creature creature = new Creature.Builder()
-                .name("Name")
-                .attack(2)
-                .armor(1)
-                .maxHp(10)
-                .moveRange(1)
-                .damage(Range.closed(2,2))
-                .build();
+        Creature creature = NecropolisFactory.createDefaultForTests();
         board.add(new Point(5,5), creature);
 
         assertFalse(board.canMove(creature, 6,6 ));
@@ -90,14 +63,7 @@ class BoardMovingTest {
 
     @Test
     void cannotMoveWhenTileIsTaken(){
-        Creature creature = new Creature.Builder()
-                .name("Name")
-                .attack(2)
-                .armor(1)
-                .maxHp(10)
-                .moveRange(1)
-                .damage(Range.closed(2,2))
-                .build();
+        Creature creature = NecropolisFactory.createDefaultForTests();
         board.add(new Point(5,5), creature);
 
         assertFalse(board.canMove(creature, 0,0 ));
