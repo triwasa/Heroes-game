@@ -1,11 +1,14 @@
 package pl.sdk;
 
+import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.sdk.CreatureTurnQueue;
+import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.NecropolisFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,9 +22,9 @@ class CreatureTurnQueueTest {
 
     @BeforeEach
     void init(){
-        a = new Creature();
-        b = new Creature();
-        c = new Creature();
+        a = NecropolisFactory.createDefaultForTests();
+        b = NecropolisFactory.createDefaultForTests();
+        c = NecropolisFactory.createDefaultForTests();
         creatureList = new ArrayList<>();
         creatureList.add(a);
         creatureList.add(b);

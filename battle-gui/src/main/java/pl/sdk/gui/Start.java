@@ -12,8 +12,8 @@ public class Start extends Application {
         Scene scene = new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/battleMap.fxml")));
 
         aStage.setScene(scene);
-        aStage.setX(100);
-        aStage.setY(100);
+        aStage.setX(5);
+        aStage.setY(5);
         aStage.show();
     }
 }
