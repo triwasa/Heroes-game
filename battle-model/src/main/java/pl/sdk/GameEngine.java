@@ -88,7 +88,10 @@ public class GameEngine {
         for (int x = 0; x < splashRange.length; x++) {
             for (int y = 0; y < splashRange.length; y++) {
                 if (splashRange[x][y]) {
-                    activeCreature.attack(board.get(aX + x - 1, aY + y - 1));
+                    Creature attackedCreature = board.get(aX + x - 1, aY + y - 1);
+                    if (attackedCreature != null){
+                        activeCreature.attack(board.get(aX + x - 1, aY + y - 1));
+                    }
                 }
             }
         }
