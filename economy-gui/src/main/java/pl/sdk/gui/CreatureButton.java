@@ -11,6 +11,7 @@ public class CreatureButton extends Button {
         super(aCreature.getName());
         addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             aEcoController.buy(aCreature);
+            aEcoController.refreshGui();
         });
     }
 }
