@@ -83,8 +83,8 @@ public class EcoController {
         NecropolisFactory factory = new NecropolisFactory();
         VBox creatureShop = new VBox();
         for (int i = 1; i < 8; i++) {
-            creatureShop.getChildren().add(new CreatureButton(this, factory.create(false,i,1)));
-            creatureShop.getChildren().add(new CreatureButton(this, factory.create(true,i,1)));
+            creatureShop.getChildren().add(new CreatureButton(this, factory, false,i));
+            creatureShop.getChildren().add(new CreatureButton(this, factory, true,i));
         }
         shopsBox.getChildren().add(creatureShop);
 
