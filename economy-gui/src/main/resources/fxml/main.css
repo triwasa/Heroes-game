@@ -24,6 +24,19 @@
     -fx-pref-width: 800;
 }
 
+.slider {
+    -fx-padding: 50 10 10 10;
+}
+
+.slider .track {
+    -fx-pref-height:20;
+}
+
+.slider .thumb {
+    -fx-pref-height: 30;
+    -fx-pref-width: 10;
+}
+
 #readyButton{
     -fx-pref-width: 1600;
 }
