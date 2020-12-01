@@ -25,7 +25,9 @@ public class CreatureButton extends Button {
 
         addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             int amount = startDialogAndGetCreatureAmount();
-            aEcoController.buy(aFactory.create(aUpgraded,aTier,amount));
+            if(amount != 0){
+                aEcoController.buy(aFactory.create(aUpgraded,aTier,amount));
+            }
             aEcoController.refreshGui();
         });
     }
@@ -36,7 +38,7 @@ public class CreatureButton extends Button {
         HBox topPane = new HBox();
         Stage dialog = prepareWindow(centerPane, bottomPane, topPane);
         Slider slider = createSlider();
-        prepareConfirmAndCancelButton(bottomPane);
+        prepareConfirmAndCancelButton(bottomPane, slider);
         prepareTop(topPane, slider);
         centerPane.getChildren().add(slider);
 
@@ -70,13 +72,17 @@ public class CreatureButton extends Button {
         return dialog;
     }
 
-    private void prepareConfirmAndCancelButton(HBox aBottomPane) {
+    private void prepareConfirmAndCancelButton(HBox aBottomPane, Slider aSlider) {
         Button okButton = new Button("OK");
         aBottomPane.setAlignment(Pos.CENTER);
         okButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> dialog.close());
         okButton.setPrefWidth(200);
         Button cancelButton = new Button("CLOSE");
-        cancelButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> dialog.close());
+        cancelButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
+        {
+            aSlider.setValue(0);
+            dialog.close();
+        });
         cancelButton.setPrefWidth(200);
         HBox.setHgrow(okButton, Priority.ALWAYS);
         HBox.setHgrow(cancelButton, Priority.ALWAYS);
