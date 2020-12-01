@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXSlider;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -32,9 +33,11 @@ public class CreatureButton extends Button {
     private int startDialogAndGetCreatureAmount() {
         VBox centerPane = new VBox();
         HBox bottomPane = new HBox();
-        Stage dialog = prepareWindow(centerPane, bottomPane);
+        HBox topPane = new HBox();
+        Stage dialog = prepareWindow(centerPane, bottomPane, topPane);
         Slider slider = createSlider();
         prepareConfirmAndCancelButton(bottomPane);
+        prepareTop(topPane, slider);
         centerPane.getChildren().add(slider);
 
         dialog.showAndWait();
@@ -42,7 +45,16 @@ public class CreatureButton extends Button {
         return (int)slider.getValue();
     }
 
-    private Stage prepareWindow(Pane aCenter, Pane aBottom) {
+    private void prepareTop(HBox aTopPane, Slider aSlider) {
+        //TODO creature cops should be visible here
+        aTopPane.getChildren().add(new Label ("Single Cost: " + "0"));
+        Label slideValueLabel = new Label("0");
+        aSlider.valueProperty().addListener((slider, aOld, aNew) -> slideValueLabel.setText(String.valueOf(aNew.intValue())));
+        aTopPane.getChildren().add(slideValueLabel);
+        aTopPane.getChildren().add(new Label ("Purchase Cost: "));
+    }
+
+    private Stage prepareWindow(Pane aCenter, Pane aBottom, Pane aTop) {
         dialog = new Stage();
         BorderPane pane = new BorderPane();
         Scene scene = new Scene(pane, 500,300);
@@ -52,6 +64,7 @@ public class CreatureButton extends Button {
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setTitle("Buying " + creatureName);
 
+        pane.setTop(aTop);
         pane.setCenter(aCenter);
         pane.setBottom(aBottom);
         return dialog;
@@ -75,7 +88,7 @@ public class CreatureButton extends Button {
         Slider slider = new Slider();
         slider.setMin(0);
         slider.setMax(100);
-        slider.setValue(40);
+        slider.setValue(0);
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
         slider.setMajorTickUnit(10);
