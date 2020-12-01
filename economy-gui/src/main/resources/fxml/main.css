@@ -25,7 +25,16 @@
 }
 
 .slider {
-    -fx-padding: 100 10 10 10;
+    -fx-padding: 50 10 10 10;
+}
+
+.slider .track {
+    -fx-pref-height:20;
+}
+
+.slider .thumb {
+    -fx-pref-height: 30;
+    -fx-pref-width: 10;
 }
 
 #readyButton{
