@@ -1,6 +1,5 @@
 package pl.sdk.gui;
 
-import com.jfoenix.controls.JFXSlider;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
