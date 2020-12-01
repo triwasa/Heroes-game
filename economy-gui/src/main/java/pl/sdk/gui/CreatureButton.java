@@ -1,14 +1,12 @@
 package pl.sdk.gui;
 
+import com.jfoenix.controls.JFXSlider;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.sdk.creatures.NecropolisFactory;
@@ -48,6 +46,7 @@ public class CreatureButton extends Button {
         dialog = new Stage();
         BorderPane pane = new BorderPane();
         Scene scene = new Scene(pane, 500,300);
+        scene.getStylesheets().add("fxml/main.css");
         dialog.setScene(scene);
         dialog.initOwner(this.getScene().getWindow());
         dialog.initModality(Modality.APPLICATION_MODAL);
@@ -60,9 +59,14 @@ public class CreatureButton extends Button {
 
     private void prepareConfirmAndCancelButton(HBox aBottomPane) {
         Button okButton = new Button("OK");
+        aBottomPane.setAlignment(Pos.CENTER);
         okButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> dialog.close());
+        okButton.setPrefWidth(200);
         Button cancelButton = new Button("CLOSE");
         cancelButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> dialog.close());
+        cancelButton.setPrefWidth(200);
+        HBox.setHgrow(okButton, Priority.ALWAYS);
+        HBox.setHgrow(cancelButton, Priority.ALWAYS);
         aBottomPane.getChildren().add(okButton);
         aBottomPane.getChildren().add(cancelButton);
     }

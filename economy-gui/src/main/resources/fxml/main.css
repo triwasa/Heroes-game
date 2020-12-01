@@ -24,6 +24,10 @@
     -fx-pref-width: 800;
 }
 
+.slider {
+    -fx-padding: 100 10 10 10;
+}
+
 #readyButton{
     -fx-pref-width: 1600;
 }
