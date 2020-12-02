@@ -89,7 +89,14 @@ public class EcoController {
         shopsBox.getChildren().add(creatureShop);
 
         VBox creaturesBox = new VBox();
-        currentCreatureList.forEach(c -> creaturesBox.getChildren().add(new Label(c.getName())));
+
+        currentCreatureList.forEach(c ->
+        {
+            HBox tempHbox = new HBox();
+            tempHbox.getChildren().add(new Label(String.valueOf(c.getAmount())));
+            tempHbox.getChildren().add(new Label(c.getName()));
+            creaturesBox.getChildren().add(tempHbox);
+        });
         heroStateHBox.getChildren().add(creaturesBox);
     }
 
