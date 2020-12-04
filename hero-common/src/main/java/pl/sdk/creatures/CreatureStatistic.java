@@ -4,6 +4,9 @@ import com.google.common.collect.Range;
 
 enum CreatureStatistic {
 
+    // TEST CREATURES
+    TEST("name",2,1,10,1,Range.closed(2,2),0,"for unit testing",false),
+
     // NECROPILIS FRACTION
     SKELETON("Skeleton",5,4,6,4,Range.closed(1,3),1,"Average lvl1 foot soldier, but always in huge numbers thanks to necromancy skill and skeleton transformer.",false),
     WALKING_DEAD("Walking Dead",5,5,15,3,Range.closed(2,3),2,"Basically its the same skeleton with more hit points. I prefer buying 2 skeletons instead.",false),
