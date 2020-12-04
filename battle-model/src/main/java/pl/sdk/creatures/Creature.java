@@ -18,7 +18,7 @@ public class Creature implements PropertyChangeListener {
 
     // Constructor for mockito. Don't use it! You have builder here.
     Creature(){
-        stats = new CreatureStatistic("name",1,1,1,1,Range.closed(2,2));
+        stats = CreatureStatistic.TEST;
     }
 
     Creature(CreatureStatistic aStats){
@@ -146,37 +146,12 @@ public class Creature implements PropertyChangeListener {
     }
 
     static class Builder {
-        private String name;
-        private Integer attack;
-        private Integer armor;
-        private Integer maxHp;
-        private Integer moveRange;
-        private Range<Integer> damage;
+        private CreatureStatistic stats;
         private CalculateDamageStrategy damageCalculator;
         private Integer amount;
 
-        Builder name (String name){
-            this.name = name;
-            return this;
-        }
-        Builder attack (int attack){
-            this.attack = attack;
-            return this;
-        }
-        Builder armor (int armor){
-            this.armor = armor;
-            return this;
-        }
-        Builder maxHp (int maxHp){
-            this.maxHp = maxHp;
-            return this;
-        }
-        Builder moveRange (int moveRange){
-            this.moveRange = moveRange;
-            return this;
-        }
-        Builder damage (Range<Integer> damage){
-            this.damage = damage;
+        Builder statistic (CreatureStatistic aStats){
+            this.stats = aStats;
             return this;
         };
         Builder amount(int amount){
@@ -190,29 +165,13 @@ public class Creature implements PropertyChangeListener {
 
         Creature build(){
             Set<String> emptyFields = new HashSet<>();
-            if (name == null ){
-                emptyFields.add("name");
-            }
-            if (attack == null){
-                emptyFields.add("attack");
-            }
-            if (armor == null){
-                emptyFields.add("armor");
-            }
-            if (maxHp == null){
-                emptyFields.add("maxHp");
-            }
-            if (moveRange == null){
-                emptyFields.add("moveRange");
-            }
-            if (damage == null){
-                emptyFields.add("damage");
+            if (stats == null){
+                emptyFields.add("stats");
             }
             if (!emptyFields.isEmpty()){
                 throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
             }
 
-            CreatureStatistic stats = new CreatureStatistic(name, attack, armor, maxHp, moveRange, damage);
             Creature ret = createInstance(stats);
             if(amount == null){
                 ret.amount=1;
