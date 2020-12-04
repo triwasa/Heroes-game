@@ -2,7 +2,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
-enum CreatureStatistic {
+enum CreatureStatistic implements CreatureStatisticIf{
 
     // TEST CREATURES
     TEST("name",2,1,10,1,Range.closed(2,2),0,"for unit testing",false),
@@ -45,35 +45,35 @@ enum CreatureStatistic {
         isUpgraded = aIsUpgraded;
     }
 
-    String getTranslatedName() {
+    public String getTranslatedName() {
         return name;
     }
 
-    int getAttack() {
+    public int getAttack() {
         return attack;
     }
 
-    int getArmor() {
+    public int getArmor() {
         return armor;
     }
 
-    int getMaxHp() {
+    public int getMaxHp() {
         return maxHp;
     }
 
-    int getMoveRange() {
+    public int getMoveRange() {
         return moveRange;
     }
 
-    Range<Integer> getDamage(){
+    public Range<Integer> getDamage(){
         return damage;
     }
 
-    int getTier() {
+    public int getTier() {
         return tier;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 }

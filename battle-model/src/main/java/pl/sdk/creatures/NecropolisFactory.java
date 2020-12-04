@@ -30,7 +30,7 @@ public class NecropolisFactory {
                             .amount(aAmount)
                             .build();
                 case 4:
-                    return new BlockCounterAttackCreatureDecorator.Builder()
+                    return new Creature.Builder()
                             .statistic(CreatureStatistic.VAMPIRE)
                             .amount(aAmount)
                             .build();
