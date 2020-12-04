@@ -4,20 +4,6 @@ import com.google.common.collect.Range;
 
 public class NecropolisFactory {
 
-    public static final String SKELETON = "Skeleton";
-    public static final String WALKING_DEAD = "Walking Dead";
-    public static final String WIGHT = "Wight";
-    public static final String VAMPIRE = "Vampire";
-    public static final String LICH = "Lich";
-    public static final String BLACK_KNIGHT = "Black Knight";
-    public static final String BONE_DRAGON = "Bone Dragon";
-    public static final String SKELETON_WARRIOR = "Skeleton Warrior";
-    public static final String ZOMBIE = "Zombie";
-    public static final String WRAITH = "Wraith";
-    public static final String VAMPIRE_LORD = "Vampire Lord";
-    public static final String POWER_LICH = "Power Lich";
-    public static final String DREAD_KNIGHT = "Dread Knight";
-    public static final String GHOST_DRAGON = "Ghost Dragon";
     public static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 7";
 
     public static Creature createDefaultForTests() {

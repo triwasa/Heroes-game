@@ -80,7 +80,7 @@ public class Creature implements PropertyChangeListener {
     }
 
     public String getName(){
-        return stats.getName();
+        return stats.getTranslatedName();
     }
 
     public boolean canCounterAttack() {
@@ -123,7 +123,7 @@ public class Creature implements PropertyChangeListener {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(stats.getName());
+        sb.append(stats.getTranslatedName());
         sb.append(System.lineSeparator());
         sb.append(getCurrentHp());
         sb.append("/");
