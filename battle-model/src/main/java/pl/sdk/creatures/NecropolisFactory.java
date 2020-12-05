@@ -12,7 +12,7 @@ public class NecropolisFactory {
     }
 
     public Creature create(boolean aIsUpgraded, int aTier, int aAmount) {
-        if (aIsUpgraded) {
+        if (!aIsUpgraded) {
             switch (aTier) {
                 case 1:
                     return new Creature.Builder()
