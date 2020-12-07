@@ -49,9 +49,9 @@ public class EconomyEngine {
 
     private void endTurn() {
         roundNumber += 1;
-        observerSupport.firePropertyChange(NEXT_ROUND, roundNumber - 1, roundNumber);
         hero1.addGold(2000*roundNumber);
         hero2.addGold(2000*roundNumber);
+        observerSupport.firePropertyChange(NEXT_ROUND, roundNumber - 1, roundNumber);
     }
 
     public int getRoundNumber() {
