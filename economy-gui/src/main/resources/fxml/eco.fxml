@@ -20,7 +20,11 @@
     <top>
         <HBox BorderPane.alignment="CENTER">
             <children>
-                <Label text="Player"/>
+                <Label fx:id="playerLabel" text="Player"/>
+                <Label fx:id="roundNumberStaticLabel" text="Round: "/>
+                <Label fx:id="roundNumberLabel" text="X"/>
+                <Label fx:id="currentStaticLabel" text="GOLD: "/>
+                <Label fx:id="currentGoldLabel" text="XXXX"/>
             </children>
         </HBox>
     </top>

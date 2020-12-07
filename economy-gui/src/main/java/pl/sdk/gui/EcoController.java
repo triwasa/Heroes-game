@@ -25,6 +25,13 @@ public class EcoController implements PropertyChangeListener {
     HBox shopsBox;
     @FXML
     Button readyButton;
+    @FXML
+    Label playerLabel;
+    @FXML
+    Label currentGoldLabel;
+    @FXML
+    Label roundNumberLabel;
+
     private final EconomyEngine economyEngine;
 
     public EcoController(EconomyHero aHero1, EconomyHero aHero2) {
@@ -67,6 +74,9 @@ public class EcoController implements PropertyChangeListener {
     }
 
     void refreshGui() {
+        playerLabel.setText(economyEngine.getActiveHero().toString());
+        currentGoldLabel.setText(String.valueOf(economyEngine.getActiveHero().getGold()));
+        roundNumberLabel.setText(String.valueOf(economyEngine.getRoundNumber()));
         shopsBox.getChildren().clear();
         heroStateHBox.getChildren().clear();
 
