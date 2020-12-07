@@ -37,7 +37,7 @@ public class EconomyHero {
     }
 
     List<EconomyCreature> getCreatures() {
-        return creatureList;
+        return List.copyOf(creatureList);
     }
 
     void substractGold(int aAmount){
