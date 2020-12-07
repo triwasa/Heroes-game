@@ -4,6 +4,7 @@ import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.hero.CreatureShop;
 import pl.sdk.hero.EconomyHero;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class EconomyEngine {
@@ -30,11 +31,11 @@ public class EconomyEngine {
         observerSupport.firePropertyChange(HERO_BOUGHT_CREATURE, null, null);
     }
 
-    EconomyHero getActiveHero() {
+    public EconomyHero getActiveHero() {
         return activeHero;
     }
 
-    void pass() {
+    public void pass() {
         if (activeHero == hero1){
             activeHero = hero2;
             observerSupport.firePropertyChange(ACTIVE_HERO_CHANGED, hero1, activeHero);
@@ -42,12 +43,22 @@ public class EconomyEngine {
         else{
             activeHero = hero1;
             observerSupport.firePropertyChange(ACTIVE_HERO_CHANGED, hero2, activeHero);
-            roundNumber += 1;
-            observerSupport.firePropertyChange(NEXT_ROUND, roundNumber - 1, roundNumber);
+            endTurn();
         }
     }
 
-    int getRoundNumber() {
+    private void endTurn() {
+        roundNumber += 1;
+        observerSupport.firePropertyChange(NEXT_ROUND, roundNumber - 1, roundNumber);
+        hero1.addGold(2000*roundNumber);
+        hero2.addGold(2000*roundNumber);
+    }
+
+    public int getRoundNumber() {
         return roundNumber;
+    }
+
+    public void addObserver(String aPropertyName, PropertyChangeListener aObserver) {
+        observerSupport.addPropertyChangeListener(aPropertyName, aObserver);
     }
 }

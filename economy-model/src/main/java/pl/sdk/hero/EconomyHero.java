@@ -32,11 +32,11 @@ public class EconomyHero {
         return gold;
     }
 
-    void addGold(int aAmount){
+    public void addGold(int aAmount){
         gold += aAmount;
     }
 
-    List<EconomyCreature> getCreatures() {
+    public List<EconomyCreature> getCreatures() {
         return List.copyOf(creatureList);
     }
 
