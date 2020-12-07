@@ -9,45 +9,39 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import pl.sdk.EconomyEngine;
+import pl.sdk.creatures.EconomyCreature;
+import pl.sdk.creatures.EconomyNecropolisFactory;
+import pl.sdk.hero.EconomyHero;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.util.ArrayList;
 
-public class EcoController {
+public class EcoController implements PropertyChangeListener {
     @FXML
     HBox heroStateHBox;
     @FXML
     HBox shopsBox;
     @FXML
     Button readyButton;
-//    private final List<Creature> creatureList;
-//    private final List<Creature> creatureList2;
-//    private List<Creature> currentCreatureList;
-    private int roundCounter;
+    private final EconomyEngine economyEngine;
 
-    public EcoController() {
-//        creatureList = new ArrayList<>();
-//        creatureList2 = new ArrayList<>();
-//        currentCreatureList = creatureList;
-        roundCounter = 1;
+    public EcoController(EconomyHero aHero1, EconomyHero aHero2) {
+        economyEngine = new EconomyEngine(aHero1, aHero2);
     }
 
     @FXML
     void initialize(){
         refreshGui();
+        economyEngine.addObserver(EconomyEngine.ACTIVE_HERO_CHANGED,this);
+        economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_CREATURE,this);
+        economyEngine.addObserver(EconomyEngine.NEXT_ROUND,this);
+
         readyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
-//            if (currentCreatureList == creatureList){
-//                currentCreatureList = creatureList2;
-//            }
-//            else
-//            {
-//                currentCreatureList = creatureList;
-//                roundCounter += 1;
-//            }
-
-            if (roundCounter < 4){
-                refreshGui();
+            if (economyEngine.getRoundNumber() < 4){
+                economyEngine.pass();
             }
             else{
                 goToBattle();
@@ -76,27 +70,31 @@ public class EcoController {
         shopsBox.getChildren().clear();
         heroStateHBox.getChildren().clear();
 
-//        NecropolisFactory factory = new NecropolisFactory();
-//        VBox creatureShop = new VBox();
-//        for (int i = 1; i < 8; i++) {
-//            creatureShop.getChildren().add(new CreatureButton(this, factory, false,i));
-//            creatureShop.getChildren().add(new CreatureButton(this, factory, true,i));
-//        }
-//        shopsBox.getChildren().add(creatureShop);
-//
-//        VBox creaturesBox = new VBox();
-//
-//        currentCreatureList.forEach(c ->
-//        {
-//            HBox tempHbox = new HBox();
-//            tempHbox.getChildren().add(new Label(String.valueOf(c.getAmount())));
-//            tempHbox.getChildren().add(new Label(c.getName()));
-//            creaturesBox.getChildren().add(tempHbox);
-//        });
-//        heroStateHBox.getChildren().add(creaturesBox);
+        EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
+        VBox creatureShop = new VBox();
+        for (int i = 1; i < 8; i++) {
+            creatureShop.getChildren().add(new CreatureButton(this, factory, false,i));
+            creatureShop.getChildren().add(new CreatureButton(this, factory, true,i));
+        }
+        shopsBox.getChildren().add(creatureShop);
+
+        VBox creaturesBox = new VBox();
+        economyEngine.getActiveHero().getCreatures().forEach(c ->
+        {
+            HBox tempHbox = new HBox();
+            tempHbox.getChildren().add(new Label(String.valueOf(c.getAmount())));
+            tempHbox.getChildren().add(new Label(c.getName()));
+            creaturesBox.getChildren().add(tempHbox);
+        });
+        heroStateHBox.getChildren().add(creaturesBox);
     }
 
-//    void buy(Creature aCreature) {
-//        currentCreatureList.add(aCreature);
-//    }
+    void buy(EconomyCreature aCreature) {
+        economyEngine.buy(aCreature);
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
+        refreshGui();
+    }
 }
