@@ -57,20 +57,7 @@ public class EcoController implements PropertyChangeListener {
     }
 
     private void goToBattle() {
-        Scene scene = null;
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getClassLoader().getResource("fxml/battleMap.fxml"));
-//            loader.setController(new BattleMapController(creatureList,creatureList2));
-            scene = new Scene(loader.load());
-            Stage aStage = new Stage();
-            aStage.setScene(scene);
-            aStage.setX(5);
-            aStage.setY(5);
-            aStage.show();
-        } catch (IOException aE) {
-            aE.printStackTrace();
-        }
+        EcoBattleConverter.startBattle(economyEngine.getPlayer1(), economyEngine.getPlayer2());
     }
 
     void refreshGui() {
