@@ -13,6 +13,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>pl.sdk</groupId>
             <artifactId>battle-gui</artifactId>
             <version>${project.version}</version>
