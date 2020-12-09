@@ -19,4 +19,8 @@ public class EconomyStart extends Application {
         aStage.setY(5);
         aStage.show();
     }
+
+    public static void main(String[] args) {
+        launch();
+    }
 }
