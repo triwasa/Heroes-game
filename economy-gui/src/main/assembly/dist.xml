@@ -14,6 +14,11 @@
             </includes>
             <outputDirectory>/</outputDirectory>
         </fileSet>
+        <fileSet>
+            <directory>${env.JAVA_HOME}</directory>
+            <outputDirectory>/java</outputDirectory>
+            <filtered>true</filtered>
+        </fileSet>
     </fileSets>
     <files>
         <file>
