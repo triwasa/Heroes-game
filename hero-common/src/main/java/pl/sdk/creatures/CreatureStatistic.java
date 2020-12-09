@@ -76,4 +76,8 @@ enum CreatureStatistic implements CreatureStatisticIf{
     public String getDescription() {
         return description;
     }
+
+    boolean isUpgraded() {
+        return isUpgraded;
+    }
 }
