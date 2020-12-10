@@ -36,18 +36,16 @@ public class EcoController implements PropertyChangeListener {
     }
 
     @FXML
-    void initialize(){
+    void initialize() {
         refreshGui();
-        economyEngine.addObserver(EconomyEngine.ACTIVE_HERO_CHANGED,this);
-        economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_CREATURE,this);
-        economyEngine.addObserver(EconomyEngine.NEXT_ROUND,this);
+        economyEngine.addObserver(EconomyEngine.ACTIVE_HERO_CHANGED, this);
+        economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_CREATURE, this);
+        economyEngine.addObserver(EconomyEngine.NEXT_ROUND, this);
 
         readyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
-            if (economyEngine.getRoundNumber() < 4){
-                economyEngine.pass();
-            }
-            else{
+            economyEngine.pass();
+            if (economyEngine.getRoundNumber() < 4) {
                 goToBattle();
             }
         });
@@ -67,8 +65,8 @@ public class EcoController implements PropertyChangeListener {
         EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
         VBox creatureShop = new VBox();
         for (int i = 1; i < 8; i++) {
-            creatureShop.getChildren().add(new CreatureButton(this, factory, false,i));
-            creatureShop.getChildren().add(new CreatureButton(this, factory, true,i));
+            creatureShop.getChildren().add(new CreatureButton(this, factory, false, i));
+            creatureShop.getChildren().add(new CreatureButton(this, factory, true, i));
         }
         shopsBox.getChildren().add(creatureShop);
 
