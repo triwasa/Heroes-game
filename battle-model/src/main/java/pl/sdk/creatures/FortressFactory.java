@@ -42,7 +42,7 @@ public class FortressFactory {
                             .build();
                 case 7:
                     Creature hydra = new Creature.Builder()
-                            .statistic(CreatureStatistic.WYVERN_MONARCH)
+                            .statistic(CreatureStatistic.CHAOS_HYDRA)
                             .amount(aAmount)
                             .build();
                     return new BlockCounterAttackCreatureDecorator(new SplashDamageCreatureDecorator(hydra,getSplashForHydra()));
