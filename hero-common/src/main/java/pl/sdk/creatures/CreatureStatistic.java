@@ -70,7 +70,7 @@ enum CreatureStatistic implements CreatureStatisticIf{
     EFREET_SULTAN("Efrret Sultan", 16,14,90,13, Range.closed(16,24),6 , "Special: Immune to fire, 150% damage vs genies, have fire shield spell on. Excellent upgrade. Their speed is only matched by some level 7 upgrades and... dragon flies. Enemy will think well before attacking efreet sultans: portion of the damage returns back to the attacker plus the retaliation. Good to use them against high level creatures because fire shield damage will surpass their mighty defence without being decreased.\n", true),
     DEVIL("Devil",19,21,160,11, Range.closed(30,40), 7, "Special: no enemy retaliation, 150% damage to angels, -1 enemy luck while present on the battlefield. Makes a tough opponent because of speed and no enemy retaliation. Devil can beat an angel in one on one combat.\n", false),
     ARCH_DEVIL("Arch Devil",26,28,200,17, Range.closed(30,40), 7 , "Special: no enemy retaliation, 150% damage to angels, -1 enemy luck while present on the battlefield. Arch devil is no match for an arch angel. Otherways, a really powerful creature for non-retaliated attacks with outwaiting the opponent.\n", true);
-    
+
 
     private final String name;
     private final int attack;
