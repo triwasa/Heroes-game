@@ -134,7 +134,7 @@ enum CreatureStatistic implements CreatureStatisticIf{
     CYCLOPS_KING("Cyclops King", 17,13,70,8,Range.closed(16,20), 6, "Special: can attack seige walls at advanced ballistics level. They aren't kings for nothing, packing two seige shots in one turn and leveling walls to the ground in no time. You'll notice that the lack of flyers is compensated by the cyclops' special abbilities.\n", true),
     BEHEMOTH("Behemoth", 17,17,160,6,Range.closed(30,50), 7, "Special: target is able to use only 60% of its defence when attacked by behemoth. That smile scares the hell out of whoever behemoth is attacking, reducing their abbility to defend themselves. Slow and quite vunerable, behemoth is also a cheap level 7 unit, definitely attack-oriented and able to deal huge damage by reducing enemy defence during the attack.\n", false),
     ANCIENT_BEHEMOTH("Ancient Behemoth", 19,19,300,9, Range.closed(30,50), 7, "Special: target is able to use only 20% of its defence when attacked by ancient behemoth. Quite low on attack, defence and speed for the best creature, but hit points are at the top and the special abbility is amazing: the target is virtually defenceless however high it's skill is, even if it is commanded by a good hero, nothing helps, only 1/5th of defence will be useful to the scared enemy.\n", true);
-    
+
 
     private final String name;
     private final int attack;
