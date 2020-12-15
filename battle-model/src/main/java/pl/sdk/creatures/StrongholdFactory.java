@@ -45,6 +45,7 @@ public class StrongholdFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.ANCIENT_BEHEMOTH)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageDefenceDecreaseStrategy(80))
                             .build();
                 default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
@@ -88,6 +89,7 @@ public class StrongholdFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.BEHEMOTH)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageDefenceDecreaseStrategy(40))
                             .build();
                 default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
