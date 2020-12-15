@@ -21,7 +21,7 @@ public class CastleFactory {
                             .statistic(CreatureStatistic.MARKSMAN)
                             .amount(aAmount)
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(marksman));
+                    return new MultipleAttackCreatureDecorator(new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(marksman)), 2);
                 case 3:
                     Creature royalGriffin = new Creature.Builder()
                             .statistic(CreatureStatistic.ROYAL_GRIFFIN)
@@ -33,7 +33,7 @@ public class CastleFactory {
                             .statistic(CreatureStatistic.CRUSADER)
                             .amount(aAmount)
                             .build();
-                    return crusader;
+                    return new MultipleAttackCreatureDecorator(crusader, 2);
                 case 5:
                     Creature zealot = new Creature.Builder()
                             .statistic(CreatureStatistic.ZEALOT)

@@ -18,7 +18,7 @@ public class StrongholdFactory {
                             .statistic(CreatureStatistic.WOLF_RAIDER)
                             .amount(aAmount)
                             .build();
-                    return wolfRaider;
+                    return new MultipleAttackCreatureDecorator(wolfRaider,2);
                 case 3:
                     Creature orcchieftain = new Creature.Builder()
                             .statistic(CreatureStatistic.ORC_CHIEFTAIN)

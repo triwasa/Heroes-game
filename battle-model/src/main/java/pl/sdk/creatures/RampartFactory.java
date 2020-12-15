@@ -22,7 +22,7 @@ public class RampartFactory {
                                 .statistic(CreatureStatistic.GRAND_ELF)
                                 .amount(aAmount)
                                 .build();
-                        return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(grandElf));
+                        return new MultipleAttackCreatureDecorator(new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(grandElf)),2);
                     case 4:
                         return new Creature.Builder()
                                 .statistic(CreatureStatistic.SILVER_PEGASUS)
