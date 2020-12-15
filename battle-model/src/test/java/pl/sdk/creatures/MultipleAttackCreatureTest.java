@@ -33,13 +33,13 @@ public class MultipleAttackCreatureTest {
                 .build();
     }
     @Test
-    void TwoAttacksByCreature() {
+    void twoAttacksByCreature() {
         attacker = new MultipleAttackCreatureDecorator(attacker, 2);
         attacker.attack(defender);
         assertEquals(6, defender.getCurrentHp());
     }
     @Test
-    void ThreeAttacksByCreaturee() {
+    void threeAttacksByCreaturee() {
         attacker = new MultipleAttackCreatureDecorator(attacker, 3);
         attacker.attack(defender);
         assertEquals(4, defender.getCurrentHp());
@@ -50,5 +50,12 @@ public class MultipleAttackCreatureTest {
         attacker.attack(defender);
         assertEquals(10, attacker.getCurrentHp());
 
+    }
+    @Test
+    void creatureHasZeroAttacks() {
+        attacker = new MultipleAttackCreatureDecorator(attacker, 0);
+        attacker.attack(defender);
+        assertEquals(10, defender.getCurrentHp());
+        assertEquals(10, attacker.getCurrentHp());
     }
 }
