@@ -19,6 +19,7 @@ public class Creature implements PropertyChangeListener {
     // Constructor for mockito. Don't use it! You have builder here.
     Creature(){
         stats = CreatureStatistic.TEST;
+        calculateDamageStrategy = new DefaultCalculateStrategy();
     }
 
     Creature(CreatureStatisticIf aStats){
@@ -40,7 +41,7 @@ public class Creature implements PropertyChangeListener {
 
     void counterAttack(Creature aDefender) {
         if (aDefender.canCounterAttack()){
-            int damageToDealInCounterAttack = calculateDamage(aDefender, this);
+            int damageToDealInCounterAttack = aDefender.calculateDamage(aDefender, this);
             applyDamage(damageToDealInCounterAttack);
             aDefender.counterAttackedInThisTurn();
         }
