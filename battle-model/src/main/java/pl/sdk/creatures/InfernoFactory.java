@@ -41,11 +41,13 @@ public class InfernoFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.EFREET_SULTAN)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.GENIE.getTranslatedName(), CreatureStatistic.MASTER_GENIE.getTranslatedName())))
                             .build();
                 case 7:
                     Creature archDevil = new Creature.Builder()
                             .statistic(CreatureStatistic.ARCH_DEVIL)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.ANGEL.getTranslatedName(), CreatureStatistic.ARCH_DEVIL.getTranslatedName())))
                             .build();
                     return new BlockCounterAttackCreatureDecorator(archDevil);
                 default:
@@ -84,11 +86,13 @@ public class InfernoFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.EFREETI)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.GENIE.getTranslatedName(), CreatureStatistic.MASTER_GENIE.getTranslatedName())))
                             .build();
                 case 7:
                     Creature devil = new Creature.Builder()
                             .statistic(CreatureStatistic.DEVIL)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.ANGEL.getTranslatedName(), CreatureStatistic.ARCH_DEVIL.getTranslatedName())))
                             .build();
                     return new BlockCounterAttackCreatureDecorator(devil);
                 default:

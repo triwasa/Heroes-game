@@ -34,7 +34,7 @@ public class MultipleRetaliationsCreatureTest {
     }
 
         @Test
-        void HasTwoRetaliationsPerRound() {
+        void hasTwoRetaliationsPerRound() {
         defender = new MultipleRetaliationsCreatureDecorator(defender,2);
         GameEngine gameEngine = new GameEngine(List.of(attacker), List.of(defender));
 

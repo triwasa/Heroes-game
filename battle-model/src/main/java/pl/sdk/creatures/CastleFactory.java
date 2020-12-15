@@ -49,6 +49,7 @@ public class CastleFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.ARCHANGEL)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.DEVIL.getTranslatedName(), CreatureStatistic.ARCH_DEVIL.getTranslatedName())))
                             .build();
                 default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
@@ -93,6 +94,7 @@ public class CastleFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.ANGEL)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.DEVIL.getTranslatedName(), CreatureStatistic.ARCH_DEVIL.getTranslatedName())))
                             .build();
                 default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);

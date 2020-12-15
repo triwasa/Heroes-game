@@ -12,7 +12,7 @@ public class Creature implements PropertyChangeListener {
 
     private final CreatureStatisticIf stats;
     private int currentHp;
-    private boolean counterAttackedInThisTurn = false;
+    private boolean counterAttackedInThisTurn;
     private CalculateDamageStrategy calculateDamageStrategy;
     private int amount;
 

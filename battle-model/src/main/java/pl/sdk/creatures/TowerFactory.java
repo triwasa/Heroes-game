@@ -37,6 +37,7 @@ public class TowerFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.MASTER_GENIE)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.EFREET_SULTAN.getTranslatedName(), CreatureStatistic.EFREETI.getTranslatedName())))
                             .build();
                 case 6:
                     return new BlockCounterAttackCreatureDecorator.Builder()
@@ -47,6 +48,7 @@ public class TowerFactory {
                     Creature titan = new Creature.Builder()
                             .statistic(CreatureStatistic.TITAN)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.BLACK_DRAGON.getTranslatedName())))
                             .build();
                     return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(titan));
                 default:
@@ -81,6 +83,7 @@ public class TowerFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.GENIE)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.EFREET_SULTAN.getTranslatedName(), CreatureStatistic.EFREETI.getTranslatedName())))
                             .build();
                 case 6:
                     return new BlockCounterAttackCreatureDecorator.Builder()
