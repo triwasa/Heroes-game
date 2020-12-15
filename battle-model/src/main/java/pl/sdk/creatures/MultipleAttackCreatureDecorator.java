@@ -30,10 +30,10 @@ public class MultipleAttackCreatureDecorator extends Creature {
         decorated.counterAttack(aDefender);
     }
 
-   /* @Override
+    @Override
     protected void counterAttackedInThisTurn() {
         decorated.counterAttackedInThisTurn();
-    }*/
+    }
 
     @Override
     public void applyDamage(int aDamageToApply) {

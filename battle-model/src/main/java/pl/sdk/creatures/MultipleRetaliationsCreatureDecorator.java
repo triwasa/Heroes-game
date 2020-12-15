@@ -4,12 +4,21 @@ import com.google.common.collect.Range;
 
 import java.beans.PropertyChangeEvent;
 
-class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
+public class MultipleRetaliationsCreatureDecorator extends Creature {
 
-    private Creature decorated;
+    private final Creature decorated;
+    private final int maxRetaliationsAmount;
+    private int currentRetaliationsAmount;
 
-    RegenerationOnEndOfTurnCreatureDecorator(Creature aDecorated) {
+    public MultipleRetaliationsCreatureDecorator(Creature aDecorated, int aRetaliationsAmount){
         decorated = aDecorated;
+        maxRetaliationsAmount = aRetaliationsAmount;
+        currentRetaliationsAmount = maxRetaliationsAmount;
+    }
+
+    @Override
+    protected void setCurrentHpToMaximum() {
+        decorated.setCurrentHpToMaximum();
     }
 
     @Override
@@ -18,18 +27,8 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
     }
 
     @Override
-    protected int calculateDamage(Creature aAttacker, Creature aDefender) {
-        return decorated.calculateDamage(aAttacker, aDefender);
-    }
-
-    @Override
     protected void counterAttack(Creature aDefender) {
         decorated.counterAttack(aDefender);
-    }
-
-    @Override
-    void counterAttackedInThisTurn() {
-        decorated.counterAttackedInThisTurn();
     }
 
     @Override
@@ -38,13 +37,23 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
     }
 
     @Override
-    public boolean[][] getSplashRange() {
-        return decorated.getSplashRange();
+    protected void counterAttackedInThisTurn() {
+        currentRetaliationsAmount = currentRetaliationsAmount - 1;
+    }
+
+    @Override
+    int calculateDamage(Creature aAttacker, Creature aDefender) {
+        return decorated.calculateDamage(aAttacker, aDefender);
     }
 
     @Override
     public boolean isAlive() {
         return decorated.isAlive();
+    }
+
+    @Override
+    public boolean[][] getSplashRange() {
+        return decorated.getSplashRange();
     }
 
     @Override
@@ -59,7 +68,7 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
 
     @Override
     public boolean canCounterAttack() {
-        return decorated.canCounterAttack();
+        return currentRetaliationsAmount > 0;
     }
 
     @Override
@@ -69,8 +78,7 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
 
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
-        decorated.propertyChange(aPropertyChangeEvent);
-        decorated.setCurrentHpToMaximum();
+        currentRetaliationsAmount = maxRetaliationsAmount;
     }
 
     @Override
@@ -107,9 +115,5 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
     public double getAttackRange() {
         return decorated.getAttackRange();
     }
-
-    @Override
-    protected void setCurrentHpToMaximum() {
-        decorated.setCurrentHpToMaximum();
-    }
 }
+

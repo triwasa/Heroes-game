@@ -12,7 +12,7 @@ public class Creature implements PropertyChangeListener {
 
     private final CreatureStatisticIf stats;
     private int currentHp;
-    private boolean counterAttackedInThisTurn;
+    private boolean counterAttackedInThisTurn = false;
     private CalculateDamageStrategy calculateDamageStrategy;
     private int amount;
 
@@ -39,11 +39,15 @@ public class Creature implements PropertyChangeListener {
     }
 
     void counterAttack(Creature aDefender) {
-        if (!aDefender.counterAttackedInThisTurn){
+        if (aDefender.canCounterAttack()){
             int damageToDealInCounterAttack = calculateDamage(aDefender, this);
             applyDamage(damageToDealInCounterAttack);
-            aDefender.counterAttackedInThisTurn = true;
+            aDefender.counterAttackedInThisTurn();
         }
+    }
+
+    void counterAttackedInThisTurn() {
+        counterAttackedInThisTurn = true;
     }
 
     public void applyDamage(int aDamageToApply) {

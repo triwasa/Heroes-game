@@ -30,6 +30,11 @@ class ShootingCreatureDecorator extends Creature {
     }
 
     @Override
+    void counterAttackedInThisTurn() {
+        decorated.counterAttackedInThisTurn();
+    }
+
+    @Override
     public boolean isAlive() {
         return decorated.isAlive();
     }

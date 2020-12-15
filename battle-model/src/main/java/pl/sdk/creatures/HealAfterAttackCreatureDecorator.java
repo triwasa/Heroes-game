@@ -54,6 +54,11 @@ class HealAfterAttackCreatureDecorator extends Creature{
     }
 
     @Override
+    void counterAttackedInThisTurn() {
+        decorated.counterAttackedInThisTurn();
+    }
+
+    @Override
     public void applyDamage(int aDamageToApply) {
         decorated.applyDamage(aDamageToApply);
     }

@@ -13,8 +13,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class MultipleAttackCreatureTest {
-    private int NOT_IMPORTANT = 5;
-    private int THE_SAME_FOR_BOTH_CREATURES = 10;
     private Creature attacker;
     private Creature defender;
     private Random rand;
