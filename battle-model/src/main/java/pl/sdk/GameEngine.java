@@ -95,8 +95,6 @@ public class GameEngine {
                 }
             }
         }
-
-
         blockAttacking = true;
         blockMoving = true;
         notifyObservers(new PropertyChangeEvent(this, CREATURE_ATTACKED, null, null));
