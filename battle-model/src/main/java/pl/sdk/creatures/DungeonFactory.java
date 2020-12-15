@@ -13,10 +13,11 @@ public class DungeonFactory {
                             .amount(aAmount)
                             .build();
                 case 2:
-                    return new Creature.Builder()
+                    Creature harpyHag = new Creature.Builder()
                             .statistic(CreatureStatistic.HARPY_HAG)
                             .amount(aAmount)
                             .build();
+                    return new BlockCounterAttackCreatureDecorator(harpyHag);
                 case 3:
                     Creature grandElf = new Creature.Builder()
                             .statistic(CreatureStatistic.EVIL_EYE)

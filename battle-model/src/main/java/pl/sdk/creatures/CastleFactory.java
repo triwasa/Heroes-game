@@ -72,7 +72,7 @@ public class CastleFactory {
                             .statistic(CreatureStatistic.GRIFFIN)
                             .amount(aAmount)
                             .build();
-                    return griffin;
+                    return new MultipleRetaliationsCreatureDecorator(griffin,2);
                 case 4:
                    return new Creature.Builder()
                             .statistic(CreatureStatistic.SWORDSMAN)
