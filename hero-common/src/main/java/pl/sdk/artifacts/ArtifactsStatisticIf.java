@@ -4,6 +4,8 @@ public interface ArtifactsStatisticIf {
 
     String getTranslatedName();
 
+    String getSlotName();
+
     int getAttackSkill();
 
     int getDefenceSkill();

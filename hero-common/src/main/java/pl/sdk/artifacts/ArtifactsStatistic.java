@@ -5,14 +5,16 @@ enum ArtifactsStatistic implements ArtifactsStatisticIf {
 
 
     private final String name;
+    private final String slotName;
     private final int attackSkill;
     private final int defenceSkill;
     private final int spellPower;
     private final int knowledge;
     private final String rarity;
 
-    ArtifactsStatistic(String aName, int aAttackSkill, int aDefenceSkill, int aSpellPower, int aKnowledge, String aRarity) {
+    ArtifactsStatistic(String aName, String aSlotName, int aAttackSkill, int aDefenceSkill, int aSpellPower, int aKnowledge, String aRarity) {
         this.name = aName;
+        this.slotName = aSlotName;
         this.attackSkill = aAttackSkill;
         this.defenceSkill = aDefenceSkill;
         this.spellPower = aSpellPower;
@@ -21,6 +23,8 @@ enum ArtifactsStatistic implements ArtifactsStatisticIf {
     }
 
     public String getTranslatedName() { return name; }
+
+    public String getSlotName() { return slotName; }
 
     public int getAttackSkill() { return attackSkill; }
 
