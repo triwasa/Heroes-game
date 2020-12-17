@@ -36,7 +36,8 @@ public class ArtifactEffectsTest {
     @Test
     void artifactThatAddsAttackShouldWorksCorrectly(){
         // given
-        Artifact centaursAx = ArtifactFactory.create("Centaur's Ax"); // + 2 attackSkill
+        //Artifact centaursAx = ArtifactFactory.create("Centaur's Ax"); // +2 attackSkill
+        Artifact centaursAx = new Artifact(ArtifactStatistic.CENTAURS_AX); // +2 attackSkill
         Creature attacker = NecropolisFactory.createDefaultForTests();
         Creature defender = NecropolisFactory.createDefaultForTests();
 
@@ -52,7 +53,8 @@ public class ArtifactEffectsTest {
     @Test
     void artifactThatAddsDefenceShouldWorksCorrectly(){
         // given
-        Artifact damnedShield = ArtifactFactory.create("Shield of the Damned"); // +6 defenceSkill
+        // Artifact damnedShield = ArtifactFactory.create("Shield of the Damned"); // +6 defenceSkill
+        Artifact damnedShield = new Artifact(ArtifactStatistic.SHIELD_OF_THE_DAMNED); // +6 defenceSkill
         Creature attacker = NecropolisFactory.createDefaultForTests();
         Creature defender = NecropolisFactory.createDefaultForTests();
 
