@@ -1,6 +1,6 @@
 package pl.sdk.artifacts;
 
-public interface ArtifactsStatisticIf {
+public interface ArtifactStatisticIf {
 
     String getTranslatedName();
 

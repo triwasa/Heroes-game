@@ -1,6 +1,6 @@
 package pl.sdk.artifacts;
 
-enum ArtifactsStatistic implements ArtifactsStatisticIf {
+enum ArtifactStatistic implements ArtifactStatisticIf {
 
     // PRIMARY 1
     CENTAURS_AX("Centaur's Ax", "right hand", 2, 0, 0, 0,"treasure"),
@@ -37,7 +37,7 @@ enum ArtifactsStatistic implements ArtifactsStatisticIf {
     private final int knowledge;
     private final String rarity;
 
-    ArtifactsStatistic(String aName, String aSlotName, int aAttackSkill, int aDefenceSkill, int aSpellPower, int aKnowledge, String aRarity) {
+    ArtifactStatistic(String aName, String aSlotName, int aAttackSkill, int aDefenceSkill, int aSpellPower, int aKnowledge, String aRarity) {
         this.name = aName;
         this.slotName = aSlotName;
         this.attackSkill = aAttackSkill;
