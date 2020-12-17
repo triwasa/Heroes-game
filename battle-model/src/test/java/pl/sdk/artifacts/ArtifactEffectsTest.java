@@ -45,7 +45,7 @@ public class ArtifactEffectsTest {
         attacker.attack(defender);
 
         //then
-        assertEquals(88, attacker.getAttack());
+        assertEquals(88, defender.getCurrentHp());
     }
 
     @Test
