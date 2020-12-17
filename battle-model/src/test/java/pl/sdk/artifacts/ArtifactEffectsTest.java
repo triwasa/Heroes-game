@@ -3,6 +3,7 @@ package pl.sdk.artifacts;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.NecropolisFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,9 +52,9 @@ public class ArtifactEffectsTest {
     @Test
     void artifactThatAddsDefenceShouldWorksCorrectly(){
         // given
-        Artifact damnedShield = ArtifactFactory.create("Shield of the Damned");
-        Creature attacker = new Creature("Attacker",20,NOT_IMPORTANT,100,NOT_IMPORTANT);
-        Creature defender = new Creature("Defender",NOT_IMPORTANT,10,100, NOT_IMPORTANT);
+        Artifact damnedShield = ArtifactFactory.create("Shield of the Damned"); // +6 defenceSkill
+        Creature attacker = NecropolisFactory.createDefaultForTests();
+        Creature defender = NecropolisFactory.createDefaultForTests();
 
         // when
         hero.equip(damnedShield);
@@ -61,6 +62,6 @@ public class ArtifactEffectsTest {
         attacker.attack(defender);
 
         //then
-        assertEquals(96, defender.getCurrentHp());
+        assertEquals(10, defender.getCurrentHp());
     }
 }
