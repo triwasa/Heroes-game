@@ -24,7 +24,8 @@ public class ArtifactEffectsTest {
     @Test
     void artifactShouldIncreaseHeroesAttack(){
         // given
-        Artifact centaursAx = ArtifactFactory.create("Centaur's Ax");
+        //Artifact centaursAx = ArtifactFactory.create("Centaur's Ax");
+        Artifact centaursAx = new Artifact(ArtifactStatistic.CENTAURS_AX); // +2 attackSkill
 
         // when
         hero.equip(centaursAx);
