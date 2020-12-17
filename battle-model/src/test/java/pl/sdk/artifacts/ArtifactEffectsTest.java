@@ -23,7 +23,7 @@ public class ArtifactEffectsTest {
     @Test
     void artifactShouldIncreaseHeroesAttack(){
         // given
-        Artefact centaursAx = ArtefactFactory.create("Centaur's Ax");
+        Artifact centaursAx = ArtifactFactory.create("Centaur's Ax");
 
         // when
         hero.equip(centaursAx);
@@ -35,7 +35,7 @@ public class ArtifactEffectsTest {
     @Test
     void artifactThatAddsAttackShouldWorksCorrectly(){
         // given
-        Artefact centaursAx = ArtefactFactory.create("Centaur's Ax");
+        Artifact centaursAx = ArtifactFactory.create("Centaur's Ax");
         Creature attacker = new Creature("Attacker",20,NOT_IMPORTANT,100,NOT_IMPORTANT);
         Creature defender = new Creature("Defender",NOT_IMPORTANT,10,100, NOT_IMPORTANT);
 
@@ -51,7 +51,7 @@ public class ArtifactEffectsTest {
     @Test
     void artifactThatAddsDefenceShouldWorksCorrectly(){
         // given
-        Artefact damnedShield = ArtefactFactory.create("Shield of the Damned");
+        Artifact damnedShield = ArtifactFactory.create("Shield of the Damned");
         Creature attacker = new Creature("Attacker",20,NOT_IMPORTANT,100,NOT_IMPORTANT);
         Creature defender = new Creature("Defender",NOT_IMPORTANT,10,100, NOT_IMPORTANT);
 
