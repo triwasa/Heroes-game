@@ -36,9 +36,9 @@ public class ArtifactEffectsTest {
     @Test
     void artifactThatAddsAttackShouldWorksCorrectly(){
         // given
-        Artifact centaursAx = ArtifactFactory.create("Centaur's Ax");
-        Creature attacker = new Creature("Attacker",20,NOT_IMPORTANT,100,NOT_IMPORTANT);
-        Creature defender = new Creature("Defender",NOT_IMPORTANT,10,100, NOT_IMPORTANT);
+        Artifact centaursAx = ArtifactFactory.create("Centaur's Ax"); // + 2 attackSkill
+        Creature attacker = NecropolisFactory.createDefaultForTests();
+        Creature defender = NecropolisFactory.createDefaultForTests();
 
         // when
         hero.equip(centaursAx);
@@ -46,7 +46,7 @@ public class ArtifactEffectsTest {
         attacker.attack(defender);
 
         //then
-        assertEquals(88, defender.getCurrentHp());
+        assertEquals(7, defender.getCurrentHp());
     }
 
     @Test
