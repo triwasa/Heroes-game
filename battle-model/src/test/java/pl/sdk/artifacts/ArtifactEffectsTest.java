@@ -58,10 +58,9 @@ public class ArtifactEffectsTest {
         // when
         hero.equip(damnedShield);
         hero.addCreature(defender);
-
         attacker.attack(defender);
 
         //then
-        assertEquals(96, defender.getDefence());
+        assertEquals(96, defender.getCurrentHp());
     }
 }
