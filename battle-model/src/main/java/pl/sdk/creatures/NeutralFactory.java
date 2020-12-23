@@ -1,6 +1,6 @@
 package pl.sdk.creatures;
 
-public class NeutralFactory {
+public class NeutralFactory extends AbstractFactory {
     public static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 6";
 
     public Creature create(boolean aIsUpgraded, int aTier, int aAmount) {

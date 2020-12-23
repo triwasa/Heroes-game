@@ -4,7 +4,7 @@ import com.google.common.collect.Range;
 
 import java.util.List;
 
-public class InfernoFactory {
+public class InfernoFactory extends AbstractFactory {
     public static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 7";
 
     public Creature create(boolean aIsUpgraded, int aTier, int aAmount) {

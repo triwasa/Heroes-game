@@ -1,7 +1,7 @@
 package pl.sdk.creatures;
 
 
-public class StrongholdFactory {
+public class StrongholdFactory extends AbstractFactory {
 
     public static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 7";
 
