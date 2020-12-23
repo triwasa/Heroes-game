@@ -196,6 +196,15 @@ public class Creature implements PropertyChangeListener {
         Creature createInstance(CreatureStatisticIf aStats) {
             return new Creature(aStats);
         }
+
+        public Creature copyOfCreatureWithDifferentArmorValue(Creature creatureToCopy, int aArmor) {
+            return createInstance(new CreatureStatisticForTesting(creatureToCopy.getName(),
+                    creatureToCopy.getAttack(),
+                    aArmor,
+                    creatureToCopy.stats.getMaxHp(),
+                    creatureToCopy.getMoveRange(),
+                    creatureToCopy.getDamage()));
+        }
     }
 
     static class BuilderForTesting {

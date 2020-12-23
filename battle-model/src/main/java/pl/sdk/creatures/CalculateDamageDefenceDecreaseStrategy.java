@@ -17,34 +17,15 @@ public class CalculateDamageDefenceDecreaseStrategy extends AbstractCalculateDam
     public int calculateDamage(Creature aAttacker, Creature aDefender) {
 
         int decreasedDefenderArmor = (aDefender.getArmor() * decreasedArmor)/100;
+        Creature copyOfDefender = new Creature.Builder().copyOfCreatureWithDifferentArmorValue(aDefender,decreasedDefenderArmor);
 
-        int randValue = getRand().nextInt(aAttacker.getDamage().upperEndpoint() - aAttacker.getDamage().lowerEndpoint() + 1) + aAttacker.getDamage().lowerEndpoint();
+        int wholeStackDamageToDeal = super.calculateDamage(aAttacker,copyOfDefender);
 
-        double oneCreatureDamageToDeal;
-        if (aAttacker.getAttack() >= decreasedDefenderArmor){
-            int attackPoints = aAttacker.getAttack() - decreasedDefenderArmor;
-            if (attackPoints > 60){
-                attackPoints = 60;
-            }
-            oneCreatureDamageToDeal = randValue * (1 + (attackPoints)*0.05);
-        }else{
-            int defencePoints = decreasedDefenderArmor - aAttacker.getAttack();
-            if (defencePoints > 12){
-                defencePoints = 12;
-            }
-            oneCreatureDamageToDeal = randValue * (1 - defencePoints *0.025);
-        }
-
-        if (oneCreatureDamageToDeal < 0){
-            oneCreatureDamageToDeal = 0;
-        }
-        double wholeStackDamageToDeal = aAttacker.getAmount() * oneCreatureDamageToDeal;
-        double wholeStackDamageToDealAfterChange = changeDamageAfter(wholeStackDamageToDeal, aAttacker);
-        return (int)wholeStackDamageToDealAfterChange;
+        return wholeStackDamageToDeal;
     }
 
     @Override
-    double changeDamageAfter(double aWholeStackDamageToDeal, Creature aAttacker) {
+    double changeDamageAfter(double aWholeStackDamageToDeal, Creature aAttacker, Creature aDefender) {
         return aWholeStackDamageToDeal;
     }
 }

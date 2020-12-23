@@ -200,4 +200,5 @@ enum CreatureStatistic implements CreatureStatisticIf{
     boolean isUpgraded() {
         return isUpgraded;
     }
+
 }

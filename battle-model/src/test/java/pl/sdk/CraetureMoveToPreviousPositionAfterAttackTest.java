@@ -17,7 +17,7 @@ public class CraetureMoveToPreviousPositionAfterAttackTest {
         defender = spy(Creature.class);
     }
 
-/*
+
     @Test
     void moveToPrevPositionAfterAttack() {
        Board board = new Board();
@@ -31,5 +31,5 @@ public class CraetureMoveToPreviousPositionAfterAttackTest {
         assertEquals(previousPosition, board.get(creatrueMoveToPrevPositionAfterAttack));
 
     }
-*/
+
 }
