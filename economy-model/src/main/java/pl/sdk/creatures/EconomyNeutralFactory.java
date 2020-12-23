@@ -1,6 +1,6 @@
 package pl.sdk.creatures;
 
-public class EconomyNeutralFactory {
+public class EconomyNeutralFactory extends EconomyAbstractFactory {
     private static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 6 in netural";
 
     public EconomyCreature create(boolean aIsUpgraded, int aTier, int aAmount) {

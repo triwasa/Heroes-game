@@ -1,6 +1,6 @@
 package pl.sdk.creatures;
 
-public class EconomyTowerFactory {
+public class EconomyTowerFactory extends EconomyAbstractFactory {
 
     private static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 7";
 
