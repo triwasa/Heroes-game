@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CastleFactory extends AbstractFactory {
 
-    public static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 7";
+    private static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 7";
 
     public Creature create(boolean aIsUpgraded, int aTier, int aAmount) {
         if(aIsUpgraded) {
