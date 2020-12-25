@@ -1,4 +1,4 @@
-package pl.sdk;
+/*package pl.sdk;
 
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,4 +32,4 @@ public class CraetureMoveToPreviousPositionAfterAttackTest {
 
     }
 
-}
+}*/

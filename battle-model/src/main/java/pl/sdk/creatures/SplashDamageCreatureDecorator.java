@@ -113,4 +113,9 @@ public class SplashDamageCreatureDecorator extends Creature {
     public boolean[][] getSplashRange() {
         return splashDamageTable;
     }
+
+    @Override
+    public int getMaxHp() {
+        return decorated.getMaxHp();
+    }
 }

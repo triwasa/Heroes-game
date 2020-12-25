@@ -122,4 +122,9 @@ class HealAfterAttackCreatureDecorator extends Creature{
     public String toString() {
         return decorated.toString();
     }
+
+    @Override
+    public int getMaxHp() {
+        return decorated.getMaxHp();
+    }
 }

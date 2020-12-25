@@ -86,6 +86,7 @@ public class NecropolisFactory extends AbstractFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.DREAD_KNIGHT)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseWithRandomChanceStrategy(0.2,2))
                             .build();
                 case 7:
                     return new Creature.Builder()

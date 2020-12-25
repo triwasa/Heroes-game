@@ -114,6 +114,11 @@ public class MultipleAttackCreatureDecorator extends Creature {
     public double getAttackRange() {
         return decorated.getAttackRange();
     }
+
+    @Override
+    public int getMaxHp() {
+        return decorated.getMaxHp();
+    }
 }
 
 

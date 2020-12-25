@@ -43,7 +43,7 @@ public class RampartFactory extends AbstractFactory {
                                 .statistic(CreatureStatistic.GOLD_DRAGON)
                                 .amount(aAmount)
                                 .build();
-                        return goldDragon;
+                        return new SplashDamageCreatureDecorator(goldDragon, getSplashForDragon());
                     default:
                         throw new IllegalArgumentException(EXCEPTION_MESSAGE);
                 }
@@ -83,16 +83,23 @@ public class RampartFactory extends AbstractFactory {
                                 .amount(aAmount)
                                 .build();
                     case 7:
-                        return new Creature.Builder()
+                        Creature greenDragon = new Creature.Builder()
                                 .statistic(CreatureStatistic.GREEN_DRAGON)
                                 .amount(aAmount)
                                 .build();
+                        return new SplashDamageCreatureDecorator(greenDragon, getSplashForDragon());
                     default:
                         throw new IllegalArgumentException(EXCEPTION_MESSAGE);
 
                 }
             }
         }
+    private boolean[][] getSplashForDragon() {
+        boolean[][] splashDamageTable = new boolean[3][3];
+        splashDamageTable[1][1] = true;
+        splashDamageTable[2][1] = true;
+        return splashDamageTable;
+    }
 }
 
 

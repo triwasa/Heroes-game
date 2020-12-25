@@ -117,6 +117,10 @@ public class Creature implements PropertyChangeListener {
         return amount;
     }
 
+    public int getMaxHp() {
+        return stats.getMaxHp();
+    }
+
     public String currentHealth() {
         StringBuilder sb = new StringBuilder();
         sb.append(getCurrentHp());

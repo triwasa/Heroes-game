@@ -113,4 +113,9 @@ class ShootingCreatureDecorator extends Creature {
     public double getAttackRange() {
         return Double.MAX_VALUE;
     }
+
+    @Override
+    public int getMaxHp() {
+        return decorated.getMaxHp();
+    }
 }

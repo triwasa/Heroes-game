@@ -112,4 +112,9 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
     protected void setCurrentHpToMaximum() {
         decorated.setCurrentHpToMaximum();
     }
+
+    @Override
+    public int getMaxHp() {
+        return decorated.getMaxHp();
+    }
 }
