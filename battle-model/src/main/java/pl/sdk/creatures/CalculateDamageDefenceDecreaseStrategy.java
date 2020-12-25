@@ -17,9 +17,9 @@ public class CalculateDamageDefenceDecreaseStrategy extends AbstractCalculateDam
     public int calculateDamage(Creature aAttacker, Creature aDefender) {
 
         int decreasedDefenderArmor = (aDefender.getArmor() * decreasedArmor)/100;
-        Creature copyOfDefender = new Creature.Builder().copyOfCreatureWithDifferentArmorValue(aDefender,decreasedDefenderArmor);
+        Creature copyOfDefenderWithDecreasedArmor = new DecreasedArmorCreatureDecorator(aDefender, decreasedDefenderArmor);
 
-        int wholeStackDamageToDeal = super.calculateDamage(aAttacker,copyOfDefender);
+        int wholeStackDamageToDeal = super.calculateDamage(aAttacker,copyOfDefenderWithDecreasedArmor);
 
         return wholeStackDamageToDeal;
     }
