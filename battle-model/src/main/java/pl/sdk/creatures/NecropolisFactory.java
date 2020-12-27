@@ -30,10 +30,10 @@ public class NecropolisFactory extends AbstractFactory {
                             .amount(aAmount)
                             .build();
                 case 4:
-                    return new Creature.Builder()
+                    return new BlockCounterAttackCreatureDecorator(new Creature.Builder()
                             .statistic(CreatureStatistic.VAMPIRE)
                             .amount(aAmount)
-                            .build();
+                            .build());
                 case 5:
                     Creature lich = new Creature.Builder()
                             .statistic(CreatureStatistic.LICH)
@@ -71,10 +71,10 @@ public class NecropolisFactory extends AbstractFactory {
                             .amount(aAmount)
                             .build());
                 case 4:
-                    return new Creature.Builder()
+                    return new BlockCounterAttackCreatureDecorator(new Creature.Builder()
                             .statistic(CreatureStatistic.VAMPIRE_LORD)
                             .amount(aAmount)
-                            .build();
+                            .build());
                 case 5:
                     Creature c = new Creature.Builder()
                             .statistic(CreatureStatistic.POWER_LICH)

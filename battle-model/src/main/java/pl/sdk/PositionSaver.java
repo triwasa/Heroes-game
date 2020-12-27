@@ -6,7 +6,7 @@ import java.beans.PropertyChangeListener;
 public class PositionSaver implements PropertyChangeListener {
     private Point oldPosition;
     private Point currentPosition;
-    private int additionalDamage;
+    private int additionalPercentDamage;
     private GameEngine engine;
     PositionSaver(GameEngine aGameEngine) {
         engine = aGameEngine;
@@ -21,17 +21,17 @@ public class PositionSaver implements PropertyChangeListener {
       if(event.getPropertyName().equals(GameEngine.CREATURE_MOVED)) {
           oldPosition = (Point)event.getOldValue();
           currentPosition = (Point)event.getNewValue();
-          additionalDamageFromPositioning();
+          additionalPercentOfDamageToDeal();
       }
       else if(event.getPropertyName().equals(GameEngine.CREATURE_ATTACKED)) {
           possibleMove();
           oldPosition = null;
-          additionalDamage = 0;
+          additionalPercentDamage = 0;
       }
       else {
           oldPosition = null;
           currentPosition = null;
-          additionalDamage = 0;
+          additionalPercentDamage = 0;
       }
 
     }
@@ -42,11 +42,17 @@ public class PositionSaver implements PropertyChangeListener {
         }
     }
 
-    public void additionalDamageFromPositioning() {
-        additionalDamage = (int)Math.sqrt((oldPosition.getY() - currentPosition.getY()) * (oldPosition.getY() - currentPosition.getY())
+    public void additionalPercentOfDamageToDeal() {
+        additionalPercentDamage = (int)Math.sqrt((oldPosition.getY() - currentPosition.getY()) * (oldPosition.getY() - currentPosition.getY())
                 + (oldPosition.getX() - currentPosition.getX()) * (oldPosition.getX() - currentPosition.getX()));
+        additionalPercentDamage = additionalPercentDamage * 5;
     }
-    public int getAdditionalDamageFromPositioning() {
-        return additionalDamage;
+    public int getAdditionalPercentDamageFromPositioning() {
+        if(additionalPercentDamage > 45) {
+            return 45;
+        }
+        else {
+            return additionalPercentDamage;
+        }
     }
 }

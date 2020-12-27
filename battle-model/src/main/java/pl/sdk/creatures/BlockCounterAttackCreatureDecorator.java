@@ -121,6 +121,6 @@ class BlockCounterAttackCreatureDecorator extends Creature{
     }
     @Override
     public boolean backToPreviousPositionMechanic() {
-        return false;
+        return decorated.backToPreviousPositionMechanic();
     }
 }
