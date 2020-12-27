@@ -118,4 +118,8 @@ public class DecreasedArmorCreatureDecorator extends Creature {
     public int getMaxHp() {
         return decorated.getMaxHp();
     }
+    @Override
+    public boolean backToPreviousPositionMechanic() {
+        return false;
+    }
 }

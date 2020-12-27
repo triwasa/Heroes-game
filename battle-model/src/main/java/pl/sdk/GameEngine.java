@@ -24,6 +24,7 @@ public class GameEngine {
     private boolean blockAttacking;
     private List<Creature> creatures1;
     private List<Creature> creatures2;
+    private final PositionSaver positionSaver;
 
     public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
         this(aCreatures1, aCreatures2, new Board());
@@ -39,9 +40,11 @@ public class GameEngine {
         twoSidesCreatures.addAll(aCreatures2);
         twoSidesCreatures.sort((c1, c2) -> c2.getMoveRange() - c1.getMoveRange());
         queue = new CreatureTurnQueue(twoSidesCreatures);
-
         twoSidesCreatures.forEach(queue::addObserver);
+
         observerSupport = new PropertyChangeSupport(this);
+
+        positionSaver = new PositionSaver(this);
     }
 
     public void addObserver(String aEventType, PropertyChangeListener aObs) {
@@ -50,6 +53,7 @@ public class GameEngine {
         } else {
             observerSupport.addPropertyChangeListener(aEventType, aObs);
         }
+
     }
 
     public void removeObserver(PropertyChangeListener aObs) {
@@ -121,6 +125,10 @@ public class GameEngine {
 
     public boolean canMove(int aX, int aY) {
         return board.canMove(getActiveCreature(), aX, aY);
+    }
+
+    protected void unlockMoving() {
+        blockMoving = false;
     }
 
     public boolean canAttack(int aX, int aY) {

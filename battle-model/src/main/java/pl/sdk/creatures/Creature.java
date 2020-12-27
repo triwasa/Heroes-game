@@ -15,6 +15,7 @@ public class Creature implements PropertyChangeListener {
     private boolean counterAttackedInThisTurn;
     private CalculateDamageStrategy calculateDamageStrategy;
     private int amount;
+    private int additionalDamage;
 
     // Constructor for mockito. Don't use it! You have builder here.
     Creature(){
@@ -101,6 +102,7 @@ public class Creature implements PropertyChangeListener {
         counterAttackedInThisTurn = false;
     }
 
+
     public int getAttack() {
         return stats.getAttack();
     }
@@ -152,6 +154,10 @@ public class Creature implements PropertyChangeListener {
         boolean[][] ret = new boolean[3][3];
         ret[1][1] = true;
         return ret;
+    }
+
+    public boolean backToPreviousPositionMechanic() {
+        return false;
     }
 
     static class Builder {

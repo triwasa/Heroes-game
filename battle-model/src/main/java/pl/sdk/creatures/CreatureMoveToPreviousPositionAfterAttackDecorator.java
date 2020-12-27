@@ -1,15 +1,13 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-import pl.sdk.GameEngine;
-import pl.sdk.Point;
 
 import java.beans.PropertyChangeEvent;
 
 public class CreatureMoveToPreviousPositionAfterAttackDecorator extends Creature {
 
     private final Creature decorated;
-    Point previousPosition;
+
 
     public CreatureMoveToPreviousPositionAfterAttackDecorator(Creature aDecorated) {
         decorated = aDecorated;
@@ -77,9 +75,7 @@ public class CreatureMoveToPreviousPositionAfterAttackDecorator extends Creature
 
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
-        if(aPropertyChangeEvent.getPropertyName().equals(GameEngine.CREATURE_MOVED)) {
-            previousPosition = (Point) aPropertyChangeEvent.getOldValue();
-        }
+
     }
 
     @Override
@@ -120,5 +116,9 @@ public class CreatureMoveToPreviousPositionAfterAttackDecorator extends Creature
     @Override
     public int getMaxHp() {
         return decorated.getMaxHp();
+    }
+    @Override
+    public boolean backToPreviousPositionMechanic() {
+        return true;
     }
 }
