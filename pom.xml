@@ -21,6 +21,8 @@
         <module>battle-model</module>
         <module>battle-gui</module>
         <module>eco-battle-converter</module>
+        <module>editMap-gui</module>
+        <module>editMap-model</module>
     </modules>
 
     <build>
