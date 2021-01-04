@@ -6,6 +6,7 @@ import pl.sdk.EconomyEngine;
 import pl.sdk.hero.EconomyHero;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BuyingArtifactTest {
 
@@ -34,5 +35,12 @@ public class BuyingArtifactTest {
         economyEngine.buyArtifact(artifactFactory.create("Shield of the Yawning Dead")); // 120 gold
 
         assertEquals(760, hero1.getGold());
+    }
+
+    @Test
+    void heroCannotBuyArtifactWhenHasNotEnoughGold() {
+        assertThrows(IllegalStateException.class, () -> economyEngine.buyArtifact(artifactFactory.create("Titan's Gladius")));
+        assertEquals(1000, hero1.getGold());
+        assertEquals(0, hero1.getArtifacts().size());
     }
 }
