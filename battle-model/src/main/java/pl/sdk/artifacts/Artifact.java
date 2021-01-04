@@ -6,4 +6,6 @@ public class Artifact {
     public Artifact(ArtifactStatisticIf aStats) {
         this.stats = aStats;
     }
+
+    public String getSlotName() { return stats.getSlotName(); }
 }
