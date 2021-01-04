@@ -32,7 +32,7 @@ public class BuyingArtifactTest {
     @Test
     void heroShouldCanBuyFewArtifacts() {
         economyEngine.buyArtifact(artifactFactory.create("Centaur's Ax")); // 120 gold
-        economyEngine.buyArtifact(artifactFactory.create("Shield of the Yawning Dead")); // 120 gold
+        economyEngine.buyArtifact(artifactFactory.create("Shield of the Dwarven Lords")); // 120 gold
 
         assertEquals(760, hero1.getGold());
     }
