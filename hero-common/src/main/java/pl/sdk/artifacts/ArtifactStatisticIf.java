@@ -15,4 +15,6 @@ public interface ArtifactStatisticIf {
     int getKnowledge();
 
     String getRarity();
+
+    String getDescription();
 }
