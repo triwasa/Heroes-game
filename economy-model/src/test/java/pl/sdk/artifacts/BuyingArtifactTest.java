@@ -43,4 +43,13 @@ public class BuyingArtifactTest {
         assertEquals(1000, hero1.getGold());
         assertEquals(0, hero1.getArtifacts().size());
     }
+
+    @Test
+    void heroCannotBuyArtifactWhenHasOneAlreadyInSlot() {
+        economyEngine.buyArtifact(artifactFactory.create("Centaur's Ax"));
+
+        assertThrows(IllegalStateException.class, () -> economyEngine.buyArtifact(artifactFactory.create("Blackshard of the Dead Knight")));
+        assertEquals(880, hero1.getGold());
+        assertEquals(1, hero1.getArtifacts().size());
+    }
 }
