@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ArtifactEffectsTest {
     private static final int NOT_IMPORTANT = 1;
     private Hero hero;
+    private final ArtifactPrimary1Factory artifactFactory = new ArtifactPrimary1Factory();
 
     @BeforeEach
     void init(){
@@ -24,8 +25,7 @@ public class ArtifactEffectsTest {
     @Test
     void artifactShouldIncreaseHeroesAttack(){
         // given
-        //Artifact centaursAx = ArtifactFactory.create("Centaur's Ax");
-        Artifact centaursAx = new Artifact(ArtifactStatistic.CENTAURS_AX); // +2 attackSkill
+        Artifact centaursAx = artifactFactory.create("Centaur's Ax"); // +2 attackSkill
 
         // when
         hero.equip(centaursAx);
@@ -37,8 +37,7 @@ public class ArtifactEffectsTest {
     @Test
     void artifactThatAddsAttackShouldWorksCorrectly(){
         // given
-        //Artifact centaursAx = ArtifactFactory.create("Centaur's Ax"); // +2 attackSkill
-        Artifact centaursAx = new Artifact(ArtifactStatistic.CENTAURS_AX); // +2 attackSkill
+        Artifact centaursAx = artifactFactory.create("Centaur's Ax"); // +2 attackSkill
         Creature attacker = NecropolisFactory.createDefaultForTests();
         Creature defender = NecropolisFactory.createDefaultForTests();
 
@@ -54,8 +53,7 @@ public class ArtifactEffectsTest {
     @Test
     void artifactThatAddsDefenceShouldWorksCorrectly(){
         // given
-        // Artifact damnedShield = ArtifactFactory.create("Shield of the Damned"); // +6 defenceSkill
-        Artifact damnedShield = new Artifact(ArtifactStatistic.SHIELD_OF_THE_DAMNED); // +6 defenceSkill
+        Artifact damnedShield = artifactFactory.create("Shield of the Damned"); // +6 defenceSkill
         Creature attacker = NecropolisFactory.createDefaultForTests();
         Creature defender = NecropolisFactory.createDefaultForTests();
 
