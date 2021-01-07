@@ -16,7 +16,7 @@ class DefaultCalculateStrategy extends AbstractCalculateDamageStrategy {
     }
 
     @Override
-    double changeDamageAfter(double aWholeStackDamageToDeal, Creature aAttacker) {
+    double changeDamageAfter(double aWholeStackDamageToDeal, Creature aAttacker, Creature aDefender) {
         return aWholeStackDamageToDeal;
     }
 }

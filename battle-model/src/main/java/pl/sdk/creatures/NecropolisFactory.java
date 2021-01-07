@@ -1,7 +1,7 @@
 package pl.sdk.creatures;
 
 
-public class NecropolisFactory {
+public class NecropolisFactory extends AbstractFactory {
 
     private static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 7";
 
@@ -30,10 +30,10 @@ public class NecropolisFactory {
                             .amount(aAmount)
                             .build();
                 case 4:
-                    return new Creature.Builder()
+                    return new BlockCounterAttackCreatureDecorator(new Creature.Builder()
                             .statistic(CreatureStatistic.VAMPIRE)
                             .amount(aAmount)
-                            .build();
+                            .build());
                 case 5:
                     Creature lich = new Creature.Builder()
                             .statistic(CreatureStatistic.LICH)
@@ -71,10 +71,10 @@ public class NecropolisFactory {
                             .amount(aAmount)
                             .build());
                 case 4:
-                    return new Creature.Builder()
+                    return new BlockCounterAttackCreatureDecorator(new Creature.Builder()
                             .statistic(CreatureStatistic.VAMPIRE_LORD)
                             .amount(aAmount)
-                            .build();
+                            .build());
                 case 5:
                     Creature c = new Creature.Builder()
                             .statistic(CreatureStatistic.POWER_LICH)
@@ -86,6 +86,7 @@ public class NecropolisFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.DREAD_KNIGHT)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseWithRandomChanceStrategy(0.2,2))
                             .build();
                 case 7:
                     return new Creature.Builder()

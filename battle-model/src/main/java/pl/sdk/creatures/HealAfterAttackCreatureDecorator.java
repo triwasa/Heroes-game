@@ -54,6 +54,11 @@ class HealAfterAttackCreatureDecorator extends Creature{
     }
 
     @Override
+    void counterAttackedInThisTurn() {
+        decorated.counterAttackedInThisTurn();
+    }
+
+    @Override
     public void applyDamage(int aDamageToApply) {
         decorated.applyDamage(aDamageToApply);
     }
@@ -116,5 +121,15 @@ class HealAfterAttackCreatureDecorator extends Creature{
     @Override
     public String toString() {
         return decorated.toString();
+    }
+
+    @Override
+    public int getMaxHp() {
+        return decorated.getMaxHp();
+    }
+
+    @Override
+    public boolean backToPreviousPositionMechanic() {
+        return decorated.backToPreviousPositionMechanic();
     }
 }
