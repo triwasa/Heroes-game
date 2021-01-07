@@ -1,5 +1,6 @@
 package pl.sdk.converter;
 
+import pl.sdk.Hero;
 import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.hero.EconomyHero;
 
