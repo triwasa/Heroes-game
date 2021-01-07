@@ -75,7 +75,11 @@ public class EcoBattleConverter {
 
     private Board jsonToBoardConverter(File file) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        Board boardOfObstacles = objectMapper.readValue(file,Board.class);
+        Board boardOfObstacles = objectMapper.readValue(file, Board.class);
         return boardOfObstacles;
+    }
+
+    public static Hero convertHero(EconomyHero economyHero) {
+        return Converter.convert(economyHero);
     }
 }
