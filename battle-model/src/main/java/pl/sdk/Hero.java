@@ -2,6 +2,6 @@ package pl.sdk;
 
 public class Hero {
     public int getLuck() {
-        return 1;
+        return 0;
     }
 }
