@@ -38,4 +38,8 @@ public class EcoBattleConverter {
                 ret.add(factory.create(ecoCreature.isUpgraded(),ecoCreature.getTier(),ecoCreature.getAmount())));
         return ret;
     }
+
+    public static Hero convertHero(EconomyHero economyHero) {
+        return Converter.convert(economyHero);
+    }
 }
