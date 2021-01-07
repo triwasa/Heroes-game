@@ -1,5 +1,7 @@
 package pl.sdk.skill;
 
+import pl.sdk.Hero;
+
 import java.util.HashSet;
 import java.util.Set;
 

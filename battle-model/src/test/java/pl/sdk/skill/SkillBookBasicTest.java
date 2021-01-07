@@ -1,10 +1,9 @@
-package pl.sdk;
+package pl.sdk.skill;
 
-import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.sdk.Hero;
 import pl.sdk.creatures.*;
-import pl.sdk.skill.*;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -69,8 +68,4 @@ public class SkillBookBasicTest {
         attacker.attack(defender);
         assertEquals(91,defender.getCurrentHp());
     }
-
-}
-
-
 }
