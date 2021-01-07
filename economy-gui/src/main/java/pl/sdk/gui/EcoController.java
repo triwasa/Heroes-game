@@ -28,6 +28,8 @@ public class EcoController implements PropertyChangeListener {
     Label currentGoldLabel;
     @FXML
     Label roundNumberLabel;
+    @FXML
+    Button editMapButton;
 
     private final EconomyEngine economyEngine;
 
@@ -51,10 +53,19 @@ public class EcoController implements PropertyChangeListener {
                 goToBattle();
             }
         });
+
+        editMapButton.addEventHandler(MouseEvent.MOUSE_CLICKED,(e) ->
+        {
+            goToEditor();
+        });
     }
 
     private void goToBattle() {
         EcoBattleConverter.startBattle(economyEngine.getPlayer1(), economyEngine.getPlayer2());
+    }
+
+    private void goToEditor() {
+        EcoBattleConverter.startEditting();
     }
 
     void refreshGui() {

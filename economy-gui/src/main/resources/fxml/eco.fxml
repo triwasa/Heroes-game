@@ -28,6 +28,13 @@
             </children>
         </HBox>
     </top>
+    <right>
+        <HBox BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="editMapButton" mnemonicParsing="false" text="EDIT MAP"/>
+            </children>
+        </HBox>
+    </right>
     <bottom>
         <HBox BorderPane.alignment="CENTER">
             <children>
