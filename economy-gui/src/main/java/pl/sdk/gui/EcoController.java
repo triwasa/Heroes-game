@@ -46,13 +46,14 @@ public class EcoController implements PropertyChangeListener {
 
         readyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
-            economyEngine.pass();
-            if (economyEngine.getRoundNumber() < 4) {
+            if (economyEngine.getRoundNumber() == 3 && economyEngine.getActiveHero().equals(economyEngine.getPlayer2())) {
                 goToBattle();
+            } else {
+                economyEngine.pass();
             }
         });
 
-        editMapButton.addEventHandler(MouseEvent.MOUSE_CLICKED,(e) ->
+        editMapButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
             goToEditor();
         });
