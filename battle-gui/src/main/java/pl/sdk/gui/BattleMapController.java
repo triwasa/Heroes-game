@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import pl.sdk.*;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.GuiTile;
 import pl.sdk.creatures.NecropolisFactory;
 
 import java.beans.PropertyChangeEvent;
@@ -62,7 +63,7 @@ public class BattleMapController implements PropertyChangeListener {
                 MapTile rec = new MapTile();
                 gridMap.add(rec, x, y);
 
-                Creature c = gameEngine.get(x, y);
+                GuiTile c = gameEngine.get(x, y);
                 if (c != null) {
                     rec.addCreature(c.getName(), c.getAmount());
 

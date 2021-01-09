@@ -1,5 +1,6 @@
 package pl.sdk;
 
+import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.hero.CreatureShop;
 import pl.sdk.hero.EconomyHero;
@@ -70,5 +71,9 @@ public class EconomyEngine {
     public EconomyHero getPlayer2() {
         //TODO make copy
         return hero2;
+    }
+
+    public void buyArtifact(EconomyArtifact aEconomyArtifact) {
+
     }
 }

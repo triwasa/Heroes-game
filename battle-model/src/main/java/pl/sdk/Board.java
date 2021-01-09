@@ -1,24 +1,38 @@
 package pl.sdk;
 
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.GuiTile;
 
 import java.util.*;
 
 import static pl.sdk.GameEngine.BOARD_HEIGHT;
 import static pl.sdk.GameEngine.BOARD_WIDTH;
 
-class Board {
+public class Board {
 
-    private final Map<Point, Creature> map;
 
-    Board() {
+    private final Map<Point, GuiTile> map;
+
+    public Board() {
         map = new HashMap<>();
     }
 
-    void add(Point aPoint, Creature aCreature) {
+    void add(Point aPoint, GuiTile aCreature) {
         throwExceptionWhenIsOutsideMap(aPoint);
         throwExceptionIfTileIsTaken(aPoint);
         map.put(aPoint,aCreature);
+    }
+
+    public Map<Point, GuiTile> getMap() {
+        return map;
+    }
+
+    void removeAll() {
+        map.clear();
+    }
+    void remove(Point aPoint)
+    {
+        if(map.get(aPoint).isItObstacle()) map.remove(aPoint);
     }
 
     private void throwExceptionIfTileIsTaken(Point aPoint) {
@@ -27,7 +41,7 @@ class Board {
         }
     }
 
-    private boolean isTileTaken(Point aPoint) {
+    boolean isTileTaken(Point aPoint) {
         return map.containsKey(aPoint);
     }
 
@@ -37,15 +51,15 @@ class Board {
         }
     }
 
-    Creature get(int aX, int aY) {
+    GuiTile get(int aX, int aY) {
         return map.get(new Point(aX,aY));
     }
 
-    Point get(Creature aCreature){
+    Point get(GuiTile aCreature){
         return map.keySet().stream().filter(p -> map.get(p).equals(aCreature)).findAny().get();
     }
 
-    void move(Creature aCreature, Point aTargetPoint1){
+    void move(GuiTile aCreature, Point aTargetPoint1){
         move(get(aCreature), aTargetPoint1);
     }
 
@@ -53,12 +67,12 @@ class Board {
         throwExceptionWhenIsOutsideMap(aTargetPoint1);
         throwExceptionIfTileIsTaken(aTargetPoint1);
 
-        Creature creatureFromSourcePoint = map.get(aSourcePoint);
+        GuiTile creatureFromSourcePoint = map.get(aSourcePoint);
         map.remove(aSourcePoint);
         map.put(aTargetPoint1,creatureFromSourcePoint);
     }
 
-    boolean canMove(Creature aCreature, int aX, int aY) {
+    boolean canMove(GuiTile aCreature, int aX, int aY) {
         throwExceptionWhenIsOutsideMap(new Point(aX,aY));
         if (!map.containsValue(aCreature)){
             throw new IllegalStateException("Creature isn't in board");

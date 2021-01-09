@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 
-class MapTile extends StackPane {
+public class MapTile extends StackPane {
 
     private final Rectangle rec;
 
@@ -34,7 +34,23 @@ class MapTile extends StackPane {
         getChildren().add(vbox);
     }
 
+    void addCreatureWithoutAmount(String aName)
+    {
+        VBox vbox = new VBox();
+        vbox.setAlignment(Pos.CENTER);
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/graphics/creatures/" + aName + ".png")));
+        image.setFitHeight(57);
+        image.setFitWidth(57);
+        vbox.getChildren().add(image);
+        getChildren().add(vbox);
+    }
+
     void setBackground(Color aColor){
         rec.setFill(aColor);
+    }
+
+    void setBorder( Color aColor)
+    {
+        rec.setStroke(aColor);
     }
 }

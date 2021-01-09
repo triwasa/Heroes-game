@@ -1,6 +1,7 @@
 package pl.sdk;
 
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.GuiTile;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -24,6 +25,7 @@ public class GameEngine {
     private boolean blockAttacking;
     private List<Creature> creatures1;
     private List<Creature> creatures2;
+    private final PositionSaver positionSaver;
 
     public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
         this(aCreatures1, aCreatures2, new Board());
@@ -39,9 +41,11 @@ public class GameEngine {
         twoSidesCreatures.addAll(aCreatures2);
         twoSidesCreatures.sort((c1, c2) -> c2.getMoveRange() - c1.getMoveRange());
         queue = new CreatureTurnQueue(twoSidesCreatures);
-
         twoSidesCreatures.forEach(queue::addObserver);
+
         observerSupport = new PropertyChangeSupport(this);
+
+        positionSaver = new PositionSaver(this);
     }
 
     public void addObserver(String aEventType, PropertyChangeListener aObs) {
@@ -50,6 +54,7 @@ public class GameEngine {
         } else {
             observerSupport.addPropertyChangeListener(aEventType, aObs);
         }
+
     }
 
     public void removeObserver(PropertyChangeListener aObs) {
@@ -88,15 +93,13 @@ public class GameEngine {
         for (int x = 0; x < splashRange.length; x++) {
             for (int y = 0; y < splashRange.length; y++) {
                 if (splashRange[x][y]) {
-                    Creature attackedCreature = board.get(aX + x - 1, aY + y - 1);
+                    Creature attackedCreature = (Creature) board.get(aX + x - 1, aY + y - 1);
                     if (attackedCreature != null){
-                        activeCreature.attack(board.get(aX + x - 1, aY + y - 1));
+                        activeCreature.attack((Creature) board.get(aX + x - 1, aY + y - 1));
                     }
                 }
             }
         }
-
-
         blockAttacking = true;
         blockMoving = true;
         notifyObservers(new PropertyChangeEvent(this, CREATURE_ATTACKED, null, null));
@@ -113,7 +116,7 @@ public class GameEngine {
         }
     }
 
-    public Creature get(int aX, int aY) {
+    public GuiTile get(int aX, int aY) {
         return board.get(aX, aY);
     }
 
@@ -123,6 +126,10 @@ public class GameEngine {
 
     public boolean canMove(int aX, int aY) {
         return board.canMove(getActiveCreature(), aX, aY);
+    }
+
+    protected void unlockMoving() {
+        blockMoving = false;
     }
 
     public boolean canAttack(int aX, int aY) {

@@ -30,6 +30,11 @@ class ShootingCreatureDecorator extends Creature {
     }
 
     @Override
+    void counterAttackedInThisTurn() {
+        decorated.counterAttackedInThisTurn();
+    }
+
+    @Override
     public boolean isAlive() {
         return decorated.isAlive();
     }
@@ -107,5 +112,15 @@ class ShootingCreatureDecorator extends Creature {
     @Override
     public double getAttackRange() {
         return Double.MAX_VALUE;
+    }
+
+    @Override
+    public int getMaxHp() {
+        return decorated.getMaxHp();
+    }
+
+    @Override
+    public boolean backToPreviousPositionMechanic() {
+        return decorated.backToPreviousPositionMechanic();
     }
 }

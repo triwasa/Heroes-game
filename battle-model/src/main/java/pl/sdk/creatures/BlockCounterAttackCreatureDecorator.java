@@ -31,6 +31,11 @@ class BlockCounterAttackCreatureDecorator extends Creature{
     }
 
     @Override
+    void counterAttackedInThisTurn() {
+        decorated.counterAttackedInThisTurn();
+    }
+
+    @Override
     public void applyDamage(int aDamageToApply) {
         decorated.applyDamage(aDamageToApply);
     }
@@ -108,5 +113,14 @@ class BlockCounterAttackCreatureDecorator extends Creature{
     @Override
     public double getAttackRange() {
         return decorated.getAttackRange();
+    }
+
+    @Override
+    public int getMaxHp() {
+        return decorated.getMaxHp();
+    }
+    @Override
+    public boolean backToPreviousPositionMechanic() {
+        return decorated.backToPreviousPositionMechanic();
     }
 }

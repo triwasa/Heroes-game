@@ -30,6 +30,11 @@ public class SplashDamageCreatureDecorator extends Creature {
     }
 
     @Override
+    void counterAttackedInThisTurn() {
+        decorated.counterAttackedInThisTurn();
+    }
+
+    @Override
     public void applyDamage(int aDamageToApply) {
         decorated.applyDamage(aDamageToApply);
     }
@@ -107,5 +112,15 @@ public class SplashDamageCreatureDecorator extends Creature {
     @Override
     public boolean[][] getSplashRange() {
         return splashDamageTable;
+    }
+
+    @Override
+    public int getMaxHp() {
+        return decorated.getMaxHp();
+    }
+
+    @Override
+    public boolean backToPreviousPositionMechanic() {
+        return decorated.backToPreviousPositionMechanic();
     }
 }

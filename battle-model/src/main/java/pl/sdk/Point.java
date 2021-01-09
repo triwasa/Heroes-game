@@ -1,22 +1,22 @@
 package pl.sdk;
 
-import java.util.Objects;
 
+import java.util.Objects;
 public class Point {
 
-    final private int x;
-    final private int y;
+    private final int x;
+    private final int y;
 
     public Point(int aX, int aY) {
         x = aX;
         y = aY;
     }
 
-    int getX() {
+    public int getX() {
         return x;
     }
 
-    int getY() {
+    public int getY() {
         return y;
     }
 
@@ -36,5 +36,13 @@ public class Point {
 
     double distance(Point aPoint) {
         return Math.sqrt((aPoint.y - y) * (aPoint.y - y) + (aPoint.x - x) * (aPoint.x - x));
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }

@@ -8,6 +8,10 @@ import java.util.List;
 
 public class EconomyHero {
 
+    public Collection<Object> getArtifacts() {
+        return null;
+    }
+
     public enum Fraction {
         NECROPOLIS;
     }
