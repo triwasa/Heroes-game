@@ -52,4 +52,16 @@ public class BuyingArtifactTest {
         assertEquals(880, hero1.getGold());
         assertEquals(1, hero1.getArtifacts().size());
     }
+
+    @Test
+    void heroShouldChangeStatsWithPurchasedArtifact() {
+        int primaryHeroAttack = hero1.getAttack();
+        int primaryHeroDefense = hero1.getDefense();
+
+        economyEngine.buyArtifact(artifactFactory.create("Centaur's Ax")); // 120 gold
+        economyEngine.buyArtifact(artifactFactory.create("Shield of the Dwarven Lords")); // 120 gold
+
+        assertEquals(primaryHeroAttack + 2, hero1.getAttack());
+        assertEquals(primaryHeroDefense + 2, hero1.getDefense());
+    }
 }
