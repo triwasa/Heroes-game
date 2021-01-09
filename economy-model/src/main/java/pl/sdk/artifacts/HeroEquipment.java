@@ -14,4 +14,36 @@ public class HeroEquipment {
             equipment.put(artifact.getSlotName(), artifact);
         }
     }
+
+    int getAttack() {
+        int sum = 0;
+        for (Artifact artifact : equipment.values()){
+            sum += artifact.getAttack();
+        }
+        return sum;
+    }
+
+    int getDefence() {
+        int sum = 0;
+        for (Artifact artifact : equipment.values()){
+            sum += artifact.getDefence();
+        }
+        return sum;
+    }
+
+    int getSpellPower() {
+        int sum = 0;
+        for (Artifact artifact : equipment.values()){
+            sum += artifact.getSpellPower();
+        }
+        return sum;
+    }
+
+    int getKnowledge() {
+        int sum = 0;
+        for (Artifact artifact : equipment.values()){
+            sum += artifact.getKnowledge();
+        }
+        return sum;
+    }
 }
