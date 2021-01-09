@@ -3,26 +3,20 @@ package pl.sdk.artifacts;
 class Artifact {
 
     private final ArtifactStatisticIf stats;
-    private int attack;
-    private int defence;
-    private int spellPower;
-    private int knowledge;
+    private final PrimaryStatisticIf primaryStats;
 
-    public Artifact(ArtifactStatisticIf aStats, int aAttackSkill, int aDefenceSkill, int aSpellPower, int aKnowledge) {
+    public Artifact(ArtifactStatisticIf aStats,PrimaryStatisticIf aPrimaryStats) {
         this.stats = aStats;
-        this.attack = aAttackSkill;
-        this.defence = aDefenceSkill;
-        this.spellPower = aSpellPower;
-        this.knowledge = aKnowledge;
+        this.primaryStats = aPrimaryStats;
     }
 
     public String getSlotName() { return stats.getSlotName(); }
 
-    public int getAttack() { return attack; }
+    public int getAttack() { return primaryStats.getAttack(); }
 
-    public int getDefence() { return defence; }
+    public int getDefence() { return primaryStats.getDefence(); }
 
-    public int getSpellPower() { return spellPower; }
+    public int getSpellPower() { return primaryStats.getSpellPower(); }
 
-    public int getKnowledge() { return knowledge; }
+    public int getKnowledge() { return primaryStats.getKnowledge(); }
 }

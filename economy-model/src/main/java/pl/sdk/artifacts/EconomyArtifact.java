@@ -2,7 +2,7 @@ package pl.sdk.artifacts;
 
 public class EconomyArtifact {
 
-    private final ArtifactStatistic stats;
+    private final ArtifactStatisticIf stats;
     private final int goldCost;
 
 
