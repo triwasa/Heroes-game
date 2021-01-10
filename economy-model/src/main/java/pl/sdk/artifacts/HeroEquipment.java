@@ -1,6 +1,7 @@
 package pl.sdk.artifacts;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class HeroEquipment {
 
@@ -13,6 +14,10 @@ public class HeroEquipment {
         else{
             equipment.put(artifact.getSlotName(), artifact);
         }
+    }
+
+    List<Artifact> getArtifacts() {
+        return List.copyOf(equipment.values());
     }
 
     int getAttack() {
