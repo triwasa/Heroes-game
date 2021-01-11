@@ -207,7 +207,6 @@ public class Creature implements PropertyChangeListener {
             return new Creature(aStats);
         }
 
-
     }
 
     static class BuilderForTesting {
