@@ -17,12 +17,17 @@ public class MapEditorEngine {
     private Point activePoint;
     private final PropertyChangeSupport observerSupport;
 
+    public ActivePointThread activePointThread;
     public static final String ADDING_OBSTACLES = "ADDING_OBSTACLES";
+    public static final String ADDING_OBSTACLES_BUTTON = "ADDING_OBSTACLES_BUTTON";
+
     public static final String SAVING_OBSTACLES = "SAVING_OBSTACLES";
     public static final String REMOVING_OBSTACLES = "REMOVING_OBSTACLES";
+    public static final String REMOVING_OBSTACLES_BUTTON = "REMOVING_OBSTACLES_BUTTON";
+
     public static final String RANDOM_GENERATE = "RANDOM_GENERATE";
     public static final String CLEAN_MAP = "CLEAN_MAP";
-//    public static final String ADD_CREATURES = "ADD_CREATURES";
+
     private Board board;
 
 
@@ -31,6 +36,13 @@ public class MapEditorEngine {
     {
         observerSupport = new PropertyChangeSupport(this);
         this.board = board;
+        activePointThread = new ActivePointThread(this);
+        activePointThread.start();
+    }
+
+    public void terminateThread()
+    {
+       activePointThread.stopThread();
     }
 
     public void addObserver(String aEventType, PropertyChangeListener aObs)
@@ -46,13 +58,18 @@ public class MapEditorEngine {
         observerSupport.firePropertyChange(aEvent);
     }
 
+    public void notifyNotifier(String event, boolean bool)
+    {
+        notifyObservers(new PropertyChangeEvent(this,event,null,bool));
+    }
+
     public void add()
     {
         if(activePoint!= null)
         {
             board.add(new Point(activePoint.getX(),activePoint.getY()),new LavaTile());
             removeActivePoint();
-            notifyObservers(new PropertyChangeEvent(this,ADDING_OBSTACLES,null, null));
+            notifyObservers(new PropertyChangeEvent(this,ADDING_OBSTACLES,null, false));
         }else return ;
     }
 
@@ -65,6 +82,11 @@ public class MapEditorEngine {
     public Point getActivePoint()
     {
         return activePoint;
+    }
+
+    public boolean isActiveTileTaken()
+    {
+        return board.isTileTaken(activePoint);
     }
 
     public void removeActivePoint() {
@@ -83,11 +105,10 @@ public class MapEditorEngine {
         if (activePoint != null && board.get(activePoint.getX(), activePoint.getY()) != null) {
             board.remove(new Point(activePoint.getX(), activePoint.getY()));
             removeActivePoint();
-            notifyObservers(new PropertyChangeEvent(this, REMOVING_OBSTACLES, null, null));
+            notifyObservers(new PropertyChangeEvent(this, REMOVING_OBSTACLES, null, false));
         }
         else return ;
     }
-
 
     public void clean()
     {

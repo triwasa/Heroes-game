@@ -31,13 +31,7 @@
       </HBox>
    </bottom>
    <right>
-      <VBox BorderPane.alignment="CENTER_RIGHT">
-         <children>
-            <Button fx:id="addingButton" mnemonicParsing="false" text="Add" />
-         </children>
-         <children>
-            <Button fx:id="removeButton" mnemonicParsing="false" text="Remove" />
-         </children>
+      <VBox fx:id= "buttonLabel" BorderPane.alignment="CENTER_RIGHT">
          <children>
             <Button fx:id="randomButton" mnemonicParsing="false" text="Random" />
          </children>

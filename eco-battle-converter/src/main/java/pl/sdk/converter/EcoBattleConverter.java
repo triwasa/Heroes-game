@@ -1,9 +1,11 @@
 package pl.sdk.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import pl.sdk.Board;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
@@ -45,7 +47,7 @@ public class EcoBattleConverter {
         return ret;
     }
 
-    public static void startEditting()
+    public static void startEditing()
     {
         Scene scene = null;
         try {
@@ -61,12 +63,20 @@ public class EcoBattleConverter {
             czyli json -> board
             i tak samo odpalaja walke, wiec trzeba zrobic deserializacje
              */
-           loader.setController(new MapEditorController(board));
+            MapEditorController mapEditorController = new MapEditorController(board);
+            loader.setController(mapEditorController);
             scene = new Scene(loader.load());
             Stage aStage = new Stage();
             aStage.setScene(scene);
             aStage.setX(5);
             aStage.setY(5);
+            aStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent windowEvent) {
+                    mapEditorController.terminateThread();
+                    aStage.close();
+                }
+            });
             aStage.show();
         } catch (IOException aE) {
             aE.printStackTrace();

@@ -1,15 +1,18 @@
 package pl.sdk.gui;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import pl.sdk.Board;
 import pl.sdk.MapEditorEngine;
 import pl.sdk.Point;
 import pl.sdk.creatures.GuiTile;
+
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -20,16 +23,19 @@ public class MapEditorController implements PropertyChangeListener {
     @FXML
     private GridPane gridMap;
     @FXML
-    private Button addingButton;
-    @FXML
     private Button saveButton;
-    @FXML
-    private Button removeButton;
     @FXML
     private Button randomButton;
     @FXML
     private Button cleanButton;
 
+    @FXML
+    VBox buttonLabel;
+
+
+    private DecoratedAddingButton decoratedAddingButton;
+
+    private DecoratedRemovingButton decoratedRemovingButton;
     private Board board;
 
     private final MapEditorEngine mapEditorEngine;
@@ -39,22 +45,29 @@ public class MapEditorController implements PropertyChangeListener {
         mapEditorEngine = new MapEditorEngine(board);
 
         //TODO
-        // dekorator na remove
         // dostepne pola do wyboru ale to jak juz fabryka bedzie gotowa
         // deserializacja
-        // # MapEditorEngine
-        // # MapEditorController
         // # poprawki w EcoBattleConverter
     }
+
 
     @FXML
     void initialize()
     {
+        decoratedAddingButton = new DecoratedAddingButton(mapEditorEngine);
+        buttonLabel.getChildren().add(decoratedAddingButton);
+
         mapEditorEngine.addObserver(MapEditorEngine.ADDING_OBSTACLES,this);
+        mapEditorEngine.addObserver(MapEditorEngine.ADDING_OBSTACLES_BUTTON,decoratedAddingButton);
+
+        decoratedRemovingButton = new DecoratedRemovingButton(mapEditorEngine);
+        buttonLabel.getChildren().add(decoratedRemovingButton);
         mapEditorEngine.addObserver(MapEditorEngine.REMOVING_OBSTACLES,this);
+        mapEditorEngine.addObserver(MapEditorEngine.REMOVING_OBSTACLES_BUTTON,decoratedRemovingButton);
+
         mapEditorEngine.addObserver(MapEditorEngine.RANDOM_GENERATE,this);
         mapEditorEngine.addObserver(MapEditorEngine.CLEAN_MAP,this);
-        addingButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> mapEditorEngine.add());
+
         saveButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> {
             try {
                 mapEditorEngine.save();
@@ -62,11 +75,16 @@ public class MapEditorController implements PropertyChangeListener {
                 ioException.printStackTrace();
             }
         });
-        removeButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.remove());
         randomButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.randomGenerate());
         cleanButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.clean());
         refreshGui();
     }
+
+    public void terminateThread()
+    {
+        mapEditorEngine.terminateThread();
+    }
+
     private void refreshGui() {
         for (int x = 0; x < 20; x++) {
             for (int y = 0; y < 15; y++) {
@@ -87,7 +105,6 @@ public class MapEditorController implements PropertyChangeListener {
                         rec.setBackground(Color.GREEN);
                         rec.setBorder(Color.GREEN);
                         mapEditorEngine.setActivePoint(new Point(finalX, finalY));
-
                     }else if (event.getButton() == MouseButton.SECONDARY
                             && mapEditorEngine.getActivePoint().equals(new Point(finalX,finalY)))
                     {
@@ -102,6 +119,8 @@ public class MapEditorController implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
-        refreshGui();
+        if (!aPropertyChangeEvent.getPropertyName().equals(MapEditorEngine.ADDING_OBSTACLES_BUTTON) && !aPropertyChangeEvent.getPropertyName().equals(MapEditorEngine.REMOVING_OBSTACLES_BUTTON) ) {
+            refreshGui();
+        }
     }
 }
