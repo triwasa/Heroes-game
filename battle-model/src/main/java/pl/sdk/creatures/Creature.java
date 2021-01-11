@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Creature implements PropertyChangeListener {
+public class Creature implements GuiTile,PropertyChangeListener {
 
     private final CreatureStatisticIf stats;
     private int currentHp;
@@ -85,6 +85,16 @@ public class Creature implements PropertyChangeListener {
         return currentHp;
     }
 
+    @Override
+    public boolean isMovePossible() {
+        return true;
+    }
+
+    @Override
+    public boolean isAttackPossible() {
+        return true;
+    }
+
     public String getName(){
         return stats.getTranslatedName();
     }
@@ -121,6 +131,10 @@ public class Creature implements PropertyChangeListener {
 
     public int getMaxHp() {
         return stats.getMaxHp();
+    }
+    @Override
+    public boolean isItObstacle() {
+        return false;
     }
 
     public String currentHealth() {

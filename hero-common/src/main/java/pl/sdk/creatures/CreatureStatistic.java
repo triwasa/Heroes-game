@@ -8,6 +8,7 @@ enum CreatureStatistic implements CreatureStatisticIf{
     TEST("name",2,2,10,1,Range.closed(2,2),0,"for unit testing",false),
 
 
+
     // NECROPILIS FRACTION
     SKELETON("Skeleton",5,4,6,4,Range.closed(1,3),1,"Average lvl1 foot soldier, but always in huge numbers thanks to necromancy skill and skeleton transformer.",false),
     WALKING_DEAD("Walking Dead",5,5,15,3,Range.closed(2,3),2,"Basically its the same skeleton with more hit points. I prefer buying 2 skeletons instead.",false),
@@ -143,7 +144,6 @@ enum CreatureStatistic implements CreatureStatisticIf{
     EARTH_ELEMENTAL("Earth Elemental", 10,10,40,4,Range.closed(4,8), 4, "Special: immune to mind, lightning bolt and chain lightning spells, take double damage from meteor shower. The toughest of elementals (without AB expansion), has good stats, hit points and higher damage, but extra slow speed, making them unpractical for anything other than castle defence.\n", false),
     GOLD_GOLEM("Gold Golem", 11,12,50,5,Range.closed(8,10), 5, "Special: non-living; damage from spells reduced by 85%. Gold and diamond golems can only be recruited from tower's golem factory map dwelling where you get a choice of four types of golems. These guys take only 15% of damage from spells and therefore it is unwise for spellcasters to challenge them without sufficient might. They are not much on attack and pretty slow, but hit points, defence and magic resistance makes them extremely durable.\n", false),
     DIAMOND_GOLEM("Diamond Golem", 13,12,60,5,Range.closed(10,14), 6, "Special: non-living; damage from spells reduced by 95%. Slow-moving defeat for any spellcaster who relies on magic and forgets that these golems are tough and take only 5% damage from spells! If you find a golem factory or two, have a hero buy 2 diamond golems every week from each factory. If it's a long game, you will have a nice surprise for your spellcasting opponent.\n", false);
-
 
     private final String name;
     private final int attack;

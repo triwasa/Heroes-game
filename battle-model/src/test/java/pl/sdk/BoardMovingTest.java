@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import pl.sdk.Board;
 import pl.sdk.Point;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.GuiTile;
 import pl.sdk.creatures.NecropolisFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +27,7 @@ class BoardMovingTest {
     void creatureShouldMoveCorrectly(){
         board.move(new Point(0,0), new Point(0,1));
 
-        Creature creatureFromBoard = board.get(0, 1);
+        GuiTile creatureFromBoard = board.get(0, 1);
 
         assertEquals(creature,creatureFromBoard);
         assertNull(board.get(0,0));
@@ -38,7 +39,7 @@ class BoardMovingTest {
 
         assertThrows(IllegalArgumentException.class, () -> board.move(new Point(0,0), new Point(0,1)));
 
-        Creature creatureFromBoard = board.get(0, 0);
+        GuiTile creatureFromBoard = board.get(0, 0);
         assertEquals(creature,creatureFromBoard);
     }
 
@@ -63,7 +64,7 @@ class BoardMovingTest {
 
     @Test
     void cannotMoveWhenTileIsTaken(){
-        Creature creature = NecropolisFactory.createDefaultForTests();
+        GuiTile creature = NecropolisFactory.createDefaultForTests();
         board.add(new Point(5,5), creature);
 
         assertFalse(board.canMove(creature, 0,0 ));

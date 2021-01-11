@@ -1,6 +1,7 @@
 package pl.sdk;
 
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.GuiTile;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -92,9 +93,9 @@ public class GameEngine {
         for (int x = 0; x < splashRange.length; x++) {
             for (int y = 0; y < splashRange.length; y++) {
                 if (splashRange[x][y]) {
-                    Creature attackedCreature = board.get(aX + x - 1, aY + y - 1);
+                    Creature attackedCreature = (Creature) board.get(aX + x - 1, aY + y - 1);
                     if (attackedCreature != null){
-                        activeCreature.attack(board.get(aX + x - 1, aY + y - 1));
+                        activeCreature.attack((Creature) board.get(aX + x - 1, aY + y - 1));
                     }
                 }
             }
@@ -115,7 +116,7 @@ public class GameEngine {
         }
     }
 
-    public Creature get(int aX, int aY) {
+    public GuiTile get(int aX, int aY) {
         return board.get(aX, aY);
     }
 
