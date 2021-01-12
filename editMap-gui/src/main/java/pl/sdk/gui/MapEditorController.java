@@ -23,8 +23,6 @@ public class MapEditorController implements PropertyChangeListener {
     @FXML
     private GridPane gridMap;
     @FXML
-    private Button saveButton;
-    @FXML
     private Button randomButton;
     @FXML
     private Button cleanButton;
@@ -68,13 +66,6 @@ public class MapEditorController implements PropertyChangeListener {
         mapEditorEngine.addObserver(MapEditorEngine.RANDOM_GENERATE,this);
         mapEditorEngine.addObserver(MapEditorEngine.CLEAN_MAP,this);
 
-        saveButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> {
-            try {
-                mapEditorEngine.save();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
         randomButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.randomGenerate());
         cleanButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.clean());
         refreshGui();
@@ -122,5 +113,9 @@ public class MapEditorController implements PropertyChangeListener {
         if (!aPropertyChangeEvent.getPropertyName().equals(MapEditorEngine.ADDING_OBSTACLES_BUTTON) && !aPropertyChangeEvent.getPropertyName().equals(MapEditorEngine.REMOVING_OBSTACLES_BUTTON) ) {
             refreshGui();
         }
+    }
+
+    public void saveFile() throws IOException {
+        mapEditorEngine.save();
     }
 }

@@ -74,6 +74,11 @@ public class EcoBattleConverter {
                 @Override
                 public void handle(WindowEvent windowEvent) {
                     mapEditorController.terminateThread();
+                    try {
+                        mapEditorController.saveFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     aStage.close();
                 }
             });
