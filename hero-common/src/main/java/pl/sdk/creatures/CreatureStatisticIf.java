@@ -18,7 +18,7 @@ public interface CreatureStatisticIf {
 
     int getTier();
 
-    String getMovement();
+    String getMovementType();
 
     String getDescription();
 }

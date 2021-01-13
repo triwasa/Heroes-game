@@ -55,8 +55,8 @@ import com.google.common.collect.Range;
         }
 
         @Override
-        public String getMovement() {
-            return CreatureStatistic.TEST.getMovement();
+        public String getMovementType() {
+            return CreatureStatistic.TEST.getMovementType();
         }
 
         @Override

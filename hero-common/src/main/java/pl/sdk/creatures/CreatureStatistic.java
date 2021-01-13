@@ -201,7 +201,7 @@ enum CreatureStatistic implements CreatureStatisticIf{
         return description;
     }
 
-    public String getMovement() {
+    public String getMovementType() {
         return movement;
     }
 

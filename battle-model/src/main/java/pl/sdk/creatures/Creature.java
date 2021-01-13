@@ -107,6 +107,10 @@ public class Creature implements GuiTile,PropertyChangeListener {
         return stats.getMoveRange();
     }
 
+    public String getMovementType() {
+        return stats.getMovementType();
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         counterAttackedInThisTurn = false;
