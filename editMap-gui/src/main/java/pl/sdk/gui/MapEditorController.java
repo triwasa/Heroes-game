@@ -97,7 +97,7 @@ public class MapEditorController implements PropertyChangeListener {
                         rec.setBorder(Color.GREEN);
                         mapEditorEngine.setActivePoint(new Point(finalX, finalY));
                     }else if (event.getButton() == MouseButton.SECONDARY
-                            && mapEditorEngine.getActivePoint().equals(new Point(finalX,finalY)))
+                            && mapEditorEngine.getActivePoint() != null)
                     {
                         rec.setBackground(Color.WHITE);
                         rec.setBorder(Color.BLACK);
