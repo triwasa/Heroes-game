@@ -3,6 +3,7 @@ package pl.sdk;
 import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.hero.CreatureShop;
+import pl.sdk.hero.ArtifactShop;
 import pl.sdk.hero.EconomyHero;
 
 import java.beans.PropertyChangeListener;
@@ -16,6 +17,7 @@ public class EconomyEngine {
     private final EconomyHero hero2;
     private EconomyHero activeHero;
     private final CreatureShop creatureShop = new CreatureShop();
+    private final ArtifactShop artifactShop = new ArtifactShop();
     private int roundNumber;
     private final PropertyChangeSupport observerSupport;
 
@@ -74,6 +76,7 @@ public class EconomyEngine {
     }
 
     public void buyArtifact(EconomyArtifact aEconomyArtifact) {
+        artifactShop.buy(activeHero,aEconomyArtifact);
 
     }
 }
