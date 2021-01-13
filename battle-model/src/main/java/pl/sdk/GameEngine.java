@@ -73,6 +73,7 @@ public class GameEngine {
         board.move(queue.getActiveCreature(), aTargetPoint);
         blockMoving = true;
         notifyObservers(new PropertyChangeEvent(this, CREATURE_MOVED, oldPosition, aTargetPoint));
+        /*board.getfield(aTargetPoint.getX(), aTargetPoint.getY()).onStand(queue.getActiveCreature());*/
     }
 
     public void pass() {
@@ -125,7 +126,7 @@ public class GameEngine {
     }
 
     public boolean canMove(int aX, int aY) {
-        return board.canMove(getActiveCreature(), aX, aY);
+        return board.canMove(getActiveCreature(), aX, aY); /*&& board.getfield(aX, aY).canStand();*/
     }
 
     protected void unlockMoving() {
