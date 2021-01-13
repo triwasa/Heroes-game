@@ -15,6 +15,8 @@ import pl.sdk.hero.EconomyHero;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,19 @@ public class EcoBattleConverter {
             aStage.setX(5);
             aStage.setY(5);
             aStage.show();
+            aStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent windowEvent) {
+                    try {
+                        File file = new File(".").getCanonicalFile();
+                        String fileToString = file.toString()+"/result.json";
+                        Files.deleteIfExists(Paths.get(fileToString));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    aStage.close();
+                }
+            });
         } catch (IOException aE) {
             aE.printStackTrace();
         }
