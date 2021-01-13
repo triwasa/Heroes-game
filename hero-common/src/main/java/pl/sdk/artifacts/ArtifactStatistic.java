@@ -26,7 +26,22 @@ enum ArtifactStatistic implements ArtifactStatisticIf {
     HELM_OF_CHAOS("Helm of Chaos", "head","minor", "+3 knowledge"),
     CROWN_OF_THE_SUPREME_MAGI("Crown of the Supreme Magi", "head","minor", "+4 knowledge"),
     HELLSTORM_HELMET("Hellstorm Helmet", "head","major", "+5 knowledge"),
-    THUNDER_HELMET("Thunder Helmet", "head","relic", "+10 knowledge, -2 spell power");
+    THUNDER_HELMET("Thunder Helmet", "head","relic", "+10 knowledge, -2 spell power"),
+
+    QUIET_EYE_OF_THE_DRAGON("Quiet Eye of the Dragon", "finger", "treasure", "+1 to attack and defence skills"),
+    RED_DRAGON_FLAME_TONGUE("Red Dragon Flame Tongue", "right hand", "minor", "+2 to attack and defence skills"),
+    DRAGON_SCALE_SHIELD("Dragon Scale Shield", "left hand", "major", "+3 to attack and defence skills"),
+    DRAGON_SCALE_ARMOR("Dragon Scale Armor", "torso", "relic", "+4 to attack and defence skills"),
+    DRAGONBONE_GREAVES("Dragonbone Greaves", "feet", "treasure", "+1 to spell power and knowledge skills"),
+    DRAGON_WING_TABARD("Dragon Wing Tabard", "shoulders", "minor", "+2 to spell power and knowledge skills"),
+    NECKLACE_OF_DRAGONTEETH("Necklace of Dragonteeth", "neck", "major", "+3 to spell power and knowledge skills"),
+    CROWN_OF_DRAGONTOOTH("Crown of Dragontooth", "head", "relic", "+4 to spell power and knowledge skills"),
+    ARMOR_OF_WONDER("Armor of Wonder", "torso", "minor", "+1 to all 4 primary skills"),
+    SANDALS_OF_THE_SAINT("Sandals of the Saint", "feet", "relic", "+2 to all 4 primary skills"),
+    CELESTIAL_NECKLACE_OFBLISS("Celestial Necklace of Bliss", "neck", "relic", "+3 to all 4 primary skills"),
+    LIONS_SHIELD_OF_COURAGE("Lion's Shield of Courage", "left hand", "relic", "+4 to all 4 primary skills"),
+    SWORD_OF_JUJEMENT("Sword of Judjement", "right hand", "relic", "+5 to all 4 primary skills"),
+    HELM_OF_HEAVENLY_ENLIGHTENMENT("Helm of Heavenly Enlightenment", "head", "relic", "+6 to all 4 primary skills");
 
 
     private final String name;

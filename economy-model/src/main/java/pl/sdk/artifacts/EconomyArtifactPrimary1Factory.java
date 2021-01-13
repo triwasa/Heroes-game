@@ -54,9 +54,36 @@ public class EconomyArtifactPrimary1Factory {
                 return new EconomyArtifact(ArtifactStatistic.HELLSTORM_HELMET, 790);
             case "Thunder Helmet":
                 return new EconomyArtifact(ArtifactStatistic.THUNDER_HELMET, 1400);
+            case "Quiet Eye of the Dragon":
+                return new EconomyArtifact(ArtifactStatistic.QUIET_EYE_OF_THE_DRAGON, 140);
+            case "Red Dragon Flame Tongue":
+                return new EconomyArtifact(ArtifactStatistic.RED_DRAGON_FLAME_TONGUE, 280);
+            case "Dragon Scale Shield":
+                return new EconomyArtifact(ArtifactStatistic.DRAGON_SCALE_SHIELD, 420);
+            case "Dragon Scale Armor":
+                return new EconomyArtifact(ArtifactStatistic.DRAGON_SCALE_ARMOR, 600);
+            case "Dragonbone Greaves":
+                return new EconomyArtifact(ArtifactStatistic.DRAGONBONE_GREAVES,  140);
+            case "Dragon Wing Tabard":
+                return new EconomyArtifact(ArtifactStatistic.DRAGON_WING_TABARD, 280);
+            case "Necklace of Dragonteeth":
+                return new EconomyArtifact(ArtifactStatistic.NECKLACE_OF_DRAGONTEETH, 420);
+            case "Crown of Dragontooth":
+                return new EconomyArtifact(ArtifactStatistic.CROWN_OF_DRAGONTOOTH, 600);
+            case "Armor of Wonder":
+                return new EconomyArtifact(ArtifactStatistic.ARMOR_OF_WONDER, 240);
+            case "Sandals of the Saint":
+                return new EconomyArtifact(ArtifactStatistic.SANDALS_OF_THE_SAINT, 480);
+            case "Celestial Necklace of Bliss":
+                return new EconomyArtifact(ArtifactStatistic.CELESTIAL_NECKLACE_OFBLISS, 720);
+            case "Lion's Shield of Courage":
+                return new EconomyArtifact(ArtifactStatistic.LIONS_SHIELD_OF_COURAGE,1000);
+            case "Sword of Judjement":
+                return new EconomyArtifact(ArtifactStatistic.SWORD_OF_JUJEMENT, 1300);
+            case "Helm of Heavenly Enlightenment":
+                return new EconomyArtifact(ArtifactStatistic.HELM_OF_HEAVENLY_ENLIGHTENMENT, 1800);
             default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
-
         }
     }
 }

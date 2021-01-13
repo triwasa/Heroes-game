@@ -54,6 +54,35 @@ public class ArtifactPrimary1Factory extends ArtifactAbstractFactory {
                 return new Artifact(ArtifactStatistic.HELLSTORM_HELMET, ArtifactPrimaryStatistic.HELLSTORM_HELMET);
             case "Thunder Helmet":
                 return new Artifact(ArtifactStatistic.THUNDER_HELMET, ArtifactPrimaryStatistic.THUNDER_HELMET);
+            case "Quiet Eye of the Dragon":
+                return new Artifact(ArtifactStatistic.QUIET_EYE_OF_THE_DRAGON, ArtifactPrimaryStatistic.QUIET_EYE_OF_THE_DRAGON);
+            case "Red Dragon Flame Tongue":
+                return new Artifact(ArtifactStatistic.RED_DRAGON_FLAME_TONGUE, ArtifactPrimaryStatistic.RED_DRAGON_FLAME_TONGUE);
+            case "Dragon Scale Shield":
+                return new Artifact(ArtifactStatistic.DRAGON_SCALE_SHIELD, ArtifactPrimaryStatistic.DRAGON_SCALE_SHIELD);
+            case "Dragon Scale Armor":
+                return new Artifact(ArtifactStatistic.DRAGON_SCALE_ARMOR, ArtifactPrimaryStatistic.DRAGON_SCALE_ARMOR);
+            case "Dragonbone Greaves":
+                return new Artifact(ArtifactStatistic.DRAGONBONE_GREAVES, ArtifactPrimaryStatistic.DRAGONBONE_GREAVES);
+            case "Dragon Wing Tabard":
+                return new Artifact(ArtifactStatistic.DRAGON_WING_TABARD, ArtifactPrimaryStatistic.DRAGON_WING_TABARD);
+            case "Necklace of Dragonteeth":
+                return new Artifact(ArtifactStatistic.NECKLACE_OF_DRAGONTEETH, ArtifactPrimaryStatistic.NECKLACE_OF_DRAGONTEETH);
+            case "Crown of Dragontooth":
+                return new Artifact(ArtifactStatistic.CROWN_OF_DRAGONTOOTH, ArtifactPrimaryStatistic.CROWN_OF_DRAGONTOOTH);
+            case "Armor of Wonder":
+                return new Artifact(ArtifactStatistic.ARMOR_OF_WONDER, ArtifactPrimaryStatistic.ARMOR_OF_WONDER);
+            case "Sandals of the Saint":
+                return new Artifact(ArtifactStatistic.SANDALS_OF_THE_SAINT, ArtifactPrimaryStatistic.SANDALS_OF_THE_SAINT);
+            case "Celestial Necklace of Bliss":
+                return new Artifact(ArtifactStatistic.CELESTIAL_NECKLACE_OFBLISS, ArtifactPrimaryStatistic.CELESTIAL_NECKLACE_OFBLISS);
+            case "Lion's Shield of Courage":
+                return new Artifact(ArtifactStatistic.LIONS_SHIELD_OF_COURAGE, ArtifactPrimaryStatistic.LIONS_SHIELD_OF_COURAGE);
+            case "Sword of Judjement":
+                return new Artifact(ArtifactStatistic.SWORD_OF_JUJEMENT, ArtifactPrimaryStatistic.SWORD_OF_JUJEMENT);
+            case "Helm of Heavenly Enlightenment":
+                return new Artifact(ArtifactStatistic.HELM_OF_HEAVENLY_ENLIGHTENMENT, ArtifactPrimaryStatistic.HELM_OF_HEAVENLY_ENLIGHTENMENT);
+
             default:
                 throw new IllegalArgumentException(EXCEPTION_MESSAGE);
 
