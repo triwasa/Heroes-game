@@ -11,6 +11,7 @@ import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.gui.BattleMapController;
 import pl.sdk.gui.MapEditorController;
 import pl.sdk.hero.EconomyHero;
+import pl.sdk.skill.Skill;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,10 +47,21 @@ public class EcoBattleConverter {
 //                    aPlayer1.getArtifacts().forEach(a -> a.apply(c));
 //                    aPlayer1.getSkills().forEach(a -> a.apply(c));
 //                    c.increaseStats(aPlayer1.getStats());
+                    ret.add(c);
                 }
         );
         return ret;
     }
+
+//    public static List<Creature> convertToCreatures(EconomyHero economyHero) {
+//        Hero hero = Converter.convert(economyHero);
+//        return hero.getCreatures();
+//    }
+//
+//    public static List<Skill> convertToSpells(EconomyHero economyHero) {
+//        Hero hero = Converter.convert(economyHero);
+//        return hero.getSpells;
+//    }
 
     public static void startEditting()
     {
@@ -83,9 +95,5 @@ public class EcoBattleConverter {
         ObjectMapper objectMapper = new ObjectMapper();
         Board boardOfObstacles = objectMapper.readValue(file, Board.class);
         return boardOfObstacles;
-    }
-
-    public static Hero convertHero(EconomyHero economyHero) {
-        return Converter.convert(economyHero);
     }
 }
