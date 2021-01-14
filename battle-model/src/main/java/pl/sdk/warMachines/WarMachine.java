@@ -2,14 +2,11 @@ package pl.sdk.warMachines;
 
 import com.google.common.collect.Range;
 import pl.sdk.creatures.Creature;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class WarMachine implements PropertyChangeListener {
+public class WarMachine {
 
     private final WarMachinesStatisticIf stats;
     private int currentHp;
@@ -129,6 +126,8 @@ public class WarMachine implements PropertyChangeListener {
         ret[1][1] = true;
         return ret;
     }
+
+
 
     static class Builder {
         private WarMachinesStatisticIf stats;

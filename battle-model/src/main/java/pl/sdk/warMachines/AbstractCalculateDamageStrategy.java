@@ -1,5 +1,7 @@
 package pl.sdk.warMachines;
 
+import pl.sdk.creatures.Creature;
+
 import java.util.Random;
 
 abstract class AbstractCalculateDamageStrategy implements CalculateDamageStrategy {
@@ -15,7 +17,7 @@ abstract class AbstractCalculateDamageStrategy implements CalculateDamageStrateg
     }
 
     @Override
-    public int calculateDamage(Creature aAttacker, Creature aDefender) {
+    public int calculateDamage(WarMachine aAttacker, Creature aDefender) {
 
         int randValue = rand.nextInt(aAttacker.getDamage().upperEndpoint() - aAttacker.getDamage().lowerEndpoint() + 1) + aAttacker.getDamage().lowerEndpoint();
 
@@ -37,11 +39,9 @@ abstract class AbstractCalculateDamageStrategy implements CalculateDamageStrateg
         if (oneCreatureDamageToDeal < 0){
             oneCreatureDamageToDeal = 0;
         }
-        double wholeStackDamageToDeal = aAttacker.getAmount() * oneCreatureDamageToDeal;
-        double wholeStackDamageToDealAfterChange = changeDamageAfter(wholeStackDamageToDeal, aAttacker);
-        return (int)wholeStackDamageToDealAfterChange;
+
+        return (int)oneCreatureDamageToDeal;
     }
 
-    abstract double changeDamageAfter(double aWholeStackDamageToDeal, Creature aAttacker);
 }
 

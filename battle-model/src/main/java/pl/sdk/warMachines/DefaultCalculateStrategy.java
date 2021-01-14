@@ -1,8 +1,11 @@
 package pl.sdk.warMachines;
 
+import pl.sdk.warMachines.AbstractCalculateDamageStrategy;
+import pl.sdk.warMachines.WarMachine;
+
 import java.util.Random;
 
-class DefaultCalculateStrategy extends AbstractCalculateDamageStrategy {
+class DefaultCalculateStrategy extends pl.sdk.warMachines.AbstractCalculateDamageStrategy {
 
     private final Random rand;
 
@@ -15,8 +18,4 @@ class DefaultCalculateStrategy extends AbstractCalculateDamageStrategy {
         rand = aRandomizer;
     }
 
-    @Override
-    double changeDamageAfter(double aWholeStackDamageToDeal, WarMachine aAttacker) {
-        return aWholeStackDamageToDeal;
-    }
 }
