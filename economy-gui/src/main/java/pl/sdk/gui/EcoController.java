@@ -28,6 +28,8 @@ public class EcoController implements PropertyChangeListener {
     Label currentGoldLabel;
     @FXML
     Label roundNumberLabel;
+    @FXML
+    Button editMapButton;
 
     private final EconomyEngine economyEngine;
 
@@ -36,25 +38,33 @@ public class EcoController implements PropertyChangeListener {
     }
 
     @FXML
-    void initialize(){
+    void initialize() {
         refreshGui();
-        economyEngine.addObserver(EconomyEngine.ACTIVE_HERO_CHANGED,this);
-        economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_CREATURE,this);
-        economyEngine.addObserver(EconomyEngine.NEXT_ROUND,this);
+        economyEngine.addObserver(EconomyEngine.ACTIVE_HERO_CHANGED, this);
+        economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_CREATURE, this);
+        economyEngine.addObserver(EconomyEngine.NEXT_ROUND, this);
 
         readyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
-            if (economyEngine.getRoundNumber() < 4){
+            if (economyEngine.getRoundNumber() == 3 && economyEngine.getActiveHero().equals(economyEngine.getPlayer2())) {
+                goToBattle();
+            } else {
                 economyEngine.pass();
             }
-            else{
-                goToBattle();
-            }
+        });
+
+        editMapButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
+        {
+            goToEditor();
         });
     }
 
     private void goToBattle() {
         EcoBattleConverter.startBattle(economyEngine.getPlayer1(), economyEngine.getPlayer2());
+    }
+
+    private void goToEditor() {
+        EcoBattleConverter.startEditting();
     }
 
     void refreshGui() {
@@ -67,8 +77,8 @@ public class EcoController implements PropertyChangeListener {
         EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
         VBox creatureShop = new VBox();
         for (int i = 1; i < 8; i++) {
-            creatureShop.getChildren().add(new CreatureButton(this, factory, false,i));
-            creatureShop.getChildren().add(new CreatureButton(this, factory, true,i));
+            creatureShop.getChildren().add(new CreatureButton(this, factory, false, i));
+            creatureShop.getChildren().add(new CreatureButton(this, factory, true, i));
         }
         shopsBox.getChildren().add(creatureShop);
 

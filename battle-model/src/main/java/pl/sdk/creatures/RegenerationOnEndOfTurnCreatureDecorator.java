@@ -28,6 +28,11 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
     }
 
     @Override
+    void counterAttackedInThisTurn() {
+        decorated.counterAttackedInThisTurn();
+    }
+
+    @Override
     public void applyDamage(int aDamageToApply) {
         decorated.applyDamage(aDamageToApply);
     }
@@ -106,5 +111,15 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
     @Override
     protected void setCurrentHpToMaximum() {
         decorated.setCurrentHpToMaximum();
+    }
+
+    @Override
+    public int getMaxHp() {
+        return decorated.getMaxHp();
+    }
+
+    @Override
+    public boolean backToPreviousPositionMechanic() {
+        return decorated.backToPreviousPositionMechanic();
     }
 }

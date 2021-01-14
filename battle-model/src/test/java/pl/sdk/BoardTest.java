@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import pl.sdk.Board;
 import pl.sdk.Point;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.GuiTile;
 import pl.sdk.creatures.NecropolisFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,14 +26,14 @@ class BoardTest {
     void shouldAddCreature() {
         board.add(new Point(0, 0), creature);
 
-        Creature creatureFromBoard = board.get(0, 0);
+        GuiTile creatureFromBoard = board.get(0, 0);
 
         assertEquals(creature, creatureFromBoard);
     }
 
     @Test
     void shouldReturnNullWhenFiledIsEmpty() {
-        Creature creatureFromBoard = board.get(0, 0);
+        GuiTile creatureFromBoard = board.get(0, 0);
 
         assertNull(creatureFromBoard);
     }
@@ -44,7 +45,7 @@ class BoardTest {
 
         assertThrows(IllegalArgumentException.class, () -> board.add(new Point(0, 0), creature2));
 
-        Creature creatureFromBoard = board.get(0, 0);
+        GuiTile creatureFromBoard = board.get(0, 0);
         assertEquals(creature, creatureFromBoard);
     }
 

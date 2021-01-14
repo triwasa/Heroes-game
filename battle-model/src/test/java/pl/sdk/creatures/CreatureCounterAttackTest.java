@@ -2,6 +2,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -65,6 +66,20 @@ class CreatureCounterAttackTest {
 
         assertEquals(90,attacker.getCurrentHp());
         assertEquals(100,attacker2.getCurrentHp());
+    }
+    @Test
+    void defenderWithDifferentDamageCalculator() {
+        Creature attacker = new Creature.Builder()
+                .statistic(CreatureStatistic.TEST)
+                .build();
+        Creature defender = new Creature.Builder()
+                .statistic(CreatureStatistic.TEST)
+                .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(200, List.of(attacker.getName())))
+                .build();
+
+        attacker.attack(defender);
+        assertEquals(8, defender.getCurrentHp());
+        assertEquals(6,attacker.getCurrentHp());
     }
 
 }

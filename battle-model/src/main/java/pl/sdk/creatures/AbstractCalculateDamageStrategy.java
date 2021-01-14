@@ -38,9 +38,9 @@ abstract class AbstractCalculateDamageStrategy implements CalculateDamageStrateg
             oneCreatureDamageToDeal = 0;
         }
         double wholeStackDamageToDeal = aAttacker.getAmount() * oneCreatureDamageToDeal;
-        double wholeStackDamageToDealAfterChange = changeDamageAfter(wholeStackDamageToDeal, aAttacker);
+        double wholeStackDamageToDealAfterChange = changeDamageAfter(wholeStackDamageToDeal, aAttacker, aDefender);
         return (int)wholeStackDamageToDealAfterChange;
     }
 
-    abstract double changeDamageAfter(double aWholeStackDamageToDeal, Creature aAttacker);
+    abstract double changeDamageAfter(double aWholeStackDamageToDeal, Creature aAttacker, Creature aDefender);
 }
