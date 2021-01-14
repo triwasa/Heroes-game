@@ -2,7 +2,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
-public class Ballist extends Creature {
+public class Ballista extends Creature {
 
 
     private String name = "Ballista";
