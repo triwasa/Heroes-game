@@ -4,13 +4,14 @@ import com.google.common.collect.Range;
 
 public class Ballist extends Creature {
 
+
     private String name = "Ballista";
     private int attack = 10;
     private int armor = 10;
     private int maxHp = 250;
     private int currentHp = 250;
     private int defence = 0;
-    private Range<Integer> damage = Range.closed(2,3);
+    public Range<Integer> damage = Range.closed(2,3);
 
     private DefaultCalculateStrategy dealDamageCalc = new DefaultCalculateStrategy();
 

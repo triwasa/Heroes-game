@@ -1,5 +1,6 @@
 package pl.sdk.creatures.warmachines;
 
+import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.creatures.Ballist;
@@ -29,11 +30,12 @@ class BallistTest {
         Ballist ballist = new Ballist();
         Creature c1 = new NecropolisFactory().create(true, 7, 1);
         Creature c2 = new NecropolisFactory().create(true, 3, 1);
+        ballist.damage = Range.closed(3,3);
         ballist.attack(c1);
         ballist.attack(c2);
 
-        assertEquals(199, c1.getCurrentHp());
-        assertEquals(16, c2.getCurrentHp());
+        assertEquals(198, c1.getCurrentHp());
+        assertEquals(15, c2.getCurrentHp());
 
     }
 
