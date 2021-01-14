@@ -7,6 +7,8 @@ public interface WarMachinesStatisticIf {
 
     int getAttack();
 
+    int getArmor();
+
     int getMaxHp();
 
     int getMoveRange();
