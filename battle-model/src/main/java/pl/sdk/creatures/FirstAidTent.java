@@ -1,11 +1,14 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.warMachines.WarMachinesStatisticIf;
+
+import java.util.Random;
 
 
 public class FirstAidTent extends Creature {
 
-
+    private final WarMachinesStatisticIf stats;
     private String name = "FirstAidTent";
     private int attack = 0;
     private int armor = 0;
@@ -13,24 +16,30 @@ public class FirstAidTent extends Creature {
     private int currentHp = 75;
     private int defence = 0;
     public Range<Integer> healAmount = Range.closed(1,25);
+    private final Random rand=new Random();
+
+
+
+
+    FirstAidTent(WarMachinesStatisticIf aStats){
+        stats = aStats;
+        currentHp = stats.getMaxHp();
+
+    }
 
 
 
 
     public void attack(Creature aDefaultForTests){
-        int damageToDeal = 0;
-        aDefaultForTests.applyDamage(damageToDeal);
+        int healValue = rand.nextInt(healAmount.upperEndpoint());
+        aDefaultForTests.applyDamage(-healValue);
     }
 
-////    public void heal(Creature creature){
-////        creature.getCurrentHp() = creature.getCurrentHp()+healAmount;
-////        if (creature.getCurrentHp() > creature.getMaxHp()){
-////
-////        }
-//
-//
-//
-//    }
+
+
+
+
+
 
 
 
@@ -43,4 +52,5 @@ public class FirstAidTent extends Creature {
         }
         else return 0;
     }
+
 }

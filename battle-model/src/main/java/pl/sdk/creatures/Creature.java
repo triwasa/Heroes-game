@@ -174,6 +174,8 @@ public class Creature implements GuiTile,PropertyChangeListener {
         return false;
     }
 
+
+
     static class Builder {
         private CreatureStatisticIf stats;
         private CalculateDamageStrategy damageCalculator;
