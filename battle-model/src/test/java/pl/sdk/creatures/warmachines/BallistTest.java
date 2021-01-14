@@ -36,7 +36,6 @@ class BallistaTest {
 
         assertEquals(198, c1.getCurrentHp());
         assertEquals(15, c2.getCurrentHp());
-
     }
 
 }
