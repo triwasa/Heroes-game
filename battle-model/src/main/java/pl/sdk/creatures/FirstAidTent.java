@@ -8,8 +8,9 @@ import java.util.Random;
 
 public class FirstAidTent extends Creature {
 
-    private final WarMachinesStatisticIf stats;
+
     private String name = "FirstAidTent";
+    private final WarMachinesStatisticIf stats;
     private int attack = 0;
     private int armor = 0;
     private int maxHp = 75;
@@ -18,22 +19,26 @@ public class FirstAidTent extends Creature {
     public Range<Integer> healAmount = Range.closed(1,25);
     private final Random rand=new Random();
 
-
-
-
-    FirstAidTent(WarMachinesStatisticIf aStats){
-        stats = aStats;
-        currentHp = stats.getMaxHp();
-
+    public FirstAidTent(WarMachinesStatisticIf stats) {
+        this.stats=stats;
     }
 
 
 
-
-    public void attack(Creature aDefaultForTests){
+    public void heal(Creature aDefaultForTests){
         int healValue = rand.nextInt(healAmount.upperEndpoint());
         aDefaultForTests.applyDamage(-healValue);
     }
+
+    @Override
+    public void applyDamage(int aHealToApply) {
+        int fullCurrentHp = currentHp - aHealToApply;
+        if (fullCurrentHp > maxHp) {
+            currentHp = maxHp;
+        }
+        else currentHp = fullCurrentHp;
+    }
+
 
 
 

@@ -1,4 +1,4 @@
-package pl.sdk.creatures.warmachines;
+package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,14 +28,17 @@ class BallistaTest {
     @Test
     void shouldShot(){
         Ballista ballista = new Ballista();
-        Creature c1 = new NecropolisFactory().create(true, 7, 1);
-        Creature c2 = new NecropolisFactory().create(true, 3, 1);
+        Creature defender1 = new Creature.BuilderForTesting()
+                .name("defender1")
+                .attack(10)
+                .armor(10)
+                .maxHp(20)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(20,20))
+                .build();
         ballista.damage = Range.closed(3,3);
-        ballista.attack(c1);
-        ballista.attack(c2);
-
-        assertEquals(198, c1.getCurrentHp());
-        assertEquals(15, c2.getCurrentHp());
+        ballista.attack(defender1);
+        assertEquals(17, defender1.getCurrentHp());
     }
 
 }
