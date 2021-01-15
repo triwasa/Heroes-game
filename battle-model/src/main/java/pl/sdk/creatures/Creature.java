@@ -77,6 +77,14 @@ public class Creature implements GuiTile,PropertyChangeListener {
         }
     }
 
+    public void applyHeal(int aHealToApply) {
+        int fullCurrentHp = currentHp - aHealToApply;
+        if (fullCurrentHp > stats.getMaxHp()) {
+            currentHp = stats.getMaxHp();
+        }
+        else currentHp = fullCurrentHp;
+    }
+
     public boolean isAlive() {
         return amount > 0;
     }

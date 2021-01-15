@@ -25,11 +25,11 @@ public class FirstAidTent extends Creature {
 
     public void heal(Creature aDefaultForTests){
         int healValue = rand.nextInt(healAmount.upperEndpoint() - healAmount.lowerEndpoint()+1) + healAmount.lowerEndpoint();
-        aDefaultForTests.applyDamage(-healValue);
+        aDefaultForTests.applyHeal(-healValue);
     }
 
     @Override
-    public void applyDamage(int aHealToApply) {
+    public void applyHeal(int aHealToApply) {
         int fullCurrentHp = currentHp - aHealToApply;
         if (fullCurrentHp > maxHp) {
             currentHp = maxHp;
