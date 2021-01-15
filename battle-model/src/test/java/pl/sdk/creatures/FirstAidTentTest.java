@@ -29,10 +29,10 @@ class FirstAidTentTest {
     @Test
 
     void shouldHeal(){
-        FirstAidTent tent = new FirstAidTent(stats);
+        FirstAidTent tent = new FirstAidTent();
         Creature attacker = new Creature.BuilderForTesting()
                 .name("Attacker")
-                .attack(10)
+                .attack(0)
                 .armor(NOT_IMPORTANT)
                 .maxHp(100)
                 .moveRange(NOT_IMPORTANT)
@@ -41,7 +41,7 @@ class FirstAidTentTest {
         Creature defender = new Creature.BuilderForTesting()
                 .name("Defender")
                 .attack(NOT_IMPORTANT)
-                .armor(10)
+                .armor(0)
                 .maxHp(100)
                 .moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(5,5))

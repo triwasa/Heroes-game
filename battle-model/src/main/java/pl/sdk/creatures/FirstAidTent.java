@@ -10,7 +10,7 @@ public class FirstAidTent extends Creature {
 
 
     private String name = "FirstAidTent";
-    private final WarMachinesStatisticIf stats;
+
     private int attack = 0;
     private int armor = 0;
     private int maxHp = 75;
@@ -19,14 +19,12 @@ public class FirstAidTent extends Creature {
     public Range<Integer> healAmount = Range.closed(1,25);
     private final Random rand=new Random();
 
-    public FirstAidTent(WarMachinesStatisticIf stats) {
-        this.stats=stats;
-    }
+
 
 
 
     public void heal(Creature aDefaultForTests){
-        int healValue = rand.nextInt(healAmount.upperEndpoint());
+        int healValue = rand.nextInt(healAmount.upperEndpoint() - healAmount.lowerEndpoint()+1) + healAmount.lowerEndpoint();
         aDefaultForTests.applyDamage(-healValue);
     }
 
