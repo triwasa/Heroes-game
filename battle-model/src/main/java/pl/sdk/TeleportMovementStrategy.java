@@ -1,8 +1,11 @@
 package pl.sdk;
 
+import pl.sdk.creatures.GuiTile;
+
 public class TeleportMovementStrategy implements MovementStrategy {
     @Override
-    public boolean canMove(Point currentPoint, Point targetPoint, int aMoveRange) {
-        return currentPoint.distance(targetPoint) <= aMoveRange;
+    public boolean canMove(Board board, GuiTile aCreature, Point targetPoint) {
+        Point currentPoint = board.get(aCreature);
+        return currentPoint.distance(targetPoint) <= aCreature.getMoveRange();
     }
 }

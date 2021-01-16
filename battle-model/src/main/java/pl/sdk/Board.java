@@ -78,6 +78,6 @@ public class Board {
             throw new IllegalStateException("Creature isn't in board");
         }
         Point currentPosition = get(aCreature);
-        return movementStrategy.canMove(currentPosition, new Point(aX, aY), aCreature.getMoveRange()) && get(aX, aY).isMovePossible();
+        return movementStrategy.canMove(this, aCreature, new Point(aX,aY)) && get(aX,aY).isMovePossible();
     }
 }
