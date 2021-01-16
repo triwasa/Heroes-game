@@ -78,7 +78,6 @@ public class Board {
             throw new IllegalStateException("Creature isn't in board");
         }
         Point currentPosition = get(aCreature);
-        double distance = currentPosition.distance(new Point(aX,aY));
-        return distance <= aCreature.getMoveRange() && !isTileTaken(new Point(aX,aY));
+        return movementStrategy.canMove(currentPosition, new Point(aX, aY), aCreature.getMoveRange()) && get(aX, aY).isMovePossible();
     }
 }
