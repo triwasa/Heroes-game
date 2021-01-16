@@ -10,7 +10,6 @@ public class Ballista extends Creature {
     private int armor = 10;
     private int maxHp = 250;
     private int currentHp = 250;
-    private int defence = 0;
     public Range<Integer> damage = Range.closed(2,3);
 
     private DefaultCalculateStrategy dealDamageCalc = new DefaultCalculateStrategy();
