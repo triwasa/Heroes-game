@@ -1,5 +1,6 @@
 package pl.sdk;
 
+import org.checkerframework.checker.units.qual.C;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.GuiTile;
 
@@ -68,6 +69,7 @@ public class Board {
         throwExceptionIfTileIsTaken(aTargetPoint1);
 
         GuiTile creatureFromSourcePoint = map.get(aSourcePoint);
+        //movementStrategy.move(aSourcePoint, aTargetPoint1);
         map.remove(aSourcePoint);
         map.put(aTargetPoint1,creatureFromSourcePoint);
     }
@@ -78,6 +80,11 @@ public class Board {
             throw new IllegalStateException("Creature isn't in board");
         }
         Point currentPosition = get(aCreature);
-        return movementStrategy.canMove(this, aCreature, new Point(aX,aY)) && get(aX,aY).isMovePossible();
+        //Performance increase (we don't need to check the path to the point which is far away from Creatures MR)
+        if(currentPosition.distance(new Point(aX, aY)) > aCreature.getMoveRange()) {
+            return false;
+        }
+        //Just to compile code
+        return new FlyingMovementStrategy().canMove(this, aCreature, new Point(aX,aY)) && get(aX,aY).isMovePossible();
     }
 }
