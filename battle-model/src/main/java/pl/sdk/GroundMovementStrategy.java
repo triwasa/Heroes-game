@@ -15,6 +15,8 @@ public class GroundMovementStrategy implements MovementStrategy {
         }
         return false;
     }
+
+    //might be moved to other class like "MovePath" or smh
     private double distance(LinkedList<Point> path) {
         double distance = 0;
         Point aPoint = path.get(0);

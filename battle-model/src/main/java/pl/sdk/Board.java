@@ -78,11 +78,11 @@ public class Board {
         if (!map.containsValue(aCreature)){
             throw new IllegalStateException("Creature isn't in board");
         }
-        Point currentPosition = get(aCreature);
         //Performance increase (we don't need to check the path to the point which is far away from Creature (more than MR))
         /*if(currentPosition.distance(new Point(aX, aY)) > aCreature.getMoveRange()) {
             return false;
         }*/
+        //all creatures are ground creatures ATM
         return new GroundMovementStrategy().canMove(this, aCreature, new Point(aX,aY));
     }
 }

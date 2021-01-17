@@ -6,13 +6,13 @@ import pl.sdk.creatures.GuiTile;
 import java.util.*;
 
 public class PathSearch {
-    LinkedList<Point> openlist;
-    Map<Point, Point> cameFrom;
-    Map<Point, Double> gScore;
-    Map<Point, Double> fScore;
-    Point current;
-    double tentative_gScore;
-    Board board;
+    private LinkedList<Point> openlist;
+    private Map<Point, Point> cameFrom;
+    private Map<Point, Double> gScore;
+    private Map<Point, Double> fScore;
+    private Point current;
+    private double tentative_gScore;
+    private Board board;
 
     PathSearch(Board aBoard) {
          board = aBoard;
