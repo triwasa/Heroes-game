@@ -1,5 +1,6 @@
 package pl.sdk;
 
+import org.checkerframework.checker.units.qual.C;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.GuiTile;
 
@@ -78,7 +79,10 @@ public class Board {
             throw new IllegalStateException("Creature isn't in board");
         }
         Point currentPosition = get(aCreature);
-        double distance = currentPosition.distance(new Point(aX,aY));
-        return distance <= aCreature.getMoveRange() && !isTileTaken(new Point(aX,aY));
+        //Performance increase (we don't need to check the path to the point which is far away from Creature (more than MR))
+        /*if(currentPosition.distance(new Point(aX, aY)) > aCreature.getMoveRange()) {
+            return false;
+        }*/
+        return new GroundMovementStrategy().canMove(this, aCreature, new Point(aX,aY));
     }
 }
