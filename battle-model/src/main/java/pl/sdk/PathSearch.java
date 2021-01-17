@@ -45,10 +45,10 @@ public class PathSearch {
             for(Point point : getNeighbor(current)){
                 tentative_gScore = gScore.get(current) + current.distance(point);
                 if(tentative_gScore < gScore.getOrDefault(point, (double)Integer.MAX_VALUE)) {
-                    if (!cameFrom.containsKey(current)) {
+                    if (!cameFrom.containsKey(point)) {
                         cameFrom.put(point, current);
                     } else {
-                        cameFrom.computeIfPresent(current, (k, v) -> v = current);
+                        cameFrom.computeIfPresent(point, (k, v) -> v = current);
                     }
                     if (!gScore.containsKey(point)) {
                         gScore.put(point, tentative_gScore);
