@@ -56,10 +56,10 @@ class BoardMovingTest {
 
     @Test
     void cannotMoveWhenCreatureHasNotEnoughtMovePoint(){
-        Creature creature = NecropolisFactory.createDefaultForTests();
-        board.add(new Point(5,5), creature);
-
-        assertFalse(board.canMove(creature, 6,6 ));
+            Creature creature = NecropolisFactory.createDefaultForTests();
+            board.add(new Point(5,5), creature);
+            new PathSearch(board).pathSearch(board.get(creature), new Point(6,6));
+            assertFalse(board.canMove(creature, 6,6 ));
     }
 
     @Test

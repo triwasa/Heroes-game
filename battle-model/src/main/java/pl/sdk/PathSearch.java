@@ -78,16 +78,26 @@ public class PathSearch {
     }
 
     private LinkedList<Point> getNeighbor(Point point) {
-        LinkedList<Point> neighbor = new LinkedList<>();
+        LinkedList<Point> neighborsList = new LinkedList<>();
         for(int i = 0; i <= 2; i++){
             for(int j = 0; j <=2; j++) {
+                Point neighbor = new Point(point.getX() + 1 - i, point.getY() + 1 - j);
                 GuiTile tmp = board.get(point.getX() + 1 - i, point.getY() + 1 - j);
-                if(tmp != null && !board.get(tmp).equals(point) && tmp.isMovePossible()) {
-                    neighbor.add(new Point(point.getX() + 1 - i,point.getY() + 1 - j));
+                if(neighbor.getX() < 0 || neighbor.getX() > GameEngine.BOARD_WIDTH
+                        || neighbor.getY() < 0
+                        || neighbor.getY() > GameEngine.BOARD_HEIGHT
+                        || !neighbor.equals(point)) {
+                    continue;
                 }
+                if(tmp != null) {
+                    if(!tmp.isMovePossible()) {
+                        continue;
+                    }
+                }
+                neighborsList.add(neighbor);
             }
         }
-        return neighbor;
+        return neighborsList;
     }
 
 }
