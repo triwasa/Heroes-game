@@ -80,10 +80,9 @@ public class Board {
         }
         Point currentPosition = get(aCreature);
         //Performance increase (we don't need to check the path to the point which is far away from Creature (more than MR))
-        /*if(currentPosition.distance(new Point(aX, aY)) > aCreature.getMoveRange() && get(aX,aY).isMovePossible()) {
+        /*if(currentPosition.distance(new Point(aX, aY)) > aCreature.getMoveRange()) {
             return false;
         }*/
-        //Just to compile code
         return new GroundMovementStrategy().canMove(this, aCreature, new Point(aX,aY));
     }
 }

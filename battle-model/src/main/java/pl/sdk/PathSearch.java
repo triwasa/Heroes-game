@@ -33,7 +33,7 @@ public class PathSearch {
         gScore.put(sourcePoint, (double)0);
         fScore.put(sourcePoint, sourcePoint.distance(targetPoint));
         while(!openlist.isEmpty()) {
-            current = getMinKey(gScore);
+            current = getMinKey(fScore, openlist);
             if(current.equals(targetPoint)) {
                 return reconstructPath();
             }
@@ -41,17 +41,17 @@ public class PathSearch {
             for(Point point : getNeighbor(current)){
                 tentative_gScore = gScore.get(current) + current.distance(point);
                 if(tentative_gScore < gScore.getOrDefault(point, Double.MAX_VALUE)) {
-                    if (cameFrom.containsKey(current)) {
+                    if (!cameFrom.containsKey(current)) {
                         cameFrom.put(point, current);
                     } else {
                         cameFrom.computeIfPresent(current, (k, v) -> v = current);
                     }
-                    if (gScore.containsKey(point)) {
+                    if (!gScore.containsKey(point)) {
                         gScore.put(point, tentative_gScore);
                     } else {
                         gScore.computeIfPresent(point, (k, v) -> v = tentative_gScore);
                     }
-                    if (fScore.containsKey(point)) {
+                    if (!fScore.containsKey(point)) {
                         fScore.put(point, gScore.get(point) + point.distance(targetPoint));
                     } else {
                         fScore.computeIfPresent(point, (k, v) -> v = gScore.get(point) + point.distance(sourcePoint));
@@ -64,11 +64,11 @@ public class PathSearch {
         }
         return null;
     }
-    private Point getMinKey(Map<Point, Double> map) {
+    private Point getMinKey(Map<Point, Double> map, LinkedList<Point> openlist) {
         Point minKey = null;
         double minValue = Double.MAX_VALUE;
-        for(Point key : map.keySet()) {
-            double value = map.get(key);
+        for(Point key : openlist) {
+            double value = map.getOrDefault(key, Double.MAX_VALUE);
             if(value < minValue) {
                 minValue = value;
                 minKey = key;
@@ -86,7 +86,7 @@ public class PathSearch {
                 if(neighbor.getX() < 0 || neighbor.getX() > GameEngine.BOARD_WIDTH
                         || neighbor.getY() < 0
                         || neighbor.getY() > GameEngine.BOARD_HEIGHT
-                        || !neighbor.equals(point)) {
+                        || neighbor.equals(point)) {
                     continue;
                 }
                 if(tmp != null) {
