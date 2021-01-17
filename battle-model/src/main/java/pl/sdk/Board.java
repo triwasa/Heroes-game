@@ -69,7 +69,6 @@ public class Board {
         throwExceptionIfTileIsTaken(aTargetPoint1);
 
         GuiTile creatureFromSourcePoint = map.get(aSourcePoint);
-        //movementStrategy.move(aSourcePoint, aTargetPoint1);
         map.remove(aSourcePoint);
         map.put(aTargetPoint1,creatureFromSourcePoint);
     }
@@ -80,11 +79,11 @@ public class Board {
             throw new IllegalStateException("Creature isn't in board");
         }
         Point currentPosition = get(aCreature);
-        //Performance increase (we don't need to check the path to the point which is far away from Creatures MR)
-        if(currentPosition.distance(new Point(aX, aY)) > aCreature.getMoveRange()) {
+        //Performance increase (we don't need to check the path to the point which is far away from Creature (more than MR))
+        /*if(currentPosition.distance(new Point(aX, aY)) > aCreature.getMoveRange() && get(aX,aY).isMovePossible()) {
             return false;
-        }
+        }*/
         //Just to compile code
-        return new FlyingMovementStrategy().canMove(this, aCreature, new Point(aX,aY)) && get(aX,aY).isMovePossible();
+        return new GroundMovementStrategy().canMove(this, aCreature, new Point(aX,aY));
     }
 }
