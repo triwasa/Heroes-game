@@ -6,16 +6,20 @@ import pl.sdk.creatures.GuiTile;
 import java.util.*;
 
 public class PathSearch {
-    LinkedList<Point> openlist = new LinkedList<>();
-    Map<Point, Point> cameFrom = new HashMap<>();
-    Map<Point, Double> gScore = new HashMap<>();
-    Map<Point, Double> fScore = new HashMap<>();
+    LinkedList<Point> openlist;
+    Map<Point, Point> cameFrom;
+    Map<Point, Double> gScore;
+    Map<Point, Double> fScore;
     Point current;
     double tentative_gScore;
     Board board;
 
     PathSearch(Board aBoard) {
-        board = aBoard;
+         board = aBoard;
+         openlist = new LinkedList<>();
+         cameFrom = new HashMap<>();
+         gScore = new HashMap<>();
+         fScore = new HashMap<>();
     }
 
     private LinkedList<Point> reconstructPath() {
@@ -40,7 +44,7 @@ public class PathSearch {
             openlist.remove(current);
             for(Point point : getNeighbor(current)){
                 tentative_gScore = gScore.get(current) + current.distance(point);
-                if(tentative_gScore < gScore.getOrDefault(point, Double.MAX_VALUE)) {
+                if(tentative_gScore < gScore.getOrDefault(point, (double)Integer.MAX_VALUE)) {
                     if (!cameFrom.containsKey(current)) {
                         cameFrom.put(point, current);
                     } else {
@@ -66,9 +70,9 @@ public class PathSearch {
     }
     private Point getMinKey(Map<Point, Double> map, LinkedList<Point> openlist) {
         Point minKey = null;
-        double minValue = Double.MAX_VALUE;
+        double minValue = Integer.MAX_VALUE;
         for(Point key : openlist) {
-            double value = map.getOrDefault(key, Double.MAX_VALUE);
+            double value = map.getOrDefault(key, (double)Integer.MAX_VALUE);
             if(value < minValue) {
                 minValue = value;
                 minKey = key;
