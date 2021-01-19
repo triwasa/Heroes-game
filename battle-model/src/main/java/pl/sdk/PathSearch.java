@@ -36,12 +36,16 @@ public class PathSearch {
         openlist.add(sourcePoint);
         gScore.put(sourcePoint, (double)0);
         fScore.put(sourcePoint, sourcePoint.distance(targetPoint));
+
         while(!openlist.isEmpty()) {
             current = getMinKey(fScore, openlist);
+
             if(current.equals(targetPoint)) {
                 return reconstructPath();
             }
+
             openlist.remove(current);
+
             for(Point point : getNeighbor(current)){
                 tentative_gScore = gScore.get(current) + current.distance(point);
                 if(tentative_gScore < gScore.getOrDefault(point, (double)Integer.MAX_VALUE)) {

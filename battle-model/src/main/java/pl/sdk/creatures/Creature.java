@@ -87,7 +87,7 @@ public class Creature implements GuiTile,PropertyChangeListener {
 
     @Override
     public boolean isMovePossible() {
-        return true;
+        return false;
     }
 
     @Override

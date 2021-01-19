@@ -1,6 +1,7 @@
 package pl.sdk;
 
 import com.google.common.collect.Range;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.Board;
@@ -69,6 +70,19 @@ class BoardMovingTest {
         board.add(new Point(5,5), creature);
 
         assertFalse(board.canMove(creature, 0,0 ));
+    }
+
+    @Test
+    void pathSearchTest() {
+        GuiTile creature = new NecropolisFactory().create(false , 1, 1);
+        board.add(new Point(4,5), creature);
+        board.add(new Point(4,4), new NecropolisFactory().create(false , 1, 1));
+        board.add(new Point(3,4), new NecropolisFactory().create(false , 1, 1));
+        board.add(new Point(2,4), new NecropolisFactory().create(false , 1, 1));
+        board.add(new Point(5,4), new NecropolisFactory().create(false , 1, 1));
+        board.add(new Point(6,4), new NecropolisFactory().create(false , 1, 1));
+        board.add(new Point(7,4), new NecropolisFactory().create(false , 1, 1));
+        assertFalse(board.canMove(creature, 5,3));
     }
 
 }
