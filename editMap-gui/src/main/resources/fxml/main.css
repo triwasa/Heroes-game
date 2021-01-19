@@ -13,5 +13,6 @@
 }
 
 .label {
-   -fx-font: bold 30pt "Arial";
+   -fx-font: bold 20pt "Arial";
+    -fx-padding: 5pt 50pt 10pt 50pt;
 }

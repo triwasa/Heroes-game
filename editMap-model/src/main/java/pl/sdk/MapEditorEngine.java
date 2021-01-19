@@ -4,12 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import pl.sdk.creatures.GuiTile;
 import pl.sdk.creatures.LavaTile;
+import pl.sdk.creatures.RockTile;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class MapEditorEngine {
@@ -29,7 +34,7 @@ public class MapEditorEngine {
     public static final String CLEAN_MAP = "CLEAN_MAP";
 
     private Board board;
-
+    private GuiTile chosenGuiTile;
 
 
     public MapEditorEngine(Board board)
@@ -38,6 +43,15 @@ public class MapEditorEngine {
         this.board = board;
         activePointThread = new ActivePointThread(this);
         activePointThread.start();
+        chosenGuiTile = null;
+    }
+
+    public GuiTile getChosenGuiTile() {
+        return chosenGuiTile;
+    }
+
+    public void setChosenGuiTile(GuiTile chosenGuiTile) {
+        this.chosenGuiTile = chosenGuiTile;
     }
 
     public void terminateThread()
@@ -65,14 +79,19 @@ public class MapEditorEngine {
 
     public void add()
     {
-        if(activePoint!= null)
+        if(activePoint!= null && getChosenGuiTile() != null)
         {
-            board.add(new Point(activePoint.getX(),activePoint.getY()),new LavaTile());
+            board.add(new Point(activePoint.getX(),activePoint.getY()),getChosenGuiTile());
             removeActivePoint();
+            removeChosenGuiTile();
             notifyObservers(new PropertyChangeEvent(this,ADDING_OBSTACLES,null, false));
         }else return ;
     }
 
+    private void removeChosenGuiTile()
+    {
+        this.chosenGuiTile=null;
+    }
 
     public void setActivePoint(Point activePoint)
     {
@@ -122,17 +141,18 @@ public class MapEditorEngine {
     }
 
     public void randomGenerate() {
-
         board.removeAll();
         Random random = new Random();
         int randomAmountOfObstacles = random.nextInt(19*14);
         int randomX,randomY;
+        // potem bedzie bazowal na Enumie z fabryki
+        List<GuiTile> guiTileList = Arrays.asList(new RockTile(), new LavaTile());
         for(int i=0;i<randomAmountOfObstacles;i++)
         {
             randomX= random.nextInt(18) + 1;
             randomY = random.nextInt(15);
             if(!board.isTileTaken(new Point(randomX,randomY))) {
-                board.add(new Point(randomX, randomY), new LavaTile());
+                board.add(new Point(randomX, randomY),guiTileList.get((randomX+randomY)%2));
             }else continue;
         }
         notifyObservers(new PropertyChangeEvent(this, RANDOM_GENERATE, null, null));

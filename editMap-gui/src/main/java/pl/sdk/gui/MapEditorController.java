@@ -12,6 +12,8 @@ import pl.sdk.Board;
 import pl.sdk.MapEditorEngine;
 import pl.sdk.Point;
 import pl.sdk.creatures.GuiTile;
+import pl.sdk.creatures.LavaTile;
+import pl.sdk.creatures.RockTile;
 
 
 import java.beans.PropertyChangeEvent;
@@ -27,6 +29,8 @@ public class MapEditorController implements PropertyChangeListener {
     @FXML
     private Button cleanButton;
 
+    private GridPane sideMap;
+
     @FXML
     VBox buttonLabel;
 
@@ -41,9 +45,8 @@ public class MapEditorController implements PropertyChangeListener {
     public MapEditorController(Board board) {
         this.board= board;
         mapEditorEngine = new MapEditorEngine(board);
-
+        this.sideMap = new GridPane();
         //TODO
-        // dostepne pola do wyboru ale to jak juz fabryka bedzie gotowa
         // deserializacja
         // # poprawki w EcoBattleConverter
     }
@@ -68,6 +71,25 @@ public class MapEditorController implements PropertyChangeListener {
 
         randomButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.randomGenerate());
         cleanButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.clean());
+        MapTile mapTile = new MapTile();
+        MapTile mapTile2 = new MapTile();
+        GuiTile lava = new LavaTile();
+        GuiTile rock = new RockTile();
+        mapTile.addCreatureWithoutAmount(lava.getName());
+        mapTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
+        {
+            mapEditorEngine.setChosenGuiTile(lava);
+            mapTile.setBorder(Color.LIGHTBLUE);
+        });
+        mapTile2.addCreatureWithoutAmount(rock.getName());
+        mapTile2.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
+        {
+            mapEditorEngine.setChosenGuiTile(rock);
+            mapTile2.setBorder(Color.LIGHTBLUE);
+        });
+        sideMap.add(mapTile,1,1);
+        sideMap.add(mapTile2,1,2);
+        buttonLabel.getChildren().add(sideMap);
         refreshGui();
     }
 
@@ -106,6 +128,13 @@ public class MapEditorController implements PropertyChangeListener {
                 });
             }
         }
+        sideMap.getChildren().stream().forEach((e)->
+        {
+            if(e instanceof MapTile)
+            {
+                ((MapTile) e).setBorder(Color.BLACK);
+            }
+        });
     }
 
     @Override
