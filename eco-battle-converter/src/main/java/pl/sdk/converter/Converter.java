@@ -13,49 +13,77 @@ import java.util.List;
 public class Converter {
 
     public static Hero convert(EconomyHero economyHero) {
-//        NecropolisFactory factory = new NecropolisFactory();
-//        ArtifactFactory artifactFactory = new ArtifactFactory();
-//        SkillFactory skillFactory = new SkillFactory();
-//        SpellFactory spellFactory = new SpellFactory();
-//
-//        List<Artifact> artifacts = new ArrayList<>();
-//        List<Skill> skills = new ArrayList<>();
-//
-//        Hero hero = new Hero().Builder()
-//                .attack(economyHero.getStats().getAttack())
-//                .defence(economyHero.getStats().getDefence())
-//                .spell(economyHero.getStats().getSpell())
-//                .knowledge(economyHero.getStats().getKnowledge())
-//                .build();
-//
-//
-//        economyHero.getSkills().forEach(ecoSkill ->
-//                skills.add(skillFactory.create(ecoSkill.getName(), ecoSkill.getLevel)));
-//        economyHero.getArtifacts().forEach(ecoArtifact ->
-//                artifacts.add(artifactFactory.create(ecoArtifact.getName())));
-//
-//
-//        economyHero.getCreatures().forEach(ecoCreature -> {
-//            Creature c = factory.create(ecoCreature.isUpgraded(),ecoCreature.getTier(),ecoCreature.getAmount());
-//
-//            artifacts.forEach(artifact -> artifact.apply(c));
-//            skills.forEach(skill -> skill.apply(c));
-//            c.increaseStats(hero.getStats());
-//
-//            hero.addCreature(c);
-//        });
-//
-//
-//        economyHero.getSpells().forEach(ecoSpell -> {
-//            Spell s = spellFactory.create(ecoSpell.getName(), ecoSpell.getLevel());
-//
-//            artifacts.forEach(artifact -> artifact.apply(s));
-//            skills.forEach(skill -> skill.apply(s));
-//
-//            hero.addSpell(s);
-//        });
-//
-//        return hero;
-        return null;
+        NecropolisFactory factory = new NecropolisFactory();
+        ArtifactFactory artifactFactory = new ArtifactFactory();
+        SkillFactory skillFactory = new SkillFactory();
+        SpellFactory spellFactory = new SpellFactory();
+
+        List<Artifact> artifacts = new ArrayList<>();
+        List<Skill> skills = new ArrayList<>();
+
+
+        // create new hero with default stats of economyHero
+        Hero hero = new Hero().Builder()
+                .attack(economyHero.getStats().getAttack())
+                .defence(economyHero.getStats().getDefence())
+                .power(economyHero.getStats().getPower())
+                .knowledge(economyHero.getStats().getKnowledge())
+                .morale(economyHero.getStats().getMorale())
+                .luck(economyHero.getStats().getLuck())
+                .build();
+
+        economyHero.getSkills().forEach(ecoSkill ->
+                skills.add(skillFactory.create(ecoSkill.getName(), ecoSkill.getLevel)));
+        economyHero.getArtifacts().forEach(ecoArtifact ->
+                artifacts.add(artifactFactory.create(ecoArtifact.getName())));
+
+
+        // apply artifacts on hero -> modify hero's stats [ attack, defence, power, knowledge, morale, luck]
+        artifacts.forEach(a -> a.apply(hero));
+
+
+        List<Creature> creatures = convertCreatures(economyHero, artifacts, skills, hero);
+        hero.addCreatures(creatures);
+
+        SpellMasteries masteries = new SpellMasteries(BASIC, BASIC, BASIC, BASIC);
+
+        List<Spell> spells = convertSpells(economyHero, artifacts, skills, masteries);
+        hero.addSpells(spells);
+
+        return hero;
+    }
+
+    private static List<Creature> convertCreatures(EconomyHero economyHero, List<Artifact> artifacts, List<Skill> skills, Hero hero) {
+        List<Creature> creatures = new ArrayList<>();
+        economyHero.getCreatures().forEach(ecoCreature -> {
+            // create creatures with modified stats by hero's stats
+            Creature c = factory.create(ecoCreature.isUpgraded(),ecoCreature.getTier(),ecoCreature.getAmount(), hero.getStats());
+
+            // apply artifacts like spell immunity, magic resistance
+            artifacts.forEach(artifact -> artifact.apply(c));
+
+            // apply skills [Archery, Offence, Armourer, Resistance, Leadership, Luck]
+            skills.forEach(skill -> skill.apply(c));
+
+            creatures.add(c);
+        });
+        return creatures;
+    }
+
+    private static List<Spell> convertSpells(EconomyHero economyHero, List<Artifact> artifacts, List<Skill> skills, SpellMasteries masteries) {
+        List<Spell> spells = new ArrayList<>();
+        economyHero.getSpells().forEach(ecoSpell -> {
+            Spell s = spellFactory.create(ecoSpell.getName(), economyHero.getPower(), masteries);
+
+            // artifacts:
+            //      - increasing spell duration [Collar of Conjuring, Ring of Conjuring, Cape of Conjuring]
+            //      - increasing spell damage [Orb of the Firmament, Orb of Silt, Orb of Tempstuous Fire, Orb of Driving Rain ]
+            artifacts.forEach(artifact -> artifact.apply(s));
+            // skills increasing damage [Sorcery]
+            skills.forEach(skill -> skill.apply(s));
+
+            spells.add(s);
+        });
+        return spells;
     }
 }

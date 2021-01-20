@@ -26,6 +26,7 @@ public class EcoBattleConverter {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(EcoBattleConverter.class.getClassLoader().getResource("fxml/battleMap.fxml"));
             loader.setController(new BattleMapController(convert(aPlayer1),convert(aPlayer2)));
+            //loader.setController(new BattleMapController(convertToHero(aPlayer1).getCreatures(),convertToHero(aPlayer2).getCreatures()));
             scene = new Scene(loader.load());
 //            ObjectMapper objectMapper = new ObjectMapper();
 //            Board board = objectMapper.readValue(new File("result.json"), Board.class);
@@ -53,15 +54,9 @@ public class EcoBattleConverter {
         return ret;
     }
 
-//    public static List<Creature> convertToCreatures(EconomyHero economyHero) {
-//        Hero hero = Converter.convert(economyHero);
-//        return hero.getCreatures();
-//    }
-//
-//    public static List<Skill> convertToSpells(EconomyHero economyHero) {
-//        Hero hero = Converter.convert(economyHero);
-//        return hero.getSpells;
-//    }
+    public static Hero convertToHero(EconomyHero economyHero) {
+        return Converter.convert(economyHero);
+    }
 
     public static void startEditting()
     {
