@@ -27,7 +27,7 @@ public class PathSearch {
         totalPath.add(current);
         while(cameFrom.containsKey(current)){
             current = cameFrom.get(current);
-            totalPath.add(current);
+            totalPath.add(0,current);
         }
         return totalPath;
     }
