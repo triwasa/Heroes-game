@@ -71,6 +71,8 @@ public class MapEditorController implements PropertyChangeListener {
         mapEditorEngine.addObserver(MapEditorEngine.RANDOM_GENERATE,this);
         mapEditorEngine.addObserver(MapEditorEngine.CLEAN_MAP,this);
 
+        mapEditorEngine.addObserver(MapEditorEngine.CHANGE_CHOSEN_TILE,this);
+
         randomButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.randomGenerate());
         cleanButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.clean());
         MapTile lavaTile = new MapTile();
@@ -148,9 +150,20 @@ public class MapEditorController implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
-        if (!aPropertyChangeEvent.getPropertyName().equals(MapEditorEngine.ADDING_OBSTACLES_BUTTON) && !aPropertyChangeEvent.getPropertyName().equals(MapEditorEngine.REMOVING_OBSTACLES_BUTTON) ) {
+        if(aPropertyChangeEvent.getPropertyName().equals(MapEditorEngine.CHANGE_CHOSEN_TILE))
+        {
+            sideMap.getChildren().stream().forEach((e)->
+            {
+                if(e instanceof MapTile)
+                {
+                    ((MapTile) e).setBorder(Color.WHITE);
+                }
+            });
+        }
+        else if (!aPropertyChangeEvent.getPropertyName().equals(MapEditorEngine.ADDING_OBSTACLES_BUTTON) && !aPropertyChangeEvent.getPropertyName().equals(MapEditorEngine.REMOVING_OBSTACLES_BUTTON) ) {
             refreshGui();
         }
+
     }
 
     public void saveFile() throws IOException {

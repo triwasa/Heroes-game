@@ -34,6 +34,8 @@ public class MapEditorEngine {
     public static final String RANDOM_GENERATE = "RANDOM_GENERATE";
     public static final String CLEAN_MAP = "CLEAN_MAP";
 
+    public static final String CHANGE_CHOSEN_TILE = "CHANGE_CHOSEN_TILE";
+
     private Board board;
     private Field chosenGuiTile;
 
@@ -52,8 +54,8 @@ public class MapEditorEngine {
     }
 
     public void setChosenGuiTile(Field chosenGuiTile) {
+        notifyObservers(new PropertyChangeEvent(this, CHANGE_CHOSEN_TILE, null, null));
         this.chosenGuiTile = chosenGuiTile;
-       // notifyObservers(new PropertyChangeEvent(this, CLEAN_MAP, null, null));
     }
 
     public void terminateThread()
