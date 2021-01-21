@@ -14,6 +14,8 @@ import pl.sdk.Point;
 import pl.sdk.creatures.GuiTile;
 import pl.sdk.creatures.LavaTile;
 import pl.sdk.creatures.RockTile;
+import pl.sdk.special_fields.Field;
+import pl.sdk.special_fields.FieldsFactory;
 
 
 import java.beans.PropertyChangeEvent;
@@ -71,24 +73,33 @@ public class MapEditorController implements PropertyChangeListener {
 
         randomButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.randomGenerate());
         cleanButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.clean());
-        MapTile mapTile = new MapTile();
-        MapTile mapTile2 = new MapTile();
-        GuiTile lava = new LavaTile();
-        GuiTile rock = new RockTile();
-        mapTile.addCreatureWithoutAmount(lava.getName());
-        mapTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
+        MapTile lavaTile = new MapTile();
+        MapTile waterTile = new MapTile();
+        MapTile stoneTile = new MapTile();
+        Field lava = FieldsFactory.create("Lava");
+        Field stone = FieldsFactory.create("Stone");
+        Field water = FieldsFactory.create("Water");
+        lavaTile.addCreatureWithoutAmount(lava.getName());
+        lavaTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
         {
             mapEditorEngine.setChosenGuiTile(lava);
-            mapTile.setBorder(Color.LIGHTBLUE);
+            lavaTile.setBorder(Color.BLACK);
         });
-        mapTile2.addCreatureWithoutAmount(rock.getName());
-        mapTile2.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
+        waterTile.addCreatureWithoutAmount(water.getName());
+        waterTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
         {
-            mapEditorEngine.setChosenGuiTile(rock);
-            mapTile2.setBorder(Color.LIGHTBLUE);
+            mapEditorEngine.setChosenGuiTile(water);
+            waterTile.setBorder(Color.BLACK);
         });
-        sideMap.add(mapTile,1,1);
-        sideMap.add(mapTile2,1,2);
+        stoneTile.addCreatureWithoutAmount(stone.getName());
+        stoneTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
+        {
+            mapEditorEngine.setChosenGuiTile(stone);
+            stoneTile.setBorder(Color.BLACK);
+        });
+        sideMap.add(lavaTile,1,1);
+        sideMap.add(waterTile,1,2);
+        sideMap.add(stoneTile,1,3);
         buttonLabel.getChildren().add(sideMap);
         refreshGui();
     }
@@ -106,11 +117,9 @@ public class MapEditorController implements PropertyChangeListener {
                 int finalX = x;
                 int finalY = y;
 
-                GuiTile c =  mapEditorEngine.get(x, y);
-                if (c != null) {
-                    if(!c.isItObstacle()) {
-                        rec.addCreature(c.getName(), c.getAmount());
-                    } rec.addCreatureWithoutAmount(c.getName());
+                Field c =  mapEditorEngine.getField(x, y);
+                if (!c.getName().equals("Normal")) {
+                     rec.addCreatureWithoutAmount(c.getName());
                 }
                 rec.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
                 {
@@ -132,7 +141,7 @@ public class MapEditorController implements PropertyChangeListener {
         {
             if(e instanceof MapTile)
             {
-                ((MapTile) e).setBorder(Color.BLACK);
+                ((MapTile) e).setBorder(Color.WHITE);
             }
         });
     }

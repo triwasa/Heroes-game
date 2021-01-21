@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import pl.sdk.creatures.GuiTile;
 import pl.sdk.creatures.LavaTile;
 import pl.sdk.creatures.RockTile;
+import pl.sdk.special_fields.Field;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -34,7 +35,7 @@ public class MapEditorEngine {
     public static final String CLEAN_MAP = "CLEAN_MAP";
 
     private Board board;
-    private GuiTile chosenGuiTile;
+    private Field chosenGuiTile;
 
 
     public MapEditorEngine(Board board)
@@ -46,12 +47,13 @@ public class MapEditorEngine {
         chosenGuiTile = null;
     }
 
-    public GuiTile getChosenGuiTile() {
+    public Field getChosenGuiTile() {
         return chosenGuiTile;
     }
 
-    public void setChosenGuiTile(GuiTile chosenGuiTile) {
+    public void setChosenGuiTile(Field chosenGuiTile) {
         this.chosenGuiTile = chosenGuiTile;
+       // notifyObservers(new PropertyChangeEvent(this, CLEAN_MAP, null, null));
     }
 
     public void terminateThread()
@@ -115,7 +117,7 @@ public class MapEditorEngine {
     public void save() throws IOException {
         Writer writer = new FileWriter("result.json");
         Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
-        gson.toJson(board, writer);
+        gson.toJson(board.getFieldsMap(), writer);
         writer.close();
         notifyObservers(new PropertyChangeEvent(this, SAVING_OBSTACLES, null, null));
     }
@@ -138,6 +140,11 @@ public class MapEditorEngine {
 
     public GuiTile get(int aX, int aY) {
         return board.get(aX,aY);
+    }
+
+    public Field getField(int aX, int aY)
+    {
+        return board.getField(aX,aY);
     }
 
     public void randomGenerate() {

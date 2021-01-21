@@ -46,6 +46,11 @@ public class Board {
         return map;
     }
 
+    public Map<Point,Field> getFieldsMap()
+    {
+        return fieldsMap;
+    }
+
     void removeAll() {
         map.clear();
     }
