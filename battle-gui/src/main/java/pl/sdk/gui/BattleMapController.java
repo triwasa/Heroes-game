@@ -25,6 +25,8 @@ public class BattleMapController implements PropertyChangeListener {
 
     private final GameEngine gameEngine;
 
+    private Board board;
+
     public BattleMapController() {
         List<Creature> notUpgradedCreatures = new ArrayList<>();
         List<Creature> upgradedCreatures = new ArrayList<>();
@@ -40,8 +42,10 @@ public class BattleMapController implements PropertyChangeListener {
         gameEngine = new GameEngine(notUpgradedCreatures, upgradedCreatures);
     }
 
-    public BattleMapController(List<Creature> aCreatures1, List<Creature> aCreatures2){
+    public BattleMapController(List<Creature> aCreatures1, List<Creature> aCreatures2, Board board){
         gameEngine = new GameEngine(aCreatures1, aCreatures2);
+        this.board= board;
+        // przekazac boarda do GameEngine i zrobic aby wspoldzialalo z creaturami itd
     }
 
     @FXML
