@@ -1,22 +1,24 @@
 package pl.sdk;
 
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import pl.sdk.creatures.GuiTile;
 import pl.sdk.creatures.LavaTile;
 import pl.sdk.creatures.RockTile;
 import pl.sdk.special_fields.Field;
+import pl.sdk.special_fields.FieldsFactory;
 
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class MapEditorEngine {
 
@@ -109,24 +111,38 @@ public class MapEditorEngine {
 
     public boolean isActiveTileTaken()
     {
-        return board.isTileTaken(activePoint);
+        return board.isTileTakenByField(activePoint);
     }
 
     public void removeActivePoint() {
         activePoint=null;
     }
 
-    public void save() throws IOException {
-        Writer writer = new FileWriter("result.json");
-        Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
-        gson.toJson(board.getFieldsMap(), writer);
-        writer.close();
+    public void save() throws IOException, JAXBException {
+
+        JAXBContext context = JAXBContext.newInstance(Holder.class);
+        JAXBContext contextPoint = JAXBContext.newInstance(PointHolder.class);
+        Holder holder = new Holder();
+        PointHolder pointHolder = new PointHolder();
+        Set<Point> list = board.getFieldsMap().keySet();
+        List<Field> guiTileList = board.getFieldsMap().values().stream().collect(Collectors.toList());
+        guiTileList.stream().forEach((p)-> holder.addThing(p));
+        list.stream().forEach((p)->pointHolder.addThing(p) );
+
+        Marshaller jaxbMarshaller = contextPoint.createMarshaller();
+        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        jaxbMarshaller.marshal(pointHolder, new File("point.xml"));
+
+        Marshaller jaxFields = context.createMarshaller();
+        jaxFields.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        jaxFields.marshal(holder, new File("fields.xml"));
+
         notifyObservers(new PropertyChangeEvent(this, SAVING_OBSTACLES, null, null));
     }
 
     public void remove() {
-        if (activePoint != null && board.get(activePoint.getX(), activePoint.getY()) != null) {
-            board.remove(new Point(activePoint.getX(), activePoint.getY()));
+        if (activePoint != null && board.getField(activePoint.getX(), activePoint.getY()) != null) {
+            board.removeField(new Point(activePoint.getX(), activePoint.getY()));
             removeActivePoint();
             notifyObservers(new PropertyChangeEvent(this, REMOVING_OBSTACLES, null, false));
         }
@@ -135,7 +151,7 @@ public class MapEditorEngine {
 
     public void clean()
     {
-        board.removeAll();
+        board.removeAllFields();
         removeActivePoint();
         notifyObservers(new PropertyChangeEvent(this, CLEAN_MAP, null, null));
     }
@@ -150,18 +166,18 @@ public class MapEditorEngine {
     }
 
     public void randomGenerate() {
-        board.removeAll();
+        board.removeAllFields();
         Random random = new Random();
         int randomAmountOfObstacles = random.nextInt(19*14);
         int randomX,randomY;
         // potem bedzie bazowal na Enumie z fabryki
-        List<GuiTile> guiTileList = Arrays.asList(new RockTile(), new LavaTile());
+        List<Field> guiTileList = Arrays.asList(FieldsFactory.create("Lava"),FieldsFactory.create("Stone"),FieldsFactory.create("Water"));
         for(int i=0;i<randomAmountOfObstacles;i++)
         {
             randomX= random.nextInt(18) + 1;
             randomY = random.nextInt(15);
-            if(!board.isTileTaken(new Point(randomX,randomY))) {
-                board.add(new Point(randomX, randomY),guiTileList.get((randomX+randomY)%2));
+            if(!board.isTileTakenByField(new Point(randomX,randomY))) {
+                board.add(new Point(randomX, randomY),guiTileList.get((randomX+randomY)%3));
             }else continue;
         }
         notifyObservers(new PropertyChangeEvent(this, RANDOM_GENERATE, null, null));

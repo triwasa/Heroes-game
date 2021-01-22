@@ -3,12 +3,20 @@ package pl.sdk.special_fields;
 
 import pl.sdk.creatures.Creature;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "field")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Field {
     private boolean canStand;
     private boolean canAttack;
     private int fieldDamage;
     private double moveRange;
     private String name;
+
+    public Field(){}
 
     public Field(boolean canStand, boolean canAttack, int damage, double moveRange, String name) {
         this.canStand = canStand;

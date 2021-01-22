@@ -11,13 +11,11 @@ import javafx.scene.paint.Color;
 import pl.sdk.Board;
 import pl.sdk.MapEditorEngine;
 import pl.sdk.Point;
-import pl.sdk.creatures.GuiTile;
-import pl.sdk.creatures.LavaTile;
-import pl.sdk.creatures.RockTile;
 import pl.sdk.special_fields.Field;
 import pl.sdk.special_fields.FieldsFactory;
 
 
+import javax.xml.bind.JAXBException;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -51,6 +49,7 @@ public class MapEditorController implements PropertyChangeListener {
         //TODO
         // deserializacja
         // # poprawki w EcoBattleConverter
+        // polaczenie wszystkiego w BattleControllerze
     }
 
 
@@ -166,7 +165,7 @@ public class MapEditorController implements PropertyChangeListener {
 
     }
 
-    public void saveFile() throws IOException {
+    public void saveFile() throws IOException, JAXBException {
         mapEditorEngine.save();
     }
 }

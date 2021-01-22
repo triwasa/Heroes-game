@@ -36,7 +36,7 @@ public class Board {
     }
 
     // added for special fields
-    void add(Point aPoint, Field aField) {
+    public void add(Point aPoint, Field aField) {
         throwExceptionWhenIsOutsideMap(aPoint);
         throwExceptionIfTileIsTaken(aPoint);
         fieldsMap.put(aPoint,aField);
@@ -54,10 +54,20 @@ public class Board {
     void removeAll() {
         map.clear();
     }
+
+    void removeAllFields() {
+        fieldsMap.clear();
+    }
+
     void remove(Point aPoint)
     {
         if(map.get(aPoint).isItObstacle()) map.remove(aPoint);
     }
+
+    void removeField(Point point) {
+
+        if(!fieldsMap.get(point).equals("Normal")) fieldsMap.remove(point);
+}
 
     private void throwExceptionIfTileIsTaken(Point aPoint) {
         if (isTileTaken(aPoint)){
@@ -67,6 +77,11 @@ public class Board {
 
     boolean isTileTaken(Point aPoint) {
         return map.containsKey(aPoint);
+    }
+
+    boolean isTileTakenByField(Point aPoint)
+    {
+        return  fieldsMap.containsKey(aPoint);
     }
 
     private void throwExceptionWhenIsOutsideMap(Point aPoint) {
