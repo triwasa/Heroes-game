@@ -1,6 +1,6 @@
 package pl.sdk.artifacts;
 
-public class EconomyArtifactPrimary1Factory {
+public class EconomyArtifactPrimaryFactory {
 
     private static final String EXCEPTION_MESSAGE = "There is no artifact with that name";
 

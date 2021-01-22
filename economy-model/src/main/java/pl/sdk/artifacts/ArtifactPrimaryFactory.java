@@ -1,6 +1,6 @@
 package pl.sdk.artifacts;
 
-public class ArtifactPrimary1Factory extends ArtifactAbstractFactory {
+public class ArtifactPrimaryFactory extends ArtifactAbstractFactory {
 
     private static final String EXCEPTION_MESSAGE = "There is no artifact with that name";
 
