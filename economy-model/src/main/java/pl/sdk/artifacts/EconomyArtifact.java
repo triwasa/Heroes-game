@@ -15,4 +15,8 @@ public class EconomyArtifact {
 
     public String getName() { return stats.getTranslatedName(); }
 
+    public String getSlotName() { return stats.getSlotName(); }
+
+    public String getDescription() { return stats.getDescription(); }
+
 }
