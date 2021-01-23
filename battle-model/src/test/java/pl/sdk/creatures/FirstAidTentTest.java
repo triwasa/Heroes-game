@@ -4,7 +4,6 @@ package pl.sdk.creatures;
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.sdk.warMachines.WarMachinesStatisticIf;
 
 
 import java.util.Random;
@@ -18,7 +17,7 @@ class FirstAidTentTest {
 
     public static final int NOT_IMPORTANT = 5;
     private Random randomizer;
-    private WarMachinesStatisticIf stats;
+
 
     @BeforeEach
     void init(){
