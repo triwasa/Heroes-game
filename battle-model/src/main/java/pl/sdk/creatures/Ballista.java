@@ -4,13 +4,17 @@ import com.google.common.collect.Range;
 
 public class Ballista extends Creature {
 
+    private CreatureStatisticIf stats;
+    private int currentHp;
 
-    private String name = "Ballista";
-    private int attack = 10;
-    private int armor = 10;
-    private int maxHp = 250;
-    private int currentHp = 250;
-    public Range<Integer> damage = Range.closed(2,3);
+
+    Ballista(CreatureStatisticIf aStats){
+        this.stats = aStats;
+        currentHp = stats.getMaxHp();
+    }
+
+
+
 
     private DefaultCalculateStrategy dealDamageCalc = new DefaultCalculateStrategy();
 
@@ -22,12 +26,12 @@ public class Ballista extends Creature {
 
     @Override
     public Range<Integer> getDamage() {
-        return damage;
+        return stats.getDamage();
     }
 
     @Override
     public int getAttack() {
-        return attack;
+        return stats.getAttack();
     }
 
     @Override

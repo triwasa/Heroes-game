@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static pl.sdk.creatures.CreatureStatistic.BALLISTA;
+import static pl.sdk.creatures.CreatureStatistic.TEST_BALLISTA;
 
 class BallistaTest {
 
@@ -27,7 +29,7 @@ class BallistaTest {
 
     @Test
     void shouldShot(){
-        Ballista ballista = new Ballista();
+        Ballista ballista = new Ballista(TEST_BALLISTA);
         Creature defender1 = new Creature.BuilderForTesting()
                 .name("defender1")
                 .attack(10)
@@ -36,7 +38,6 @@ class BallistaTest {
                 .moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(20,20))
                 .build();
-        ballista.damage = Range.closed(3,3);
         ballista.attack(defender1);
         assertEquals(17, defender1.getCurrentHp());
     }
