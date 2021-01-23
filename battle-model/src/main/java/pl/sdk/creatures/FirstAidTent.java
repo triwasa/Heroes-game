@@ -9,7 +9,6 @@ public class FirstAidTent extends Creature {
 
 
     private String name = "FirstAidTent";
-
     private int attack = 0;
     private int armor = 0;
     private int maxHp = 75;
@@ -21,8 +20,8 @@ public class FirstAidTent extends Creature {
 
 
 
-
-    public void heal(Creature aDefaultForTests){
+    @Override
+    public void attack(Creature aDefaultForTests){
         int healValue = rand.nextInt(healAmount.upperEndpoint() - healAmount.lowerEndpoint()+1) + healAmount.lowerEndpoint();
         aDefaultForTests.applyHeal(-healValue);
     }

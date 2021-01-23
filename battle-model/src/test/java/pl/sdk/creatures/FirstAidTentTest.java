@@ -47,7 +47,7 @@ class FirstAidTentTest {
                 .build();
         attacker.attack(defender);
         tent.healAmount= Range.closed(5,5);
-        tent.heal(defender);
+        tent.attack(defender);
         assertEquals(85,defender.getCurrentHp());
 
     }
@@ -73,7 +73,7 @@ class FirstAidTentTest {
                 .build();
         attacker.attack(defender);
         tent.healAmount= Range.closed(5,5);
-        tent.heal(defender);
+        tent.attack(defender);
         assertEquals(100,defender.getCurrentHp());
         assertEquals(1,defender.getAmount());
 
