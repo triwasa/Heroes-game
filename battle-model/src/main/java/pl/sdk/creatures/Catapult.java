@@ -6,12 +6,14 @@ import java.util.Random;
 
 public class Catapult extends Creature {
 
-    private String name = "Catapult";
-    private int attack = 10;
-    private int armor = 10;
-    private int maxHp = 1000;
-    private int currentHp = 1000;
-    public Range<Integer> damage = Range.closed(1,2);
+    private CreatureStatisticIf stats;
+    private int currentHp;
+
+
+    Catapult(CreatureStatisticIf aStats){
+        this.stats = aStats;
+        currentHp = stats.getMaxHp();
+    }
     private final Random rand=new Random();
 
 

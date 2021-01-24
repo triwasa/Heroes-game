@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static pl.sdk.creatures.CreatureStatistic.TEST_FIRSTAIDTENT;
 
 class FirstAidTentTest {
 
@@ -28,7 +29,7 @@ class FirstAidTentTest {
     @Test
 
     void shouldHeal(){
-        FirstAidTent tent = new FirstAidTent();
+        FirstAidTent tent = new FirstAidTent(TEST_FIRSTAIDTENT);
         Creature attacker = new Creature.BuilderForTesting()
                 .name("Attacker")
                 .attack(0)
@@ -46,7 +47,6 @@ class FirstAidTentTest {
                 .damage(Range.closed(5,5))
                 .build();
         attacker.attack(defender);
-        tent.healAmount= Range.closed(5,5);
         tent.attack(defender);
         assertEquals(85,defender.getCurrentHp());
 
@@ -54,7 +54,7 @@ class FirstAidTentTest {
 
     @Test
     void shouldNotOverheal(){
-        FirstAidTent tent = new FirstAidTent();
+        FirstAidTent tent = new FirstAidTent(TEST_FIRSTAIDTENT);
         Creature attacker = new Creature.BuilderForTesting()
                 .name("Attacker")
                 .attack(0)
@@ -72,7 +72,7 @@ class FirstAidTentTest {
                 .damage(Range.closed(5,5))
                 .build();
         attacker.attack(defender);
-        tent.healAmount= Range.closed(5,5);
+
         tent.attack(defender);
         assertEquals(100,defender.getCurrentHp());
         assertEquals(1,defender.getAmount());

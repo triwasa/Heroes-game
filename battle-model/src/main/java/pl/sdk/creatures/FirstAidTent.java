@@ -8,29 +8,35 @@ import java.util.Random;
 public class FirstAidTent extends Creature {
 
 
-    private String name = "FirstAidTent";
-    private int attack = 0;
-    private int armor = 0;
-    private int maxHp = 75;
-    private int currentHp = 75;
-    private int defence = 0;
-    public Range<Integer> healAmount = Range.closed(1,25);
+    private CreatureStatisticIf stats;
+    private int currentHp;
+
+
+    FirstAidTent(CreatureStatisticIf aStats){
+        this.stats = aStats;
+        currentHp = stats.getMaxHp();
+    }
     private final Random rand=new Random();
 
 
 
 
     @Override
+    public Range<Integer> getDamage() {
+        return stats.getDamage();
+    }
+
+    @Override
     public void attack(Creature aDefaultForTests){
-        int healValue = rand.nextInt(healAmount.upperEndpoint() - healAmount.lowerEndpoint()+1) + healAmount.lowerEndpoint();
+        int healValue = rand.nextInt(stats.getDamage().upperEndpoint() - stats.getDamage().lowerEndpoint()+1) + stats.getDamage().lowerEndpoint();
         aDefaultForTests.applyHeal(-healValue);
     }
 
     @Override
     public void applyHeal(int aHealToApply) {
         int fullCurrentHp = currentHp - aHealToApply;
-        if (fullCurrentHp > maxHp) {
-            currentHp = maxHp;
+        if (fullCurrentHp > stats.getMaxHp()) {
+            currentHp = stats.getMaxHp();
         }
         else currentHp = fullCurrentHp;
     }
