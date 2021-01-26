@@ -3,6 +3,7 @@ package pl.sdk;
 import pl.sdk.creatures.GuiTile;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class TeleportMovementStrategy implements MovementStrategy {
     public static final String TELEPORT = "TELEPORT";
@@ -14,6 +15,6 @@ public class TeleportMovementStrategy implements MovementStrategy {
 
     @Override
     public LinkedList<Point> getPath(Board board, Point aSourcePoint, Point aTargetPoint) {
-        return new LinkedList<>();
+        return (LinkedList<Point>) List.of(aSourcePoint);
     }
 }

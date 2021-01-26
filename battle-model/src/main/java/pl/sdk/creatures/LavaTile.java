@@ -42,5 +42,10 @@ public class LavaTile implements GuiTile {
         return 0;
     }
 
+    @Override
+    public String getMovementType() {
+        return "null";
+    }
+
 
 }
