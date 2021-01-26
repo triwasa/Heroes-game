@@ -9,6 +9,7 @@ import pl.sdk.*;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.GuiTile;
 import pl.sdk.creatures.NecropolisFactory;
+import pl.sdk.special_fields.Field;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -39,13 +40,12 @@ public class BattleMapController implements PropertyChangeListener {
             upgradedCreatures.add(factory.create(true, i, 10));
         }
 
-        gameEngine = new GameEngine(notUpgradedCreatures, upgradedCreatures);
+        gameEngine = new GameEngine(notUpgradedCreatures, upgradedCreatures, board);
     }
 
     public BattleMapController(List<Creature> aCreatures1, List<Creature> aCreatures2, Board board){
-        gameEngine = new GameEngine(aCreatures1, aCreatures2);
+        gameEngine = new GameEngine(aCreatures1, aCreatures2, board);
         this.board= board;
-        // przekazac boarda do GameEngine i zrobic aby wspoldzialalo z creaturami itd
     }
 
     @FXML
@@ -68,6 +68,7 @@ public class BattleMapController implements PropertyChangeListener {
                 gridMap.add(rec, x, y);
 
                 GuiTile c = gameEngine.get(x, y);
+                Field field = gameEngine.getField(x, y);
                 if (c != null) {
                     rec.addCreature(c.getName(), c.getAmount());
 
@@ -85,7 +86,10 @@ public class BattleMapController implements PropertyChangeListener {
                     rec.setBackground(Color.GREY);
                     rec.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> gameEngine.move(new Point(x1, y1)));
                 }
-
+                if(!field.getName().equals("Normal"))
+                {
+                    rec.setBackGroundImage(field.getName());
+                }
             }
         }
     }

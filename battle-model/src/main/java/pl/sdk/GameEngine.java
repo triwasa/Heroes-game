@@ -2,6 +2,7 @@ package pl.sdk;
 
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.GuiTile;
+import pl.sdk.special_fields.Field;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -27,11 +28,11 @@ public class GameEngine {
     private List<Creature> creatures2;
     private final PositionSaver positionSaver;
 
-    public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
-        this(aCreatures1, aCreatures2, new Board());
-    }
+//    public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
+//        this(aCreatures1, aCreatures2, new Board());
+//    }
 
-    GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2, Board aBoard) {
+    public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2, Board aBoard) {
         board = aBoard;
         creatures1 = aCreatures1;
         creatures2 = aCreatures2;
@@ -118,6 +119,11 @@ public class GameEngine {
 
     public GuiTile get(int aX, int aY) {
         return board.get(aX, aY);
+    }
+
+    public Field getField(int aX, int aY)
+    {
+        return board.getField(aX,aY);
     }
 
     public Creature getActiveCreature() {

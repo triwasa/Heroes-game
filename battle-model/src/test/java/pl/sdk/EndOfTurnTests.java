@@ -20,7 +20,7 @@ public class EndOfTurnTests {
     void shouldResetCounterAttackFlagAfterEndOfTurn(){
         Creature attacker = NecropolisFactory.createDefaultForTests();
         Creature defender = NecropolisFactory.createDefaultForTests();
-        GameEngine engine = new GameEngine(List.of(attacker), List.of(defender));
+        GameEngine engine = new GameEngine(List.of(attacker), List.of(defender) , new Board());
 
         assertEquals(true, defender.canCounterAttack());
         attacker.attack(defender);
@@ -35,7 +35,7 @@ public class EndOfTurnTests {
     void shouldCallPropertyChangeAfterEndOfTurn(){
         Creature attacker = spy(Creature.class);
         Creature defender = NecropolisFactory.createDefaultForTests();
-        GameEngine engine = new GameEngine(List.of(attacker), List.of(defender));
+        GameEngine engine = new GameEngine(List.of(attacker), List.of(defender), new Board());
 
         engine.pass();
         engine.pass();
