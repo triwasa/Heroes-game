@@ -70,7 +70,7 @@ public class PathSearch {
                 }
             }
         }
-        return null;
+        return new LinkedList<>();
     }
     private Point getMinKey(Map<Point, Double> map, LinkedList<Point> openlist) {
         Point minKey = null;
