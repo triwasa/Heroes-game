@@ -13,7 +13,6 @@ public class Keep extends Creature implements Fortification {
     private int attack = 1;
     private int level = 1;
     public Range<Integer> damage = Range.closed(15,15);
-    private final Random rand=new Random();
     private DefaultCalculateStrategy dealDamageCalc = new DefaultCalculateStrategy();
 
 
