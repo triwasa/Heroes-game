@@ -13,14 +13,11 @@ public class WarMachineFactory extends AbstractFactory {
             case 2:
                 return new FirstAidTent(CreatureStatistic.FIRSTAIDTENT);
             case 3:
-                return new Ballista(CreatureStatistic.BALLISTA);
+                Ballista ballista = new Ballista(CreatureStatistic.BALLISTA);
+                return new ShootingCreatureDecorator(ballista);
             default:
                 throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
-
-
     }
-
-
 }
 
