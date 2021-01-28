@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 public class MapEditorEngine {
 
-    private Point activePoint;
+    private List<Point> activePointList;
     private final PropertyChangeSupport observerSupport;
 
     public ActivePointThread activePointThread;
@@ -49,6 +49,7 @@ public class MapEditorEngine {
         activePointThread = new ActivePointThread(this);
         activePointThread.start();
         chosenGuiTile = null;
+        activePointList= new ArrayList<>();
     }
 
     public Field getChosenGuiTile() {
@@ -85,10 +86,12 @@ public class MapEditorEngine {
 
     public void add()
     {
-        if(activePoint!= null && getChosenGuiTile() != null)
+        if(activePointList != null && getChosenGuiTile() != null)
         {
-            board.add(new Point(activePoint.getX(),activePoint.getY()),getChosenGuiTile());
-            removeActivePoint();
+            activePointList.stream().forEach((e) -> {
+                board.add(new Point(e.getX(),e.getY()),getChosenGuiTile());
+            });
+            removeAllActivePoint();
             removeChosenGuiTile();
             notifyObservers(new PropertyChangeEvent(this,ADDING_OBSTACLES,null, false));
         }else return ;
@@ -101,24 +104,37 @@ public class MapEditorEngine {
 
     public void setActivePoint(Point activePoint)
     {
-        this.activePoint=activePoint;
+        activePointList.add(activePoint);
     }
 
-    public Point getActivePoint()
+    public boolean isPointInActivePointList(int aX,int aY)
     {
-        return activePoint;
+        return activePointList.contains(new Point(aX,aY));
+    }
+
+    public Integer isActivePointListEmpty() {
+        return activePointList.size();
     }
 
     public boolean isActiveTileTaken()
     {
-        return board.isTileTakenByField(activePoint);
+        boolean taken= false;
+        for(int i=0;i<activePointList.size();i++)
+        {
+            if(board.isTileTakenByField(activePointList.get(i))) taken=true;
+        }
+        return taken;
     }
 
-    public void removeActivePoint() {
-        activePoint=null;
+    public void removeActivePoint(int aX,int aY) {
+        int indexOf = activePointList.indexOf(new Point(aX,aY));
+        if(indexOf != -1)
+        {
+            activePointList.remove(indexOf);
+        }
     }
 
-    public void save() throws IOException, JAXBException {
+    public void save() throws  JAXBException {
 
         JAXBContext context = JAXBContext.newInstance(Holder.class);
         JAXBContext contextPoint = JAXBContext.newInstance(PointHolder.class);
@@ -141,23 +157,28 @@ public class MapEditorEngine {
     }
 
     public void remove() {
-        if (activePoint != null && board.getField(activePoint.getX(), activePoint.getY()) != null) {
-            board.removeField(new Point(activePoint.getX(), activePoint.getY()));
-            removeActivePoint();
+        if (isActivePointListEmpty() != 0 ) {
+            activePointList.stream().forEach((e)->
+            {
+                if(board.isTileTakenByField(new Point(e.getX(),e.getY()))) {
+                    board.removeField(new Point(e.getX(), e.getY()));
+                }
+            });
+            removeAllActivePoint();
             notifyObservers(new PropertyChangeEvent(this, REMOVING_OBSTACLES, null, false));
         }
-        else return ;
+         return ;
+    }
+    void removeAllActivePoint()
+    {
+        activePointList.clear();
     }
 
     public void clean()
     {
         board.removeAllFields();
-        removeActivePoint();
+        removeAllActivePoint();
         notifyObservers(new PropertyChangeEvent(this, CLEAN_MAP, null, null));
-    }
-
-    public GuiTile get(int aX, int aY) {
-        return board.get(aX,aY);
     }
 
     public Field getField(int aX, int aY)
@@ -170,7 +191,7 @@ public class MapEditorEngine {
         Random random = new Random();
         int randomAmountOfObstacles = random.nextInt(19*14);
         int randomX,randomY;
-        // potem bedzie bazowal na Enumie z fabryki
+
         List<Field> guiTileList = Arrays.asList(FieldsFactory.create("Lava"),FieldsFactory.create("Stone"),FieldsFactory.create("Water"));
         for(int i=0;i<randomAmountOfObstacles;i++)
         {

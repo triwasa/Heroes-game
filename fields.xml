@@ -7,4 +7,32 @@
         <moveRange>0.4</moveRange>
         <name>Lava</name>
     </fields>
+    <fields>
+        <canStand>true</canStand>
+        <canAttack>true</canAttack>
+        <fieldDamage>10</fieldDamage>
+        <moveRange>0.4</moveRange>
+        <name>Lava</name>
+    </fields>
+    <fields>
+        <canStand>false</canStand>
+        <canAttack>false</canAttack>
+        <fieldDamage>0</fieldDamage>
+        <moveRange>0.0</moveRange>
+        <name>Stone</name>
+    </fields>
+    <fields>
+        <canStand>false</canStand>
+        <canAttack>false</canAttack>
+        <fieldDamage>0</fieldDamage>
+        <moveRange>0.0</moveRange>
+        <name>Stone</name>
+    </fields>
+    <fields>
+        <canStand>false</canStand>
+        <canAttack>false</canAttack>
+        <fieldDamage>0</fieldDamage>
+        <moveRange>0.0</moveRange>
+        <name>Stone</name>
+    </fields>
 </fields>

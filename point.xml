@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <points>
     <point>
-        <x>13</x>
+        <x>18</x>
         <y>3</y>
+    </point>
+    <point>
+        <x>16</x>
+        <y>2</y>
+    </point>
+    <point>
+        <x>17</x>
+        <y>5</y>
+    </point>
+    <point>
+        <x>12</x>
+        <y>5</y>
+    </point>
+    <point>
+        <x>12</x>
+        <y>6</y>
     </point>
 </points>

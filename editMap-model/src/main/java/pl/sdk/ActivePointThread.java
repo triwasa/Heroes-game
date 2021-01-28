@@ -16,10 +16,11 @@ public class ActivePointThread extends Thread{
     public void run() {
         while (!exit)
         {
-            if(mapEditorEngine.getActivePoint() != null)
+            if(mapEditorEngine.isActivePointListEmpty() != 0)
             {
                 if(mapEditorEngine.isActiveTileTaken())
                 {
+                    mapEditorEngine.notifyNotifier(MapEditorEngine.ADDING_OBSTACLES_BUTTON,false);
                     mapEditorEngine.notifyNotifier(MapEditorEngine.REMOVING_OBSTACLES_BUTTON,false);
                 }else{
                     mapEditorEngine.notifyNotifier(MapEditorEngine.ADDING_OBSTACLES_BUTTON,false);

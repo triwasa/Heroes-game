@@ -124,16 +124,16 @@ public class MapEditorController implements PropertyChangeListener {
                 }
                 rec.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
                 {
-                    if (event.getButton() == MouseButton.PRIMARY && mapEditorEngine.getActivePoint() == null && (finalX != 0 && finalX != 19  )) {
+                    if (event.getButton() == MouseButton.PRIMARY && !mapEditorEngine.isPointInActivePointList(finalX,finalY) && (finalX != 0 && finalX != 19  )) {
                         rec.setBackground(Color.GREEN);
                         rec.setBorder(Color.GREEN);
                         mapEditorEngine.setActivePoint(new Point(finalX, finalY));
                     }else if (event.getButton() == MouseButton.SECONDARY
-                            && mapEditorEngine.getActivePoint() != null && mapEditorEngine.getActivePoint().getX() ==finalX && mapEditorEngine.getActivePoint().getY() ==finalY)
+                            && mapEditorEngine.isActivePointListEmpty() != 0 && mapEditorEngine.isPointInActivePointList(finalX,finalY))
                     {
                         rec.setBackground(Color.WHITE);
                         rec.setBorder(Color.BLACK);
-                        mapEditorEngine.removeActivePoint();
+                        mapEditorEngine.removeActivePoint(finalX,finalY);
                     }
                 });
             }
@@ -159,7 +159,7 @@ public class MapEditorController implements PropertyChangeListener {
 
     }
 
-    public void saveFile() throws IOException, JAXBException {
+    public void saveFile() throws JAXBException {
         mapEditorEngine.save();
     }
 }
