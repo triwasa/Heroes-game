@@ -84,6 +84,14 @@ public class MapEditorEngine {
         notifyObservers(new PropertyChangeEvent(this,event,null,bool));
     }
 
+    public void addFieldBySingleClick(int aX,int aY)
+    {
+        if(activePointList != null && getChosenGuiTile() != null) {
+            board.add(new Point(aX,aY), getChosenGuiTile());
+            notifyObservers(new PropertyChangeEvent(this,ADDING_OBSTACLES_BUTTON,null, false));
+        }
+    }
+
     public void add()
     {
         if(activePointList != null && getChosenGuiTile() != null)

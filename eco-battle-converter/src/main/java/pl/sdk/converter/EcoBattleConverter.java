@@ -89,7 +89,7 @@ public class EcoBattleConverter {
                     mapEditorController.terminateThread();
                     try {
                         mapEditorController.saveFile();
-                    } catch (IOException | JAXBException e) {
+                    } catch (JAXBException e) {
                         e.printStackTrace();
                     }
                     aStage.close();

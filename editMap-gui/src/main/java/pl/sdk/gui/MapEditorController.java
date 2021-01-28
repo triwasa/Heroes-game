@@ -83,20 +83,38 @@ public class MapEditorController implements PropertyChangeListener {
         lavaTile.addCreatureWithoutAmount(lava.getName());
         lavaTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
         {
-            mapEditorEngine.setChosenGuiTile(lava);
-            lavaTile.setBorder(Color.BLACK);
+            if(e.getButton() == MouseButton.PRIMARY) {
+                mapEditorEngine.setChosenGuiTile(lava);
+                lavaTile.setBorder(Color.BLACK);
+            }else if(e.getButton() == MouseButton.SECONDARY)
+            {
+                mapEditorEngine.setChosenGuiTile(null);
+                lavaTile.setBorder(Color.WHITE);
+            }
         });
         waterTile.addCreatureWithoutAmount(water.getName());
         waterTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
         {
-            mapEditorEngine.setChosenGuiTile(water);
-            waterTile.setBorder(Color.BLACK);
+            if(e.getButton() == MouseButton.PRIMARY) {
+                mapEditorEngine.setChosenGuiTile(water);
+                waterTile.setBorder(Color.BLACK);
+            }else if(e.getButton() == MouseButton.SECONDARY)
+            {
+                mapEditorEngine.setChosenGuiTile(null);
+                waterTile.setBorder(Color.WHITE);
+            }
         });
         stoneTile.addCreatureWithoutAmount(stone.getName());
         stoneTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
         {
-            mapEditorEngine.setChosenGuiTile(stone);
-            stoneTile.setBorder(Color.BLACK);
+            if(e.getButton() == MouseButton.PRIMARY) {
+                mapEditorEngine.setChosenGuiTile(stone);
+                stoneTile.setBorder(Color.BLACK);
+            }else if(e.getButton() == MouseButton.SECONDARY)
+            {
+                mapEditorEngine.setChosenGuiTile(null);
+                stoneTile.setBorder(Color.WHITE);
+            }
         });
         sideMap.add(lavaTile,1,1);
         sideMap.add(waterTile,1,2);
@@ -125,9 +143,15 @@ public class MapEditorController implements PropertyChangeListener {
                 rec.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
                 {
                     if (event.getButton() == MouseButton.PRIMARY && !mapEditorEngine.isPointInActivePointList(finalX,finalY) && (finalX != 0 && finalX != 19  )) {
-                        rec.setBackground(Color.GREEN);
-                        rec.setBorder(Color.GREEN);
-                        mapEditorEngine.setActivePoint(new Point(finalX, finalY));
+                       if(mapEditorEngine.getChosenGuiTile() != null)
+                       {
+                           mapEditorEngine.addFieldBySingleClick(finalX,finalY);
+                           rec.addCreatureWithoutAmount(mapEditorEngine.getField(finalX,finalY).getName());
+                       }else {
+                           rec.setBackground(Color.GREEN);
+                           rec.setBorder(Color.GREEN);
+                           mapEditorEngine.setActivePoint(new Point(finalX, finalY));
+                       }
                     }else if (event.getButton() == MouseButton.SECONDARY
                             && mapEditorEngine.isActivePointListEmpty() != 0 && mapEditorEngine.isPointInActivePointList(finalX,finalY))
                     {
