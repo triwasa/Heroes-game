@@ -77,50 +77,36 @@ public class MapEditorController implements PropertyChangeListener {
         MapTile lavaTile = new MapTile();
         MapTile waterTile = new MapTile();
         MapTile stoneTile = new MapTile();
+        MapTile poisonTile = new MapTile();
         Field lava = FieldsFactory.create("Lava");
         Field stone = FieldsFactory.create("Stone");
         Field water = FieldsFactory.create("Water");
-        lavaTile.addCreatureWithoutAmount(lava.getName());
-        lavaTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
-        {
-            if(e.getButton() == MouseButton.PRIMARY) {
-                mapEditorEngine.setChosenGuiTile(lava);
-                lavaTile.setBorder(Color.BLACK);
-            }else if(e.getButton() == MouseButton.SECONDARY)
-            {
-                mapEditorEngine.setChosenGuiTile(null);
-                lavaTile.setBorder(Color.WHITE);
-            }
-        });
-        waterTile.addCreatureWithoutAmount(water.getName());
-        waterTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
-        {
-            if(e.getButton() == MouseButton.PRIMARY) {
-                mapEditorEngine.setChosenGuiTile(water);
-                waterTile.setBorder(Color.BLACK);
-            }else if(e.getButton() == MouseButton.SECONDARY)
-            {
-                mapEditorEngine.setChosenGuiTile(null);
-                waterTile.setBorder(Color.WHITE);
-            }
-        });
-        stoneTile.addCreatureWithoutAmount(stone.getName());
-        stoneTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
-        {
-            if(e.getButton() == MouseButton.PRIMARY) {
-                mapEditorEngine.setChosenGuiTile(stone);
-                stoneTile.setBorder(Color.BLACK);
-            }else if(e.getButton() == MouseButton.SECONDARY)
-            {
-                mapEditorEngine.setChosenGuiTile(null);
-                stoneTile.setBorder(Color.WHITE);
-            }
-        });
+        Field poison = FieldsFactory.create("Poison");
+        addingField(lavaTile, lava);
+        addingField(waterTile, water);
+        addingField(stoneTile, stone);
+        addingField(poisonTile, poison);
         sideMap.add(lavaTile,1,1);
         sideMap.add(waterTile,1,2);
         sideMap.add(stoneTile,1,3);
+        sideMap.add(poisonTile,1,4);
         buttonLabel.getChildren().add(sideMap);
         refreshGui();
+    }
+
+    private void addingField(MapTile mapTile, Field field) {
+        mapTile.addCreatureWithoutAmount(field.getName());
+        mapTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->
+        {
+            if(e.getButton() == MouseButton.PRIMARY) {
+                mapEditorEngine.setChosenGuiTile(field);
+                mapTile.setBorder(Color.BLACK);
+            }else if(e.getButton() == MouseButton.SECONDARY)
+            {
+                mapEditorEngine.setChosenGuiTile(null);
+                mapTile.setBorder(Color.WHITE);
+            }
+        });
     }
 
     public void terminateThread()
