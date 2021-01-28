@@ -16,7 +16,7 @@ public class HeroEquipment {
         }
     }
 
-    List<EconomyArtifact> getArtifacts() {
+    public List<EconomyArtifact> getArtifacts() {
         return List.copyOf(equipment.values());
     }
 
