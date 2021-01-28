@@ -74,6 +74,8 @@ public class MapEditorController implements PropertyChangeListener {
 
         randomButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.randomGenerate());
         cleanButton.addEventHandler(MouseEvent.MOUSE_CLICKED,e-> mapEditorEngine.clean());
+
+
         MapTile lavaTile = new MapTile();
         MapTile waterTile = new MapTile();
         MapTile stoneTile = new MapTile();
@@ -91,6 +93,8 @@ public class MapEditorController implements PropertyChangeListener {
         sideMap.add(stoneTile,1,3);
         sideMap.add(poisonTile,1,4);
         buttonLabel.getChildren().add(sideMap);
+
+        buttonLabel.getChildren().add(new InformationButton(this));
         refreshGui();
     }
 
