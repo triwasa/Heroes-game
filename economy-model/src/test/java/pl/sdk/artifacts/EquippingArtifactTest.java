@@ -1,14 +1,17 @@
 package pl.sdk.artifacts;
 
+import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.sdk.Hero;
+import pl.sdk.creatures.Creature;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EquippingArtifactTest {
 
     private Hero hero;
-    private final ArtifactPrimaryFactory artifactFactory = new ArtifactPrimaryFactory();
+    private final ArtifactAbstractFactory artifactFactory = new ArtifactPrimaryFactory();
 
     @BeforeEach
     void init() {
@@ -36,5 +39,26 @@ public class EquippingArtifactTest {
 
         assertEquals(primaryHeroAttack + 2, hero.getAttack());
         assertEquals(primaryHeroDefense + 2, hero.getDefense());
+    }
+
+    @Test
+    void heroCreaturesShouldIncreasedHealth(){
+        Creature creature;
+        creature = new Creature.BuilderForTesting()
+                .name("attacker")
+                .attack(2)
+                .armor(NOT_IMPORTANT)
+                .damage(Range.closed(5,5))
+                .maxHp(5)
+                .moveRange(NOT_IMPORTANT)
+                .build();
+
+        hero.add(creature);
+
+        int primaryHealth = 5;
+
+        hero.addArtifact(artifactFactory.create("Ring of Vitality")); // + 1 hp
+
+        assertEquals(primaryHealth + 1, creature.getCurrentHp());
     }
 }

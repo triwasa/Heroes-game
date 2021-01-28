@@ -2,5 +2,5 @@ package pl.sdk.artifacts;
 
 
 public abstract class ArtifactAbstractFactory {
-    abstract Artifact create(String aName);
+    abstract AbstractArtifact create(String aName);
 }
