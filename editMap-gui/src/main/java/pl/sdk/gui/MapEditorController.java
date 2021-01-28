@@ -140,10 +140,7 @@ public class MapEditorController implements PropertyChangeListener {
         }
         sideMap.getChildren().stream().forEach((e)->
         {
-            if(e instanceof MapTile)
-            {
-                ((MapTile) e).setBorder(Color.WHITE);
-            }
+            ((MapTile) e).setBorder(Color.WHITE);
         });
     }
 
@@ -153,10 +150,7 @@ public class MapEditorController implements PropertyChangeListener {
         {
             sideMap.getChildren().stream().forEach((e)->
             {
-                if(e instanceof MapTile)
-                {
-                    ((MapTile) e).setBorder(Color.WHITE);
-                }
+                ((MapTile) e).setBorder(Color.WHITE);
             });
         }
         else if (!aPropertyChangeEvent.getPropertyName().equals(MapEditorEngine.ADDING_OBSTACLES_BUTTON) && !aPropertyChangeEvent.getPropertyName().equals(MapEditorEngine.REMOVING_OBSTACLES_BUTTON) ) {
