@@ -63,5 +63,10 @@ import com.google.common.collect.Range;
         public String getDescription() {
             return "Creature for testing";
         }
+
+        @Override
+        public String getFraction() {
+            return CreatureStatistic.TEST.getFraction();
+        }
     }
 

@@ -21,4 +21,6 @@ public interface CreatureStatisticIf {
     String getMovementType();
 
     String getDescription();
+
+    String getFraction();
 }

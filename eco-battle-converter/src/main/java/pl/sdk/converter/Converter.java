@@ -1,5 +1,6 @@
 package pl.sdk.converter;
 
+import pl.sdk.creatures.EconomyAbstractFactory;
 import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.hero.EconomyHero;
 
@@ -26,7 +27,6 @@ public class Converter {
 //                hero.addSpell(spellFactory.create(ecoSpell.getName(), ecoSpell.getLevel())));
 
         // TODO apply everything on hero and his creatures
-
         return null;
     }
 }

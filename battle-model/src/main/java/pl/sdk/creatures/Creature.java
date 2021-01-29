@@ -1,6 +1,8 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.AbstractDamageApplier;
+import pl.sdk.DamageApplierIf;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -14,6 +16,7 @@ public class Creature implements GuiTile,PropertyChangeListener {
     private int currentHp;
     private boolean counterAttackedInThisTurn;
     private CalculateDamageStrategy calculateDamageStrategy;
+    private DamageApplierIf damageApplier;
     private int amount;
     private int additionalDamage;
 
@@ -36,10 +39,9 @@ public class Creature implements GuiTile,PropertyChangeListener {
         }
     }
 
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
+    public int calculateDamage(Creature aAttacker, Creature aDefender) {
         return calculateDamageStrategy.calculateDamage(aAttacker, aDefender);
     }
-
     void counterAttack(Creature aDefender) {
         if (aDefender.canCounterAttack()){
             int damageToDealInCounterAttack = aDefender.calculateDamage(aDefender, this);
@@ -53,28 +55,7 @@ public class Creature implements GuiTile,PropertyChangeListener {
     }
 
     public void applyDamage(int aDamageToApply) {
-        int fullCurrentHp = (stats.getMaxHp() * (amount - 1)) + currentHp - aDamageToApply;
-        if (fullCurrentHp <= 0) {
-            amount = 0;
-            currentHp = 0;
-        }
-        else
-        {
-            if(fullCurrentHp % stats.getMaxHp()==0)
-            {
-                currentHp=stats.getMaxHp();
-                amount=fullCurrentHp/stats.getMaxHp();
-            }
-            else
-            {
-                currentHp = fullCurrentHp % stats.getMaxHp();
-                if (aDamageToApply >= 0){
-                    amount = (fullCurrentHp/stats.getMaxHp()) + 1;
-                }else{
-                    amount = (fullCurrentHp/stats.getMaxHp());
-                }
-            }
-        }
+        damageApplier.applyDamage(aDamageToApply, this);
     }
 
     public boolean isAlive() {
@@ -140,6 +121,8 @@ public class Creature implements GuiTile,PropertyChangeListener {
     public boolean isItObstacle() {
         return false;
     }
+
+
 
     public String currentHealth() {
         StringBuilder sb = new StringBuilder();
