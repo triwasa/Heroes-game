@@ -32,11 +32,11 @@ public class AttackEngine {
         }
     }
 
-    void counterAttack(Creature aCounterAttacker, Creature aDefender ) {
+    /*void counterAttack(Creature aCounterAttacker, Creature aDefender ) {
         if (aDefender.canCounterAttack()){
             int damageToDealInCounterAttack = aDefender.calculateDamage(aDefender, this);
             damageApplier.applyDamage(damageToDealInCounterAttack, aDefender);
             aDefender.counterAttackedInThisTurn();
-        }
+        }*/
     }
 }
