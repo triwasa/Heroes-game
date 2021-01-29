@@ -26,7 +26,6 @@ public class MapTile extends StackPane {
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
         ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/graphics/creatures/" + aName + ".png")));
-        image.setRotationAxis(Rotate.Y_AXIS);
         image.setFitHeight(46);
         image.setFitWidth(46);
         vbox.getChildren().add(image);
@@ -34,6 +33,28 @@ public class MapTile extends StackPane {
         text.setFont(new Font(10.0));
         vbox.getChildren().add(text);
         getChildren().add(vbox);
+    }
+
+    void addCreature(String aName, int aAmount, boolean isRightPlayerCreature) {
+        VBox vbox = new VBox();
+        vbox.setAlignment(Pos.CENTER);
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/graphics/creatures/" + aName + ".png")));
+        if(isRightPlayerCreature) {
+            flip(image);
+        }
+        image.setFitHeight(46);
+        image.setFitWidth(46);
+        vbox.getChildren().add(image);
+        Text text = new Text(String.valueOf(aAmount));
+        text.setFont(new Font(10.0));
+        vbox.getChildren().add(text);
+        getChildren().add(vbox);
+    }
+
+    private void flip(ImageView image) {
+        image.setTranslateZ(image.getBoundsInLocal().getWidth() / 2.0);
+        image.setRotationAxis(Rotate.Y_AXIS);
+        image.setRotate(180);
     }
 
     void addCreatureWithoutAmount(String aName)

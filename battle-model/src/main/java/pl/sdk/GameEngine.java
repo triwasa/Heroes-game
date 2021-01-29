@@ -129,11 +129,17 @@ public class GameEngine {
         boolean isP1Creature = creatures1.contains(getActiveCreature());
         boolean theSamePlayerUnit;
         if (isP1Creature) {
-            theSamePlayerUnit = creatures1.contains(board.get(aX, aY));
+            theSamePlayerUnit = isPlayerOneUnit(aX, aY);
         } else {
-            theSamePlayerUnit = creatures2.contains(board.get(aX, aY));
+            theSamePlayerUnit = isPlayerTwoUnit(aX, aY);
         }
 
         return !theSamePlayerUnit && board.get(getActiveCreature()).distance(new Point(aX, aY)) <= getActiveCreature().getAttackRange();
+    }
+    public boolean isPlayerOneUnit(int aX,int aY) {
+        return creatures1.contains(board.get(aX, aY));
+    }
+    public boolean isPlayerTwoUnit(int aX,int aY){
+        return creatures2.contains(board.get(aX, aY));
     }
 }
