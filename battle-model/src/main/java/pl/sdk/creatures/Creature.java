@@ -2,6 +2,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 import pl.sdk.DamageApplierIf;
+import pl.sdk.DefaultDamageApplier;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -163,6 +164,7 @@ public class Creature implements GuiTile,PropertyChangeListener {
     static class Builder {
         private CreatureStatisticIf stats;
         private CalculateDamageStrategy damageCalculator;
+        private DamageApplierIf damageApplier;
         private Integer amount;
 
         Builder statistic (CreatureStatisticIf aStats){
@@ -175,6 +177,10 @@ public class Creature implements GuiTile,PropertyChangeListener {
         }
         Builder damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
             this.damageCalculator = aCalculateDamageStrategy;
+            return this;
+        }
+        Builder damageApplier (DamageApplierIf aDamageApplier){
+            this.damageApplier = aDamageApplier;
             return this;
         }
 
@@ -199,6 +205,12 @@ public class Creature implements GuiTile,PropertyChangeListener {
             }
             else{
                 ret.calculateDamageStrategy = new DefaultCalculateStrategy();
+            }
+            if (damageApplier != null) {
+                ret.damageApplier = damageApplier;
+            }
+            else {
+                ret.damageApplier = new DefaultDamageApplier();
             }
             return ret;
         }
