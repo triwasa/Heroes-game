@@ -229,6 +229,7 @@ public class Creature implements GuiTile,PropertyChangeListener {
         private Integer moveRange;
         private Range<Integer> damage;
         private CalculateDamageStrategy damageCalculator;
+        private DamageApplierIf damageApplier;
         private Integer amount;
 
         BuilderForTesting name (String name){
@@ -261,6 +262,10 @@ public class Creature implements GuiTile,PropertyChangeListener {
         }
         BuilderForTesting damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
             this.damageCalculator = aCalculateDamageStrategy;
+            return this;
+        }
+        BuilderForTesting damageApplier (DamageApplierIf aDamageApplier) {
+            this.damageApplier = aDamageApplier;
             return this;
         }
 
@@ -301,6 +306,12 @@ public class Creature implements GuiTile,PropertyChangeListener {
             }
             else{
                 ret.calculateDamageStrategy = new DefaultCalculateStrategy();
+            }
+            if (damageApplier != null) {
+                ret.damageApplier = damageApplier;
+            }
+            else {
+                ret.damageApplier = new DefaultDamageApplier();
             }
             return ret;
         }

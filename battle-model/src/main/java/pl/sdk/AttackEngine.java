@@ -25,7 +25,7 @@ public class AttackEngine {
                 if (splashRange[x][y]) {
                     Creature attackedCreature = (Creature) board.get(aX + x - 1, aY + y - 1);
                     if (attackedCreature != null){
-                       attack(aAttacker, board.get(aX + x - 1, aY + y - 1));
+                       attack(aAttacker, (Creature)board.get(aX + x - 1, aY + y - 1));
                     }
                 }
             }
