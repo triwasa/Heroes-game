@@ -23,7 +23,7 @@ public class EquippingPrimaryArtifactTest {
         int primaryHeroKnowledge = hero.getKnowledge();
         int primaryHeroSpellPower = hero.getSpellPower();
 
-        hero.addArtifact(artifactFactory.create("Thunder Helmet")); // +10 knowledge, -2 spellPower
+        (artifactFactory.create("Thunder Helmet")).buff(hero); // +10 knowledge, -2 spellPower
 
         assertEquals(primaryHeroKnowledge + 10, hero.getKnowledge());
         assertEquals(primaryHeroSpellPower - 2, hero.getSpellPower());
@@ -34,8 +34,8 @@ public class EquippingPrimaryArtifactTest {
         int primaryHeroAttack = hero.getAttack();
         int primaryHeroDefense = hero.getDefense();
 
-        hero.addArtifact(artifactFactory.create("Centaur's Ax")); // +2 attack
-        hero.addArtifact(artifactFactory.create("Shield of the Dwarven Lords")); // +2 defense
+        (artifactFactory.create("Centaur's Ax")).buff(hero); // +2 attack
+        (artifactFactory.create("Shield of the Dwarven Lords")).buff(hero); // +2 defense
 
         assertEquals(primaryHeroAttack + 2, hero.getAttack());
         assertEquals(primaryHeroDefense + 2, hero.getDefense());
