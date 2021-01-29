@@ -40,25 +40,4 @@ public class EquippingPrimaryArtifactTest {
         assertEquals(primaryHeroAttack + 2, hero.getAttack());
         assertEquals(primaryHeroDefense + 2, hero.getDefense());
     }
-
-    @Test
-    void heroCreaturesShouldIncreasedHealth(){
-        Creature creature;
-        creature = new Creature.BuilderForTesting()
-                .name("attacker")
-                .attack(2)
-                .armor(NOT_IMPORTANT)
-                .damage(Range.closed(5,5))
-                .maxHp(5)
-                .moveRange(NOT_IMPORTANT)
-                .build();
-
-        hero.add(creature);
-
-        int primaryHealth = 5;
-
-        hero.addArtifact(artifactFactory.create("Ring of Vitality")); // + 1 hp
-
-        assertEquals(primaryHealth + 1, creature.getCurrentHp());
-    }
 }
