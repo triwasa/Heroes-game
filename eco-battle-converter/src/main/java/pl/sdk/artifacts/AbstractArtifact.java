@@ -1,5 +1,7 @@
 package pl.sdk.artifacts;
 
+import pl.sdk.converter.Hero;
+
 public abstract class AbstractArtifact {
     protected ArtifactStatisticIf stats;
 

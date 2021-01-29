@@ -1,5 +1,9 @@
 package pl.sdk.artifacts;
 
+import pl.sdk.creatures.Creature;
+
+import java.util.List;
+
 public class ArtifactResistance extends ArtifactCreatureBuff {
     private final double resistanceValue;
 

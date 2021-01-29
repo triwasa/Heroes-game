@@ -1,5 +1,10 @@
 package pl.sdk.artifacts;
 
+import pl.sdk.converter.Hero;
+import pl.sdk.creatures.Creature;
+
+import java.util.List;
+
 public abstract class ArtifactCreatureBuff extends AbstractArtifact {
     @Override
     void buff(Hero hero) {

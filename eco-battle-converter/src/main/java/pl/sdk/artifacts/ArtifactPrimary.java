@@ -1,5 +1,7 @@
 package pl.sdk.artifacts;
 
+import pl.sdk.converter.Hero;
+
 class ArtifactPrimary extends AbstractArtifact {
 
     private final PrimaryStatisticIf primaryStats;
@@ -21,7 +23,7 @@ class ArtifactPrimary extends AbstractArtifact {
 
     @Override
     void buff(Hero hero) {
-        increaseHeroStatistic(Hero hero);
+        increaseHeroStatistic(hero);
     }
 
     void increaseHeroStatistic(Hero hero){
