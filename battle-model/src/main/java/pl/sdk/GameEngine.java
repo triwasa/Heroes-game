@@ -92,7 +92,7 @@ public class GameEngine {
             return;
         }
         Creature activeCreature = queue.getActiveCreature();
-        attackEngine.attack(activeCreature, board.get(aX, aY));
+        attackEngine.attack(activeCreature, aX, aY);
         blockAttacking = true;
         blockMoving = true;
         notifyObservers(new PropertyChangeEvent(this, CREATURE_ATTACKED, null, null));
