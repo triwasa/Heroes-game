@@ -27,7 +27,7 @@ public class MultipleRetaliationsCreatureDecorator extends Creature {
     }
 
     @Override
-    protected void counterAttack(Creature aDefender) {
+    public void counterAttack(Creature aDefender) {
         decorated.counterAttack(aDefender);
     }
 
@@ -42,7 +42,7 @@ public class MultipleRetaliationsCreatureDecorator extends Creature {
     }
 
     @Override
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
+    public int calculateDamage(Creature aAttacker, Creature aDefender) {
         return decorated.calculateDamage(aAttacker, aDefender);
     }
 

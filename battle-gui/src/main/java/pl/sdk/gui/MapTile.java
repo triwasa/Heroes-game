@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
 
 
 public class MapTile extends StackPane {
@@ -25,6 +26,7 @@ public class MapTile extends StackPane {
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
         ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/graphics/creatures/" + aName + ".png")));
+        image.setRotationAxis(Rotate.Y_AXIS);
         image.setFitHeight(46);
         image.setFitWidth(46);
         vbox.getChildren().add(image);

@@ -20,12 +20,12 @@ public class SplashDamageCreatureDecorator extends Creature {
     }
 
     @Override
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
+    public int calculateDamage(Creature aAttacker, Creature aDefender) {
         return decorated.calculateDamage(aAttacker, aDefender);
     }
 
     @Override
-    void counterAttack(Creature aDefender) {
+    public void counterAttack(Creature aDefender) {
         decorated.counterAttack(aDefender);
     }
 

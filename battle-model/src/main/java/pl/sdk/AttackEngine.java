@@ -25,7 +25,7 @@ public class AttackEngine {
                 if (splashRange[x][y]) {
                     Creature attackedCreature = (Creature) board.get(aX + x - 1, aY + y - 1);
                     if (attackedCreature != null){
-                        attack(aAttacker, board.get(aX + x - 1, aY + y - 1));
+                       // attack(aAttacker, board.get(aX + x - 1, aY + y - 1));
                     }
                 }
             }
@@ -33,10 +33,11 @@ public class AttackEngine {
     }
 
     /*void counterAttack(Creature aCounterAttacker, Creature aDefender ) {
-        if (aDefender.canCounterAttack()){
+        if (aDefender.canCounterAttack()) {
             int damageToDealInCounterAttack = aDefender.calculateDamage(aDefender, this);
             damageApplier.applyDamage(damageToDealInCounterAttack, aDefender);
             aDefender.counterAttackedInThisTurn();
-        }*/
-    }
+        }
+    }*/
 }
+

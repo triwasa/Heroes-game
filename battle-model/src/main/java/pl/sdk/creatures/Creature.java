@@ -1,7 +1,6 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-import pl.sdk.AbstractDamageApplier;
 import pl.sdk.DamageApplierIf;
 
 import java.beans.PropertyChangeEvent;
@@ -39,10 +38,10 @@ public class Creature implements GuiTile,PropertyChangeListener {
         }
     }
 
-    public int calculateDamage(Creature aAttacker, Creature aDefender) {
+     public int calculateDamage(Creature aAttacker, Creature aDefender) {
         return calculateDamageStrategy.calculateDamage(aAttacker, aDefender);
     }
-    void counterAttack(Creature aDefender) {
+    public void counterAttack(Creature aDefender) {
         if (aDefender.canCounterAttack()){
             int damageToDealInCounterAttack = aDefender.calculateDamage(aDefender, this);
             applyDamage(damageToDealInCounterAttack);
