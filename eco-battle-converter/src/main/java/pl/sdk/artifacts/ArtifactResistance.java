@@ -14,8 +14,6 @@ public class ArtifactResistance extends ArtifactCreatureBuff {
 
     @Override
     void buffCreature(List<Creature> creatures) {
-        for (creature: creatures) {
-            creature.increaseResistance(resistanceValue);
-        }
+        creatures.forEach(creature -> creature.increaseResistance(resistanceValue));
     }
 }

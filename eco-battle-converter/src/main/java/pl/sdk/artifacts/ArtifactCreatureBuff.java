@@ -8,8 +8,8 @@ import java.util.List;
 public abstract class ArtifactCreatureBuff extends AbstractArtifact {
     @Override
     void buff(Hero hero) {
-        // TODO wyciąganie listy kreatur
-        buffCreature(List<Creature> creatures);
+        List<Creature> creatures = hero.getCreatures();
+        buffCreature(creatures);
     }
 
     abstract void buffCreature(List<Creature> creatures);

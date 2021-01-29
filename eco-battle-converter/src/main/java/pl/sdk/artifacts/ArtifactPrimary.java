@@ -11,8 +11,6 @@ class ArtifactPrimary extends AbstractArtifact {
         this.primaryStats = aPrimaryStats;
     }
 
-    public String getSlotName() { return stats.getSlotName(); }
-
     public int getAttack() { return primaryStats.getAttack(); }
 
     public int getDefence() { return primaryStats.getDefence(); }

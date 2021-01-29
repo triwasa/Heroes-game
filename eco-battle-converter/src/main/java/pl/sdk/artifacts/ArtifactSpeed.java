@@ -14,8 +14,6 @@ public class ArtifactSpeed extends ArtifactCreatureBuff {
 
     @Override
     void buffCreature(List<Creature> creatures) {
-        for (creature: creatures) {
-            creature.increaseHealth(speedValue);
-        }
+        creatures.forEach(creature -> creature.increaseSpeed(speedValue));
     }
 }

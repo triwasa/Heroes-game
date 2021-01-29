@@ -14,6 +14,6 @@ public class ArtifactHealth extends ArtifactCreatureBuff {
 
     @Override
     void buffCreature(List<Creature> creatures) {
-
+        creatures.forEach(creature -> creature.increaseHealth(hpValue));
     }
 }
