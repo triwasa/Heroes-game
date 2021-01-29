@@ -8,7 +8,7 @@ import pl.sdk.creatures.Creature;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EquippingArtifactTest {
+public class EquippingPrimaryArtifactTest {
 
     private Hero hero;
     private final ArtifactAbstractFactory artifactFactory = new ArtifactPrimaryFactory();
