@@ -2,7 +2,7 @@ package pl.sdk.creatures;
 
 import java.util.Random;
 
-class DefaultCalculateStrategy extends AbstractCalculateDamageStrategy {
+public class DefaultCalculateStrategy extends AbstractCalculateDamageStrategy {
 
     private final Random rand;
 
@@ -19,4 +19,5 @@ class DefaultCalculateStrategy extends AbstractCalculateDamageStrategy {
     double changeDamageAfter(double aWholeStackDamageToDeal, AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
         return aWholeStackDamageToDeal;
     }
+
 }

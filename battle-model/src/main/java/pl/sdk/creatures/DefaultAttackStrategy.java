@@ -1,12 +1,13 @@
 package pl.sdk.creatures;
 
-public class DefaultAttackStrategy implements AttackStrategy {
+public class DefaultAttackStrategy extends AbstractAttackStrategy {
     @Override
-    public void attack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
-        if (aAttacker.isAlive()){
-            int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
-            aDefender.getApplyDamage().applyDamage(damageToDeal, aDefender);
-            aDefender.counterAttack(aAttacker);
-        }
+    public void beforeAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+        return;
+    }
+
+    @Override
+    public void afterAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+        aDefender.counterAttack(aAttacker);
     }
 }

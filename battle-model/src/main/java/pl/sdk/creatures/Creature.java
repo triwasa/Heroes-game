@@ -102,10 +102,6 @@ public class Creature implements PropertyChangeListener, BattleObject {
         return damageApplier;
     }
 
-    @Override
-    public void counterAttack(BattleObject aDefender) {
-
-    }
 
     public int getAttack() {
         return stats.getAttack();
@@ -113,7 +109,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
 
     @Override
     public AttackStrategy getAttackStrategy() {
-
+        return attackStrategy;
     }
 
     @Override
