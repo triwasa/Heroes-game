@@ -4,18 +4,14 @@ import pl.sdk.creatures.*;
 
 public class AttackEngine {
     Board board;
-    AbstractDamageApplier damageApplier;
-    AttackStrategy attackStrategy;
 
 
     AttackEngine(Board aBoard) {
         board = aBoard;
-        damageApplier = new DefaultDamageApplier();
     }
     public void attack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
         if (aAttacker.isAlive()) {
-            attackStrategy = aAttacker.getAttackStrategy();
-            attackStrategy.attack(aAttacker, aDefender);
+            aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
         }
     }
     public void attack(Creature aAttacker, int aX, int aY) {
