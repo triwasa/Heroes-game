@@ -1,11 +1,6 @@
 package pl.sdk;
 
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import pl.sdk.creatures.GuiTile;
-import pl.sdk.creatures.LavaTile;
-import pl.sdk.creatures.RockTile;
 import pl.sdk.special_fields.Field;
 import pl.sdk.special_fields.FieldsFactory;
 

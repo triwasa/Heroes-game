@@ -3,8 +3,8 @@ package pl.sdk;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.GuiTile;
 import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.special_fields.FieldsFactory;
 
@@ -31,7 +31,7 @@ class BoardMovingTest {
     void creatureShouldMoveCorrectly(){
         board.move(new Point(0,0), new Point(0,1));
 
-        GuiTile creatureFromBoard = board.get(0, 1);
+        BattleObject creatureFromBoard = board.get(0, 1);
 
         assertEquals(creature,creatureFromBoard);
         assertNull(board.get(0,0));
@@ -43,7 +43,7 @@ class BoardMovingTest {
 
         assertThrows(IllegalArgumentException.class, () -> board.move(new Point(0,0), new Point(0,1)));
 
-        GuiTile creatureFromBoard = board.get(0, 0);
+        BattleObject creatureFromBoard = board.get(0, 0);
         assertEquals(creature,creatureFromBoard);
     }
 
@@ -69,7 +69,7 @@ class BoardMovingTest {
 
     @Test
     void cannotMoveWhenTileIsTaken(){
-        GuiTile creature = NecropolisFactory.createDefaultForTests();
+        Creature creature = NecropolisFactory.createDefaultForTests();
         board.add(new Point(5,5), creature);
 
         assertFalse(board.canMove(creature, 0,0 ));
@@ -77,7 +77,7 @@ class BoardMovingTest {
 
     @Test
     void pathSearchTest() {
-        GuiTile creature = new NecropolisFactory().create(false , 1, 1);
+        Creature creature = new NecropolisFactory().create(false , 1, 1);
         board.add(new Point(4,5), creature);
         board.add(new Point(4,4), new NecropolisFactory().create(false , 1, 1));
         board.add(new Point(3,4), new NecropolisFactory().create(false , 1, 1));

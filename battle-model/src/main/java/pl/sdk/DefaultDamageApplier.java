@@ -1,15 +1,17 @@
 package pl.sdk;
 
+import pl.sdk.creatures.AbstractDamageApplier;
+
 public class DefaultDamageApplier extends AbstractDamageApplier {
 
 
     @Override
-    public int decreaseDamageApplied(int aDamageToDecrease) {
+    public int changeDamageApplied(int aDamageToDecrease) {
         return aDamageToDecrease;
     }
 
     @Override
-    public int decreaseSpellDamageApplied(int aSpellDamageToDecrease) {
+    public int changeSpellDamageApplied(int aSpellDamageToDecrease) {
         return aSpellDamageToDecrease;
     }
 }

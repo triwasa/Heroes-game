@@ -1,8 +1,6 @@
 package pl.sdk;
 
 
-import pl.sdk.creatures.GuiTile;
-
 import java.util.*;
 
 public class PathSearch {

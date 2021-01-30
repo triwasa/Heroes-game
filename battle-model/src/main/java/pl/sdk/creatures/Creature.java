@@ -1,7 +1,6 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-import pl.sdk.DamageApplierIf;
 import pl.sdk.DefaultDamageApplier;
 
 import java.beans.PropertyChangeEvent;
@@ -10,7 +9,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Creature implements GuiTile,PropertyChangeListener {
+public class Creature implements PropertyChangeListener, BattleObject {
 
     private final CreatureStatisticIf stats;
     private int currentHp;
@@ -39,14 +38,14 @@ public class Creature implements GuiTile,PropertyChangeListener {
         }
     }
 
-     public int calculateDamage(Creature aAttacker, Creature aDefender) {
+     /*public int calculateDamage(Creature aAttacker, Creature aDefender) {
         return calculateDamageStrategy.calculateDamage(aAttacker, aDefender);
-    }
-    public void counterAttack(Creature aDefender) {
-        if (aDefender.canCounterAttack()){
-            int damageToDealInCounterAttack = aDefender.calculateDamage(aDefender, this);
-            applyDamage(damageToDealInCounterAttack);
-            aDefender.counterAttackedInThisTurn();
+    }*/
+    public void counterAttack(AttackingBattleObject aAttacker) {
+        if (canCounterAttack()){
+            int damageToDealInCounterAttack = calculateDamage(aDefender, this);
+            aAttacker.getDamageA.applyDamage(damageToDealInCounterAttack);
+            counterAttackedInThisTurn();
         }
     }
 
@@ -54,9 +53,10 @@ public class Creature implements GuiTile,PropertyChangeListener {
         counterAttackedInThisTurn = true;
     }
 
-    public void applyDamage(int aDamageToApply) {
+    /*public void applyDamage(int aDamageToApply) {
         damageApplier.applyDamage(aDamageToApply, this);
-    }
+    }*/
+
 
     public void applyHeal(int aHealToApply) {
         int fullCurrentHp = currentHp - aHealToApply;
@@ -74,15 +74,6 @@ public class Creature implements GuiTile,PropertyChangeListener {
         return currentHp;
     }
 
-    @Override
-    public boolean isMovePossible() {
-        return false;
-    }
-
-    @Override
-    public boolean isAttackPossible() {
-        return true;
-    }
 
     public String getName(){
         return stats.getTranslatedName();
@@ -106,8 +97,28 @@ public class Creature implements GuiTile,PropertyChangeListener {
     }
 
 
+    @Override
+    public DamageApplierIf getApplyDamage() {
+        return damageApplier;
+    }
+
+    @Override
+    public void counterAttack(BattleObject aDefender) {
+
+    }
+
     public int getAttack() {
         return stats.getAttack();
+    }
+
+    @Override
+    public void getAttackStrategy() {
+
+    }
+
+    @Override
+    public CalculateDamageStrategy getCalculateDamage() {
+        return calculateDamageStrategy;
     }
 
     public int getArmor() {
@@ -125,10 +136,7 @@ public class Creature implements GuiTile,PropertyChangeListener {
     public int getMaxHp() {
         return stats.getMaxHp();
     }
-    @Override
-    public boolean isItObstacle() {
-        return false;
-    }
+
 
 
 

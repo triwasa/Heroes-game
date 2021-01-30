@@ -1,8 +1,5 @@
 package pl.sdk;
 
-import pl.sdk.creatures.GuiTile;
-
-import java.nio.file.Path;
 import java.util.LinkedList;
 
 public class GroundMovementStrategy implements MovementStrategy {

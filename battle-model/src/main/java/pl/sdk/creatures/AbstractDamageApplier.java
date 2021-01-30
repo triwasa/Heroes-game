@@ -1,12 +1,10 @@
-package pl.sdk;
-
-import pl.sdk.creatures.Creature;
+package pl.sdk.creatures;
 
 public abstract class AbstractDamageApplier implements DamageApplierIf {
 
     @Override
-    public void applyDamage(int aDamageToApply, Creature aDefender) {
-        decreaseDamageApplied(aDamageToApply);
+    public void applyDamage(int aDamageToApply, DefendingBattleObject aDefender) {
+        changeDamageApplied(aDamageToApply);
         int amount = aDefender.getAmount();
         int currentHp = aDefender.getCurrentHp();
 
@@ -36,9 +34,9 @@ public abstract class AbstractDamageApplier implements DamageApplierIf {
 
     @Override
     public void applySpellDamage(int aSpellDamageToApply, Creature aDefender) {
-        decreaseSpellDamageApplied(aSpellDamageToApply);
+        changeSpellDamageApplied(aSpellDamageToApply);
     }
 
-    public abstract int decreaseDamageApplied(int aDamageToDecrease);
-    public abstract int decreaseSpellDamageApplied(int aSpellDamageToDecrease);
+    public abstract int changeDamageApplied(int aDamageToDecrease);
+    public abstract int changeSpellDamageApplied(int aSpellDamageToDecrease);
 }

@@ -1,8 +1,8 @@
 package pl.sdk;
 
-import org.checkerframework.checker.units.qual.C;
+
+import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.GuiTile;
 import pl.sdk.special_fields.Field;
 import pl.sdk.special_fields.FieldsFactory;
 
@@ -13,7 +13,7 @@ import static pl.sdk.GameEngine.BOARD_WIDTH;
 
 public class Board {
 
-    private final Map<Point, GuiTile> map;
+    private final Map<Point, BattleObject> map;
 
     // added for special fields
     private final Map<Point, Field> fieldsMap;
@@ -25,7 +25,7 @@ public class Board {
         fieldsMap = new HashMap<>();
     }
 
-    void add(Point aPoint, GuiTile aCreature) {
+    void add(Point aPoint, BattleObject aCreature) {
         throwExceptionWhenIsOutsideMap(aPoint);
         throwExceptionIfTileIsTaken(aPoint);
 
@@ -44,7 +44,7 @@ public class Board {
         fieldsMap.put(aPoint,aField);
     }
 
-    public Map<Point, GuiTile> getMap() {
+    public Map<Point, BattleObject> getMap() {
         return map;
     }
 
@@ -57,16 +57,10 @@ public class Board {
         map.clear();
     }
 
-
     void removeAllFields() {
         fieldsMap.clear();
     }
 
-    void remove(Point aPoint)
-    {
-        if(map.get(aPoint).isItObstacle()) map.remove(aPoint);
-
-    }
 
     void removeField(Point point) {
         if(!fieldsMap.get(point).equals("Normal")) fieldsMap.remove(point);
@@ -104,11 +98,11 @@ public class Board {
         }
     }
 
-    GuiTile get(int aX, int aY) {
+    BattleObject get(int aX, int aY) {
         return map.get(new Point(aX, aY));
     }
 
-    Point get(GuiTile aCreature) {
+    Point get(BattleObject aCreature) {
         return map.keySet().stream().filter(p -> map.get(p).equals(aCreature)).findAny().get();
     }
 
@@ -118,7 +112,7 @@ public class Board {
         return fieldsMap.getOrDefault(new Point(aX, aY), FieldsFactory.create("Normal"));
     }
 
-    void move(GuiTile aCreature, Point aTargetPoint1){
+    void move(BattleObject aCreature, Point aTargetPoint1){
         move(get(aCreature), aTargetPoint1);
     }
 
@@ -130,12 +124,12 @@ public class Board {
         MovementStrategy movementStrategy = getMovementStrategy(get(aSourcePoint.getX(), aSourcePoint.getY()));
         LinkedList<Point> pathToGo = movementStrategy.getPath(this, aSourcePoint, aTargetPoint1);
 
-        GuiTile creatureFromSourcePoint = map.get(aSourcePoint);
+        BattleObject creatureFromSourcePoint = map.get(aSourcePoint);
         map.remove(aSourcePoint);
         map.put(aTargetPoint1, creatureFromSourcePoint);
     }
 
-    boolean canMove(GuiTile aCreature, int aX, int aY) {
+    boolean canMove(Creature aCreature, int aX, int aY) {
         throwExceptionWhenIsOutsideMap(new Point(aX, aY));
         if (!map.containsValue(aCreature)) {
             throw new IllegalStateException("Creature isn't in board");
@@ -149,7 +143,7 @@ public class Board {
        return movementStrategy.canMove(this,aCreature, new Point(aX, aY));
     }
 
-    MovementStrategy getMovementStrategy(GuiTile aCreature) {
+    MovementStrategy getMovementStrategy(Creature aCreature) {
         switch (aCreature.getMovementType().toUpperCase()) {
             case GroundMovementStrategy.GROUND:
                 return new GroundMovementStrategy();

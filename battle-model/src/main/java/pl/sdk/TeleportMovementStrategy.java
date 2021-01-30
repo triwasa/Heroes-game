@@ -1,7 +1,5 @@
 package pl.sdk;
 
-import pl.sdk.creatures.GuiTile;
-
 import java.util.LinkedList;
 import java.util.List;
 

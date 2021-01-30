@@ -1,8 +1,7 @@
 package pl.sdk;
 
-import org.checkerframework.checker.units.qual.A;
+import pl.sdk.creatures.AttackingBattleObject;
 import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.GuiTile;
 import pl.sdk.special_fields.Field;
 
 import java.beans.PropertyChangeEvent;
@@ -110,7 +109,7 @@ public class GameEngine {
         }
     }
 
-    public GuiTile get(int aX, int aY) {
+    public AttackingBattleObject get(int aX, int aY) {
         return board.get(aX, aY);
     }
 

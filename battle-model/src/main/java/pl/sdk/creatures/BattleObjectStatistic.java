@@ -1,17 +1,11 @@
 package pl.sdk.creatures;
 
-
-
-public interface Fortification {
+public interface BattleObjectStatistic {
 
     String getName();
-
     int getAmount();
-
-    int getLevel();
-
-    int getCurrentHp();
-
     int getMaxHp();
-
+    int getLevel();
+    int getCurrentHp();
+    boolean isAlive();
 }

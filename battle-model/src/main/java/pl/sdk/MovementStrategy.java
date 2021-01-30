@@ -1,8 +1,5 @@
 package pl.sdk;
 
-import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.GuiTile;
-
 import java.util.LinkedList;
 
 public interface MovementStrategy {

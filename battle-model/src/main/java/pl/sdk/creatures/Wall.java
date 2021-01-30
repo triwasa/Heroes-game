@@ -9,14 +9,6 @@ public class Wall implements Fortification {
 
 
 
-    public boolean isMovePossible() {
-        return false;
-    }
-
-
-    public boolean isAttackPossible() {
-        return false;
-    }
 
     @Override
     public String getName() {
@@ -34,11 +26,6 @@ public class Wall implements Fortification {
     @Override
     public int getLevel() {
         return level;
-    }
-
-
-    public boolean isItObstacle() {
-        return true;
     }
 
 
@@ -69,9 +56,8 @@ public class Wall implements Fortification {
         }
     }
 
-    @Override
-    public void counterAttack(Attacker aDefender) {
-        return;
-    }
+
+
+
 
 }
