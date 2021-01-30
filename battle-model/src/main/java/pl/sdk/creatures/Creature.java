@@ -58,6 +58,14 @@ public class Creature implements GuiTile,PropertyChangeListener {
         damageApplier.applyDamage(aDamageToApply, this);
     }
 
+    public void applyHeal(int aHealToApply) {
+        int fullCurrentHp = currentHp - aHealToApply;
+        if (fullCurrentHp > stats.getMaxHp()) {
+            currentHp = stats.getMaxHp();
+        }
+        else currentHp = fullCurrentHp;
+    }
+
     public boolean isAlive() {
         return amount > 0;
     }
@@ -160,6 +168,8 @@ public class Creature implements GuiTile,PropertyChangeListener {
     public boolean backToPreviousPositionMechanic() {
         return false;
     }
+
+
 
     static class Builder {
         private CreatureStatisticIf stats;
