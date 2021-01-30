@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -68,6 +69,11 @@ public class MapTile extends StackPane {
         getChildren().add(vbox);
     }
 
+    void setBackGroundImage(String aName)
+    {
+        Image image = (new Image(getClass().getResourceAsStream("/graphics/creatures/" + aName + ".png")));
+        rec.setFill(new ImagePattern(image));
+    }
     void setBackground(Color aColor){
         rec.setFill(aColor);
     }

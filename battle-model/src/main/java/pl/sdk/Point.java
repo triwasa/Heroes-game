@@ -1,11 +1,19 @@
 package pl.sdk;
 
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
+
+@XmlRootElement(name = "point")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Point {
 
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
+
+    public Point() {}
 
     public Point(int aX, int aY) {
         x = aX;

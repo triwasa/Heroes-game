@@ -64,7 +64,7 @@ public class EcoController implements PropertyChangeListener {
     }
 
     private void goToEditor() {
-        EcoBattleConverter.startEditting();
+        EcoBattleConverter.startEditing();
     }
 
     void refreshGui() {
