@@ -1,16 +1,20 @@
-package pl.sdk.creatures.factories;
+package pl.sdk.creatures;
 
-import pl.sdk.creatures.AttackStrategy;
-import pl.sdk.creatures.AttackingBattleObject;
-import pl.sdk.creatures.DefendingBattleObject;
+public class MulitpleAttackAttackStrategy implements AttackStrategy {
 
-public class BlockCounterAttackAttackStrategy implements AttackStrategy {
+    private int attackCount;
+
+    MulitpleAttackAttackStrategy(int aAttackCount) {
+        attackCount = aAttackCount;
+    }
     @Override
     public void attack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+        for(int i = 0; i < attackCount; i++) {
             if (aAttacker.isAlive()){
                 int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
                 aDefender.getApplyDamage().applyDamage(damageToDeal, aDefender);
+                aDefender.counterAttack(aAttacker);
             }
+        }
     }
-
 }
