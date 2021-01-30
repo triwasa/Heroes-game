@@ -17,7 +17,7 @@ public class DungeonFactory extends AbstractFactory {
                             .statistic(CreatureStatistic.HARPY_HAG)
                             .amount(aAmount)
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(harpyHag);
+                    return new BlockCounterAttackCreatureDecorator(new CreatureMoveToPreviousPositionAfterAttackDecorator(harpyHag));
                 case 3:
                     Creature grandElf = new Creature.Builder()
                             .statistic(CreatureStatistic.EVIL_EYE)
@@ -57,10 +57,10 @@ public class DungeonFactory extends AbstractFactory {
                             .amount(aAmount)
                             .build();
                 case 2:
-                    return new Creature.Builder()
+                    return new CreatureMoveToPreviousPositionAfterAttackDecorator(new Creature.Builder()
                             .statistic(CreatureStatistic.HARPY)
                             .amount(aAmount)
-                            .build();
+                            .build());
                 case 3:
                     Creature beholder = new Creature.Builder()
                             .statistic(CreatureStatistic.BEHOLDER)

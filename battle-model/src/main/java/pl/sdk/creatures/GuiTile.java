@@ -13,4 +13,6 @@ public interface GuiTile {
     boolean isItObstacle();
 
     int getMoveRange();
+
+    String getMovementType();
 }

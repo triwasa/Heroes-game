@@ -29,7 +29,7 @@ class HealAfterAttackCreatureDecorator extends Creature{
     }
 
     @Override
-    protected int calculateDamage(Creature aAttacker, Creature aDefender) {
+    public int calculateDamage(Creature aAttacker, Creature aDefender) {
         return decorated.calculateDamage(aAttacker, aDefender);
     }
 
@@ -49,7 +49,7 @@ class HealAfterAttackCreatureDecorator extends Creature{
     }
 
     @Override
-    protected void counterAttack(Creature aDefender) {
+    public void counterAttack(Creature aDefender) {
         decorated.counterAttack(aDefender);
     }
 

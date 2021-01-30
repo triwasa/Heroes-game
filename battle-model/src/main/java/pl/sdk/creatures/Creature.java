@@ -1,6 +1,8 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.DamageApplierIf;
+import pl.sdk.DefaultDamageApplier;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -14,6 +16,7 @@ public class Creature implements GuiTile,PropertyChangeListener {
     private int currentHp;
     private boolean counterAttackedInThisTurn;
     private CalculateDamageStrategy calculateDamageStrategy;
+    private DamageApplierIf damageApplier;
     private int amount;
     private int additionalDamage;
 
@@ -36,11 +39,10 @@ public class Creature implements GuiTile,PropertyChangeListener {
         }
     }
 
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
+     public int calculateDamage(Creature aAttacker, Creature aDefender) {
         return calculateDamageStrategy.calculateDamage(aAttacker, aDefender);
     }
-
-    void counterAttack(Creature aDefender) {
+    public void counterAttack(Creature aDefender) {
         if (aDefender.canCounterAttack()){
             int damageToDealInCounterAttack = aDefender.calculateDamage(aDefender, this);
             applyDamage(damageToDealInCounterAttack);
@@ -53,28 +55,15 @@ public class Creature implements GuiTile,PropertyChangeListener {
     }
 
     public void applyDamage(int aDamageToApply) {
-        int fullCurrentHp = (stats.getMaxHp() * (amount - 1)) + currentHp - aDamageToApply;
-        if (fullCurrentHp <= 0) {
-            amount = 0;
-            currentHp = 0;
+        damageApplier.applyDamage(aDamageToApply, this);
+    }
+
+    public void applyHeal(int aHealToApply) {
+        int fullCurrentHp = currentHp - aHealToApply;
+        if (fullCurrentHp > stats.getMaxHp()) {
+            currentHp = stats.getMaxHp();
         }
-        else
-        {
-            if(fullCurrentHp % stats.getMaxHp()==0)
-            {
-                currentHp=stats.getMaxHp();
-                amount=fullCurrentHp/stats.getMaxHp();
-            }
-            else
-            {
-                currentHp = fullCurrentHp % stats.getMaxHp();
-                if (aDamageToApply >= 0){
-                    amount = (fullCurrentHp/stats.getMaxHp()) + 1;
-                }else{
-                    amount = (fullCurrentHp/stats.getMaxHp());
-                }
-            }
-        }
+        else currentHp = fullCurrentHp;
     }
 
     public boolean isAlive() {
@@ -87,7 +76,7 @@ public class Creature implements GuiTile,PropertyChangeListener {
 
     @Override
     public boolean isMovePossible() {
-        return true;
+        return false;
     }
 
     @Override
@@ -105,6 +94,10 @@ public class Creature implements GuiTile,PropertyChangeListener {
 
     public int getMoveRange() {
         return stats.getMoveRange();
+    }
+
+    public String getMovementType() {
+        return stats.getMovementType();
     }
 
     @Override
@@ -136,6 +129,8 @@ public class Creature implements GuiTile,PropertyChangeListener {
     public boolean isItObstacle() {
         return false;
     }
+
+
 
     public String currentHealth() {
         StringBuilder sb = new StringBuilder();
@@ -174,9 +169,12 @@ public class Creature implements GuiTile,PropertyChangeListener {
         return false;
     }
 
+
+
     static class Builder {
         private CreatureStatisticIf stats;
         private CalculateDamageStrategy damageCalculator;
+        private DamageApplierIf damageApplier;
         private Integer amount;
 
         Builder statistic (CreatureStatisticIf aStats){
@@ -189,6 +187,10 @@ public class Creature implements GuiTile,PropertyChangeListener {
         }
         Builder damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
             this.damageCalculator = aCalculateDamageStrategy;
+            return this;
+        }
+        Builder damageApplier (DamageApplierIf aDamageApplier){
+            this.damageApplier = aDamageApplier;
             return this;
         }
 
@@ -214,12 +216,19 @@ public class Creature implements GuiTile,PropertyChangeListener {
             else{
                 ret.calculateDamageStrategy = new DefaultCalculateStrategy();
             }
+            if (damageApplier != null) {
+                ret.damageApplier = damageApplier;
+            }
+            else {
+                ret.damageApplier = new DefaultDamageApplier();
+            }
             return ret;
         }
 
         Creature createInstance(CreatureStatisticIf aStats) {
             return new Creature(aStats);
         }
+
     }
 
     static class BuilderForTesting {
@@ -230,6 +239,7 @@ public class Creature implements GuiTile,PropertyChangeListener {
         private Integer moveRange;
         private Range<Integer> damage;
         private CalculateDamageStrategy damageCalculator;
+        private DamageApplierIf damageApplier;
         private Integer amount;
 
         BuilderForTesting name (String name){
@@ -262,6 +272,10 @@ public class Creature implements GuiTile,PropertyChangeListener {
         }
         BuilderForTesting damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
             this.damageCalculator = aCalculateDamageStrategy;
+            return this;
+        }
+        BuilderForTesting damageApplier (DamageApplierIf aDamageApplier) {
+            this.damageApplier = aDamageApplier;
             return this;
         }
 
@@ -302,6 +316,12 @@ public class Creature implements GuiTile,PropertyChangeListener {
             }
             else{
                 ret.calculateDamageStrategy = new DefaultCalculateStrategy();
+            }
+            if (damageApplier != null) {
+                ret.damageApplier = damageApplier;
+            }
+            else {
+                ret.damageApplier = new DefaultDamageApplier();
             }
             return ret;
         }

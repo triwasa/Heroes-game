@@ -1,6 +1,7 @@
 package pl.sdk.artifacts;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.sdk.EconomyEngine;
 import pl.sdk.hero.EconomyHero;
@@ -22,7 +23,7 @@ public class BuyingArtifactTest {
         economyEngine = new EconomyEngine(hero1, hero2);
     }
 
-    @Test
+    /*@Test
     void heroShouldCanBuyArtifact() {
         economyEngine.buyArtifact(artifactFactory.create("Centaur's Ax")); // 120 gold
 
@@ -44,12 +45,12 @@ public class BuyingArtifactTest {
         assertEquals(0, hero1.getArtifacts().size());
     }
 
-    @Test
+    *//*@Test
     void heroCannotBuyArtifactWhenHasOneAlreadyInSlot() {
         economyEngine.buyArtifact(artifactFactory.create("Centaur's Ax"));
 
         assertThrows(IllegalStateException.class, () -> economyEngine.buyArtifact(artifactFactory.create("Blackshard of the Dead Knight")));
         assertEquals(880, hero1.getGold());
         assertEquals(1, hero1.getArtifacts().size());
-    }
+    }*/
 }

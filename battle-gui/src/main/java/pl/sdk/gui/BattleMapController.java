@@ -70,7 +70,8 @@ public class BattleMapController implements PropertyChangeListener {
                 GuiTile c = gameEngine.get(x, y);
                 Field field = gameEngine.getField(x, y);
                 if (c != null) {
-                    rec.addCreature(c.getName(), c.getAmount());
+                    boolean isRightPlayerCreature = gameEngine.isPlayerTwoUnit(x,y);
+                    rec.addCreature(c.getName(), c.getAmount(), isRightPlayerCreature);
 
                     if (c == gameEngine.getActiveCreature()) {
                         rec.setBackground(Color.GREEN);
