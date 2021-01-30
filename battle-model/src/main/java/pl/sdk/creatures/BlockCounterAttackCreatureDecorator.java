@@ -1,3 +1,4 @@
+/*
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
@@ -124,3 +125,4 @@ class BlockCounterAttackCreatureDecorator extends Creature{
         return decorated.backToPreviousPositionMechanic();
     }
 }
+*/

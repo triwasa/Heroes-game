@@ -15,7 +15,7 @@ public class AttackEngine {
     public void attack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
         if (aAttacker.isAlive()) {
             attackStrategy = aAttacker.getAttackStrategy();
-            attackStrategy.attack(aAttacker,aDefender);
+            attackStrategy.attack(aAttacker, aDefender);
         }
     }
     public void attack(Creature aAttacker, int aX, int aY) {
@@ -32,12 +32,6 @@ public class AttackEngine {
         }
     }
 
-    /*void counterAttack(Creature aCounterAttacker, Creature aDefender ) {
-        if (aDefender.canCounterAttack()) {
-            int damageToDealInCounterAttack = aDefender.calculateDamage(aDefender, this);
-            damageApplier.applyDamage(damageToDealInCounterAttack, aDefender);
-            aDefender.counterAttackedInThisTurn();
-        }
-    }*/
+
 }
 

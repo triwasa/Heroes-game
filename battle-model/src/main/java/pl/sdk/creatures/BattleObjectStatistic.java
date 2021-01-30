@@ -8,4 +8,5 @@ public interface BattleObjectStatistic {
     int getLevel();
     int getCurrentHp();
     boolean isAlive();
+    boolean[][] getSplashRange();
 }

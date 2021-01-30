@@ -1,6 +1,7 @@
 package pl.sdk;
 
 import pl.sdk.creatures.AttackingBattleObject;
+import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
 import pl.sdk.special_fields.Field;
 
@@ -109,7 +110,7 @@ public class GameEngine {
         }
     }
 
-    public AttackingBattleObject get(int aX, int aY) {
+    public BattleObject get(int aX, int aY) {
         return board.get(aX, aY);
     }
 

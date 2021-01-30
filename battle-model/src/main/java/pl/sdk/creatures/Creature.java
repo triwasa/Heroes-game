@@ -16,8 +16,8 @@ public class Creature implements PropertyChangeListener, BattleObject {
     private boolean counterAttackedInThisTurn;
     private CalculateDamageStrategy calculateDamageStrategy;
     private DamageApplierIf damageApplier;
+    private AttackStrategy attackStrategy;
     private int amount;
-    private int additionalDamage;
 
     // Constructor for mockito. Don't use it! You have builder here.
     Creature(){
@@ -112,7 +112,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
     }
 
     @Override
-    public void getAttackStrategy() {
+    public AttackStrategy getAttackStrategy() {
 
     }
 
@@ -183,6 +183,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
         private CreatureStatisticIf stats;
         private CalculateDamageStrategy damageCalculator;
         private DamageApplierIf damageApplier;
+        private AttackStrategy attackStrategy;
         private Integer amount;
 
         Builder statistic (CreatureStatisticIf aStats){
@@ -199,6 +200,10 @@ public class Creature implements PropertyChangeListener, BattleObject {
         }
         Builder damageApplier (DamageApplierIf aDamageApplier){
             this.damageApplier = aDamageApplier;
+            return this;
+        }
+        Builder attackStrategy (AttackStrategy aAttackStrategy){
+            this.attackStrategy = aAttackStrategy;
             return this;
         }
 
@@ -230,7 +235,15 @@ public class Creature implements PropertyChangeListener, BattleObject {
             else {
                 ret.damageApplier = new DefaultDamageApplier();
             }
+            if (attackStrategy != null) {
+                ret.attackStrategy = attackStrategy;
+            }
+            else {
+                ret.attackStrategy = new DefaultAttackStrategy();
+            }
+
             return ret;
+
         }
 
         Creature createInstance(CreatureStatisticIf aStats) {
@@ -248,6 +261,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
         private Range<Integer> damage;
         private CalculateDamageStrategy damageCalculator;
         private DamageApplierIf damageApplier;
+        private AttackStrategy attackStrategy;
         private Integer amount;
 
         BuilderForTesting name (String name){
@@ -284,6 +298,10 @@ public class Creature implements PropertyChangeListener, BattleObject {
         }
         BuilderForTesting damageApplier (DamageApplierIf aDamageApplier) {
             this.damageApplier = aDamageApplier;
+            return this;
+        }
+        BuilderForTesting attackStrategy (AttackStrategy aAttackStrategy){
+            this.attackStrategy = aAttackStrategy;
             return this;
         }
 
@@ -331,6 +349,13 @@ public class Creature implements PropertyChangeListener, BattleObject {
             else {
                 ret.damageApplier = new DefaultDamageApplier();
             }
+            if (attackStrategy != null) {
+                ret.attackStrategy = attackStrategy;
+            }
+            else {
+                ret.attackStrategy = new DefaultAttackStrategy();
+            }
+
             return ret;
         }
 
