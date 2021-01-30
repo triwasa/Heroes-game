@@ -1,5 +1,6 @@
 package pl.sdk;
 
+import org.checkerframework.checker.units.qual.A;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.GuiTile;
 
@@ -25,6 +26,7 @@ public class GameEngine {
     private boolean blockAttacking;
     private List<Creature> creatures1;
     private List<Creature> creatures2;
+    private final AttackEngine attackEngine;
     private final PositionSaver positionSaver;
 
     public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
@@ -35,6 +37,7 @@ public class GameEngine {
         board = aBoard;
         creatures1 = aCreatures1;
         creatures2 = aCreatures2;
+        attackEngine = new AttackEngine(board);
         putCreaturesToBoard(creatures1, creatures2);
         List<Creature> twoSidesCreatures = new ArrayList<>();
         twoSidesCreatures.addAll(aCreatures1);
@@ -89,17 +92,7 @@ public class GameEngine {
             return;
         }
         Creature activeCreature = queue.getActiveCreature();
-        boolean[][] splashRange = activeCreature.getSplashRange();
-        for (int x = 0; x < splashRange.length; x++) {
-            for (int y = 0; y < splashRange.length; y++) {
-                if (splashRange[x][y]) {
-                    Creature attackedCreature = (Creature) board.get(aX + x - 1, aY + y - 1);
-                    if (attackedCreature != null){
-                        activeCreature.attack((Creature) board.get(aX + x - 1, aY + y - 1));
-                    }
-                }
-            }
-        }
+        attackEngine.attack(activeCreature, aX, aY);
         blockAttacking = true;
         blockMoving = true;
         notifyObservers(new PropertyChangeEvent(this, CREATURE_ATTACKED, null, null));
@@ -136,11 +129,17 @@ public class GameEngine {
         boolean isP1Creature = creatures1.contains(getActiveCreature());
         boolean theSamePlayerUnit;
         if (isP1Creature) {
-            theSamePlayerUnit = creatures1.contains(board.get(aX, aY));
+            theSamePlayerUnit = isPlayerOneUnit(aX, aY);
         } else {
-            theSamePlayerUnit = creatures2.contains(board.get(aX, aY));
+            theSamePlayerUnit = isPlayerTwoUnit(aX, aY);
         }
 
         return !theSamePlayerUnit && board.get(getActiveCreature()).distance(new Point(aX, aY)) <= getActiveCreature().getAttackRange();
+    }
+    public boolean isPlayerOneUnit(int aX,int aY) {
+        return creatures1.contains(board.get(aX, aY));
+    }
+    public boolean isPlayerTwoUnit(int aX,int aY){
+        return creatures2.contains(board.get(aX, aY));
     }
 }

@@ -20,12 +20,12 @@ class ShootingCreatureDecorator extends Creature {
 
 
     @Override
-    protected int calculateDamage(Creature aAttacker, Creature aDefender) {
+    public int calculateDamage(Creature aAttacker, Creature aDefender) {
         return decorated.calculateDamage(aAttacker, aDefender);
     }
 
     @Override
-    protected void counterAttack(Creature aDefender) {
+    public void counterAttack(Creature aDefender) {
         decorated.counterAttack(aDefender);
     }
 
