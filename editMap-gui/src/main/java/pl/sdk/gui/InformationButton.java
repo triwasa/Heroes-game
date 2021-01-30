@@ -1,10 +1,8 @@
 package pl.sdk.gui;
 
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
@@ -13,20 +11,19 @@ import javafx.stage.Stage;
 public class InformationButton extends Button{
     private Stage dialog;
 
-    public InformationButton(MapEditorController aEcoController) {
+    public InformationButton() {
         super("Informations");
         getStyleClass().add("creatureButton");
 
         addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
-             startDialogAndGetCreatureAmount();
+             startDialog();
         });
     }
 
-    private void startDialogAndGetCreatureAmount() {
+    private void startDialog() {
         VBox centerPane = new VBox();
-        HBox bottomPane = new HBox();
         VBox topPane = new VBox();
-        Stage dialog = prepareWindow(centerPane, bottomPane, topPane);
+        Stage dialog = prepareWindow(centerPane, topPane);
         prepareTop(topPane);
         prepareCenter(centerPane);
         dialog.showAndWait();
@@ -44,7 +41,6 @@ public class InformationButton extends Button{
     }
 
     private void prepareTop(VBox aTopPane) {
-        //TODO creature cops should be visible here
         aTopPane.getChildren().add(new Label ("How to add fields to map:"));
         aTopPane.getChildren().add(new Label ("\n"));
         HBox firstMethod = new HBox();
@@ -58,7 +54,7 @@ public class InformationButton extends Button{
 
     }
 
-    private Stage prepareWindow(Pane aCenter, Pane aBottom, Pane aTop) {
+    private Stage prepareWindow(Pane aCenter, Pane aTop) {
         dialog = new Stage();
         BorderPane pane = new BorderPane();
         Scene scene = new Scene(pane, 700,350);
@@ -69,7 +65,6 @@ public class InformationButton extends Button{
         dialog.setTitle("Informations");
         pane.setTop(aTop);
         pane.setCenter(aCenter);
-        pane.setBottom(aBottom);
         return dialog;
     }
 

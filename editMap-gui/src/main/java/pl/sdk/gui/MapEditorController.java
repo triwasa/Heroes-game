@@ -94,8 +94,14 @@ public class MapEditorController implements PropertyChangeListener {
         sideMap.add(poisonTile,1,4);
         buttonLabel.getChildren().add(sideMap);
 
-        buttonLabel.getChildren().add(new InformationButton(this));
+        buttonLabel.getChildren().add(new InformationButton());
+        buttonLabel.getChildren().add(new TemplateButton(this));
         refreshGui();
+    }
+
+    public void setBoard(Board board)
+    {
+        this.board=board;
     }
 
     private void addingField(MapTile mapTile, Field field) {
@@ -118,7 +124,7 @@ public class MapEditorController implements PropertyChangeListener {
         mapEditorEngine.terminateThread();
     }
 
-    private void refreshGui() {
+    public void refreshGui() {
         for (int x = 0; x < 20; x++) {
             for (int y = 0; y < 15; y++) {
                 MapTile rec = new MapTile();
