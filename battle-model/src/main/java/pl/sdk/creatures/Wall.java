@@ -1,6 +1,6 @@
 package pl.sdk.creatures;
 
-public class Wall implements Fortification, GuiTile {
+public class Wall implements Fortification {
 
     private int maxHp = 2;
     private int currentHp = 2;
@@ -8,12 +8,12 @@ public class Wall implements Fortification, GuiTile {
     private int level = 1;
 
 
-    @Override
+
     public boolean isMovePossible() {
         return false;
     }
 
-    @Override
+
     public boolean isAttackPossible() {
         return false;
     }
@@ -36,12 +36,12 @@ public class Wall implements Fortification, GuiTile {
         return level;
     }
 
-    @Override
+
     public boolean isItObstacle() {
         return true;
     }
 
-    @Override
+
     public int getMoveRange() {
         return 0;
     }
@@ -56,7 +56,7 @@ public class Wall implements Fortification, GuiTile {
         return maxHp;
     }
 
-    @Override
+
     public void applyDamage(int aDamageToApply) {
         int fullCurrentHp = currentHp - aDamageToApply;
         if (fullCurrentHp <= 0) {
@@ -69,4 +69,9 @@ public class Wall implements Fortification, GuiTile {
         }
     }
 
+    @Override
+    public void counterAttack(Attacker aDefender) {
+        return;
     }
+
+}
