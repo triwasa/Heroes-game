@@ -18,8 +18,9 @@ public class FortressFactory extends AbstractFactory {
                     Creature lizardWarrior = new Creature.Builder()
                             .statistic(CreatureStatistic.LIZARD_WARRIOR)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(lizardWarrior));
+                    return new ShootingCreatureDecorator(lizardWarrior);
                 case 3:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.DRAGON_FLY)
@@ -44,8 +45,9 @@ public class FortressFactory extends AbstractFactory {
                     Creature hydra = new Creature.Builder()
                             .statistic(CreatureStatistic.CHAOS_HYDRA)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new SplashDamageCreatureDecorator(hydra,getSplashForHydra()));
+                    return new SplashDamageCreatureDecorator(hydra,getSplashForHydra());
                 default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
             }
@@ -61,8 +63,9 @@ public class FortressFactory extends AbstractFactory {
                     Creature lizardman = new Creature.Builder()
                             .statistic(CreatureStatistic.LIZARDMAN)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(lizardman));
+                    return new ShootingCreatureDecorator(lizardman);
                 case 3:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.SERPENT_FLY)
@@ -87,8 +90,9 @@ public class FortressFactory extends AbstractFactory {
                     Creature hydra = new Creature.Builder()
                             .statistic(CreatureStatistic.HYDRA)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new SplashDamageCreatureDecorator(hydra,getSplashForHydra()));
+                    return new SplashDamageCreatureDecorator(hydra,getSplashForHydra());
                 default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
             }

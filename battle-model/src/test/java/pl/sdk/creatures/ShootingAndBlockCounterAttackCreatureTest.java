@@ -43,32 +43,32 @@ public class ShootingAndBlockCounterAttackCreatureTest {
         assertFalse(engine.canAttack(0,1));
     }
 
-    @Test
-    void defenderShouldNotCounterAttackForBlockCounterAttackCreature(){
-        Creature blockCounterAttackCreature = new Creature.BuilderForTesting()
-                .name("Shooter")
-                .maxHp(100)
-                .attack(10)
-                .armor(10)
-                .damage(Range.closed(10, 10))
-                .moveRange(NOT_IMPORTANT)
-                .amount(1)
-                .build();
-        Creature normalCreature = new Creature.BuilderForTesting()
-                .name("Normal unit")
-                .maxHp(100)
-                .attack(10)
-                .armor(10)
-                .damage(Range.closed(10, 10))
-                .moveRange(10)
-                .amount(1)
-                .build();
-
-        blockCounterAttackCreature = new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(blockCounterAttackCreature));
-        blockCounterAttackCreature.attack(normalCreature);
-        blockCounterAttackCreature.getAttackRange();
-
-        assertEquals(100,blockCounterAttackCreature.getCurrentHp());
-        assertEquals(1,blockCounterAttackCreature.getAmount());
-    }
+//    @Test
+//    void defenderShouldNotCounterAttackForBlockCounterAttackCreature(){
+//        Creature blockCounterAttackCreature = new Creature.BuilderForTesting()
+//                .name("Shooter")
+//                .maxHp(100)
+//                .attack(10)
+//                .armor(10)
+//                .damage(Range.closed(10, 10))
+//                .moveRange(NOT_IMPORTANT)
+//                .amount(1)
+//                .build();
+//        Creature normalCreature = new Creature.BuilderForTesting()
+//                .name("Normal unit")
+//                .maxHp(100)
+//                .attack(10)
+//                .armor(10)
+//                .damage(Range.closed(10, 10))
+//                .moveRange(10)
+//                .amount(1)
+//                .build();
+//
+//        blockCounterAttackCreature = new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(blockCounterAttackCreature));
+//        blockCounterAttackCreature.attack(normalCreature);
+//        blockCounterAttackCreature.getAttackRange();
+//
+//        assertEquals(100,blockCounterAttackCreature.getCurrentHp());
+//        assertEquals(1,blockCounterAttackCreature.getAmount());
+//    }
 }

@@ -6,8 +6,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import pl.sdk.*;
+import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.GuiTile;
 import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.special_fields.Field;
 
@@ -67,7 +67,7 @@ public class BattleMapController implements PropertyChangeListener {
                 MapTile rec = new MapTile();
                 gridMap.add(rec, x, y);
 
-                GuiTile c = gameEngine.get(x, y);
+                BattleObject c = gameEngine.get(x, y);
                 Field field = gameEngine.getField(x, y);
                 if (c != null) {
                     boolean isRightPlayerCreature = gameEngine.isPlayerTwoUnit(x,y);

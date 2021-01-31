@@ -16,20 +16,20 @@ import static org.mockito.Mockito.verify;
 
 public class EndOfTurnTests {
 
-    @Test
-    void shouldResetCounterAttackFlagAfterEndOfTurn(){
-        Creature attacker = NecropolisFactory.createDefaultForTests();
-        Creature defender = NecropolisFactory.createDefaultForTests();
-        GameEngine engine = new GameEngine(List.of(attacker), List.of(defender) , new Board());
-
-        assertEquals(true, defender.canCounterAttack());
-        attacker.attack(defender);
-        assertEquals(false, defender.canCounterAttack());
-
-        engine.pass();
-        engine.pass();
-        assertEquals(true, defender.canCounterAttack());
-    }
+//    @Test
+//    void shouldResetCounterAttackFlagAfterEndOfTurn(){
+//        Creature attacker = NecropolisFactory.createDefaultForTests();
+//        Creature defender = NecropolisFactory.createDefaultForTests();
+//        GameEngine engine = new GameEngine(List.of(attacker), List.of(defender) , new Board());
+//
+//        assertEquals(true, defender.canCounterAttack());
+//        attacker.attack(defender);
+//        assertEquals(false, defender.canCounterAttack());
+//
+//        engine.pass();
+//        engine.pass();
+//        assertEquals(true, defender.canCounterAttack());
+//    }
 
     @Test
     void shouldCallPropertyChangeAfterEndOfTurn(){

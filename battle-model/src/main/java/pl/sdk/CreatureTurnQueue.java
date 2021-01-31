@@ -1,5 +1,6 @@
 package pl.sdk;
 
+import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
 
 import java.beans.PropertyChangeEvent;

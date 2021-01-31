@@ -21,11 +21,11 @@ public class Keep extends Creature implements Fortification {
         return level;
     }
 
-    @Override
-    public void attack(Creature aDefaultForTests){
-        int damageToDeal = dealDamageCalc.calculateDamage(this, aDefaultForTests);
-        aDefaultForTests.applyDamage(damageToDeal);
-    }
+//    @Override
+//    public void attack(Creature aDefaultForTests){
+//        int damageToDeal = dealDamageCalc.calculateDamage(this, aDefaultForTests);
+//        aDefaultForTests.applyDamage(damageToDeal);
+//    }
 
     @Override
     public Range<Integer> getDamage() {
@@ -45,4 +45,8 @@ public class Keep extends Creature implements Fortification {
         else return 0;
     }
 
+//    @Override
+//    public void counterAttack(Attacker aDefender) {
+//        return;
+//    }
 }

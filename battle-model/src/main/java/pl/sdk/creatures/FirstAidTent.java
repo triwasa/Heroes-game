@@ -26,20 +26,20 @@ public class FirstAidTent extends Creature {
         return stats.getDamage();
     }
 
-    @Override
-    public void attack(Creature aDefaultForTests){
-        int healValue = rand.nextInt(stats.getDamage().upperEndpoint() - stats.getDamage().lowerEndpoint()+1) + stats.getDamage().lowerEndpoint();
-        aDefaultForTests.applyHeal(-healValue);
-    }
-
-    @Override
-    public void applyHeal(int aHealToApply) {
-        int fullCurrentHp = currentHp - aHealToApply;
-        if (fullCurrentHp > stats.getMaxHp()) {
-            currentHp = stats.getMaxHp();
-        }
-        else currentHp = fullCurrentHp;
-    }
+//    @Override
+//    public void attack(Creature aDefaultForTests){
+//        int healValue = rand.nextInt(stats.getDamage().upperEndpoint() - stats.getDamage().lowerEndpoint()+1) + stats.getDamage().lowerEndpoint();
+//        aDefaultForTests.applyHeal(-healValue);
+//    }
+//
+//    @Override
+//    public void applyHeal(int aHealToApply) {
+//        int fullCurrentHp = currentHp - aHealToApply;
+//        if (fullCurrentHp > stats.getMaxHp()) {
+//            currentHp = stats.getMaxHp();
+//        }
+//        else currentHp = fullCurrentHp;
+//    }
 
 
 

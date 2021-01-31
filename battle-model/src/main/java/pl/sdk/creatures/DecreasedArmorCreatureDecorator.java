@@ -20,13 +20,8 @@ public class DecreasedArmorCreatureDecorator extends Creature {
     }
 
     @Override
-    public void attack(Creature aDefender) {
-        decorated.attack(aDefender);
-    }
-
-    @Override
-    public void counterAttack(Creature aDefender) {
-        decorated.counterAttack(aDefender);
+    public void counterAttack(BattleObject aAttacker) {
+        decorated.counterAttack(aAttacker);
     }
 
     @Override
@@ -35,13 +30,28 @@ public class DecreasedArmorCreatureDecorator extends Creature {
     }
 
     @Override
-    public void applyDamage(int aDamageToApply) {
-        decorated.applyDamage(aDamageToApply);
+    public String getMovementType() {
+        return decorated.getMovementType();
     }
 
     @Override
-    public int calculateDamage(Creature aAttacker, Creature aDefender) {
-        return decorated.calculateDamage(aAttacker, aDefender);
+    public DamageApplierIf getDamageApplier() {
+        return decorated.getDamageApplier();
+    }
+
+    @Override
+    public AttackStrategy getAttackStrategy() {
+        return decorated.getAttackStrategy();
+    }
+
+    @Override
+    public CalculateDamageStrategy getCalculateDamage() {
+        return decorated.getCalculateDamage();
+    }
+
+    @Override
+    public int getLevel() {
+        return decorated.getLevel();
     }
 
     @Override

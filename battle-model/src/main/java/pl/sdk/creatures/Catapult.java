@@ -18,13 +18,13 @@ public class Catapult extends Creature {
 
 
 
-
-    public void attack(Fortification aDefender) {
-
-        int damageToDeal = calculateDamage(this);
-        aDefender.applyDamage(damageToDeal);
-
-    }
+//
+//    public void attack(Fortification aDefender) {
+//
+//        int damageToDeal = calculateDamage(this);
+//        aDefender.applyDamage(damageToDeal);
+//
+//    }
 
 
     int calculateDamage(Catapult aAttacker) {
