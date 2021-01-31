@@ -1,16 +1,18 @@
 package pl.sdk.creatures;
 
-public class MulitpleAttackAttackStrategy extends AbstractAttackStrategy {
+public class MulitpleAttackAttackStrategy extends DefaultAttackStrategy {
 
     private int attackCount;
+    private final AttackStrategy decoratedAttackStrategy;
 
-    MulitpleAttackAttackStrategy(int aAttackCount) {
+    MulitpleAttackAttackStrategy(AttackStrategy attackStrategy,int aAttackCount) {
         attackCount = aAttackCount;
+        decoratedAttackStrategy = attackStrategy;
     }
 
     @Override
     public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
-        return;
+        decoratedAttackStrategy.beforeAttack(aAttacker,aDefender);
     }
 
     @Override
@@ -25,6 +27,6 @@ public class MulitpleAttackAttackStrategy extends AbstractAttackStrategy {
 
     @Override
     public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
-        aDefender.counterAttack(aAttacker);
+        decoratedAttackStrategy.afterAttack(aAttacker,aDefender);
     }
 }

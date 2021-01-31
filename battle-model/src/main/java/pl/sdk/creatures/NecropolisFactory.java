@@ -30,20 +30,22 @@ public class NecropolisFactory extends AbstractFactory {
                             .amount(aAmount)
                             .build();
                 case 4:
-                    return new BlockCounterAttackCreatureDecorator(new Creature.Builder()
+                    return new Creature.Builder()
                             .statistic(CreatureStatistic.VAMPIRE)
                             .amount(aAmount)
-                            .build());
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
+                            .build();
                 case 5:
                     Creature lich = new Creature.Builder()
                             .statistic(CreatureStatistic.LICH)
                             .amount(aAmount)
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(new SplashDamageCreatureDecorator(lich, getSplashForLich())));
+                    return new ShootingCreatureDecorator(new SplashDamageCreatureDecorator(lich, getSplashForLich()));
                 case 6:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.BLACK_KNIGHT)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
                 case 7:
                     return new Creature.Builder()
@@ -71,17 +73,19 @@ public class NecropolisFactory extends AbstractFactory {
                             .amount(aAmount)
                             .build());
                 case 4:
-                    return new BlockCounterAttackCreatureDecorator(new Creature.Builder()
+                    return new Creature.Builder()
                             .statistic(CreatureStatistic.VAMPIRE_LORD)
                             .amount(aAmount)
-                            .build());
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
+                            .build();
                 case 5:
                     Creature c = new Creature.Builder()
                             .statistic(CreatureStatistic.POWER_LICH)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
                     boolean[][] splashDamageTable = getSplashForLich();
-                    return new SplashDamageCreatureDecorator(new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(c)), splashDamageTable);
+                    return new SplashDamageCreatureDecorator(new ShootingCreatureDecorator(c), splashDamageTable);
                 case 6:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.DREAD_KNIGHT)

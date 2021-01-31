@@ -121,7 +121,7 @@ public class Board {
         throwExceptionIfTileIsTaken(aTargetPoint1);
         throwExceptionIfCanNotStand(aTargetPoint1);
 
-        MovementStrategy movementStrategy = getMovementStrategy(get(aSourcePoint.getX(), aSourcePoint.getY()));
+        MovementStrategy movementStrategy = getMovementStrategy((Creature)get(aSourcePoint.getX(), aSourcePoint.getY()));
         LinkedList<Point> pathToGo = movementStrategy.getPath(this, aSourcePoint, aTargetPoint1);
 
         BattleObject creatureFromSourcePoint = map.get(aSourcePoint);

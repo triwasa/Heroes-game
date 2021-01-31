@@ -1,5 +1,7 @@
 package pl.sdk;
 
+import pl.sdk.creatures.Creature;
+
 import java.util.LinkedList;
 
 public class GroundMovementStrategy implements MovementStrategy {
@@ -7,7 +9,7 @@ public class GroundMovementStrategy implements MovementStrategy {
     LinkedList<Point> pointsToGo = new LinkedList<>();
 
     @Override
-    public boolean canMove(Board board, GuiTile aCreature, Point targetPoint) {
+    public boolean canMove(Board board, Creature aCreature, Point targetPoint) {
         pointsToGo = new PathSearch(board).pathSearch(board.get(aCreature), targetPoint);
             return distance(pointsToGo) <= aCreature.getMoveRange();
     }
