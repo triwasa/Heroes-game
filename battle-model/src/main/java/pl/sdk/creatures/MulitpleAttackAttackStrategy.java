@@ -9,12 +9,12 @@ public class MulitpleAttackAttackStrategy extends AbstractAttackStrategy {
     }
 
     @Override
-    public void beforeAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
         return;
     }
 
     @Override
-    public void attack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    public void attack(BattleObject aAttacker, BattleObject aDefender) {
         for(int i = 0; i < attackCount; i++) {
             if (aAttacker.isAlive()){
                 int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
@@ -24,7 +24,7 @@ public class MulitpleAttackAttackStrategy extends AbstractAttackStrategy {
     }
 
     @Override
-    public void afterAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
         aDefender.counterAttack(aAttacker);
     }
 }

@@ -8,14 +8,14 @@ public class BlockCounterAttackAttackStrategy extends AbstractAttackStrategy {
 
 
     @Override
-    public void beforeAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
         return;
     }
 
 
 
     @Override
-    public void afterAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
         return;
     }
 

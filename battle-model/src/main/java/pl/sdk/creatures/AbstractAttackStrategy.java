@@ -2,10 +2,10 @@ package pl.sdk.creatures;
 
 public abstract class AbstractAttackStrategy implements AttackStrategy {
 
-    public abstract void beforeAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender);
+    public abstract void beforeAttack(BattleObject aAttacker, BattleObject aDefender);
 
     @Override
-    public void attack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    public void attack(BattleObject aAttacker, BattleObject aDefender) {
         if (aAttacker.isAlive()){
             beforeAttack(aAttacker,aDefender);
             int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
@@ -15,5 +15,5 @@ public abstract class AbstractAttackStrategy implements AttackStrategy {
     }
 
 
-    public abstract void afterAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender);
+    public abstract void afterAttack(BattleObject aAttacker, BattleObject aDefender);
 }

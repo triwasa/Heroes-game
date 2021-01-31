@@ -8,18 +8,18 @@ public class HealAfterAttackAttackStrategy extends AbstractAttackStrategy {
         selfHealingPercentage = aSelfHealingPercentage;
     }
     @Override
-    public void beforeAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
         return;
     }
 
 
 
     @Override
-    public void afterAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
         healAfterAttack(aAttacker,aDefender);
         aDefender.counterAttack(aAttacker);
     }
-    public void healAfterAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    public void healAfterAttack(BattleObject aAttacker, BattleObject aDefender) {
         int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker, aDefender);
         aDefender.getDamageApplier().applyDamage((int)(-damageToDeal * selfHealingPercentage), aDefender);
     }

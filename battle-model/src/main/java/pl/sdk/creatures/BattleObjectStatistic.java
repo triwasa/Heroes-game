@@ -7,7 +7,5 @@ public interface BattleObjectStatistic {
     int getMaxHp();
     int getLevel();
     int getCurrentHp();
-    boolean isAlive();
     boolean[][] getSplashRange();
-    DamageApplierIf getDamageApplier();
 }

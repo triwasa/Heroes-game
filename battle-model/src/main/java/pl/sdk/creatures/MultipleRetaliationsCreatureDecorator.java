@@ -21,19 +21,36 @@ public class MultipleRetaliationsCreatureDecorator extends Creature {
         decorated.setCurrentHpToMaximum();
     }
 
+
+
     @Override
-    public void attack(Creature aDefender) {
-        decorated.attack(aDefender);
+    public void counterAttack(BattleObject aAttacker) {
+        decorated.counterAttack(aAttacker);
     }
 
     @Override
-    public void counterAttack(Creature aDefender) {
-        decorated.counterAttack(aDefender);
+    public String getMovementType() {
+        return decorated.getMovementType();
     }
 
     @Override
-    public void applyDamage(int aDamageToApply) {
-        decorated.applyDamage(aDamageToApply);
+    public DamageApplierIf getDamageApplier() {
+        return decorated.getDamageApplier();
+    }
+
+    @Override
+    public AttackStrategy getAttackStrategy() {
+        return decorated.getAttackStrategy();
+    }
+
+    @Override
+    public CalculateDamageStrategy getCalculateDamage() {
+        return decorated.getCalculateDamage();
+    }
+
+    @Override
+    public int getLevel() {
+        return super.getLevel();
     }
 
     @Override
@@ -41,10 +58,7 @@ public class MultipleRetaliationsCreatureDecorator extends Creature {
         currentRetaliationsAmount = currentRetaliationsAmount - 1;
     }
 
-    @Override
-    public int calculateDamage(Creature aAttacker, Creature aDefender) {
-        return decorated.calculateDamage(aAttacker, aDefender);
-    }
+
 
     @Override
     public boolean isAlive() {

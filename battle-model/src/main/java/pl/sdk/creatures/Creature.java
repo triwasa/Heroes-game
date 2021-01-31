@@ -30,8 +30,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
         currentHp = stats.getMaxHp();
     }
 
-
-    public void counterAttack(AttackingBattleObject aAttacker) {
+    public void counterAttack(BattleObject aAttacker) {
         if (canCounterAttack()){
             int damageToDealInCounterAttack = getCalculateDamage().calculateDamage(this, aAttacker);
             aAttacker.getDamageApplier().applyDamage(damageToDealInCounterAttack, aAttacker);
@@ -41,19 +40,6 @@ public class Creature implements PropertyChangeListener, BattleObject {
 
     void counterAttackedInThisTurn() {
         counterAttackedInThisTurn = true;
-    }
-
-    /*public void applyDamage(int aDamageToApply) {
-        damageApplier.applyDamage(aDamageToApply, this);
-    }*/
-
-
-    public void applyHeal(int aHealToApply) {
-        int fullCurrentHp = currentHp - aHealToApply;
-        if (fullCurrentHp > stats.getMaxHp()) {
-            currentHp = stats.getMaxHp();
-        }
-        else currentHp = fullCurrentHp;
     }
 
     public boolean isAlive() {
@@ -123,7 +109,10 @@ public class Creature implements PropertyChangeListener, BattleObject {
         return stats.getMaxHp();
     }
 
-
+    @Override
+    public int getLevel() {
+        return 0;
+    }
 
 
     public String currentHealth() {

@@ -1,7 +1,6 @@
 package pl.sdk.creatures;
 
 public interface DefendingBattleObject extends BattleObjectStatistic {
-    void counterAttack(AttackingBattleObject aDefender);
+    void counterAttack(BattleObject aDefender);
     int getArmor();
-    boolean isAlive();
 }

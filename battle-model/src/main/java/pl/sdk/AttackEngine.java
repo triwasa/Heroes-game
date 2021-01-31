@@ -9,7 +9,7 @@ public class AttackEngine {
     AttackEngine(Board aBoard) {
         board = aBoard;
     }
-    public void attack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    public void attack(BattleObject aAttacker, BattleObject aDefender) {
         if (aAttacker.isAlive()) {
             aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
         }
