@@ -1,7 +1,5 @@
 package pl.sdk.gui;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,8 +8,14 @@ import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.sdk.Board;
+import pl.sdk.Holder;
+import pl.sdk.PointHolder;
 
-import javax.swing.*;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class TemplateButton extends Button {
 
@@ -25,10 +29,14 @@ public class TemplateButton extends Button {
         addEventHandler(MouseEvent.MOUSE_CLICKED,(e)->
         {
            String templateName =  startDialogAndReturnChosenMap();
-           if(templateName != null && !templateName.equals("Don't change map"))
-           {
-               // deserialization example map from template based on name of map
-               mapEditorController.setBoard(new Board());
+           if(templateName != null) {
+               try {
+                   mapEditorController.setBoard(xmlToBoardConverter(templateName));
+               } catch (IOException ioException) {
+                   ioException.printStackTrace();
+               } catch (JAXBException jaxbException) {
+                   jaxbException.printStackTrace();
+               }
            }
            mapEditorController.refreshGui();
         });
@@ -43,9 +51,10 @@ public class TemplateButton extends Button {
         dialog.showAndWait();
         RadioButton selectedRadioButton =
                 (RadioButton) radioGroup.getSelectedToggle();
-        if(selectedRadioButton != null) System.out.println(selectedRadioButton.getText());
-        return null;
-        // return  radioGroup.getSelectedToggle().getUserData().toString();
+        if(selectedRadioButton != null){
+            System.out.println(selectedRadioButton.getText());
+            return  selectedRadioButton.getText();
+        }else return null;
     }
 
     private void prepareTop(VBox aTopPane) {
@@ -54,14 +63,11 @@ public class TemplateButton extends Button {
         RadioButton radioButton2 = new RadioButton("StoneMap");
         RadioButton radioButton3 = new RadioButton("Lava-WaterMap");
         RadioButton radioButton4 = new RadioButton("PoisonMap");
-       // RadioButton radioButton5 = new RadioButton("Don't change map");
 
         radioButton1.setToggleGroup(radioGroup);
         radioButton2.setToggleGroup(radioGroup);
         radioButton3.setToggleGroup(radioGroup);
         radioButton4.setToggleGroup(radioGroup);
-
-        //radioButton5.setToggleGroup(radioGroup);
 
         VBox box1 = new VBox();
         box1.setSpacing(30);
@@ -121,4 +127,40 @@ public class TemplateButton extends Button {
         pane.setBottom(aBottom);
         return dialog;
     }
+
+//    private static Board xmlToBoardConverter(String name) throws IOException, JAXBException, URISyntaxException {
+//        Board board = new Board();
+//        JAXBContext contextFields = JAXBContext.newInstance(Holder.class);
+//        JAXBContext contextPoints = JAXBContext.newInstance(PointHolder.class);
+//        URL url  =  ImageTile.class.getClassLoader().getResource("/graphics/maps/" +name +".xml" );
+//        System.out.println(url.toString());
+//        if(url!= null) {
+//            System.out.println("siema");
+//            Holder holder1 = (Holder) contextFields.createUnmarshaller().unmarshal(new File(String.valueOf(url.toURI())));
+//          //  String pointsName = String.valueOf(ImageTile.class.getResourceAsStream("/graphics/maps/" +name +"Points.xml" ));
+//            PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal(new File(String.valueOf(ImageTile.class.getClassLoader().getResource("/graphics/maps/" +name +".xml" ).toURI())));
+//
+//            for (int i = 0; i < holder1.getThings().size(); i++) {
+//                board.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
+//            }
+//        }
+//        return board;
+//    }
+    private static Board xmlToBoardConverter(String name) throws IOException, JAXBException {
+        Board board = new Board();
+
+        JAXBContext contextFields = JAXBContext.newInstance(Holder.class);
+        JAXBContext contextPoints = JAXBContext.newInstance(PointHolder.class);
+        File file = new File("./maps/"+ name + ".xml");
+        if(file.canRead() && file.isFile()) {
+            Holder holder1 = (Holder) contextFields.createUnmarshaller().unmarshal(new FileReader("./maps/"+ name + ".xml"));
+            PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal(new FileReader("./maps/" + name + "Points.xml"));
+
+            for (int i = 0; i < holder1.getThings().size(); i++) {
+                board.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
+            }
+        }
+        return board;
+    }
+
 }

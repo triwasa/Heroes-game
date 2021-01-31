@@ -207,4 +207,9 @@ public class MapEditorEngine {
         notifyObservers(new PropertyChangeEvent(this, RANDOM_GENERATE, null, null));
 
     }
+
+    public void setBoard(Board board)
+    {
+        this.board=board;
+    }
 }

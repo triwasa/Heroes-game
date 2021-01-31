@@ -102,6 +102,7 @@ public class MapEditorController implements PropertyChangeListener {
     public void setBoard(Board board)
     {
         this.board=board;
+        mapEditorEngine.setBoard(board);
     }
 
     private void addingField(MapTile mapTile, Field field) {
