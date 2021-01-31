@@ -50,9 +50,6 @@ enum ArtifactStatistic implements ArtifactStatisticIf {
     RING_OF_LIFE("Ring of Life", "finger", "minor", "Increases health of all your units by 1"),
     VIAL_OF_LIFEBLOOD("Vial of Lifeblood", "misc", "major", "Increases health of all your units by 2"),
 
-    COLLAR_OF_CONJURING("Collar of Conjuring", "neck", "treasure", "Increases duration of all your spells by 1"),
-    RING_OF_CONJURING("Ring of Conjuring", "finger", "treasure", "Increases duration of all your spells by 2"),
-    CAPE_OF_CONJURING("Cape of Conjuring", "shoulders", "treasure", "Increases duration of all your spells by 3"),
     GARNITURE_OF_INTERFERENCE("Garniture of Interference", "neck", "major", "+5% to magic resistance"),
     SURCOAT_OF_COUNTERPOISE("Surcoat of Counterpoise", "shoulders", "major", "+10% to magic resistance"),
     BOOTS_OF_POLARITY("Boots of Polarity", "feet", "relic", "+15% to magic resistance"),
@@ -61,6 +58,10 @@ enum ArtifactStatistic implements ArtifactStatisticIf {
     CAPE_OF_VELOCITY("Cape of Velocity", "shoulders", "major", "Increases the combat speed of all your units by 2"),
 
     // SPELL
+    COLLAR_OF_CONJURING("Collar of Conjuring", "neck", "treasure", "Increases duration of all your spells by 1"),
+    RING_OF_CONJURING("Ring of Conjuring", "finger", "treasure", "Increases duration of all your spells by 2"),
+    CAPE_OF_CONJURING("Cape of Conjuring", "shoulders", "treasure", "Increases duration of all your spells by 3"),
+
     ORB_OF_THE_FIRMAMENT("Orb of Firmament", "misc", "major", "Hero's air spells to extra 50% damage"),
     ORB_OF_SILT("Orb of Silt", "misc", "major", "Hero's earth spells to extra 50% damage"),
     ORB_OF_TEMPSTUOUS_FIRE("Orb of Tempstuous Fire", "misc", "major", "Hero's fire spells to extra 50% damage"),
