@@ -2,6 +2,7 @@ package pl.sdk.gui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -9,6 +10,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.sdk.Board;
+
+import javax.swing.*;
 
 public class TemplateButton extends Button {
 
@@ -34,7 +37,7 @@ public class TemplateButton extends Button {
     private String startDialogAndReturnChosenMap() {
         VBox centerPane = new VBox();
         HBox bottomPane = new HBox();
-        HBox topPane = new HBox();
+        VBox topPane = new VBox();
         Stage dialog = prepareWindow(centerPane, bottomPane, topPane);
         prepareTop(topPane);
         dialog.showAndWait();
@@ -45,32 +48,69 @@ public class TemplateButton extends Button {
         // return  radioGroup.getSelectedToggle().getUserData().toString();
     }
 
-    private void prepareTop(HBox aTopPane) {
-
-        RadioButton radioButton1 = new RadioButton("Lava Map");
-        RadioButton radioButton2 = new RadioButton("Stone Map");
-        RadioButton radioButton3 = new RadioButton("Lava-Water Map");
-        RadioButton radioButton4 = new RadioButton("Poison Map");
-        RadioButton radioButton5 = new RadioButton("Don't change map");
+    private void prepareTop(VBox aTopPane) {
+        aTopPane.setSpacing(50);
+        RadioButton radioButton1 = new RadioButton("LavaMap");
+        RadioButton radioButton2 = new RadioButton("StoneMap");
+        RadioButton radioButton3 = new RadioButton("Lava-WaterMap");
+        RadioButton radioButton4 = new RadioButton("PoisonMap");
+       // RadioButton radioButton5 = new RadioButton("Don't change map");
 
         radioButton1.setToggleGroup(radioGroup);
         radioButton2.setToggleGroup(radioGroup);
         radioButton3.setToggleGroup(radioGroup);
         radioButton4.setToggleGroup(radioGroup);
-        radioButton5.setToggleGroup(radioGroup);
 
-        aTopPane.getChildren().add(new VBox(radioButton1));
-        aTopPane.getChildren().add(new VBox(radioButton2));
-        aTopPane.getChildren().add(new VBox(radioButton3));
-        aTopPane.getChildren().add(new VBox(radioButton4));
-        aTopPane.getChildren().add(new VBox(radioButton5));
+        //radioButton5.setToggleGroup(radioGroup);
+
+        VBox box1 = new VBox();
+        box1.setSpacing(30);
+        box1.getChildren().add(radioButton1);
+        box1.getChildren().add(new ImageTile("LavaMap"));
+
+        VBox box2 = new VBox();
+        box2.setSpacing(30);
+        box2.getChildren().add(radioButton2);
+        box2.getChildren().add(new ImageTile("StoneMap"));
+
+        HBox hbox1 = new HBox();
+        hbox1.setSpacing(70);
+        hbox1.getChildren().add(box1);
+        hbox1.getChildren().add(box2);
+
+        VBox box3 = new VBox();
+        box3.setSpacing(30);
+        box3.getChildren().add(radioButton3);
+        box3.getChildren().add(new ImageTile("Lava-WaterMap"));
+
+        VBox box4 = new VBox();
+        box4.setSpacing(30);
+        box4.getChildren().add(radioButton4);
+        box4.getChildren().add(new ImageTile("PoisonMap"));
+
+        HBox hbox2 = new HBox();
+        hbox2.setSpacing(70);
+        hbox2.getChildren().add(box3);
+        hbox2.getChildren().add(box4);
+
+        aTopPane.getChildren().add(hbox1);
+        aTopPane.getChildren().add(hbox2);
+        HBox hbox3 = new HBox();
+        Button unChose = new Button("Deselect your choice");
+        hbox3.getChildren().add(unChose);
+        hbox3.setAlignment(Pos.CENTER);
+        unChose.addEventHandler(MouseEvent.MOUSE_CLICKED,(e)->
+        {
+            if(radioGroup.getSelectedToggle() != null) radioGroup.getSelectedToggle().setSelected(false);
+        });
+        aTopPane.getChildren().add(hbox3);
 
     }
 
     private Stage prepareWindow(Pane aCenter, Pane aBottom, Pane aTop) {
         dialog = new Stage();
         BorderPane pane = new BorderPane();
-        Scene scene = new Scene(pane, 700,350);
+        Scene scene = new Scene(pane, 900,850);
         scene.getStylesheets().add("fxml/main.css");
         dialog.setScene(scene);
         dialog.initOwner(this.getScene().getWindow());
