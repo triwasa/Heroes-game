@@ -195,13 +195,13 @@ public class MapEditorEngine {
         int randomAmountOfObstacles = random.nextInt(19*14);
         int randomX,randomY;
 
-        List<Field> guiTileList = Arrays.asList(FieldsFactory.create("Lava"),FieldsFactory.create("Stone"),FieldsFactory.create("Water"));
+        List<Field> guiTileList = Arrays.asList(FieldsFactory.create("Lava"),FieldsFactory.create("Stone"),FieldsFactory.create("Water"),FieldsFactory.create("Poison"));
         for(int i=0;i<randomAmountOfObstacles;i++)
         {
             randomX= random.nextInt(18) + 1;
             randomY = random.nextInt(15);
             if(!board.isTileTakenByField(new Point(randomX,randomY))) {
-                board.add(new Point(randomX, randomY),guiTileList.get((randomX+randomY)%3));
+                board.add(new Point(randomX, randomY),guiTileList.get((randomX+randomY)%4));
             }else continue;
         }
         notifyObservers(new PropertyChangeEvent(this, RANDOM_GENERATE, null, null));
