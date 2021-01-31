@@ -30,21 +30,11 @@ public class Creature implements PropertyChangeListener, BattleObject {
         currentHp = stats.getMaxHp();
     }
 
-    public void attack(Creature aDefender) {
-        if (isAlive()){
-            int damageToDeal = calculateDamage(this, aDefender);
-            aDefender.applyDamage(damageToDeal);
-            counterAttack(aDefender);
-        }
-    }
 
-     /*public int calculateDamage(Creature aAttacker, Creature aDefender) {
-        return calculateDamageStrategy.calculateDamage(aAttacker, aDefender);
-    }*/
     public void counterAttack(AttackingBattleObject aAttacker) {
         if (canCounterAttack()){
-            int damageToDealInCounterAttack = calculateDamage(aDefender, this);
-            aAttacker.getDamageA.applyDamage(damageToDealInCounterAttack);
+            int damageToDealInCounterAttack = getCalculateDamage().calculateDamage(this, aAttacker);
+            aAttacker.getDamageApplier().applyDamage(damageToDealInCounterAttack, aAttacker);
             counterAttackedInThisTurn();
         }
     }
@@ -98,7 +88,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
 
 
     @Override
-    public DamageApplierIf getApplyDamage() {
+    public DamageApplierIf getDamageApplier() {
         return damageApplier;
     }
 

@@ -18,7 +18,7 @@ public class MulitpleAttackAttackStrategy extends AbstractAttackStrategy {
         for(int i = 0; i < attackCount; i++) {
             if (aAttacker.isAlive()){
                 int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
-                aDefender.getApplyDamage().applyDamage(damageToDeal, aDefender);;
+                aDefender.getDamageApplier().applyDamage(damageToDeal, aDefender);;
             }
         }
     }

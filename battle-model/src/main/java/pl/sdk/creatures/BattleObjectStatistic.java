@@ -9,4 +9,5 @@ public interface BattleObjectStatistic {
     int getCurrentHp();
     boolean isAlive();
     boolean[][] getSplashRange();
+    DamageApplierIf getDamageApplier();
 }

@@ -21,6 +21,6 @@ public class HealAfterAttackAttackStrategy extends AbstractAttackStrategy {
     }
     public void healAfterAttack(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
         int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker, aDefender);
-        aDefender.getApplyDamage().applyDamage((int)(-damageToDeal * selfHealingPercentage), aDefender);
+        aDefender.getDamageApplier().applyDamage((int)(-damageToDeal * selfHealingPercentage), aDefender);
     }
 }

@@ -9,7 +9,7 @@ public abstract class AbstractAttackStrategy implements AttackStrategy {
         if (aAttacker.isAlive()){
             beforeAttack(aAttacker,aDefender);
             int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
-            aDefender.getApplyDamage().applyDamage(damageToDeal, aDefender);
+            aDefender.getDamageApplier().applyDamage(damageToDeal, aDefender);
             afterAttack(aAttacker,aDefender);
         }
     }
