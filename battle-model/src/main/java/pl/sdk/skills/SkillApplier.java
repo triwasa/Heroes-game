@@ -3,6 +3,7 @@ package pl.sdk.skills;
 import pl.sdk.Hero;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.*;
+import pl.sdk.skills.Skill;
 
 import java.util.List;
 import java.util.ListIterator;
@@ -91,9 +92,7 @@ public class SkillApplier {
                 ListIterator<Creature> listIter = creatures.listIterator();
                 while (listIter.hasNext()) {
                     Creature decoratedCreature = listIter.next();
-                    if (decoratedCreature.getAttackRange() == 1) {
-                        decoratedCreature = new PercentDamageReduceCreatureDecorator(decoratedCreature, 5);
-                    }
+                    decoratedCreature = new PercentDamageReduceCreatureDecorator(decoratedCreature, 5);
                     listIter.set(decoratedCreature);
                 }
                 break;
@@ -103,9 +102,7 @@ public class SkillApplier {
                 ListIterator<Creature> listIter = creatures.listIterator();
                 while (listIter.hasNext()) {
                     Creature decoratedCreature = listIter.next();
-                    if (decoratedCreature.getAttackRange() == 1) {
-                        decoratedCreature = new PercentDamageReduceCreatureDecorator(decoratedCreature, 10);
-                    }
+                    decoratedCreature = new PercentDamageReduceCreatureDecorator(decoratedCreature, 10);
                     listIter.set(decoratedCreature);
                 }
                 break;
@@ -115,35 +112,81 @@ public class SkillApplier {
                 ListIterator<Creature> listIter = creatures.listIterator();
                 while (listIter.hasNext()) {
                     Creature decoratedCreature = listIter.next();
-                    if (decoratedCreature.getAttackRange() == 1) {
-                        decoratedCreature = new PercentDamageReduceCreatureDecorator(decoratedCreature, 15);
-                    }
+                    decoratedCreature = new PercentDamageReduceCreatureDecorator(decoratedCreature, 15);
                     listIter.set(decoratedCreature);
                 }
                 break;
             }
             case "Leadership: basic": {
-                System.out.println(aName);
+                //hero.increaseMorale(1);
                 break;
             }
             case "Leadership: advanced": {
-                System.out.println(aName);
+                //hero.increaseMorale(2);
                 break;
             }
             case "Leadership: expert": {
-                System.out.println(aName);
+                //hero.increaseMorale(3);
                 break;
             }
             case "Luck: basic": {
-                System.out.println(aName);
+                //hero.increaseLuck(1);
                 break;
             }
             case "Luck: advanced": {
-                System.out.println(aName);
+               // hero.increaseLuck(2);
                 break;
             }
             case "Luck: expert": {
+                //hero.increaseLuck(3);
+                break;
+            }
+            case "Artillery: basic": {
                 System.out.println(aName);
+                break;
+            }
+            case "Artillery: advanced": {
+                System.out.println(aName);
+                break;
+            }
+            case "Artillery: expert": {
+                System.out.println(aName);
+                break;
+            }
+            case "Intelligence: basic": {
+                //hero.IncreaseMana(hero.getMana() * 0.25);
+                break;
+            }
+            case "Intelligence: advanced": {
+                //hero.IncreaseMana(hero.getMana() * 0.55);
+                break;
+            }
+            case "Intelligence: expert": {
+                //hero.IncreaseMana(hero.getMana());
+                break;
+            }
+            case "Resistance: basic": {
+                List<Creature> creatures = hero.getCreatures();
+                ListIterator<Creature> listIter = creatures.listIterator();
+                while (listIter.hasNext()) {
+                    //listIter.next().increaseResistance(5);
+                }
+                break;
+            }
+            case "Resistance: advanced": {
+                List<Creature> creatures = hero.getCreatures();
+                ListIterator<Creature> listIter = creatures.listIterator();
+                while (listIter.hasNext()) {
+                    //listIter.next().increaseResistance(10);
+                }
+                break;
+            }
+            case "Resistance: expert": {
+                List<Creature> creatures = hero.getCreatures();
+                ListIterator<Creature> listIter = creatures.listIterator();
+                while (listIter.hasNext()) {
+                    //listIter.next().increaseResistance(20);
+                }
                 break;
             }
             default:
