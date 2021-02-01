@@ -1,3 +1,4 @@
+/*
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
@@ -21,4 +22,4 @@ class CatapultTest {
 
     }
 
-}
+}*/

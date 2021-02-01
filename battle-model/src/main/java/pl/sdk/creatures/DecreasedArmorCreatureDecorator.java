@@ -88,6 +88,15 @@ public class DecreasedArmorCreatureDecorator extends Creature {
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         decorated.propertyChange(aPropertyChangeEvent);
     }
+    @Override
+    public void currentHpAfterAttack(int aCurrentHp) {
+        decorated.currentHpAfterAttack(aCurrentHp);
+    }
+
+    @Override
+    public void amountAfterAttack(int aAmount) {
+        decorated.amountAfterAttack(aAmount);
+    }
 
     @Override
     public int getAttack() {

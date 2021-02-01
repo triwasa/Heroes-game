@@ -37,14 +37,14 @@ public class SplashDamageCreatureTest {
         GameEngine gameEngine = new GameEngine(List.of(splashCreature), Collections.emptyList(), board);
         gameEngine.attack(10,10);
 
-        verify(defender).applyDamage(anyInt());
-        verify(notSplashMock1,never()).applyDamage(anyInt());
-        verify(notSplashMock2,never()).applyDamage(anyInt());
-        verify(notSplashMock3,never()).applyDamage(anyInt());
-        verify(splashMock1).applyDamage(anyInt());
-        verify(splashMock2).applyDamage(anyInt());
-        verify(splashMock3).applyDamage(anyInt());
-        verify(splashMock4).applyDamage(anyInt());
+        verify(defender).getDamageApplier().applyDamage(anyInt(),defender);
+        verify(notSplashMock1,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock1);
+        verify(notSplashMock2,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock2);
+        verify(notSplashMock3,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock3);
+        verify(splashMock1).getDamageApplier().applyDamage(anyInt(),splashMock1);
+        verify(splashMock2).getDamageApplier().applyDamage(anyInt(),splashMock2);
+        verify(splashMock3).getDamageApplier().applyDamage(anyInt(),splashMock3);
+        verify(splashMock4).getDamageApplier().applyDamage(anyInt(),splashMock4);
     };
 
     @Test
@@ -72,14 +72,14 @@ public class SplashDamageCreatureTest {
         GameEngine gameEngine = new GameEngine(List.of(notSplashCreature), Collections.emptyList(), board);
         gameEngine.attack(1,1);
 
-        verify(defender).applyDamage(anyInt());
-        verify(notSplashMock1,never()).applyDamage(anyInt());
-        verify(notSplashMock2,never()).applyDamage(anyInt());
-        verify(notSplashMock3,never()).applyDamage(anyInt());
-        verify(splashMock1,never()).applyDamage(anyInt());
-        verify(splashMock2,never()).applyDamage(anyInt());
-        verify(splashMock3,never()).applyDamage(anyInt());
-        verify(splashMock4,never()).applyDamage(anyInt());
+        verify(defender).getDamageApplier().applyDamage(anyInt(),defender);
+        verify(notSplashMock1,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock1);
+        verify(notSplashMock2,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock2);
+        verify(notSplashMock3,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock3);
+        verify(splashMock1,never()).getDamageApplier().applyDamage(anyInt(),splashMock1);
+        verify(splashMock2,never()).getDamageApplier().applyDamage(anyInt(),splashMock2);
+        verify(splashMock3,never()).getDamageApplier().applyDamage(anyInt(),splashMock3);
+        verify(splashMock4,never()).getDamageApplier().applyDamage(anyInt(),splashMock4);
     };
 
 

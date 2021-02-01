@@ -1,8 +1,11 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.sdk.AttackEngine;
+import pl.sdk.Board;
 
 import java.util.Random;
 
@@ -11,15 +14,17 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class AttackCreatureTest {
+class AttackEngineTest {
 
     public static final int NOT_IMPORTANT = 5;
     private Random randomizer;
+    private AttackEngine attackEngine;
 
     @BeforeEach
     void init(){
         randomizer = mock(Random.class);
         when(randomizer.nextInt(anyInt())).thenReturn(4);
+        attackEngine = new AttackEngine(new Board());
     }
 
 
@@ -42,7 +47,7 @@ class AttackCreatureTest {
                 .damage(Range.closed(5,5))
                 .build();
 
-        attacker.attack(defender);
+        attackEngine.attack(attacker,defender);
 
         assertEquals(80,defender.getCurrentHp());
     }
@@ -66,7 +71,7 @@ class AttackCreatureTest {
                 .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
                 .build();
 
-        attacker.attack(defender);
+        attackEngine.attack(attacker,defender);
 
         assertEquals(78,defender.getCurrentHp());
     }
@@ -89,7 +94,7 @@ class AttackCreatureTest {
                 .moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
                 .build();
-        attacker.attack(defender);
+        attackEngine.attack(attacker,defender);
 
         assertEquals(87,defender.getCurrentHp());
     }
@@ -112,7 +117,7 @@ class AttackCreatureTest {
                 .moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
                 .build();
-        attacker.attack(defender);
+        attackEngine.attack(attacker,defender);
 
         assertEquals(74,defender.getCurrentHp());
     }

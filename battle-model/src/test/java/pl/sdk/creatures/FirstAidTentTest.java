@@ -1,4 +1,4 @@
-package pl.sdk.creatures;
+/*package pl.sdk.creatures;
 
 
 import com.google.common.collect.Range;
@@ -77,4 +77,4 @@ class FirstAidTentTest {
         assertEquals(100,defender.getCurrentHp());
         assertEquals(1,defender.getAmount());
 
-}}
+}}*/

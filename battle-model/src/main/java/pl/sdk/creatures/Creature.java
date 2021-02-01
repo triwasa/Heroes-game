@@ -23,6 +23,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
     Creature(){
         stats = CreatureStatistic.TEST;
         calculateDamageStrategy = new DefaultCalculateStrategy();
+        damageApplier = new DefaultDamageApplier();
     }
 
     Creature(CreatureStatisticIf aStats){
@@ -44,6 +45,16 @@ public class Creature implements PropertyChangeListener, BattleObject {
 
     public boolean isAlive() {
         return amount > 0;
+    }
+
+    @Override
+    public void currentHpAfterAttack(int aCurrentHp) {
+        currentHp = aCurrentHp;
+    }
+
+    @Override
+    public void amountAfterAttack(int aAmount) {
+        amount = aAmount;
     }
 
     public int getCurrentHp() {
@@ -71,6 +82,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         counterAttackedInThisTurn = false;
     }
+
 
 
     @Override

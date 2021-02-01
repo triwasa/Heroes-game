@@ -1,7 +1,9 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.sdk.AttackEngine;
 import pl.sdk.Board;
 import pl.sdk.GameEngine;
 
@@ -13,6 +15,12 @@ public class ShootingAndBlockCounterAttackCreatureTest {
 
     int NOT_IMPORTANT = 5;
     int MORE_THAN_SECOND_CREATURE = NOT_IMPORTANT+1;
+    private AttackEngine attackEngine;
+
+    @BeforeEach
+    void init() {
+        attackEngine = new AttackEngine(new Board());
+    }
 
     @Test
     void creatureCanAttackEvenDistanceToOpponentIsMoreThanOne(){
@@ -52,6 +60,7 @@ public class ShootingAndBlockCounterAttackCreatureTest {
                 .armor(10)
                 .damage(Range.closed(10, 10))
                 .moveRange(NOT_IMPORTANT)
+                .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                 .amount(1)
                 .build();
         Creature normalCreature = new Creature.BuilderForTesting()
@@ -64,8 +73,8 @@ public class ShootingAndBlockCounterAttackCreatureTest {
                 .amount(1)
                 .build();
 
-        blockCounterAttackCreature = new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(blockCounterAttackCreature));
-        blockCounterAttackCreature.attack(normalCreature);
+        blockCounterAttackCreature = new ShootingCreatureDecorator(blockCounterAttackCreature);
+        attackEngine.attack(blockCounterAttackCreature,normalCreature);
         blockCounterAttackCreature.getAttackRange();
 
         assertEquals(100,blockCounterAttackCreature.getCurrentHp());
