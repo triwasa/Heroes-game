@@ -60,6 +60,7 @@ public class ShootingAndBlockCounterAttackCreatureTest {
                 .armor(10)
                 .damage(Range.closed(10, 10))
                 .moveRange(NOT_IMPORTANT)
+                .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                 .amount(1)
                 .build();
         Creature normalCreature = new Creature.BuilderForTesting()

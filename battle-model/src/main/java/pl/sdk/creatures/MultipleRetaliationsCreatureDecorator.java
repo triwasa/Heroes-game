@@ -58,7 +58,15 @@ public class MultipleRetaliationsCreatureDecorator extends Creature {
         currentRetaliationsAmount = currentRetaliationsAmount - 1;
     }
 
+    @Override
+    public void currentHpAfterAttack(int aCurrentHp) {
+        decorated.currentHpAfterAttack(aCurrentHp);
+    }
 
+    @Override
+    public void amountAfterAttack(int aAmount) {
+        decorated.amountAfterAttack(aAmount);
+    }
 
     @Override
     public boolean isAlive() {

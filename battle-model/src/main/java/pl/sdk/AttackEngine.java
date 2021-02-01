@@ -11,9 +11,7 @@ public class AttackEngine {
     }
 
     public void attack(BattleObject aAttacker, BattleObject aDefender) {
-        if (aAttacker.isAlive()) {
             aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
-        }
     }
     public void attack(Creature aAttacker, int aX, int aY) {
         boolean[][] splashRange = aAttacker.getSplashRange();

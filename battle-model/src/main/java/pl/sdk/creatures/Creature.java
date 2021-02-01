@@ -23,6 +23,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
     Creature(){
         stats = CreatureStatistic.TEST;
         calculateDamageStrategy = new DefaultCalculateStrategy();
+        damageApplier = new DefaultDamageApplier();
     }
 
     Creature(CreatureStatisticIf aStats){
