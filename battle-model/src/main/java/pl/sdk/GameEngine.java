@@ -28,7 +28,6 @@ public class GameEngine {
     private List<Creature> creatures1;
     private List<Creature> creatures2;
     private final AttackEngine attackEngine;
-    private final PositionSaver positionSaver;
 
 //    public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
 //        this(aCreatures1, aCreatures2, new Board());
@@ -49,7 +48,7 @@ public class GameEngine {
 
         observerSupport = new PropertyChangeSupport(this);
 
-        positionSaver = new PositionSaver(this);
+
     }
 
     public void addObserver(String aEventType, PropertyChangeListener aObs) {

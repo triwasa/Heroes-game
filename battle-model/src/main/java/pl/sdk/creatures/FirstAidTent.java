@@ -1,4 +1,4 @@
-package pl.sdk.creatures;
+/*package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
@@ -60,4 +60,4 @@ public class FirstAidTent extends Creature {
         else return 0;
     }
 
-}
+}*/

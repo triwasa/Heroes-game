@@ -1,3 +1,4 @@
+/*
 package pl.sdk.creatures;
 
 public class WarMachineFactory extends AbstractFactory {
@@ -21,3 +22,4 @@ public class WarMachineFactory extends AbstractFactory {
     }
 }
 
+*/

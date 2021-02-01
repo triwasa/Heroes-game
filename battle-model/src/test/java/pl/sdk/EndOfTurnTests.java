@@ -21,9 +21,10 @@ public class EndOfTurnTests {
         Creature attacker = NecropolisFactory.createDefaultForTests();
         Creature defender = NecropolisFactory.createDefaultForTests();
         GameEngine engine = new GameEngine(List.of(attacker), List.of(defender) , new Board());
+        AttackEngine attackEngine = new AttackEngine(new Board());
 
         assertEquals(true, defender.canCounterAttack());
-        attacker.attack(defender);
+        attackEngine.attack(attacker,defender);
         assertEquals(false, defender.canCounterAttack());
 
         engine.pass();

@@ -10,23 +10,23 @@ public abstract class AbstractDamageApplier implements DamageApplierIf {
 
         int fullCurrentHp = (aDefender.getMaxHp() * (amount - 1)) + currentHp - aDamageToApply;
         if (fullCurrentHp <= 0) {
-            amount = 0;
-            currentHp = 0;
+            aDefender.amountAfterAttack(0);
+            aDefender.currentHpAfterAttack(0);
         }
         else
         {
             if(fullCurrentHp % aDefender.getMaxHp()==0)
             {
-                currentHp=aDefender.getMaxHp();
-                amount=fullCurrentHp/aDefender.getMaxHp();
+                aDefender.currentHpAfterAttack(aDefender.getMaxHp());
+                aDefender.amountAfterAttack(fullCurrentHp/aDefender.getMaxHp());
             }
             else
             {
-                currentHp = fullCurrentHp % aDefender.getMaxHp();
+                aDefender.currentHpAfterAttack(fullCurrentHp % aDefender.getMaxHp());
                 if (aDamageToApply >= 0){
-                    amount = (fullCurrentHp/aDefender.getMaxHp()) + 1;
+                    aDefender.amountAfterAttack( (fullCurrentHp/aDefender.getMaxHp()) + 1);
                 }else{
-                    amount = (fullCurrentHp/aDefender.getMaxHp());
+                    aDefender.amountAfterAttack(fullCurrentHp/aDefender.getMaxHp());
                 }
             }
         }

@@ -46,6 +46,16 @@ public class Creature implements PropertyChangeListener, BattleObject {
         return amount > 0;
     }
 
+    @Override
+    public void currentHpAfterAttack(int aCurrentHp) {
+        currentHp = aCurrentHp;
+    }
+
+    @Override
+    public void amountAfterAttack(int aAmount) {
+        amount = aAmount;
+    }
+
     public int getCurrentHp() {
         return currentHp;
     }
@@ -71,6 +81,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         counterAttackedInThisTurn = false;
     }
+
 
 
     @Override

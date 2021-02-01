@@ -6,9 +6,10 @@ public class AttackEngine {
     Board board;
 
 
-    AttackEngine(Board aBoard) {
+    public AttackEngine(Board aBoard) {
         board = aBoard;
     }
+
     public void attack(BattleObject aAttacker, BattleObject aDefender) {
         if (aAttacker.isAlive()) {
             aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
