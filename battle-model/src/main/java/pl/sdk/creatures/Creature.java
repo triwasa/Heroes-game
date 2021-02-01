@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Creature implements PropertyChangeListener, BattleObject {
+public class Creature implements PropertyChangeListener, BattleObject, CreatureAttacker, DefendingCreature {
 
     private final CreatureStatisticIf stats;
     private int currentHp;
@@ -164,6 +164,15 @@ public class Creature implements PropertyChangeListener, BattleObject {
         return false;
     }
 
+    @Override
+    public boolean attackable(CreatureAttacker attacker) {
+        return true;
+    }
+
+    @Override
+    public boolean attackable(FortificationAttacker attacker) {
+        return false;
+    }
 
 
     static class Builder {

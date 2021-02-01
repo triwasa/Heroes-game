@@ -1,63 +1,102 @@
 package pl.sdk.creatures;
 
-public class Wall implements Fortification {
+import com.google.common.collect.Range;
+
+public class Wall implements Fortification, BattleObject {
 
     private int maxHp = 2;
     private int currentHp = 2;
-    private int amount = 1;
     private int level = 1;
-
-
+    private DamageApplierIf damageApplier;
 
 
     @Override
+    public AttackStrategy getAttackStrategy() {
+        return null;
+    }
+
+    @Override
+    public CalculateDamageStrategy getCalculateDamage() {
+        return null;
+    }
+
+    @Override
+    public Range<Integer> getDamage() {
+        return null;
+    }
+
+    @Override
+    public int getAttack() {
+        return 0;
+    }
+
+    @Override
+    public boolean attackable(CreatureAttacker attacker) {
+        return false;
+    }
+
+    @Override
+    public boolean attackable(FortificationAttacker attacker) {
+        return true;
+    }
+
+    @Override
+    public void counterAttack(BattleObject aDefender) {
+
+    }
+
+    @Override
+    public int getArmor() {
+        return 0;
+    }
+
+    @Override
+    public void amountAfterAttack(int aAmount) {
+
+    }
+
+    @Override
     public String getName() {
-        return "Wall";
+        return null;
     }
 
     @Override
     public int getAmount() {
-        if(currentHp > 0){
-            return 1;
-        }
-        else return 0;
+        return 0;
+    }
+
+    @Override
+    public boolean[][] getSplashRange() {
+        return new boolean[0][];
+    }
+
+    @Override
+    public DamageApplierIf getDamageApplier() {
+        return null;
+    }
+
+    @Override
+    public boolean isAlive() {
+        return false;
     }
 
     @Override
     public int getLevel() {
-        return level;
-    }
-
-
-    public int getMoveRange() {
         return 0;
     }
 
     @Override
     public int getCurrentHp() {
-        return currentHp;
+        return 0;
     }
 
     @Override
     public int getMaxHp() {
-        return maxHp;
+        return 0;
     }
 
+    @Override
+    public void currentHpAfterAttack(int currentHp) {
 
-    public void applyDamage(int aDamageToApply) {
-        int fullCurrentHp = currentHp - aDamageToApply;
-        if (fullCurrentHp <= 0) {
-            amount = 0;
-            currentHp = 0;
-        }
-            else
-        {
-            currentHp = fullCurrentHp;
-        }
     }
-
-
-
-
-
 }

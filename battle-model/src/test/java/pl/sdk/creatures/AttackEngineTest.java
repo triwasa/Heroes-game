@@ -2,6 +2,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 import org.checkerframework.checker.units.qual.A;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.AttackEngine;
@@ -9,7 +10,7 @@ import pl.sdk.Board;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -120,5 +121,15 @@ class AttackEngineTest {
         attackEngine.attack(attacker,defender);
 
         assertEquals(74,defender.getCurrentHp());
+    }
+
+    @Test
+    void canAttack() {
+        assertFalse(attackEngine.canAttack(new Creature(),new Wall()));
+        assertTrue(attackEngine.canAttack(new Creature(),new Ballista()));
+        assertTrue(attackEngine.canAttack(new Ballista(),new Creature()));
+        assertTrue(attackEngine.canAttack(new Keep(),new Creature()));
+        assertFalse(attackEngine.canAttack(new Catapult(), new Creature()));
+        assertTrue(attackEngine.canAttack(new Catapult(), new Wall()));
     }
 }

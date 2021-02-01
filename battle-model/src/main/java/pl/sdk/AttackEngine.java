@@ -13,6 +13,7 @@ public class AttackEngine {
     public void attack(BattleObject aAttacker, BattleObject aDefender) {
             aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
     }
+
     public void attack(Creature aAttacker, int aX, int aY) {
         boolean[][] splashRange = aAttacker.getSplashRange();
         for (int x = 0; x < splashRange.length; x++) {
@@ -20,12 +21,21 @@ public class AttackEngine {
                 if (splashRange[x][y]) {
                     BattleObject attackedCreature = board.get(aX + x - 1, aY + y - 1);
                     if (attackedCreature != null){
-                       attack(aAttacker, board.get(aX + x - 1, aY + y - 1));
+                       attack(aAttacker,  attackedCreature);
                     }
                 }
             }
         }
     }
+
+    public boolean canAttack(CreatureAttacker attacker, Defender possibleDefender) {
+        return possibleDefender.attackable(attacker);
+    }
+    public boolean canAttack(FortificationAttacker attacker, Defender possibleDefender) {
+        return possibleDefender.attackable(attacker);
+    }
+
+
 
 
 }

@@ -1,9 +1,5 @@
 package pl.sdk.creatures;
 
-import pl.sdk.creatures.AttackStrategy;
-import pl.sdk.creatures.AttackingBattleObject;
-import pl.sdk.creatures.DefendingBattleObject;
-
 public class BlockCounterAttackAttackStrategy extends DefaultAttackStrategy {
 
     private final AttackStrategy decoratedAttackStrategy;
