@@ -14,17 +14,19 @@ public class StrongholdFactory extends AbstractFactory {
                             .amount(aAmount)
                             .build();
                 case 2:
-                    Creature wolfRaider = new Creature.Builder()
+                    return new Creature.Builder()
                             .statistic(CreatureStatistic.WOLF_RAIDER)
                             .amount(aAmount)
+                            .attackStrategy(new MulitpleAttackAttackStrategy(new DefaultAttackStrategy(),2))
                             .build();
-                    return new MultipleAttackCreatureDecorator(wolfRaider,2);
+
                 case 3:
                     Creature orcchieftain = new Creature.Builder()
                             .statistic(CreatureStatistic.ORC_CHIEFTAIN)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(orcchieftain));
+                    return new ShootingCreatureDecorator(orcchieftain);
                 case 4:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.OGRE_MAGI)
@@ -39,8 +41,9 @@ public class StrongholdFactory extends AbstractFactory {
                     Creature cyclopsKing = new Creature.Builder()
                             .statistic(CreatureStatistic.CYCLOPS_KING)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(cyclopsKing));
+                    return new ShootingCreatureDecorator(cyclopsKing);
                 case 7:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.ANCIENT_BEHEMOTH)
@@ -67,8 +70,9 @@ public class StrongholdFactory extends AbstractFactory {
                     Creature orc = new Creature.Builder()
                             .statistic(CreatureStatistic.ORC)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(orc));
+                    return new ShootingCreatureDecorator(orc);
                 case 4:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.OGRE)
@@ -83,8 +87,9 @@ public class StrongholdFactory extends AbstractFactory {
                     Creature cyclops = new Creature.Builder()
                             .statistic(CreatureStatistic.CYCLOPS)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(cyclops));
+                    return new ShootingCreatureDecorator(cyclops);
                 case 7:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.BEHEMOTH)

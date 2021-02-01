@@ -21,8 +21,9 @@ public class RampartFactory extends AbstractFactory {
                         Creature grandElf = new Creature.Builder()
                                 .statistic(CreatureStatistic.GRAND_ELF)
                                 .amount(aAmount)
+                                .attackStrategy(new MulitpleAttackAttackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()),2))
                                 .build();
-                        return new MultipleAttackCreatureDecorator(new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(grandElf)),2);
+                        return new ShootingCreatureDecorator(grandElf);
                     case 4:
                         return new Creature.Builder()
                                 .statistic(CreatureStatistic.SILVER_PEGASUS)
@@ -65,8 +66,9 @@ public class RampartFactory extends AbstractFactory {
                         Creature woodElf = new Creature.Builder()
                                 .statistic(CreatureStatistic.WOOD_ELF)
                                 .amount(aAmount)
+                                .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                                 .build();
-                        return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(woodElf));
+                        return new ShootingCreatureDecorator(woodElf);
                     case 4:
                         return new Creature.Builder()
                                 .statistic(CreatureStatistic.PEGASUS)

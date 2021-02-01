@@ -11,7 +11,7 @@ public class Start extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("fxml/battleMap.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("fxml/editorMap.fxml"));
         loader.setController(new MapEditorController(new Board()));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);

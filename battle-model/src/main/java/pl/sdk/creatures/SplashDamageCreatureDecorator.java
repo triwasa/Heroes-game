@@ -14,19 +14,11 @@ public class SplashDamageCreatureDecorator extends Creature {
         splashDamageTable = aSplashDamageTable;
     }
 
-    @Override
-    public void attack(Creature aDefender) {
-        decorated.attack(aDefender);
-    }
+
 
     @Override
-    public int calculateDamage(Creature aAttacker, Creature aDefender) {
-        return decorated.calculateDamage(aAttacker, aDefender);
-    }
-
-    @Override
-    public void counterAttack(Creature aDefender) {
-        decorated.counterAttack(aDefender);
+    public void counterAttack(BattleObject aAttacker) {
+        decorated.counterAttack(aAttacker);
     }
 
     @Override
@@ -35,8 +27,28 @@ public class SplashDamageCreatureDecorator extends Creature {
     }
 
     @Override
-    public void applyDamage(int aDamageToApply) {
-        decorated.applyDamage(aDamageToApply);
+    public String getMovementType() {
+        return decorated.getMovementType();
+    }
+
+    @Override
+    public DamageApplierIf getDamageApplier() {
+        return decorated.getDamageApplier();
+    }
+
+    @Override
+    public AttackStrategy getAttackStrategy() {
+        return decorated.getAttackStrategy();
+    }
+
+    @Override
+    public CalculateDamageStrategy getCalculateDamage() {
+        return decorated.getCalculateDamage();
+    }
+
+    @Override
+    public int getLevel() {
+        return decorated.getLevel();
     }
 
     @Override

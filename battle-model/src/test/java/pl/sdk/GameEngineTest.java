@@ -17,10 +17,10 @@ class GameEngineTest {
         List<Creature> l1 = List.of(factory.create(true, 5,1), spy(Creature.class));
         List<Creature> l2 = List.of(spy(Creature.class));
 
-        GameEngine engine = new GameEngine(l1,l2);
+        GameEngine engine = new GameEngine(l1,l2, new Board());
         assertTrue(engine.canAttack(GameEngine.BOARD_WIDTH-1, 1));
         assertFalse(engine.canAttack(0,1));
         assertFalse(engine.canAttack(0,1));
-    }
+   }
 
 }

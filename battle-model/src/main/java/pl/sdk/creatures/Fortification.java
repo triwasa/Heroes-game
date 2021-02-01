@@ -1,8 +1,8 @@
 package pl.sdk.creatures;
 
-public interface Fortification {
 
-    boolean isAttackPossible();
+
+public interface Fortification {
 
     String getName();
 
@@ -14,5 +14,4 @@ public interface Fortification {
 
     int getMaxHp();
 
-    void applyDamage(int damageToDeal);
 }

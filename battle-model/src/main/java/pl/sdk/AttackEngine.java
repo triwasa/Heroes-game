@@ -1,21 +1,17 @@
 package pl.sdk;
 
-import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.*;
 
 public class AttackEngine {
     Board board;
-    AbstractDamageApplier damageApplier;
 
 
     AttackEngine(Board aBoard) {
         board = aBoard;
-        damageApplier = new DefaultDamageApplier();
     }
-    public void attack(Creature aAttacker, Creature aDefender) {
+    public void attack(BattleObject aAttacker, BattleObject aDefender) {
         if (aAttacker.isAlive()) {
-            int damageToDeal = aAttacker.calculateDamage(aAttacker, aDefender);
-            aDefender.applyDamage(damageToDeal);
-            aAttacker.counterAttack(aDefender);
+            aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
         }
     }
     public void attack(Creature aAttacker, int aX, int aY) {
@@ -23,21 +19,15 @@ public class AttackEngine {
         for (int x = 0; x < splashRange.length; x++) {
             for (int y = 0; y < splashRange.length; y++) {
                 if (splashRange[x][y]) {
-                    Creature attackedCreature = (Creature) board.get(aX + x - 1, aY + y - 1);
+                    BattleObject attackedCreature = board.get(aX + x - 1, aY + y - 1);
                     if (attackedCreature != null){
-                       attack(aAttacker, (Creature)board.get(aX + x - 1, aY + y - 1));
+                       attack(aAttacker, board.get(aX + x - 1, aY + y - 1));
                     }
                 }
             }
         }
     }
 
-    /*void counterAttack(Creature aCounterAttacker, Creature aDefender ) {
-        if (aDefender.canCounterAttack()) {
-            int damageToDealInCounterAttack = aDefender.calculateDamage(aDefender, this);
-            damageApplier.applyDamage(damageToDealInCounterAttack, aDefender);
-            aDefender.counterAttackedInThisTurn();
-        }
-    }*/
+
 }
 

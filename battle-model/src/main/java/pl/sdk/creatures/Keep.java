@@ -45,4 +45,8 @@ public class Keep extends Creature implements Fortification {
         else return 0;
     }
 
+    @Override
+    public void counterAttack(Attacker aDefender) {
+        return;
+    }
 }

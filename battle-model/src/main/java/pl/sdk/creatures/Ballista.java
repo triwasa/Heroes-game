@@ -21,7 +21,7 @@ public class Ballista extends Creature {
 
     public void attack(Creature aDefaultForTests){
         int damageToDeal = dealDamageCalc.calculateDamage(this, aDefaultForTests);
-        aDefaultForTests.applyDamage(damageToDeal);
+        aDefaultForTests.getDamageApplier().applyDamage(damageToDeal, aDefaultForTests);
     }
 
     @Override

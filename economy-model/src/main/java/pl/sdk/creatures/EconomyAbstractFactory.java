@@ -13,6 +13,7 @@ public abstract class EconomyAbstractFactory {
     public static final String STRONGHOLD = "Stronghold";
     public static final String NECROPOLIS = "Nectropolis";
     public static final String NEUTRAL = "Neutral";
+    public static final String WARMACHINE = "Warmachine";
     private static final String EXCEPTION = "Fraction does not exist";
 
     public static EconomyAbstractFactory getFraction(String fraction) {
@@ -35,6 +36,8 @@ public abstract class EconomyAbstractFactory {
                 return new EconomyNecropolisFactory();
             case NEUTRAL:
                 return new EconomyNeutralFactory();
+            case WARMACHINE:
+                return new EconomyWarmachineFactory();
             default:
                 throw new IllegalArgumentException(EXCEPTION);
         }
