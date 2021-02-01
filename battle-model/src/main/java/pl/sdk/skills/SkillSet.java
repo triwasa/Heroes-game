@@ -1,13 +1,12 @@
 package pl.sdk.skills;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import pl.sdk.Hero;
+
+import java.util.*;
 
 public class SkillSet {
 
-private Set<Skill> skillSet;
+private HashSet<Skill> skillSet;
 
 public SkillSet(){
     skillSet = new HashSet<Skill>();
@@ -17,9 +16,9 @@ void addSkill(Skill skill) {
     if (skill.getTier() == 1) {
         skillSet.add(skill);
     } else {
-        Iterator value = skillSet.iterator();
+        Iterator<Skill> value = skillSet.iterator();
         while (value.hasNext()) {
-            Skill skillToCompare = skillSet.iterator().next();
+            Skill skillToCompare = value.next();
             if (skill.getCoreName() == skillToCompare.getCoreName()) {
                 if (skill.getTier() > skillToCompare.getTier()) {
                     skillSet.remove(skillToCompare);
@@ -30,7 +29,13 @@ void addSkill(Skill skill) {
         }
     }
 }
-
+public void apply(Hero hero) {
+    SkillApplier applier = new SkillApplier();
+    Iterator<Skill> value = skillSet.iterator();
+    while (value.hasNext()) {
+        applier.apply(value.next(), hero);
+    }
+}
 void removeSkill(Skill skill){
     skillSet.remove(skill);
     }
@@ -38,4 +43,6 @@ void removeSkill(Skill skill){
 public boolean contains(Skill skill){
        return skillSet.contains(skill);
     }
+
+
 }
