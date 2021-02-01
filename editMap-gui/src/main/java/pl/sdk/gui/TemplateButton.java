@@ -14,7 +14,6 @@ import pl.sdk.PointHolder;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class TemplateButton extends Button {
@@ -52,7 +51,6 @@ public class TemplateButton extends Button {
         RadioButton selectedRadioButton =
                 (RadioButton) radioGroup.getSelectedToggle();
         if(selectedRadioButton != null){
-            System.out.println(selectedRadioButton.getText());
             return  selectedRadioButton.getText();
         }else return null;
     }
@@ -128,33 +126,15 @@ public class TemplateButton extends Button {
         return dialog;
     }
 
-//    private static Board xmlToBoardConverter(String name) throws IOException, JAXBException, URISyntaxException {
-//        Board board = new Board();
-//        JAXBContext contextFields = JAXBContext.newInstance(Holder.class);
-//        JAXBContext contextPoints = JAXBContext.newInstance(PointHolder.class);
-//        URL url  =  ImageTile.class.getClassLoader().getResource("/graphics/maps/" +name +".xml" );
-//        System.out.println(url.toString());
-//        if(url!= null) {
-//            System.out.println("siema");
-//            Holder holder1 = (Holder) contextFields.createUnmarshaller().unmarshal(new File(String.valueOf(url.toURI())));
-//          //  String pointsName = String.valueOf(ImageTile.class.getResourceAsStream("/graphics/maps/" +name +"Points.xml" ));
-//            PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal(new File(String.valueOf(ImageTile.class.getClassLoader().getResource("/graphics/maps/" +name +".xml" ).toURI())));
-//
-//            for (int i = 0; i < holder1.getThings().size(); i++) {
-//                board.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
-//            }
-//        }
-//        return board;
-//    }
     private static Board xmlToBoardConverter(String name) throws IOException, JAXBException {
         Board board = new Board();
 
         JAXBContext contextFields = JAXBContext.newInstance(Holder.class);
         JAXBContext contextPoints = JAXBContext.newInstance(PointHolder.class);
-        File file = new File("./maps/"+ name + ".xml");
+        File file = new File(ImageTile.class.getClassLoader().getResource("graphics/maps/"+ name + ".xml").getFile());
         if(file.canRead() && file.isFile()) {
-            Holder holder1 = (Holder) contextFields.createUnmarshaller().unmarshal(new FileReader("./maps/"+ name + ".xml"));
-            PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal(new FileReader("./maps/" + name + "Points.xml"));
+            Holder holder1 = (Holder) contextFields.createUnmarshaller().unmarshal( new File(ImageTile.class.getClassLoader().getResource("graphics/maps/"+ name + ".xml").getFile()));
+            PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal( new File(ImageTile.class.getClassLoader().getResource("graphics/maps/"+ name + "Points.xml").getFile()));
 
             for (int i = 0; i < holder1.getThings().size(); i++) {
                 board.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
