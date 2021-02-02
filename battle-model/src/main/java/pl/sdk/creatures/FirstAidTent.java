@@ -3,7 +3,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
-public class FirstAidTent implements DefendingCreature, BattleObject  {
+public class FirstAidTent implements CreatureDefender, BattleObject  {
 
 
     private CreatureStatisticIf stats;

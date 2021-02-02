@@ -3,7 +3,7 @@ package pl.sdk.creatures;
 public abstract class AbstractDamageApplier implements DamageApplierIf {
 
     @Override
-    public void applyDamage(int aDamageToApply, DefendingCreature aDefender) {
+    public void applyDamage(int aDamageToApply, CreatureDefender aDefender) {
         changeDamageApplied(aDamageToApply);
         int amount = aDefender.getAmount();
         int currentHp = aDefender.getCurrentHp();

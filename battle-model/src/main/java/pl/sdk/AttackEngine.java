@@ -14,7 +14,7 @@ public class AttackEngine {
             aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
     }
 
-    public void attack(Creature aAttacker, int aX, int aY) {
+    public void attack(BattleObject aAttacker, int aX, int aY) {
         boolean[][] splashRange = aAttacker.getSplashRange();
         for (int x = 0; x < splashRange.length; x++) {
             for (int y = 0; y < splashRange.length; y++) {

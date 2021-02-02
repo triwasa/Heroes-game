@@ -16,7 +16,7 @@ public class CalculateDamageWithChanceToKillTopCreatureStrategy extends Abstract
     }
 
     @Override
-    double changeDamageAfter(double aWholeStackDamageToDeal, CreatureAttacker aAttacker, DefendingCreature aDefender) {
+    double changeDamageAfter(double aWholeStackDamageToDeal, CreatureAttacker aAttacker, CreatureDefender aDefender) {
         int amount = aAttacker.getAmount();
         int attempts;
         

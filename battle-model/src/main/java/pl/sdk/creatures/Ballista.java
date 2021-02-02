@@ -2,7 +2,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
-public class Ballista implements CreatureAttacker, DefendingCreature, BattleObject {
+public class Ballista implements CreatureAttacker, CreatureDefender, BattleObject {
 
     private CreatureStatisticIf stats;
     private int currentHp;

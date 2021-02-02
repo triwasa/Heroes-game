@@ -18,7 +18,7 @@ class CalculateDamageIncreaseWithRandomChanceStrategy extends AbstractCalculateD
     }
 
     @Override
-    double changeDamageAfter(double aDamageToChange, CreatureAttacker aAttacker, DefendingCreature aDefender) {
+    double changeDamageAfter(double aDamageToChange, CreatureAttacker aAttacker, CreatureDefender aDefender) {
         if (getRand().nextDouble() <= chanceToIncrease){
             aDamageToChange = aDamageToChange * increaseFactor;
         }

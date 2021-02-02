@@ -3,7 +3,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
-public class Catapult implements DefendingCreature, FortificationAttacker, BattleObject {
+public class Catapult implements CreatureDefender, FortificationAttacker, BattleObject {
 
     private CreatureStatisticIf stats;
     private int currentHp;

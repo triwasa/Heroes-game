@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Creature implements PropertyChangeListener, BattleObject, CreatureAttacker, DefendingCreature {
+public class Creature implements PropertyChangeListener, BattleObject, CreatureAttacker, CreatureDefender {
 
     private final CreatureStatisticIf stats;
     private int currentHp;
