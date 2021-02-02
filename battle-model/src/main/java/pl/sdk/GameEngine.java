@@ -138,6 +138,7 @@ public class GameEngine {
             theSamePlayerUnit = isPlayerTwoUnit(aX, aY);
         }
 
+
         return !theSamePlayerUnit && board.get(getActiveCreature()).distance(new Point(aX, aY)) <= getActiveCreature().getAttackRange()
                 && attackEngine.canAttack(getActiveCreature(), get(aX, aY));
     }
