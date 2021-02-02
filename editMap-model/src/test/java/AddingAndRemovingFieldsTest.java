@@ -36,6 +36,15 @@ public class AddingAndRemovingFieldsTest {
     }
 
     @Test
+    void addingBySingleClick()
+    {
+        mapEditorEngine.setChosenGuiTile(FieldsFactory.create("Lava"));
+        mapEditorEngine.addFieldBySingleClick(3,3);
+        board.add(new Point(3,3), FieldsFactory.create("Lava"));
+        assertEquals(mapEditorEngine.getField(3,3), board.getFieldsMap().get(new Point(3,3)));
+
+    }
+    @Test
     void deletingTest()
     {
         mapEditorEngine.setActivePoint(new Point(2,2));
