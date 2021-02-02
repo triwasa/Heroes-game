@@ -13,11 +13,11 @@ public class ArtifactCreatureBuffFactory  extends  ArtifactAbstractFactory {
             case "Vial of Lifeblood":
                 return new ArtifactHealth(ArtifactStatistic.VIAL_OF_LIFEBLOOD, 2);
             case "Garniture of Interference":
-                return new ArtifactResistance(ArtifactStatistic.GARNITURE_OF_INTERFERENCE, 0.05);
+                return new ArtifactResistance(ArtifactStatistic.GARNITURE_OF_INTERFERENCE, 5);
             case "Surcoat of Counterpoise":
-                return new ArtifactResistance(ArtifactStatistic.SURCOAT_OF_COUNTERPOISE, 0.1);
+                return new ArtifactResistance(ArtifactStatistic.SURCOAT_OF_COUNTERPOISE, 10);
             case "Boots of Polarity":
-                return new ArtifactResistance(ArtifactStatistic.BOOTS_OF_POLARITY, 0.15);
+                return new ArtifactResistance(ArtifactStatistic.BOOTS_OF_POLARITY, 15);
             case "Necklace of Swiftness":
                 return new ArtifactSpeed(ArtifactStatistic.NECKLACE_OF_SWIFTNESS, 1);
             case "Ring of the Wayfarer":

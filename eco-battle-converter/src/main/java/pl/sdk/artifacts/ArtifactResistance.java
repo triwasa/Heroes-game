@@ -5,9 +5,9 @@ import pl.sdk.creatures.Creature;
 import java.util.List;
 
 public class ArtifactResistance extends ArtifactCreatureBuff {
-    private final double resistanceValue;
+    private final int resistanceValue;
 
-    public ArtifactResistance(ArtifactStatisticIf aStat, double aResistanceValue) {
+    public ArtifactResistance(ArtifactStatisticIf aStat, int aResistanceValue) {
         stats = aStat;
         this.resistanceValue = aResistanceValue;
     }
