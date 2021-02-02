@@ -12,7 +12,6 @@ public class ArtifactSpellBuffFactory extends ArtifactAbstractFactory{
                 return new ArtifactDuration(ArtifactStatistic.RING_OF_CONJURING, 2);
             case "Cape of Conjuring":
                 return new ArtifactDuration(ArtifactStatistic.CAPE_OF_CONJURING, 3);
-
             case "Orb of Firmament":
                 return new ArtifactDamage(ArtifactStatistic.ORB_OF_THE_FIRMAMENT, 0.5, "AIR");
             case "Orb of Silt":
@@ -22,13 +21,15 @@ public class ArtifactSpellBuffFactory extends ArtifactAbstractFactory{
             case "Orb of Driving Rain":
                 return new ArtifactDamage(ArtifactStatistic.ORB_OF_DRIVING_RAIN, 0.5, "WATER");
             case "Tome of Air Magic":
-                return new ArtifactSpellBook(ArtifactStatistic.TOME_OF_AIR_MAGIC, "AIR");
+                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_AIR_MAGIC, "AIR");
             case "Tome of Earth Magic":
-                return new ArtifactSpellBook(ArtifactStatistic.TOME_OF_EARTH_MAGIC, "EARTH");
+                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_EARTH_MAGIC, "EARTH");
             case "Tome of Fire Magic":
-                return new ArtifactSpellBook(ArtifactStatistic.TOME_OF_FIRE_MAGIC, "FIRE");
+                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_FIRE_MAGIC, "FIRE");
             case "Tome of Water Magic":
-                return new ArtifactSpellBook(ArtifactStatistic.TOME_OF_WATER_MAGIC, "WATER");
+                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_WATER_MAGIC, "WATER");
+            case "Spellbinder's Hat":
+                return new ArtifactSpellBookTier(ArtifactStatistic.SPELLBINDERS_HAT, 5);
 
 
             default:

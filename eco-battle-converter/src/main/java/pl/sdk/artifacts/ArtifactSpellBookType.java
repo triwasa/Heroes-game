@@ -1,9 +1,9 @@
 package pl.sdk.artifacts;
 
-public class ArtifactSpellBook extends ArtifactSpellBuff {
+public class ArtifactSpellBookType extends ArtifactSpellBuff {
     private final String spellType;
 
-    public ArtifactSpellBook(ArtifactStatisticIf aStat, String aSpellType) {
+    public ArtifactSpellBookType(ArtifactStatisticIf aStat, String aSpellType) {
         stats = aStat;
         this.spellType = aSpellType;
     }
