@@ -88,11 +88,47 @@ public class EquippingSpellBuffArtifactTest {
     }
 
     @Test
-    void ArtifactSpellBookShouldAddSpellsToHeroCorrectly(){
+    void ArtifactSpellBookShouldAddEarthSpellsToHeroCorrectly(){
         hero.addSpells(spells);
 
         (artifactFactory.create("Tome of Earth Magic")).buff(hero); // + all earth spells
 
         assertEquals(19, hero.getSpells().size());
+    }
+
+    @Test
+    void ArtifactSpellBookShouldAddAirSpellsToHeroCorrectly(){
+        hero.addSpells(spells);
+
+        (artifactFactory.create("Tome of Air Magic")).buff(hero); // + all air spells
+
+        assertEquals(20, hero.getSpells().size());
+    }
+
+    @Test
+    void ArtifactSpellBookShouldAddFireSpellsToHeroCorrectly(){
+        hero.addSpells(spells);
+
+        (artifactFactory.create("Tome of Fire Magic")).buff(hero); // + all fire spells
+
+        assertEquals(18, hero.getSpells().size());
+    }
+
+    @Test
+    void ArtifactSpellBookShouldAddWaterSpellsToHeroCorrectly(){
+        hero.addSpells(spells);
+
+        (artifactFactory.create("Tome of Water Magic")).buff(hero); // + all water spells
+
+        assertEquals(19, hero.getSpells().size());
+    }
+
+    @Test
+    void ArtifactSpellBookShouldAdd5TierSpellsToHeroCorrectly(){
+        hero.addSpells(spells);
+
+        (artifactFactory.create("Spellbinder's Hat")).buff(hero); // + all 5 tier spells
+
+        assertEquals(12, hero.getSpells().size());
     }
 }
