@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Creature implements PropertyChangeListener, BattleObject, CreatureAttacker, CreatureDefender {
+public class Creature implements PropertyChangeListener, BattleObject {
 
     private final CreatureStatisticIf stats;
     private int currentHp;
@@ -18,6 +18,7 @@ public class Creature implements PropertyChangeListener, BattleObject, CreatureA
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
+    private PossbileAttackMangerIf possibleAttacKManager;
 
     // Constructor for mockito. Don't use it! You have builder here.
     Creature(){
@@ -55,6 +56,16 @@ public class Creature implements PropertyChangeListener, BattleObject, CreatureA
     @Override
     public void amountAfterAttack(int aAmount) {
         amount = aAmount;
+    }
+
+    @Override
+    public boolean isCreature() {
+        return true;
+    }
+
+    @Override
+    public boolean isFortification() {
+        return false;
     }
 
     public int getCurrentHp() {
@@ -150,6 +161,16 @@ public class Creature implements PropertyChangeListener, BattleObject, CreatureA
         return 1.0;
     }
 
+    @Override
+    public boolean canFortifficationAttack() {
+        return possibleAttacKManager.canFortifficationAttack();
+    }
+
+    @Override
+    public boolean canCreatureAttack() {
+        return possibleAttacKManager.canCreatureAttack();
+    }
+
     void setCurrentHpToMaximum() {
         currentHp = stats.getMaxHp();
     }
@@ -161,16 +182,6 @@ public class Creature implements PropertyChangeListener, BattleObject, CreatureA
     }
 
     public boolean backToPreviousPositionMechanic() {
-        return false;
-    }
-
-    @Override
-    public boolean attackable(CreatureAttacker attacker) {
-        return true;
-    }
-
-    @Override
-    public boolean attackable(FortificationAttacker attacker) {
         return false;
     }
 

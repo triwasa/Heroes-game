@@ -7,7 +7,7 @@ public interface Attacker extends BattleObjectStatistic {
     CalculateDamageStrategy getCalculateDamage();
     Range<Integer> getDamage();
     int getAttack();
-    int getAttackRange();
+    double getAttackRange();
 
     boolean canFortifficationAttack();
     boolean canCreatureAttack();
