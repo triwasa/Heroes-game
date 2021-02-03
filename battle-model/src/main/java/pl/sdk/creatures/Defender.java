@@ -5,5 +5,5 @@ public interface Defender extends BattleObjectStatistic {
     void applyDamage(int damageToApply);
     boolean isCreature();
     boolean isFortification();
-    void counterAttack(Attacker attacker);
+    void counterAttack(BattleObject attacker);
 }

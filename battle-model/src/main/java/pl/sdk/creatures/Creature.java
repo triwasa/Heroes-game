@@ -60,10 +60,6 @@ public class Creature implements PropertyChangeListener, BattleObject {
         return false;
     }
 
-    @Override
-    public void counterAttack(Attacker attacker) {
-
-    }
 
 
     public int getCurrentHp() {

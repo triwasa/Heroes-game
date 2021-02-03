@@ -10,17 +10,17 @@ public class HealAfterAttackAttackStrategy extends DefaultAttackStrategy {
         decoratedAttackStrategy = attackStrategy;
     }
     @Override
-    public void beforeAttack(Attacker aAttacker, Defender aDefender) {
+    public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
         return;
     }
 
     @Override
-    public void attack(Attacker aAttacker, Defender aDefender) {
+    public void attack(BattleObject aAttacker, BattleObject aDefender) {
         decoratedAttackStrategy.attack(aAttacker, aDefender);
     }
 
     @Override
-    public void afterAttack(Attacker aAttacker, Defender aDefender) {
+    public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
         healAfterAttack(aAttacker,aDefender);
 
     }

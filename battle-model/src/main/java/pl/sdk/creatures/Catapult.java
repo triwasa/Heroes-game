@@ -125,7 +125,7 @@ public class Catapult implements BattleObject {
     }
 
     @Override
-    public void counterAttack(Attacker attacker) {
+    public void counterAttack(BattleObject attacker) {
 
     }
 }

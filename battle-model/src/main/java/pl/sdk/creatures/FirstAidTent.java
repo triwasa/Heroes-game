@@ -126,7 +126,7 @@ public class FirstAidTent implements BattleObject  {
     }
 
     @Override
-    public void counterAttack(Attacker attacker) {
+    public void counterAttack(BattleObject attacker) {
 
     }
 }

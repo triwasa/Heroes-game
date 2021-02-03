@@ -11,7 +11,7 @@ public class AttackEngine {
         board = aBoard;
     }
 
-    private void attack(Attacker aAttacker, Defender aDefender) {
+    private void attack(BattleObject aAttacker, BattleObject aDefender) {
             aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
     }
 

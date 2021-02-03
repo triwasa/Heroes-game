@@ -120,7 +120,7 @@ public class Wall implements BattleObject {
     }
 
     @Override
-    public void counterAttack(Attacker attacker) {
+    public void counterAttack(BattleObject attacker) {
 
     }
 }

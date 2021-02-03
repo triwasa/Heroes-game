@@ -7,12 +7,12 @@ public class BlockCounterAttackAttackStrategy extends DefaultAttackStrategy {
         decoratedAttackStrategy = aDecoratedAttackStrategy;
     }
     @Override
-    public void beforeAttack(Attacker aAttacker, Defender aDefender) {
+    public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
         return;
     }
 
     @Override
-    public void attack(Attacker aAttacker, Defender aDefender) {
+    public void attack(BattleObject aAttacker, BattleObject aDefender) {
         if (aAttacker.isAlive()){
             beforeAttack(aAttacker,aDefender);
             int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
@@ -23,7 +23,7 @@ public class BlockCounterAttackAttackStrategy extends DefaultAttackStrategy {
 
 
     @Override
-    public void afterAttack(Attacker aAttacker, Defender aDefender) {
+    public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
         return;
     }
 
