@@ -102,7 +102,7 @@ public class EquippingCreatureBuffArtifactTest {
         (artifactFactory.create("Garniture of Interference")).buff(hero); // +5 resistance
 
         assertEquals(primaryResistance + 15, creatureForTests.getResistance());
-    }s
+    }
 
     @Test
     void ArtifactImmunityShouldAddImmunityToCreatureCorrectly(){
