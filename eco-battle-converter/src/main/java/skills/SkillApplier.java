@@ -56,7 +56,7 @@ public class SkillApplier {
                 while (listIter.hasNext()) {
                     Creature decoratedCreature = listIter.next();
                     if (decoratedCreature.getAttackRange() == Double.MAX_VALUE) {
-                        decoratedCreature = new PercentDamageBoostCreatureDecorator(new PercentDamageBoostCreatureDecorator(decoratedCreature, 1), 1);
+                        decoratedCreature = new PercentDamageBoostCreatureDecorator(decoratedCreature, 10);
                     }
                     listIter.set(decoratedCreature);
                 }
@@ -68,7 +68,7 @@ public class SkillApplier {
                 while (listIter.hasNext()) {
                     Creature decoratedCreature = listIter.next();
                     if (decoratedCreature.getAttackRange() == Double.MAX_VALUE) {
-                        decoratedCreature = new PercentDamageBoostCreatureDecorator(new PercentDamageBoostCreatureDecorator(decoratedCreature, 2), 2);
+                        decoratedCreature = new PercentDamageBoostCreatureDecorator(decoratedCreature, 25);
                     }
                     listIter.set(decoratedCreature);
                 }
@@ -80,7 +80,7 @@ public class SkillApplier {
                 while (listIter.hasNext()) {
                     Creature decoratedCreature = listIter.next();
                     if (decoratedCreature.getAttackRange() == Double.MAX_VALUE) {
-                        decoratedCreature = new PercentDamageBoostCreatureDecorator(new PercentDamageBoostCreatureDecorator(decoratedCreature, 3), 3);
+                        decoratedCreature = new PercentDamageBoostCreatureDecorator(decoratedCreature, 50);
                     }
                     listIter.set(decoratedCreature);
                 }
@@ -141,15 +141,40 @@ public class SkillApplier {
                 break;
             }
             case "Artillery: basic": {
-                System.out.println(aName);
+                List<Creature> creatures = hero.getCreatures();
+                ListIterator<Creature> listIter = creatures.listIterator();
+                while (listIter.hasNext()) {
+                    Creature decoratedCreature = listIter.next();
+                    if (decoratedCreature.getName() == "ballista"){
+                        decoratedCreature = new DoubleDamagePercentChanceDecorator(decoratedCreature, 50);
+                    }
+                    listIter.set(decoratedCreature);
+                }
                 break;
             }
             case "Artillery: advanced": {
-                System.out.println(aName);
+                List<Creature> creatures = hero.getCreatures();
+                ListIterator<Creature> listIter = creatures.listIterator();
+                while (listIter.hasNext()) {
+                    Creature decoratedCreature = listIter.next();
+                    if (decoratedCreature.getName() == "ballista"){
+                        decoratedCreature = new DoubleDamagePercentChanceDecorator(decoratedCreature, 75);
+                    }
+                    listIter.set(decoratedCreature);
+                }
                 break;
             }
             case "Artillery: expert": {
-                System.out.println(aName);
+                List<Creature> creatures = hero.getCreatures();
+                ListIterator<Creature> listIter = creatures.listIterator();
+                while (listIter.hasNext()) {
+                    Creature decoratedCreature = listIter.next();
+                    System.out.println(decoratedCreature.getName());
+                    if (decoratedCreature.getName() == "ballista"){
+                        decoratedCreature = new DoubleDamagePercentChanceDecorator(decoratedCreature, 100);
+                    }
+                    listIter.set(decoratedCreature);
+                }
                 break;
             }
             case "Intelligence: basic": {

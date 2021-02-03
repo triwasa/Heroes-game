@@ -29,13 +29,13 @@ public class SkillEffectOnHeroTest {
         assertEquals(1, hero.getLuck());
     }
 
-    /*
+
     @Test
     void moraleShoudBeIncreasedCorrectly(){
         Skill leadership = SkillFactory.createForTest("leadership 1");
         applier.apply(leadership, hero);
         assertEquals(1, hero.getMorale());
     }
-*/
+
 
 }

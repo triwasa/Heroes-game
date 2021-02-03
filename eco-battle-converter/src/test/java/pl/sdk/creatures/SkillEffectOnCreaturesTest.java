@@ -52,6 +52,42 @@ public class SkillEffectOnCreaturesTest {
     //standard dmg = 62
 
     @Test
+    void skillDontTurOffCounterAttacks() {
+        //offence zwiększa zadawany dmg o 10%
+        Skill offence = SkillFactory.createForTest("offence 1");
+        attacker = new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(attacker));
+        creatures.add(attacker);
+        hero.addCreatures(creatures);
+        applier.apply(offence, hero);
+        attacker = hero.getCreatures().get(0);
+        attacker.attack(defender);
+        assertEquals(5, attacker.getCurrentHp());
+    }
+
+    @Test
+    void offenceShouldNotWorkOnRangeCreatures(){
+        Skill offence = SkillFactory.createForTest("offence 1");
+        attacker = new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(attacker));
+        creatures.add(attacker);
+        hero.addCreatures(creatures);
+        applier.apply(offence,hero);
+        attacker = hero.getCreatures().get(0);
+        attacker.attack(defender);
+        assertEquals(138,defender.getCurrentHp());
+    }
+
+    @Test
+    void archeryShouldNotWorkOnMeleeCreatures(){
+        Skill offence = SkillFactory.createForTest("archery 1");
+        creatures.add(attacker);
+        hero.addCreatures(creatures);
+        applier.apply(offence,hero);
+        attacker = hero.getCreatures().get(0);
+        attacker.attack(defender);
+        assertEquals(138,defender.getCurrentHp());
+    }
+
+    @Test
     void offence1ShouldIncreaseDamage() {
         //offence zwiększa zadawany dmg o 10%
         Skill offence = SkillFactory.createForTest("offence 1");
@@ -87,28 +123,6 @@ public class SkillEffectOnCreaturesTest {
         assertEquals(119,defender.getCurrentHp());
     }
 
-    @Test
-    void offenceShouldNotWorkOnRangeCreatures(){
-        Skill offence = SkillFactory.createForTest("offence 1");
-        attacker = new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(attacker));
-        creatures.add(attacker);
-        hero.addCreatures(creatures);
-        applier.apply(offence,hero);
-        attacker = hero.getCreatures().get(0);
-        attacker.attack(defender);
-        assertEquals(138,defender.getCurrentHp());
-    }
-
-    @Test
-    void archeryShouldNotWorkOnMeleeCreatures(){
-        Skill offence = SkillFactory.createForTest("archery 1");
-        creatures.add(attacker);
-        hero.addCreatures(creatures);
-        applier.apply(offence,hero);
-        attacker = hero.getCreatures().get(0);
-        attacker.attack(defender);
-        assertEquals(138,defender.getCurrentHp());
-    }
 
     @Test
     void archery1ShouldIncreaseDamage(){
@@ -131,7 +145,7 @@ public class SkillEffectOnCreaturesTest {
         applier.apply(archery,hero);
         attacker = hero.getCreatures().get(0);
         attacker.attack(defender);
-        assertEquals(126,defender.getCurrentHp());
+        assertEquals(122,defender.getCurrentHp());
     }
 
     @Test
@@ -143,7 +157,7 @@ public class SkillEffectOnCreaturesTest {
         applier.apply(archery,hero);
         attacker = hero.getCreatures().get(0);
         attacker.attack(defender);
-        assertEquals(119,defender.getCurrentHp());
+        assertEquals(107,defender.getCurrentHp());
     }
 
     @Test
@@ -203,6 +217,44 @@ public class SkillEffectOnCreaturesTest {
         defender = hero.getCreatures().get(0);
         attacker.attack(defender);
         assertEquals(147, defender.getCurrentHp());
+    }
+
+    @Test
+    void artilleryShouldDecreaseDamage() {
+        Creature ballista = new Creature.BuilderForTesting()
+                            .name("ballista")
+                            .attack(5)
+                            .armor(NOT_IMPORTANT)
+                            .damage(Range.closed(50,50))
+                            .maxHp(NOT_IMPORTANT)
+                            .moveRange(NOT_IMPORTANT)
+                            .build();
+        Skill artillery = SkillFactory.createForTest("artillery 3");
+        creatures.add(ballista);
+        hero.addCreatures(creatures);
+        applier.apply(artillery, hero);
+        ballista = hero.getCreatures().get(0);
+        ballista.attack(defender);
+        assertEquals(76, defender.getCurrentHp());
+    }
+
+    @Test
+    void artilleryShouldDecreaseDamage2() {
+        Creature ballista = new Creature.BuilderForTesting()
+                .name("ballista")
+                .attack(5)
+                .armor(NOT_IMPORTANT)
+                .damage(Range.closed(50,50))
+                .maxHp(NOT_IMPORTANT)
+                .moveRange(NOT_IMPORTANT)
+                .build();
+        Skill artillery = SkillFactory.createForTest("artillery 1");
+        creatures.add(ballista);
+        hero.addCreatures(creatures);
+        applier.apply(artillery, hero);
+        ballista = hero.getCreatures().get(0);
+        ballista.attack(defender);
+        assertEquals(76, defender.getCurrentHp());
     }
 
 }

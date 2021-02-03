@@ -1,17 +1,17 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-
 import java.beans.PropertyChangeEvent;
+import java.util.Random;
 
-public class PercentDamageBoostCreatureDecorator extends Creature {
+public class DoubleDamagePercentChanceDecorator extends Creature {
 
     private final Creature decorated;
-    private final float damageBoost;
+    private final int percentToDealDoubleDamage;
 
-    public PercentDamageBoostCreatureDecorator(Creature aDecorated, int percent) {
+    public DoubleDamagePercentChanceDecorator(Creature aDecorated, int aPercent) {
         decorated = aDecorated;
-        damageBoost = (float)percent/100;
+        percentToDealDoubleDamage = aPercent;
     }
 
     @Override
@@ -22,9 +22,8 @@ public class PercentDamageBoostCreatureDecorator extends Creature {
     @Override
     public void attack(Creature aDefender) {
         int bonusDamage = calculateDamage(decorated, aDefender);
-        System.out.println(bonusDamage);
-        decorated.attack(aDefender);
         aDefender.applyDamage(bonusDamage);
+        decorated.attack(aDefender);
     }
 
     @Override
@@ -44,7 +43,16 @@ public class PercentDamageBoostCreatureDecorator extends Creature {
 
     @Override
     int calculateDamage(Creature aAttacker, Creature aDefender) {
-        return Math.round(decorated.calculateDamage(aAttacker, aDefender) * damageBoost);
+        Random rand = new Random();
+        int roll = (rand.nextInt(100) + 1);
+        System.out.println("rolld100 = " + roll);
+        if (roll > percentToDealDoubleDamage){
+            return 0;
+        }
+        else{
+            return (decorated.calculateDamage(aAttacker, aDefender));
+        }
+
     }
 
     @Override
