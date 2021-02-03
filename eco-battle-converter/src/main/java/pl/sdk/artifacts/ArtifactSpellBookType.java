@@ -1,15 +1,24 @@
 package pl.sdk.artifacts;
 
 public class ArtifactSpellBookType extends ArtifactSpellBuff {
-    private final String spellType;
+    private final String magicType;
 
-    public ArtifactSpellBookType(ArtifactStatisticIf aStat, String aSpellType) {
+    public ArtifactSpellBookType(ArtifactStatisticIf aStat, String aMagicType) {
         stats = aStat;
-        this.spellType = aSpellType;
+        this.magicType = aMagicType;
     }
 
     @Override
     void buffSpell(List<Spell> spells) {
-        // TODO implement adding spells
+        List<Spell> spellsToAdd = createSpells();
+        spellsToAdd.forEach(spell -> {
+            if(!spells.contains(spell)) {
+                spells.add(spell);
+            }});
+    }
+
+    private List<Spell> createSpells(){
+        SpellsCreator spellsCreator = new SpellsCreator();
+        return spellsCreator.createSpellsByMagicType(magicType);
     }
 }

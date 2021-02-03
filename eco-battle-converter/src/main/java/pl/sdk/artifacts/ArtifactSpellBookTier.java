@@ -10,6 +10,15 @@ public class ArtifactSpellBookTier extends ArtifactSpellBuff {
 
     @Override
     void buffSpell(List<Spell> spells) {
-        // TODO create all spell of $tier level and add them to hero
+        List<Spell> spellsToAdd = createSpells();
+        spellsToAdd.forEach(spell -> {
+            if(!spells.contains(spell)) {
+                spells.add(spell);
+            }});
+    }
+
+    private List<Spell> createSpells() {
+        SpellsCreator spellsCreator = new SpellsCreator();
+        return spellsCreator.createSpellsByTier(tier);
     }
 }
