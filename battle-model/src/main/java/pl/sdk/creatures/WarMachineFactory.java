@@ -9,7 +9,10 @@ public class WarMachineFactory extends AbstractFactory {
 
         switch (aTier) {
             case 1:
-                return new Catapult(CreatureStatistic.CATAPULT);
+                return new Catapult.Builder()
+                        .statistic(CreatureStatistic.CATAPULT)
+                        .amount(1)
+                        .build();
             case 2:
                 return new FirstAidTent(CreatureStatistic.FIRSTAIDTENT);
             case 3:

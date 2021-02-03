@@ -14,7 +14,7 @@ public class Ballista extends Creature implements BattleObject {
     private PossbileAttackMangerIf possibleAttackManager;
     private CreatureStatisticIf stats;
     private CalculateDamageStrategy calculateDamageStrategy;
-    private DefaultCalculateStrategy dealDamageCalc=new DefaultCalculateStrategy();
+    private DefaultCalculateStrategy damageCalculator=new DefaultCalculateStrategy();
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
