@@ -1,11 +1,12 @@
 package pl.sdk.skills;
 
-import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.sdk.creatures.Creature;
-import pl.sdk.skills.*;
 import pl.sdk.Hero;
+import skills.Skill;
+import skills.SkillApplier;
+import skills.SkillFactory;
+import skills.SkillSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

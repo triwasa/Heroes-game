@@ -1,4 +1,4 @@
-package pl.sdk.skills;
+package skills;
 
 import pl.sdk.Hero;
 

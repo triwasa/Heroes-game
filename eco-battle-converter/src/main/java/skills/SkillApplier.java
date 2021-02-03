@@ -1,9 +1,8 @@
-package pl.sdk.skills;
+package skills;
 
 import pl.sdk.Hero;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.*;
-import pl.sdk.skills.Skill;
 
 import java.util.List;
 import java.util.ListIterator;
