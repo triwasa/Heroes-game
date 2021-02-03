@@ -3,6 +3,7 @@ package pl.sdk;
 
 import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.GuiBattleObject;
 import pl.sdk.special_fields.Field;
 import pl.sdk.special_fields.FieldsFactory;
 
@@ -102,6 +103,7 @@ public class Board {
         return map.get(new Point(aX, aY));
     }
 
+
     Point get(BattleObject aCreature) {
         return map.keySet().stream().filter(p -> map.get(p).equals(aCreature)).findAny().get();
     }
@@ -129,7 +131,7 @@ public class Board {
         map.put(aTargetPoint1, creatureFromSourcePoint);
     }
 
-    boolean canMove(Creature aCreature, int aX, int aY) {
+    boolean canMove(BattleObject aCreature, int aX, int aY) {
         throwExceptionWhenIsOutsideMap(new Point(aX, aY));
         if (!map.containsValue(aCreature)) {
             throw new IllegalStateException("Creature isn't in board");

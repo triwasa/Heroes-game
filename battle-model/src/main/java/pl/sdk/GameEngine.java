@@ -2,6 +2,7 @@ package pl.sdk;
 
 import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.GuiBattleObject;
 import pl.sdk.special_fields.Field;
 
 import java.beans.PropertyChangeEvent;
@@ -117,7 +118,7 @@ public class GameEngine {
         return board.getField(aX,aY);
     }
 
-    public Creature getActiveCreature() {
+    public BattleObject getActiveCreature() {
         return queue.getActiveCreature();
     }
 
@@ -137,8 +138,6 @@ public class GameEngine {
         } else {
             theSamePlayerUnit = isPlayerTwoUnit(aX, aY);
         }
-
-
 
         return !theSamePlayerUnit && board.get(getActiveCreature()).distance(new Point(aX, aY)) <= getActiveCreature().getAttackRange()
                 && attackEngine.canAttack(getActiveCreature(), get(aX, aY));

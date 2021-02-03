@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import pl.sdk.*;
 import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.GuiBattleObject;
 import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.special_fields.Field;
 

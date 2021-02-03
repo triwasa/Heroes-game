@@ -8,4 +8,5 @@ public interface BattleObjectStatistic {
     int getCurrentHp();
     boolean[][] getSplashRange();
     DamageApplierIf getDamageApplier();
+    int getLevel();
 }

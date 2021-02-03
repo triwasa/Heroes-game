@@ -1,5 +1,6 @@
 package pl.sdk;
 
+
 import pl.sdk.creatures.*;
 
 public class AttackEngine {
@@ -10,11 +11,11 @@ public class AttackEngine {
         board = aBoard;
     }
 
-    private void attack(BattleObject aAttacker, BattleObject aDefender) {
+    private void attack(Attacker aAttacker, Defender aDefender) {
             aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
     }
 
-    public void attack(BattleObject aAttacker, int aX, int aY) {
+    public void attack(Attacker aAttacker, int aX, int aY) {
         boolean[][] splashRange = aAttacker.getSplashRange();
         for (int x = 0; x < splashRange.length; x++) {
             for (int y = 0; y < splashRange.length; y++) {
@@ -28,12 +29,14 @@ public class AttackEngine {
         }
     }
 
-    public boolean canAttack(CreatureAttacker attacker, Defender possibleDefender) {
-        return possibleDefender.attackable(attacker);
-    }
-
-    public boolean canAttack(FortificationAttacker attacker, Defender possibleDefender) {
-        return possibleDefender.attackable(attacker);
+    public boolean canAttack(Attacker attacker, Defender possibleDefender) {
+        if(possibleDefender.isCreature()) {
+            attacker.canCreatureAttack();
+        }
+        if(possibleDefender.isFortification()) {
+            attacker.canFortifficationAttack();
+        }
+        throw new IllegalArgumentException();
     }
 
 

@@ -1,8 +1,15 @@
 package pl.sdk.creatures;
 
-public interface Attacker extends CreatureAttacker, FortificationAttacker{
+import com.google.common.collect.Range;
 
-    void applyDamage(int aDamageToDeal);
-    void counterAttack(Attacker aDefender);
+public interface Attacker extends BattleObjectStatistic {
+    AttackStrategy getAttackStrategy();
+    CalculateDamageStrategy getCalculateDamage();
+    Range<Integer> getDamage();
+    int getAttack();
+    int getAttackRange();
+
+    boolean canFortifficationAttack();
+    boolean canCreatureAttack();
 
 }

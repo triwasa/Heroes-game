@@ -1,11 +1,10 @@
 package pl.sdk.creatures;
 
-
-
 import pl.sdk.Point;
 
-public interface BattleObject extends Defender, Attacker {
+public interface GuiBattleObject extends BattleObject {
+    String getName();
     boolean canMove(Point point);
-   // void moveX(Point);
     boolean canAttack(Point point);
+    int getAmount();
 }
