@@ -10,7 +10,7 @@ public class AttackEngine {
         board = aBoard;
     }
 
-    public void attack(BattleObject aAttacker, BattleObject aDefender) {
+    private void attack(BattleObject aAttacker, BattleObject aDefender) {
             aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
     }
 
@@ -31,6 +31,7 @@ public class AttackEngine {
     public boolean canAttack(CreatureAttacker attacker, Defender possibleDefender) {
         return possibleDefender.attackable(attacker);
     }
+
     public boolean canAttack(FortificationAttacker attacker, Defender possibleDefender) {
         return possibleDefender.attackable(attacker);
     }

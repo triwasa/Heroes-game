@@ -9,5 +9,8 @@ public interface CreatureAttacker extends BattleObjectStatistic {
     Range<Integer> getDamage();
     int getAttack();
 
+    canFortifficationAttack();
+    canCreatureAttack();
+
 
 }
