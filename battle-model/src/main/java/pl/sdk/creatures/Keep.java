@@ -2,7 +2,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
-public class Keep implements BattleObject {
+public class Keep implements BattleObject, Fortification {
 
 
     private String name = "Keep";

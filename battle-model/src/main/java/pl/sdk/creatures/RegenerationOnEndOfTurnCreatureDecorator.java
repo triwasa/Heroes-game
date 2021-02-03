@@ -43,10 +43,6 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
         return decorated.getCalculateDamage();
     }
 
-    @Override
-    public int getLevel() {
-        return decorated.getLevel();
-    }
 
     @Override
     public boolean[][] getSplashRange() {

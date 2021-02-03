@@ -1,47 +1,47 @@
-/*
+
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.sdk.creatures.Ballista;
-import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.NecropolisFactory;
-
+import pl.sdk.AttackEngine;
+import pl.sdk.Board;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static pl.sdk.creatures.CreatureStatistic.BALLISTA;
-import static pl.sdk.creatures.CreatureStatistic.TEST_BALLISTA;
+
 
 class BallistaTest {
 
     public static final int NOT_IMPORTANT = 5;
-    private Random randomizer;
+    private AttackEngine attackEngine;
 
     @BeforeEach
-    void init(){
-        randomizer = mock(Random.class);
-        when(randomizer.nextInt(anyInt())).thenReturn(3);
+    void init() {
+        attackEngine = new AttackEngine(new Board());
     }
 
     @Test
     void shouldShot(){
-        Ballista ballista = new Ballista(TEST_BALLISTA);
-        Creature defender1 = new Creature.BuilderForTesting()
-                .name("defender1")
+        Ballista ballista = new Ballista.BuilderForTesting()
+                .name("Ballista")
                 .attack(10)
-                .armor(10)
-                .maxHp(20)
+                .armor(NOT_IMPORTANT)
+                .maxHp(NOT_IMPORTANT)
                 .moveRange(NOT_IMPORTANT)
-                .damage(Range.closed(20,20))
+                .damage(Range.closed(3,3))
                 .build();
-        ballista.attack(defender1);
-        assertEquals(17, defender1.getCurrentHp());
+        Creature defender1 = new Creature.BuilderForTesting()
+                .name("Defender")
+                .attack(NOT_IMPORTANT)
+                .armor(10)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
+                .build();
+        attackEngine.attack(ballista, defender1);
+        assertEquals(97, defender1.getCurrentHp());
     }
 
 }
-*/
+

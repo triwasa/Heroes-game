@@ -48,10 +48,6 @@ public class MultipleRetaliationsCreatureDecorator extends Creature {
         return decorated.getCalculateDamage();
     }
 
-    @Override
-    public int getLevel() {
-        return super.getLevel();
-    }
 
     @Override
     protected void counterAttackedInThisTurn() {
