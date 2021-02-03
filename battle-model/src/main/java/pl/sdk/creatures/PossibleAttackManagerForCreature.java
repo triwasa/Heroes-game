@@ -1,8 +1,8 @@
 package pl.sdk.creatures;
 
-public class PossibleAttackManagerForCreature implements PossbileAttackMangerIf {
+public class PossibleAttackManagerForCreature implements PossibleAttackManagerIf {
     @Override
-    public boolean canFortifficationAttack() {
+    public boolean canFortificationAttack() {
         return false;
     }
 

@@ -11,7 +11,7 @@ public class Ballista extends Creature implements BattleObject {
 
 
     private int currentHp;
-    private PossbileAttackMangerIf possibleAttackManager;
+    private PossibleAttackManagerIf possibleAttackManager;
     private CreatureStatisticIf stats;
     private CalculateDamageStrategy calculateDamageStrategy;
     private DefaultCalculateStrategy damageCalculator=new DefaultCalculateStrategy();
@@ -28,7 +28,10 @@ public class Ballista extends Creature implements BattleObject {
     }
 
     public Ballista() {
-
+        stats = CreatureStatistic.TEST;
+        calculateDamageStrategy = new DefaultCalculateStrategy();
+        damageApplier = new DefaultDamageApplier();
+        possibleAttackManager = new PossibleAttackManagerForCreature();
     }
 
 
@@ -56,12 +59,12 @@ public class Ballista extends Creature implements BattleObject {
 
     @Override
     public double getAttackRange() {
-        return 1.0;
+        return 20.0;
     }
 
     @Override
     public boolean canFortifficationAttack() {
-        return possibleAttackManager.canFortifficationAttack();
+        return possibleAttackManager.canFortificationAttack();
     }
 
     @Override

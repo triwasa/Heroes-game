@@ -1,13 +1,25 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.DefaultDamageApplier;
+import pl.sdk.fortifications.FortificationStatisticIf;
 
 public class Wall implements BattleObject, Fortification {
 
-    private int maxHp = 2;
-    private int currentHp = 2;
-    private int level = 1;
+    private int currentHp;
+    private FortificationStatisticIf stats;
     private DamageApplierIf damageApplier;
+    private int amount;
+
+    Wall() {
+    }
+
+
+    Wall(FortificationStatisticIf aStats) {
+        this.stats=aStats;
+        currentHp=stats.getMaxHp();
+        damageApplier = new DefaultDamageApplier();
+    }
 
 
     @Override
@@ -46,68 +58,21 @@ public class Wall implements BattleObject, Fortification {
     }
 
     @Override
-    public DamageApplierIf getDamageApplier() {
-        return null;
-    }
-
-    @Override
     public int getLevel() {
         return 0;
     }
 
     @Override
-    public String getMovementType() {
-        return null;
-    }
-
-    @Override
-    public int getMoveRange() {
-        return 0;
-    }
-
-    @Override
-    public boolean isAlive() {
-        return false;
-    }
-
-    @Override
-    public int getCurrentHp() {
-        return 0;
-    }
-
-    @Override
-    public boolean[][] getSplashRange() {
-        return new boolean[0][];
-    }
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public int getAmount() {
-        return 0;
-    }
-
-    @Override
-    public int getMaxHp() {
-        return 0;
+    public DamageApplierIf getDamageApplier() {
+        return damageApplier;
     }
 
     @Override
     public void currentHpAfterAttack(int currentHp) {
-
-    }
-
-    @Override
-    public int getArmor() {
-        return 0;
     }
 
     @Override
     public void amountAfterAttack(int aAmount) {
-
     }
 
     @Override
@@ -123,5 +88,50 @@ public class Wall implements BattleObject, Fortification {
     @Override
     public void counterAttack(Attacker attacker) {
 
+    }
+
+    @Override
+    public boolean isAlive() {
+        return amount > 0;
+    }
+
+    @Override
+    public String getName() {
+        return stats.getTranslatedName();
+    }
+
+    @Override
+    public int getArmor() {
+        return 0;
+    }
+
+    @Override
+    public int getAmount() {
+        return amount;
+    }
+
+    @Override
+    public int getMaxHp() {
+        return stats.getMaxHp();
+    }
+
+    @Override
+    public int getCurrentHp() {
+        return currentHp;
+    }
+
+    @Override
+    public boolean[][] getSplashRange() {
+        return new boolean[0][];
+    }
+
+    @Override
+    public String getMovementType() {
+        return null;
+    }
+
+    @Override
+    public int getMoveRange() {
+        return 0;
     }
 }

@@ -12,7 +12,7 @@ public class Keep implements BattleObject, Fortification {
     private int level = 1;
     public Range<Integer> damage = Range.closed(15,15);
     private DefaultCalculateStrategy dealDamageCalc = new DefaultCalculateStrategy();
-    private PossbileAttackMangerIf possibleAttacKManager;
+    private PossibleAttackManagerIf possibleAttacKManager;
 
 
     public Keep() {
@@ -45,7 +45,7 @@ public class Keep implements BattleObject, Fortification {
 
     @Override
     public boolean canFortifficationAttack() {
-        return possibleAttacKManager.canFortifficationAttack();
+        return possibleAttacKManager.canFortificationAttack();
     }
 
     @Override

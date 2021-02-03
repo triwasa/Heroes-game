@@ -1,8 +1,6 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.AttackEngine;

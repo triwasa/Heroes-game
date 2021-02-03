@@ -2,21 +2,29 @@ package pl.sdk.creatures;
 
 
 import com.google.common.collect.Range;
+import pl.sdk.DefaultDamageApplier;
 
 
-public class FirstAidTent extends Creature implements BattleObject  {
+public class FirstAidTent implements BattleObject {
 
 
 
     private CreatureStatisticIf stats;
     private int currentHp;
-    private PossbileAttackMangerIf possibleAttacKManager;
+    private PossibleAttackManagerIf possibleAttackManager;
 
 
     FirstAidTent(CreatureStatisticIf aStats) {
         this.stats=aStats;
         currentHp=stats.getMaxHp();
     }
+
+//    FirstAidTent(){
+//        stats = CreatureStatistic.TEST;
+//        calculateDamageStrategy = new DefaultCalculateStrategy();
+//        damageApplier = new DefaultDamageApplier();
+//        possibleAttackManager = new PossibleAttackManagerForCreature();
+//    }
 
 
     @Override

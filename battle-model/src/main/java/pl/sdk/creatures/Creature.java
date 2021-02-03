@@ -18,7 +18,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
-    private PossbileAttackMangerIf possibleAttacKManager;
+    private PossibleAttackManagerIf possibleAttacKManager;
 
     // Constructor for mockito. Don't use it! You have builder here.
     Creature(){
@@ -164,7 +164,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
 
     @Override
     public boolean canFortifficationAttack() {
-        return possibleAttacKManager.canFortifficationAttack();
+        return possibleAttacKManager.canFortificationAttack();
     }
 
     @Override
