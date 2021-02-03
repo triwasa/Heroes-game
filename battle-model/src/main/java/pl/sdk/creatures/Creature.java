@@ -18,12 +18,14 @@ public class Creature implements PropertyChangeListener, BattleObject {
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
+    private PossbileAttackMangerIf possibleAttacKManager;
 
     // Constructor for mockito. Don't use it! You have builder here.
     Creature(){
         stats = CreatureStatistic.TEST;
         calculateDamageStrategy = new DefaultCalculateStrategy();
         damageApplier = new DefaultDamageApplier();
+        possibleAttacKManager = new PossibleAttackManagerForCreature();
     }
 
     Creature(CreatureStatisticIf aStats){
@@ -55,6 +57,21 @@ public class Creature implements PropertyChangeListener, BattleObject {
     @Override
     public void amountAfterAttack(int aAmount) {
         amount = aAmount;
+    }
+
+    @Override
+    public boolean isCreature() {
+        return true;
+    }
+
+    @Override
+    public boolean isFortification() {
+        return false;
+    }
+
+    @Override
+    public void counterAttack(Attacker attacker) {
+
     }
 
     public int getCurrentHp() {
@@ -121,11 +138,6 @@ public class Creature implements PropertyChangeListener, BattleObject {
         return stats.getMaxHp();
     }
 
-    @Override
-    public int getLevel() {
-        return 0;
-    }
-
 
     public String currentHealth() {
         StringBuilder sb = new StringBuilder();
@@ -150,6 +162,16 @@ public class Creature implements PropertyChangeListener, BattleObject {
         return 1.0;
     }
 
+    @Override
+    public boolean canFortifficationAttack() {
+        return possibleAttacKManager.canFortifficationAttack();
+    }
+
+    @Override
+    public boolean canCreatureAttack() {
+        return possibleAttacKManager.canCreatureAttack();
+    }
+
     void setCurrentHpToMaximum() {
         currentHp = stats.getMaxHp();
     }
@@ -163,7 +185,6 @@ public class Creature implements PropertyChangeListener, BattleObject {
     public boolean backToPreviousPositionMechanic() {
         return false;
     }
-
 
 
     static class Builder {

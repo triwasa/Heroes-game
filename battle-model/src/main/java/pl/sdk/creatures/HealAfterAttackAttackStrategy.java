@@ -10,21 +10,21 @@ public class HealAfterAttackAttackStrategy extends DefaultAttackStrategy {
         decoratedAttackStrategy = attackStrategy;
     }
     @Override
-    public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
+    public void beforeAttack(Attacker aAttacker, Defender aDefender) {
         decoratedAttackStrategy.beforeAttack(aAttacker,aDefender);
     }
 
     @Override
-    public void attack(BattleObject aAttacker, BattleObject aDefender) {
+    public void attack(Attacker aAttacker, Defender aDefender) {
         decoratedAttackStrategy.attack(aAttacker, aDefender);
     }
 
     @Override
-    public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
+    public void afterAttack(Attacker aAttacker, Defender aDefender) {
         healAfterAttack(aAttacker,aDefender);
         decoratedAttackStrategy.afterAttack(aAttacker,aDefender);
     }
-    public void healAfterAttack(BattleObject aAttacker, BattleObject aDefender) {
+    public void healAfterAttack(Attacker aAttacker, Defender aDefender) {
         int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker, aDefender);
         aDefender.getDamageApplier().applyDamage((int)(-damageToDeal * selfHealingPercentage), aDefender);
     }

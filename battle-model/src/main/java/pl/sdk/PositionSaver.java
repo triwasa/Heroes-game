@@ -24,7 +24,7 @@ public class PositionSaver implements PropertyChangeListener {
           additionalPercentOfDamageToDeal();
       }
       else if(event.getPropertyName().equals(GameEngine.CREATURE_ATTACKED)) {
-          possibleMove();
+          //possibleMove();
           oldPosition = null;
           additionalPercentDamage = 0;
       }
@@ -35,12 +35,12 @@ public class PositionSaver implements PropertyChangeListener {
       }
 
     }
-    public void possibleMove() {
+   /* public void possibleMove() {
         if(engine.getActiveCreature().backToPreviousPositionMechanic() && oldPosition != null) {
             engine.unlockMoving();
             engine.move(oldPosition);
         }
-    }
+    }*/
 
     public void additionalPercentOfDamageToDeal() {
         additionalPercentDamage = (int)Math.sqrt((oldPosition.getY() - currentPosition.getY()) * (oldPosition.getY() - currentPosition.getY())

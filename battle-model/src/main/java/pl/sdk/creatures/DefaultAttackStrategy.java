@@ -2,11 +2,11 @@ package pl.sdk.creatures;
 
 public class DefaultAttackStrategy implements AttackStrategy {
 
-    public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
+    public void beforeAttack(Attacker aAttacker, Defender aDefender) {
         return;
     }
 
-    public void attack(BattleObject aAttacker, BattleObject aDefender) {
+    public void attack(Attacker aAttacker, Defender aDefender) {
         if (aAttacker.isAlive()){
             beforeAttack(aAttacker,aDefender);
             int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
@@ -16,7 +16,7 @@ public class DefaultAttackStrategy implements AttackStrategy {
     }
 
 
-    public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
+    public void afterAttack(Attacker aAttacker, Defender aDefender) {
         aDefender.counterAttack(aAttacker);
     }
 }

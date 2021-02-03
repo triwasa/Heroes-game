@@ -15,7 +15,7 @@ abstract class AbstractCalculateDamageStrategy implements CalculateDamageStrateg
     }
 
     @Override
-    public int calculateDamage(AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    public int calculateDamage(Attacker aAttacker, Defender aDefender) {
 
         int randValue = rand.nextInt(aAttacker.getDamage().upperEndpoint() - aAttacker.getDamage().lowerEndpoint() + 1) + aAttacker.getDamage().lowerEndpoint();
 
@@ -42,5 +42,5 @@ abstract class AbstractCalculateDamageStrategy implements CalculateDamageStrateg
         return (int)wholeStackDamageToDealAfterChange;
     }
 
-    abstract double changeDamageAfter(double aWholeStackDamageToDeal, AttackingBattleObject aAttacker, DefendingBattleObject aDefender);
+    abstract double changeDamageAfter(double aWholeStackDamageToDeal, Attacker aAttacker, Defender aDefender);
 }

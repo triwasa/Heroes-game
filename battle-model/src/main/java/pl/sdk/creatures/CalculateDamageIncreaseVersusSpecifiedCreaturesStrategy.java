@@ -18,7 +18,7 @@ public class CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy extends Abs
     }
     
     @Override
-    double changeDamageAfter(double aWholeStackDamageToDeal, AttackingBattleObject aAttacker, DefendingBattleObject aDefender) {
+    double changeDamageAfter(double aWholeStackDamageToDeal, Attacker aAttacker, Defender aDefender) {
         if(specifiedCreaturesNames.contains(aDefender.getName())) {
             aWholeStackDamageToDeal = aWholeStackDamageToDeal * increaseFactor/100;
         }

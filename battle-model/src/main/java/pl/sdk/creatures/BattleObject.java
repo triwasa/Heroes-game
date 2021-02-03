@@ -1,7 +1,5 @@
 package pl.sdk.creatures;
 
-public interface BattleObject extends DefendingBattleObject, AttackingBattleObject {
-    DamageApplierIf getDamageApplier();
-    boolean isAlive();
-    boolean canAttack();
+public interface BattleObject extends Defender, Attacker {
+   // void moveX(Point);
 }

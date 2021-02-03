@@ -2,6 +2,6 @@ package pl.sdk.creatures;
 
 
 
-public interface Fortification {
+public interface Fortification extends Defender{
     int getLevel();
 }
