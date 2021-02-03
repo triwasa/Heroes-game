@@ -30,4 +30,17 @@ public class HeroSpellMastery {
             }
         }
     }
+
+    public Integer getAirMagic() {
+        return heroSpellMastery.get("Air Magic");
+    }
+    public Integer getWaterMagic() {
+        return heroSpellMastery.get("Water Magic");
+    }
+    public Integer getFireMagic() {
+        return heroSpellMastery.get("Fire Magic");
+    }
+    public Integer getEarthMagic() {
+        return heroSpellMastery.get("Earth Magic");
+    }
 }
