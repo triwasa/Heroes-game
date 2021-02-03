@@ -9,8 +9,6 @@ public class SkillSetEconomyTest {
 
     public static final int NOT_IMPORTANT = 5;
 
-    //TODO: fix tests with creatures
-
     @Test
     void skillShouldBeAddedCorrectly() {
         EconomySkillSet aSkillSet = new EconomySkillSet();

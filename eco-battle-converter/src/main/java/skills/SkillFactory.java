@@ -6,6 +6,10 @@ public class SkillFactory {
 
     private static String EXCEPTION_MESSEAGE = "There is no such skill";
 
+    public Skill create(SkillStatistic skillStats) {
+        return new Skill(skillStats);
+    }
+
     public Skill create(String aName) {
         switch (aName){
             case "offence 1":
