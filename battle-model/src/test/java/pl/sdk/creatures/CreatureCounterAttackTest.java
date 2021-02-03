@@ -16,12 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CreatureCounterAttackTest {
 
     private static final int NOT_IMPORTANT = 5;
-    private AttackEngine attackEngine;
-
-    @BeforeEach
-    void init() {
-        attackEngine = new AttackEngine(new Board());
-    }
 
     @Test
     void creatureShouldCounterAttack(){
@@ -42,7 +36,7 @@ class CreatureCounterAttackTest {
                 .damage(Range.closed(10,10))
                 .build();
 
-        attackEngine.attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker,defender);
 
         assertEquals(90,attacker.getCurrentHp());
     }
@@ -74,8 +68,8 @@ class CreatureCounterAttackTest {
                 .damage(Range.closed(10,10))
                 .build();
 
-        attackEngine.attack(attacker,defender);
-        attackEngine.attack(attacker2,defender);
+        attacker.getAttackStrategy().attack(attacker,defender);
+        attacker2.getAttackStrategy().attack(attacker2,defender);
 
         assertEquals(90,attacker.getCurrentHp());
         assertEquals(100,attacker2.getCurrentHp());
@@ -90,7 +84,7 @@ class CreatureCounterAttackTest {
                 .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(200, List.of(attacker.getName())))
                 .build();
 
-        attackEngine.attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker,defender);
         assertEquals(8, defender.getCurrentHp());
         assertEquals(6,attacker.getCurrentHp());
     }

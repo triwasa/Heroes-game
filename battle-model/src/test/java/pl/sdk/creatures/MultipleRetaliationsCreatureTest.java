@@ -20,11 +20,11 @@ public class MultipleRetaliationsCreatureTest {
     private Creature attacker;
     private Creature defender;
     private Random rand;
-    private AttackEngine attackEngine;
+
 
     @BeforeEach
     void init() {
-        attackEngine = new AttackEngine(new Board());
+
         rand = mock(Random.class);
         when(rand.nextInt(anyInt())).thenReturn(0);
 
@@ -42,10 +42,10 @@ public class MultipleRetaliationsCreatureTest {
         defender = new MultipleRetaliationsCreatureDecorator(defender,2);
         GameEngine gameEngine = new GameEngine(List.of(attacker), List.of(defender) , new Board());
 
-        attackEngine.attack(attacker,defender);
+            attacker.getAttackStrategy().attack(attacker,defender);
         assertTrue(defender.canCounterAttack());
 
-        attackEngine.attack(attacker,defender);
+            attacker.getAttackStrategy().attack(attacker,defender);
         assertFalse(defender.canCounterAttack());
 
         gameEngine.pass();
@@ -53,7 +53,7 @@ public class MultipleRetaliationsCreatureTest {
 
         assertTrue(defender.canCounterAttack());
 
-        attackEngine.attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker,defender);
         assertTrue(defender.canCounterAttack());
 
 

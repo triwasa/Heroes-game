@@ -56,6 +56,11 @@ public class Catapult implements BattleObject {
     }
 
     @Override
+    public void applyDamage(int damageToApply) {
+
+    }
+
+    @Override
     public int getLevel() {
         return 0;
     }
@@ -100,20 +105,14 @@ public class Catapult implements BattleObject {
         return 0;
     }
 
-    @Override
-    public void currentHpAfterAttack(int currentHp) {
 
-    }
 
     @Override
     public int getArmor() {
         return 0;
     }
 
-    @Override
-    public void amountAfterAttack(int aAmount) {
 
-    }
 
     @Override
     public boolean isCreature() {

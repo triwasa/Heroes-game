@@ -1,7 +1,6 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-import pl.sdk.DefaultDamageApplier;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -36,7 +35,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
     public void counterAttack(BattleObject aAttacker) {
         if (canCounterAttack()){
             int damageToDealInCounterAttack = getCalculateDamage().calculateDamage(this, aAttacker);
-            aAttacker.getDamageApplier().applyDamage(damageToDealInCounterAttack, aAttacker);
+            aAttacker.getDamageApplier().calculateDamageToApply(damageToDealInCounterAttack, aAttacker);
             counterAttackedInThisTurn();
         }
     }
@@ -49,15 +48,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
         return amount > 0;
     }
 
-    @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-        currentHp = aCurrentHp;
-    }
 
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        amount = aAmount;
-    }
 
     @Override
     public boolean isCreature() {
@@ -73,6 +64,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
     public void counterAttack(Attacker attacker) {
 
     }
+
 
     public int getCurrentHp() {
         return currentHp;
@@ -105,6 +97,33 @@ public class Creature implements PropertyChangeListener, BattleObject {
     @Override
     public DamageApplierIf getDamageApplier() {
         return damageApplier;
+    }
+
+    @Override
+    public void applyDamage(int aDamageToApply) {
+        int fullCurrentHp = (stats.getMaxHp() * (amount - 1)) + currentHp - aDamageToApply;
+        if (fullCurrentHp <= 0) {
+            amount = 0;
+            currentHp = 0;
+        }
+        else
+        {
+            if(fullCurrentHp % stats.getMaxHp()==0)
+            {
+                currentHp=stats.getMaxHp();
+                amount=fullCurrentHp/stats.getMaxHp();
+            }
+            else
+            {
+                currentHp = fullCurrentHp % stats.getMaxHp();
+                if (aDamageToApply >= 0){
+                    amount = (fullCurrentHp/stats.getMaxHp()) + 1;
+                }else{
+                    amount = (fullCurrentHp/stats.getMaxHp());
+                }
+            }
+        }
+
     }
 
 

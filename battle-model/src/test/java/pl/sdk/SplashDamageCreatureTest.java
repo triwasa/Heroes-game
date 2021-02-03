@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
 
-import java.beans.PropertyChangeEvent;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -37,14 +37,14 @@ public class SplashDamageCreatureTest {
         GameEngine gameEngine = new GameEngine(List.of(splashCreature), Collections.emptyList(), board);
         gameEngine.attack(10,10);
 
-        verify(defender).getDamageApplier().applyDamage(anyInt(),defender);
-        verify(notSplashMock1,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock1);
-        verify(notSplashMock2,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock2);
-        verify(notSplashMock3,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock3);
-        verify(splashMock1).getDamageApplier().applyDamage(anyInt(),splashMock1);
-        verify(splashMock2).getDamageApplier().applyDamage(anyInt(),splashMock2);
-        verify(splashMock3).getDamageApplier().applyDamage(anyInt(),splashMock3);
-        verify(splashMock4).getDamageApplier().applyDamage(anyInt(),splashMock4);
+        verify(defender).getDamageApplier().calculateDamageToApply(anyInt(),defender);
+        verify(notSplashMock1,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock1);
+        verify(notSplashMock2,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock2);
+        verify(notSplashMock3,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock3);
+        verify(splashMock1).getDamageApplier().calculateDamageToApply(anyInt(),splashMock1);
+        verify(splashMock2).getDamageApplier().calculateDamageToApply(anyInt(),splashMock2);
+        verify(splashMock3).getDamageApplier().calculateDamageToApply(anyInt(),splashMock3);
+        verify(splashMock4).getDamageApplier().calculateDamageToApply(anyInt(),splashMock4);
     };
 
     @Test
@@ -72,14 +72,14 @@ public class SplashDamageCreatureTest {
         GameEngine gameEngine = new GameEngine(List.of(notSplashCreature), Collections.emptyList(), board);
         gameEngine.attack(1,1);
 
-        verify(defender).getDamageApplier().applyDamage(anyInt(),defender);
-        verify(notSplashMock1,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock1);
-        verify(notSplashMock2,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock2);
-        verify(notSplashMock3,never()).getDamageApplier().applyDamage(anyInt(),notSplashMock3);
-        verify(splashMock1,never()).getDamageApplier().applyDamage(anyInt(),splashMock1);
-        verify(splashMock2,never()).getDamageApplier().applyDamage(anyInt(),splashMock2);
-        verify(splashMock3,never()).getDamageApplier().applyDamage(anyInt(),splashMock3);
-        verify(splashMock4,never()).getDamageApplier().applyDamage(anyInt(),splashMock4);
+        verify(defender).getDamageApplier().calculateDamageToApply(anyInt(),defender);
+        verify(notSplashMock1,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock1);
+        verify(notSplashMock2,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock2);
+        verify(notSplashMock3,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock3);
+        verify(splashMock1,never()).getDamageApplier().calculateDamageToApply(anyInt(),splashMock1);
+        verify(splashMock2,never()).getDamageApplier().calculateDamageToApply(anyInt(),splashMock2);
+        verify(splashMock3,never()).getDamageApplier().calculateDamageToApply(anyInt(),splashMock3);
+        verify(splashMock4,never()).getDamageApplier().calculateDamageToApply(anyInt(),splashMock4);
     };
 
 

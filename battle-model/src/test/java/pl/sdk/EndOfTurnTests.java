@@ -1,13 +1,13 @@
 package pl.sdk;
 
-import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
-import pl.sdk.GameEngine;
+
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
 
 import java.beans.PropertyChangeEvent;
 import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -21,10 +21,9 @@ public class EndOfTurnTests {
         Creature attacker = NecropolisFactory.createDefaultForTests();
         Creature defender = NecropolisFactory.createDefaultForTests();
         GameEngine engine = new GameEngine(List.of(attacker), List.of(defender) , new Board());
-        AttackEngine attackEngine = new AttackEngine(new Board());
 
         assertEquals(true, defender.canCounterAttack());
-        attackEngine.attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker,defender);
         assertEquals(false, defender.canCounterAttack());
 
         engine.pass();

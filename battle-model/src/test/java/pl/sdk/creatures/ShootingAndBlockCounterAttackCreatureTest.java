@@ -15,12 +15,6 @@ public class ShootingAndBlockCounterAttackCreatureTest {
 
     int NOT_IMPORTANT = 5;
     int MORE_THAN_SECOND_CREATURE = NOT_IMPORTANT+1;
-    private AttackEngine attackEngine;
-
-    @BeforeEach
-    void init() {
-        attackEngine = new AttackEngine(new Board());
-    }
 
     @Test
     void creatureCanAttackEvenDistanceToOpponentIsMoreThanOne(){
@@ -74,7 +68,7 @@ public class ShootingAndBlockCounterAttackCreatureTest {
                 .build();
 
         blockCounterAttackCreature = new ShootingCreatureDecorator(blockCounterAttackCreature);
-        attackEngine.attack(blockCounterAttackCreature,normalCreature);
+        blockCounterAttackCreature.getAttackStrategy().attack(blockCounterAttackCreature,normalCreature);
         blockCounterAttackCreature.getAttackRange();
 
         assertEquals(100,blockCounterAttackCreature.getCurrentHp());

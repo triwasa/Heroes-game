@@ -20,7 +20,7 @@ public class MulitpleAttackAttackStrategy extends DefaultAttackStrategy {
         for(int i = 0; i < attackCount; i++) {
             if (aAttacker.isAlive()){
                 int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
-                aDefender.getDamageApplier().applyDamage(damageToDeal, aDefender);;
+                aDefender.getDamageApplier().calculateDamageToApply(damageToDeal, aDefender);;
             }
         }
     }

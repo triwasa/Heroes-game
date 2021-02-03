@@ -26,6 +26,6 @@ public class HealAfterAttackAttackStrategy extends DefaultAttackStrategy {
     }
     public void healAfterAttack(Attacker aAttacker, Defender aDefender) {
         int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker, aDefender);
-        aDefender.getDamageApplier().applyDamage((int)(-damageToDeal * selfHealingPercentage), aDefender);
+        aDefender.getDamageApplier().calculateDamageToApply((int)(-damageToDeal * selfHealingPercentage), aDefender);
     }
 }

@@ -10,7 +10,7 @@ public class DefaultAttackStrategy implements AttackStrategy {
         if (aAttacker.isAlive()){
             beforeAttack(aAttacker,aDefender);
             int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
-            aDefender.getDamageApplier().applyDamage(damageToDeal, aDefender);
+            aDefender.getDamageApplier().calculateDamageToApply(damageToDeal, aDefender);
             afterAttack(aAttacker,aDefender);
         }
     }

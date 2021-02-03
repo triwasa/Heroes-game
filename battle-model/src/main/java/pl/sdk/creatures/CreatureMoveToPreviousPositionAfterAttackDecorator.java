@@ -85,16 +85,12 @@ public class CreatureMoveToPreviousPositionAfterAttackDecorator extends Creature
 
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
-
-    }
-    @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-        decorated.currentHpAfterAttack(aCurrentHp);
+        decorated.propertyChange(aPropertyChangeEvent);
     }
 
     @Override
-    public void amountAfterAttack(int aAmount) {
-        decorated.amountAfterAttack(aAmount);
+    public void applyDamage(int aDamageToApply) {
+        decorated.applyDamage(aDamageToApply);
     }
 
     @Override
