@@ -4,7 +4,7 @@ import com.google.common.collect.Range;
 
 import java.beans.PropertyChangeEvent;
 
-public class MultipleRetaliationsCreatureDecorator extends Creature implements FortificationAttacker {
+public class MultipleRetaliationsCreatureDecorator extends Creature {
 
     private final Creature decorated;
     private final int maxRetaliationsAmount;

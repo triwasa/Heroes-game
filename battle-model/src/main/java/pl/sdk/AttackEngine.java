@@ -11,7 +11,7 @@ public class AttackEngine {
         board = aBoard;
     }
 
-    private void attack(Attacker aAttacker, Defender aDefender) {
+    public void attack(Attacker aAttacker, Defender aDefender) {
             aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
     }
 
@@ -31,10 +31,10 @@ public class AttackEngine {
 
     public boolean canAttack(Attacker attacker, Defender possibleDefender) {
         if(possibleDefender.isCreature()) {
-            attacker.canCreatureAttack();
+            return attacker.canCreatureAttack();
         }
         if(possibleDefender.isFortification()) {
-            attacker.canFortifficationAttack();
+            return attacker.canFortifficationAttack();
         }
         throw new IllegalArgumentException();
     }

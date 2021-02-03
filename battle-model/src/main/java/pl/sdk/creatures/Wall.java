@@ -2,7 +2,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
-public class Wall implements Fortification, BattleObject {
+public class Wall implements BattleObject {
 
     private int maxHp = 2;
     private int currentHp = 2;
@@ -31,17 +31,72 @@ public class Wall implements Fortification, BattleObject {
     }
 
     @Override
-    public boolean attackable(CreatureAttacker attacker) {
+    public double getAttackRange() {
+        return 0;
+    }
+
+    @Override
+    public boolean canFortifficationAttack() {
         return false;
     }
 
     @Override
-    public boolean attackable(FortificationAttacker attacker) {
-        return true;
+    public boolean canCreatureAttack() {
+        return false;
     }
 
     @Override
-    public void counterAttack(BattleObject aDefender) {
+    public DamageApplierIf getDamageApplier() {
+        return null;
+    }
+
+    @Override
+    public int getLevel() {
+        return 0;
+    }
+
+    @Override
+    public String getMovementType() {
+        return null;
+    }
+
+    @Override
+    public int getMoveRange() {
+        return 0;
+    }
+
+    @Override
+    public boolean isAlive() {
+        return false;
+    }
+
+    @Override
+    public int getCurrentHp() {
+        return 0;
+    }
+
+    @Override
+    public boolean[][] getSplashRange() {
+        return new boolean[0][];
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public int getAmount() {
+        return 0;
+    }
+
+    @Override
+    public int getMaxHp() {
+        return 0;
+    }
+
+    @Override
+    public void currentHpAfterAttack(int currentHp) {
 
     }
 
@@ -56,47 +111,17 @@ public class Wall implements Fortification, BattleObject {
     }
 
     @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public int getAmount() {
-        return 0;
-    }
-
-    @Override
-    public boolean[][] getSplashRange() {
-        return new boolean[0][];
-    }
-
-    @Override
-    public DamageApplierIf getDamageApplier() {
-        return null;
-    }
-
-    @Override
-    public boolean isAlive() {
+    public boolean isCreature() {
         return false;
     }
 
     @Override
-    public int getLevel() {
-        return 0;
+    public boolean isFortification() {
+        return true;
     }
 
     @Override
-    public int getCurrentHp() {
-        return 0;
-    }
-
-    @Override
-    public int getMaxHp() {
-        return 0;
-    }
-
-    @Override
-    public void currentHpAfterAttack(int currentHp) {
+    public void counterAttack(Attacker attacker) {
 
     }
 }

@@ -1,8 +1,8 @@
 package pl.sdk.creatures;
 
 public interface AttackStrategy {
-    void attack(BattleObject aAttacker, BattleObject aDefender);
-    void beforeAttack(BattleObject aAttacker, BattleObject aDefender);
-    void afterAttack(BattleObject aAttacker, BattleObject aDefender);
+    void attack(Attacker aAttacker, Defender aDefender);
+    void beforeAttack(Attacker aAttacker, Defender aDefender);
+    void afterAttack(Attacker aAttacker, Defender aDefender);
 }
 

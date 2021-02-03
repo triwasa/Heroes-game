@@ -3,82 +3,17 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
-public class Catapult implements CreatureDefender, FortificationAttacker, BattleObject {
+public class Catapult implements BattleObject {
 
     private CreatureStatisticIf stats;
     private int currentHp;
     private int level;
+    private PossbileAttackMangerIf possibleAttacKManager;
 
-
-    @Override
-    public boolean attackable(CreatureAttacker attacker) {
-        return true;
+    Catapult() {
+        possibleAttacKManager = new PossbileAttackManagerForFortification();
     }
 
-    @Override
-    public boolean attackable(FortificationAttacker attacker) {
-        return false;
-    }
-
-    @Override
-    public void counterAttack(BattleObject aDefender) {
-
-    }
-
-    @Override
-    public int getArmor() {
-        return 0;
-    }
-
-    @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-
-    }
-
-    @Override
-    public void amountAfterAttack(int aAmount) {
-
-    }
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public int getAmount() {
-        return 0;
-    }
-
-    @Override
-    public int getMaxHp() {
-        return 0;
-    }
-
-    @Override
-    public int getCurrentHp() {
-        return 0;
-    }
-
-    @Override
-    public boolean[][] getSplashRange() {
-        return new boolean[0][];
-    }
-
-    @Override
-    public DamageApplierIf getDamageApplier() {
-        return null;
-    }
-
-    @Override
-    public boolean isAlive() {
-        return false;
-    }
-
-    @Override
-    public int getLevel() {
-        return 0;
-    }
 
     @Override
     public AttackStrategy getAttackStrategy() {
@@ -98,5 +33,100 @@ public class Catapult implements CreatureDefender, FortificationAttacker, Battle
     @Override
     public int getAttack() {
         return 0;
+    }
+
+    @Override
+    public double getAttackRange() {
+        return 0;
+    }
+
+    @Override
+    public boolean canFortifficationAttack() {
+        return possibleAttacKManager.canFortifficationAttack();
+    }
+
+    @Override
+    public boolean canCreatureAttack() {
+        return possibleAttacKManager.canCreatureAttack();
+    }
+
+    @Override
+    public DamageApplierIf getDamageApplier() {
+        return null;
+    }
+
+    @Override
+    public int getLevel() {
+        return 0;
+    }
+
+    @Override
+    public String getMovementType() {
+        return null;
+    }
+
+    @Override
+    public int getMoveRange() {
+        return 0;
+    }
+
+    @Override
+    public boolean isAlive() {
+        return false;
+    }
+
+    @Override
+    public int getCurrentHp() {
+        return 0;
+    }
+
+    @Override
+    public boolean[][] getSplashRange() {
+        return new boolean[0][];
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public int getAmount() {
+        return 0;
+    }
+
+    @Override
+    public int getMaxHp() {
+        return 0;
+    }
+
+    @Override
+    public void currentHpAfterAttack(int currentHp) {
+
+    }
+
+    @Override
+    public int getArmor() {
+        return 0;
+    }
+
+    @Override
+    public void amountAfterAttack(int aAmount) {
+
+    }
+
+    @Override
+    public boolean isCreature() {
+        return true;
+    }
+
+    @Override
+    public boolean isFortification() {
+        return false;
+    }
+
+    @Override
+    public void counterAttack(Attacker attacker) {
+
     }
 }

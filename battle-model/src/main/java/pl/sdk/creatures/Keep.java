@@ -2,7 +2,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
-public class Keep implements CreatureAttacker, Fortification, BattleObject {
+public class Keep implements BattleObject {
 
 
     private String name = "Keep";
@@ -12,8 +12,12 @@ public class Keep implements CreatureAttacker, Fortification, BattleObject {
     private int level = 1;
     public Range<Integer> damage = Range.closed(15,15);
     private DefaultCalculateStrategy dealDamageCalc = new DefaultCalculateStrategy();
+    private PossbileAttackMangerIf possibleAttacKManager;
 
 
+    public Keep() {
+        possibleAttacKManager = new PossibleAttackManagerForCreature();
+    }
     @Override
     public AttackStrategy getAttackStrategy() {
         return null;
@@ -35,28 +39,53 @@ public class Keep implements CreatureAttacker, Fortification, BattleObject {
     }
 
     @Override
-    public boolean attackable(CreatureAttacker attacker) {
-        return false;
-    }
-
-    @Override
-    public boolean attackable(FortificationAttacker attacker) {
-        return true;
-    }
-
-    @Override
-    public void counterAttack(BattleObject aDefender) {
-
-    }
-
-    @Override
-    public int getArmor() {
+    public double getAttackRange() {
         return 0;
     }
 
     @Override
-    public void amountAfterAttack(int aAmount) {
+    public boolean canFortifficationAttack() {
+        return possibleAttacKManager.canFortifficationAttack();
+    }
 
+    @Override
+    public boolean canCreatureAttack() {
+        return possibleAttacKManager.canCreatureAttack();
+    }
+
+    @Override
+    public DamageApplierIf getDamageApplier() {
+        return null;
+    }
+
+    @Override
+    public int getLevel() {
+        return 0;
+    }
+
+    @Override
+    public String getMovementType() {
+        return null;
+    }
+
+    @Override
+    public int getMoveRange() {
+        return 0;
+    }
+
+    @Override
+    public boolean isAlive() {
+        return false;
+    }
+
+    @Override
+    public int getCurrentHp() {
+        return 0;
+    }
+
+    @Override
+    public boolean[][] getSplashRange() {
+        return new boolean[0][];
     }
 
     @Override
@@ -80,27 +109,27 @@ public class Keep implements CreatureAttacker, Fortification, BattleObject {
     }
 
     @Override
-    public int getCurrentHp() {
+    public int getArmor() {
         return 0;
     }
 
     @Override
-    public boolean[][] getSplashRange() {
-        return new boolean[0][];
+    public void amountAfterAttack(int aAmount) {
+
     }
 
     @Override
-    public DamageApplierIf getDamageApplier() {
-        return null;
-    }
-
-    @Override
-    public boolean isAlive() {
+    public boolean isCreature() {
         return false;
     }
 
     @Override
-    public int getLevel() {
-        return 0;
+    public boolean isFortification() {
+        return true;
+    }
+
+    @Override
+    public void counterAttack(Attacker attacker) {
+
     }
 }

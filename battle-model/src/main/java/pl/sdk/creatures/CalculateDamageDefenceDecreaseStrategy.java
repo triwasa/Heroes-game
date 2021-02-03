@@ -14,7 +14,7 @@ public class CalculateDamageDefenceDecreaseStrategy extends AbstractCalculateDam
         decreasedArmor = 100 - aDecreaseFactor;
     }
     @Override
-    public int calculateDamage(BattleObject aAttacker, CreatureDefender aDefender) {
+    public int calculateDamage(Attacker aAttacker, Defender aDefender) {
 
         int decreasedDefenderArmor = (aDefender.getArmor() * decreasedArmor)/100;
         Creature copyOfDefenderWithDecreasedArmor = new DecreasedArmorCreatureDecorator((Creature)aDefender, decreasedDefenderArmor);
@@ -25,7 +25,7 @@ public class CalculateDamageDefenceDecreaseStrategy extends AbstractCalculateDam
     }
 
     @Override
-    double changeDamageAfter(double aWholeStackDamageToDeal, CreatureAttacker aAttacker, CreatureDefender aDefender) {
+    double changeDamageAfter(double aWholeStackDamageToDeal, Attacker aAttacker, Defender aDefender) {
         return aWholeStackDamageToDeal;
     }
 }

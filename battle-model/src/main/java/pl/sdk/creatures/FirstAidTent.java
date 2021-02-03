@@ -3,11 +3,12 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
-public class FirstAidTent implements CreatureDefender, BattleObject  {
+public class FirstAidTent implements BattleObject  {
 
 
     private CreatureStatisticIf stats;
     private int currentHp;
+    private PossbileAttackMangerIf possibleAttacKManager;
 
 
     FirstAidTent(CreatureStatisticIf aStats){
@@ -36,33 +37,53 @@ public class FirstAidTent implements CreatureDefender, BattleObject  {
     }
 
     @Override
-    public boolean attackable(CreatureAttacker attacker) {
-        return true;
-    }
-
-    @Override
-    public boolean attackable(FortificationAttacker attacker) {
-        return false;
-    }
-
-    @Override
-    public void counterAttack(BattleObject aDefender) {
-
-    }
-
-    @Override
-    public int getArmor() {
+    public double getAttackRange() {
         return 0;
     }
 
     @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-
+    public boolean canFortifficationAttack() {
+        return false;
     }
 
     @Override
-    public void amountAfterAttack(int aAmount) {
+    public boolean canCreatureAttack() {
+        return true;
+    }
 
+    @Override
+    public DamageApplierIf getDamageApplier() {
+        return null;
+    }
+
+    @Override
+    public int getLevel() {
+        return 0;
+    }
+
+    @Override
+    public String getMovementType() {
+        return null;
+    }
+
+    @Override
+    public int getMoveRange() {
+        return 0;
+    }
+
+    @Override
+    public boolean isAlive() {
+        return false;
+    }
+
+    @Override
+    public int getCurrentHp() {
+        return 0;
+    }
+
+    @Override
+    public boolean[][] getSplashRange() {
+        return new boolean[0][];
     }
 
     @Override
@@ -81,27 +102,32 @@ public class FirstAidTent implements CreatureDefender, BattleObject  {
     }
 
     @Override
-    public int getCurrentHp() {
+    public void currentHpAfterAttack(int currentHp) {
+
+    }
+
+    @Override
+    public int getArmor() {
         return 0;
     }
 
     @Override
-    public boolean[][] getSplashRange() {
-        return new boolean[0][];
+    public void amountAfterAttack(int aAmount) {
+
     }
 
     @Override
-    public DamageApplierIf getDamageApplier() {
-        return null;
+    public boolean isCreature() {
+        return true;
     }
 
     @Override
-    public boolean isAlive() {
+    public boolean isFortification() {
         return false;
     }
 
     @Override
-    public int getLevel() {
-        return 0;
+    public void counterAttack(Attacker attacker) {
+
     }
 }

@@ -2,5 +2,5 @@ package pl.sdk.creatures;
 
 public interface CalculateDamageStrategy {
 
-    int calculateDamage(BattleObject attacker, CreatureDefender aDefender);
+    int calculateDamage(Attacker attacker, Defender aDefender);
 }

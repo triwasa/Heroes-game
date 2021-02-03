@@ -131,5 +131,6 @@ class AttackEngineTest {
         assertTrue(attackEngine.canAttack(new Keep(),new Creature()));
         assertFalse(attackEngine.canAttack(new Catapult(), new Creature()));
         assertTrue(attackEngine.canAttack(new Catapult(), new Wall()));
+        assertFalse(attackEngine.canAttack(new Wall(), new Catapult()));
     }
 }

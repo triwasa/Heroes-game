@@ -6,6 +6,7 @@ public class Ballista implements BattleObject {
 
     private CreatureStatisticIf stats;
     private int currentHp;
+    private PossbileAttackMangerIf possibleAttacKManager;
 
 
     Ballista(CreatureStatisticIf aStats){
@@ -14,7 +15,7 @@ public class Ballista implements BattleObject {
     }
 
     public Ballista() {
-
+        possibleAttacKManager = new PossibleAttackManagerForCreature();
     }
 
 
@@ -45,12 +46,12 @@ public class Ballista implements BattleObject {
 
     @Override
     public boolean canFortifficationAttack() {
-        return false;
+        return possibleAttacKManager.canFortifficationAttack();
     }
 
     @Override
     public boolean canCreatureAttack() {
-        return true;
+        return possibleAttacKManager.canCreatureAttack();
     }
 
     @Override
@@ -60,6 +61,16 @@ public class Ballista implements BattleObject {
 
     @Override
     public int getLevel() {
+        return 0;
+    }
+
+    @Override
+    public String getMovementType() {
+        return null;
+    }
+
+    @Override
+    public int getMoveRange() {
         return 0;
     }
 
@@ -116,5 +127,10 @@ public class Ballista implements BattleObject {
     @Override
     public boolean isFortification() {
         return false;
+    }
+
+    @Override
+    public void counterAttack(Attacker attacker) {
+
     }
 }

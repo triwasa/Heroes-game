@@ -145,7 +145,7 @@ public class Board {
        return movementStrategy.canMove(this,aCreature, new Point(aX, aY));
     }
 
-    MovementStrategy getMovementStrategy(Creature aCreature) {
+    MovementStrategy getMovementStrategy(BattleObject aCreature) {
         switch (aCreature.getMovementType().toUpperCase()) {
             case GroundMovementStrategy.GROUND:
                 return new GroundMovementStrategy();

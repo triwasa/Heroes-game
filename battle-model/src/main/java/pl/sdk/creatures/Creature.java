@@ -25,6 +25,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
         stats = CreatureStatistic.TEST;
         calculateDamageStrategy = new DefaultCalculateStrategy();
         damageApplier = new DefaultDamageApplier();
+        possibleAttacKManager = new PossibleAttackManagerForCreature();
     }
 
     Creature(CreatureStatisticIf aStats){
@@ -66,6 +67,11 @@ public class Creature implements PropertyChangeListener, BattleObject {
     @Override
     public boolean isFortification() {
         return false;
+    }
+
+    @Override
+    public void counterAttack(Attacker attacker) {
+
     }
 
     public int getCurrentHp() {
