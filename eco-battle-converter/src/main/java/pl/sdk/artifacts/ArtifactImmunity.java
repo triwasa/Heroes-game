@@ -14,6 +14,6 @@ public class ArtifactImmunity extends ArtifactCreatureBuff {
 
     @Override
     void buffCreature(List<Creature> creatures) {
-        creatures.forEach(creature -> creature.applyImmunity(spellName));
+        creatures.forEach(creature -> creature.addImmunity(spellName));
     }
 }

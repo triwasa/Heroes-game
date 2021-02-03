@@ -16,6 +16,7 @@ public class EquippingCreatureBuffArtifactTest {
     private Hero hero;
     private List<Creature> creatures;
     private final ArtifactAbstractFactory artifactFactory = new ArtifactPrimaryFactory();
+    private final SpellFactory spellFactory = new SpellFactory();
 
     @BeforeEach
     void init(){
@@ -60,6 +61,33 @@ public class EquippingCreatureBuffArtifactTest {
         (artifactFactory.create("Surcoat of Counterpoise")).buff(hero); // +0.1 resistance
 
         assertEquals(primaryResistance + 0.1, creatureForTests.getResistance());
+    }
+
+    @Test
+    void ArtifactImmunityShouldAddImmunityToCreatureCorrectly(){
+        Creature creatureForTests = NecropolisFactory.createDefaultForTests();
+        creatures.add(creatureForTests);
+        hero.addCreatures(creatures);
+
+        (artifactFactory.create("Pendant of Negativity")).buff(hero); // immunity to  the lightning spell
+        Spell lightningSpell = spellFactory.create("Lightning spell");
+
+        assertEquals(true, creatureForTests.checkImmunity(lightningSpell));
+    }
+
+    @Test
+    void ArtifactImmunityShouldAddFewImmunitiesToCreatureCorrectly(){
+        Creature creatureForTests = NecropolisFactory.createDefaultForTests();
+        creatures.add(creatureForTests);
+        hero.addCreatures(creatures);
+
+        (artifactFactory.create("Pendant of Negativity")).buff(hero); // immunity to  the lightning spell
+        (artifactFactory.create("Pendant of Second Sight")).buff(hero); // immunity to  the blind spell
+        Spell lightningSpell = spellFactory.create("Lightning");
+        Spell blindSpell = spellFactory.create("Blind");
+
+        assertEquals(true, creatureForTests.checkImmunity(lightningSpell));
+        assertEquals(true, creatureForTests.checkImmunity(blindSpell));
     }
 
 }
