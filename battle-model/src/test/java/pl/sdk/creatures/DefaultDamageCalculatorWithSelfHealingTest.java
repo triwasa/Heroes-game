@@ -1,11 +1,9 @@
+/*
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.sdk.AttackEngine;
-import pl.sdk.Board;
 
 import java.util.Random;
 
@@ -56,4 +54,4 @@ class DefaultDamageCalculatorWithSelfHealingTest {
         assertEquals(20,attacker.getCurrentHp());
     }
 
-}
+}*/

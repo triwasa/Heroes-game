@@ -11,7 +11,7 @@ public class HealAfterAttackAttackStrategy extends DefaultAttackStrategy {
     }
     @Override
     public void beforeAttack(Attacker aAttacker, Defender aDefender) {
-        decoratedAttackStrategy.beforeAttack(aAttacker,aDefender);
+        return;
     }
 
     @Override
@@ -22,9 +22,9 @@ public class HealAfterAttackAttackStrategy extends DefaultAttackStrategy {
     @Override
     public void afterAttack(Attacker aAttacker, Defender aDefender) {
         healAfterAttack(aAttacker,aDefender);
-        decoratedAttackStrategy.afterAttack(aAttacker,aDefender);
+
     }
-    public void healAfterAttack(Attacker aAttacker, Defender aDefender) {
+    private void healAfterAttack(Attacker aAttacker, Defender aDefender) {
         int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker, aDefender);
         aDefender.getDamageApplier().calculateDamageToApply((int)(-damageToDeal * selfHealingPercentage), aDefender);
     }

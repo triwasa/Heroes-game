@@ -1,9 +1,7 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.sdk.AttackEngine;
 import pl.sdk.Board;
 import pl.sdk.GameEngine;
 
@@ -69,7 +67,6 @@ public class ShootingAndBlockCounterAttackCreatureTest {
 
         blockCounterAttackCreature = new ShootingCreatureDecorator(blockCounterAttackCreature);
         blockCounterAttackCreature.getAttackStrategy().attack(blockCounterAttackCreature,normalCreature);
-        blockCounterAttackCreature.getAttackRange();
 
         assertEquals(100,blockCounterAttackCreature.getCurrentHp());
         assertEquals(1,blockCounterAttackCreature.getAmount());

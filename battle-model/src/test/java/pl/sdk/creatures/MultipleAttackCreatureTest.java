@@ -1,11 +1,7 @@
 package pl.sdk.creatures;
 
-import com.google.common.collect.Range;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.sdk.AttackEngine;
-import pl.sdk.Board;
 
 import java.util.Random;
 
@@ -57,6 +53,7 @@ public class MultipleAttackCreatureTest {
                 .attackStrategy(new MulitpleAttackAttackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()),2))
                 .build();
         attacker.getAttackStrategy().attack(attacker,defender);
+        assertEquals(6, defender.getCurrentHp());
         assertEquals(10, attacker.getCurrentHp());
 
     }
@@ -71,4 +68,5 @@ public class MultipleAttackCreatureTest {
         assertEquals(10, defender.getCurrentHp());
         assertEquals(10, attacker.getCurrentHp());
     }
+
 }
