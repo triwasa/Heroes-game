@@ -6,7 +6,6 @@ import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.hero.EconomyHero;
 import pl.sdk.skill.Skill;
 import pl.sdk.skill.SkillFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +15,8 @@ public class Converter {
         ArtifactFactory artifactFactory = new ArtifactFactory();
         SkillFactory skillFactory = new SkillFactory();
 
-        List<Artifact> artifacts = new ArrayList<>();
-        List<Skill> skills = new ArrayList<>();
+        List<Artifact> artifacts = new ArrayList<Artifact>();
+        List<Skill> skills = new ArrayList<Skill>();
 
         // create new hero with default stats of economyHero
         Hero hero = new Hero.Builder()
@@ -33,32 +32,34 @@ public class Converter {
                 artifacts.add(artifactFactory.create(ecoArtifact.getName())));
 
 
-        // apply artifacts on hero -> modify hero's stats [ attack, defence, power, knowledge]
+        HeroSpellMastery hsm = new HeroSpellMastery(economyHero);
+
+        List<Creature> creatures = convertCreatures(economyHero, skills);
+        List<Spell> spells = convertSpells(economyHero, hsm);
+
+        hero.addCreatures(creatures);
+        hero.addSpells(spells);
+
+        // apply artifacts on hero -> modify hero's stats, creatures and spells
         artifacts.forEach(a -> a.apply(hero));
 
+        // TODO: convert skills [Intelligence, Wisdom, Eagle Eye] - add to hero ?
 
-        List<Creature> creatures = convertCreatures(economyHero, artifacts, skills, hero);
-        hero.addCreatures(creatures);
-
-        SpellMasteries masteries = new SpellMasteries(BASIC, BASIC, BASIC, BASIC);
-
-        List<Spell> spells = convertSpells(economyHero, artifacts, skills, masteries);
-        hero.addSpells(spells);
+        // check if hero has Intelligence skill -> if yes increase mana
+        increaseMana(hero);
 
         return hero;
     }
 
-    private static List<Creature> convertCreatures(EconomyHero economyHero, List<Artifact> artifacts, List<Skill> skills, Hero hero) {
+    private static List<Creature> convertCreatures(EconomyHero economyHero, List<Skill> skills) {
         NecropolisFactory factory = new NecropolisFactory();
         List<Creature> creatures = new ArrayList<>();
         economyHero.getCreatures().forEach(ecoCreature -> {
-            // create creatures with modified stats by hero's stats
-            Creature c = factory.create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount(), hero.getStats());
-
-            // apply artifacts like spell immunity, magic resistance
-            artifacts.forEach(artifact -> artifact.apply(c));
+            // create creatures with modified stats by hero's default stats
+            Creature c = factory.create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
 
             // apply skills [Archery, Offence, Armourer, Resistance, Leadership, Luck]
+            // apply war machines skills [Artillery, Ballistics, First aid, Eagle Eye]
             skills.forEach(skill -> skill.apply(c));
 
             creatures.add(c);
@@ -66,18 +67,14 @@ public class Converter {
         return creatures;
     }
 
-    private static List<Spell> convertSpells(EconomyHero economyHero, List<Artifact> artifacts, List<Skill> skills, SpellMasteries masteries) {
+    private static List<Spell> convertSpells(EconomyHero economyHero, HeroSpellMastery hsm) {
         SpellFactory spellFactory = new SpellFactory();
-        List<Spell> spells = new ArrayList<>();
+        List<Spell> spells = new ArrayList<Spell>();
         economyHero.getSpells().forEach(ecoSpell -> {
-            Spell s = spellFactory.create(ecoSpell.getName(), economyHero.getPower(), masteries);
+            Spell s = spellFactory.create(ecoSpell.getName(), hsm);
 
-            // artifacts:
-            //      - increasing spell duration [Collar of Conjuring, Ring of Conjuring, Cape of Conjuring]
-            //      - increasing spell damage [Orb of the Firmament, Orb of Silt, Orb of Tempstuous Fire, Orb of Driving Rain ]
-            artifacts.forEach(artifact -> artifact.apply(s));
-            // skills increasing damage [Sorcery]
-            skills.forEach(skill -> skill.apply(s));
+            // skills increasing damage - only [Sorcery]
+            applySorcery(s);
 
             spells.add(s);
         });
