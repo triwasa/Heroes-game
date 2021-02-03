@@ -1,7 +1,7 @@
 package pl.sdk.artifacts;
 
-import pl.sdk.converter.Hero;
 import pl.sdk.creatures.Creature;
+import pl.sdk.hero.Hero;
 
 import java.util.List;
 

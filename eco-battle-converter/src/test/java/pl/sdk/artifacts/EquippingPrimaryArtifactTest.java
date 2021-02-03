@@ -3,8 +3,8 @@ package pl.sdk.artifacts;
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.sdk.converter.Hero;
 import pl.sdk.creatures.Creature;
+import pl.sdk.hero.Hero;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

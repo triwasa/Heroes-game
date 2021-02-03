@@ -1,6 +1,6 @@
 package pl.sdk.artifacts;
 
-import pl.sdk.converter.Hero;
+import pl.sdk.hero.Hero;
 
 class ArtifactPrimary extends AbstractArtifact {
 
