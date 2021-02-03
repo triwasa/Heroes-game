@@ -13,4 +13,5 @@ public class EconomySkill {
     public int getCost(){
         return this.cost;
     }
+    public SkillStatistic getStats() {return this.skill; }
 }
