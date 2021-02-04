@@ -10,7 +10,7 @@ public class Immunity {
     private List<Spell> spells;
     private int resistance;
 
-    protected void add(SpellEnum aSpellName){
+    protected void addSingleImmunity(SpellEnum aSpellName){
         Spell spell = createSpell(aSpellName);
         if(!spells.contains(spell)){
             spells.add(spell);
@@ -18,6 +18,26 @@ public class Immunity {
         else{
             throw new IllegalArgumentException("Creature already have that spell immunity");
         }
+    }
+
+    protected void addImmunitiesByTier(int aTier){
+        // TODO think about in which module SpellsCreator should be
+//        List<Spell> spellsByTier = SpellsCreator.createSpellsByTier(aTier);
+//        spellsByTier.forEach(spell -> {
+//            if(!spellsByTier.contains(spell)){
+//                spellsByTier.add(spell);
+//            }
+//        });
+    }
+
+    protected void addImmunitiesByMagicType(String aMagicType){
+        // TODO think about in which module SpellsCreator should be
+//        List<Spell> spellsByTier = SpellsCreator.createSpellsByMagicType(aMagicType);
+//        spellsByTier.forEach(spell -> {
+//            if(!spellsByTier.contains(spell)){
+//                spellsByTier.add(spell);
+//            }
+//        });
     }
 
     protected void addResistance(int aResistance){
