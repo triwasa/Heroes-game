@@ -14,4 +14,16 @@ public class EconomySkill {
         return this.cost;
     }
     public SkillStatistic getStats() {return this.skill; }
+
+    public String getName() {
+        return "make me better";
+    }
+
+    public String getCoreName(){
+        return "make me better";
+    }
+
+    public int getGoldCost() {
+        return 0;
+    }
 }

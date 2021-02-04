@@ -1,9 +1,9 @@
 package pl.sdk.hero;
 
-import pl.sdk.skills.EconomySklill;
+import pl.sdk.skills.EconomySkill;
 
 public class SkillShop {
-    public void buy(EconomyHero aHero, EconomySklill aEconomySklill) {
+    public void buy(EconomyHero aHero, EconomySkill aEconomySklill) {
         aHero.substractGold(aEconomySklill.getGoldCost());
         try{
             aHero.addSkill(aEconomySklill);

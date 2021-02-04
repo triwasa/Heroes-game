@@ -1,9 +1,9 @@
 package pl.sdk.hero;
 
-import pl.sdk.artifacts.Artifact;
 import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.artifacts.HeroEquipment;
+import pl.sdk.skills.EconomySkill;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +41,7 @@ public class EconomyHero {
         gold = aGold;
         creatureList = new ArrayList<>();
         heroEquipment = new HeroEquipment();
+        skillList = new HashMap<>();
     }
 
     void addCreature(EconomyCreature aCreature){
@@ -50,13 +51,13 @@ public class EconomyHero {
         creatureList.add(aCreature);
     }
 
-    void addArtifact(Artifact aArtifact){
-        heroEquipment.equip(aArtifact);
-    }
+//    void addArtifact(Artifact aArtifact){
+//        heroEquipment.equip(aArtifact);
+//    }
 
-    public void addSkill(EconomySklill aEconomySklill) {
+    public void addSkill(EconomySkill aEconomySklill) {
 
-        if (skillList.containsKey(aEconomySklill.getCoreName())){
+        if (skillList.containsKey(aEconomySklill)){
             throw new IllegalStateException("hero already has the item");
         }
         skillList.put(aEconomySklill,aEconomySklill.getName());
@@ -74,8 +75,8 @@ public class EconomyHero {
         return List.copyOf(creatureList);
     }
 
-    public HashMap<String, Artifact> getArtifacts() {
-        return heroEquipment.getEquipment();
+    public HashMap<String, EconomyArtifact> getArtifacts() {
+        return null;
     }
 
 
