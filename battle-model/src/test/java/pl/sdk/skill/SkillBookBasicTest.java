@@ -67,5 +67,5 @@ public class SkillBookBasicTest {
         skillBook.addSkill(armourer);
         attacker.attack(defender);
         assertEquals(91,defender.getCurrentHp());
-    }*/
+    }
 }
