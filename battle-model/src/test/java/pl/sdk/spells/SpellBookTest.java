@@ -15,7 +15,7 @@ public class SpellBookTest {
     @BeforeEach
     void init(){
         this.owner = new Hero();
-        this.spellBook = new SpellBook(owner);
+        this.spellBook = new SpellBook();
         this.spellFactory = new SpellFactory();
         this.spellBook.addSpell(spellFactory.create(SpellEnum.BLESS));
     }

@@ -3,13 +3,14 @@ package pl.sdk.hero;
 import pl.sdk.creatures.Creature;
 import pl.sdk.heroClass.HeroClassStatisticIf;
 import pl.sdk.spells.Spell;
+import pl.sdk.spells.SpellBook;
 
 import java.util.*;
 
 public class Hero {
-    List<Spell> spells = new ArrayList<>();
-    List<Creature> creatures = new ArrayList<>();
-    HeroClassStatisticIf classStats;
+    private List<Creature> creatures = new ArrayList<>();
+    private HeroClassStatisticIf classStats;
+    private SpellBook spellBook;
 
 
 
@@ -19,21 +20,24 @@ public class Hero {
 
     public Hero() {
         this(new HeroStatisticForTesting(0,0,0,0));
+        spellBook = new SpellBook();
     }
 
     public void addCreatures(List<Creature> aCreatures) {
         this.creatures = aCreatures;
     }
 
+
+    //TODO go away!
     public void addSpells(List<Spell> aSpells) {
-        this.spells = aSpells;
+        aSpells.forEach(s -> spellBook.addSpell(s));
     }
 
     public List<Creature> getCreatures() {
         return creatures;
     }
 
-    public List<Spell> getSpells() { return spells; }
+    public Set<Spell> getSpells() { return spellBook.getSpellBook(); }
 
     public Object getStats() {
         return classStats;

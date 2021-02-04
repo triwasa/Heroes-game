@@ -1,19 +1,16 @@
 package pl.sdk.spells;
 
-import pl.sdk.hero.Hero;
-
 import java.util.HashMap;
+import java.util.Set;
 
 public class SpellBook {
     private HashMap<Spell, Integer> spellBook = new HashMap<Spell, Integer>();
-    private Hero owner = new Hero();
 
-    public SpellBook(Hero hero){
-        owner = hero;
+    public SpellBook(){
     }
 
-    public HashMap<Spell, Integer> getSpellBook(){
-        return spellBook;
+    public Set<Spell> getSpellBook(){
+        return spellBook.keySet();
     }
 
     boolean contains(Spell spell) {
