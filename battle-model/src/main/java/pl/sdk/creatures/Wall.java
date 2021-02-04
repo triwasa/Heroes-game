@@ -2,6 +2,7 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 import pl.sdk.DefaultDamageApplier;
+import pl.sdk.fortifications.FortificationStatistic;
 import pl.sdk.fortifications.FortificationStatisticIf;
 
 import java.util.Arrays;
@@ -16,13 +17,16 @@ public class Wall implements BattleObject, Fortification {
     private int amount;
 
     Wall() {
+        stats=FortificationStatistic.WALL;
+        damageApplier=new DefaultDamageApplier();
+
     }
 
 
     Wall(FortificationStatisticIf aStats) {
         this.stats=aStats;
         currentHp=stats.getMaxHp();
-        damageApplier = new DefaultDamageApplier();
+        damageApplier=new DefaultDamageApplier();
     }
 
 
@@ -72,11 +76,13 @@ public class Wall implements BattleObject, Fortification {
     }
 
     @Override
-    public void currentHpAfterAttack(int currentHp) {
+    public void currentHpAfterAttack(int aCurrentHp) {
+        currentHp=aCurrentHp;
     }
 
     @Override
     public void amountAfterAttack(int aAmount) {
+        amount=aAmount;
     }
 
     @Override
@@ -146,48 +152,52 @@ public class Wall implements BattleObject, Fortification {
         private AttackStrategy attackStrategy;
         private Integer amount;
 
-        Wall.Builder statistic (FortificationStatisticIf aStats){
-            this.stats = aStats;
+        Wall.Builder statistic(FortificationStatisticIf aStats) {
+            this.stats=aStats;
             return this;
-        };
-        Wall.Builder amount(int amount){
+        }
+
+        ;
+
+        Wall.Builder amount(int amount) {
             this.amount=amount;
             return this;
         }
-        Wall.Builder damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
-            this.damageCalculator = aCalculateDamageStrategy;
-            return this;
-        }
-        Wall.Builder damageApplier (DamageApplierIf aDamageApplier){
-            this.damageApplier = aDamageApplier;
-            return this;
-        }
-        Wall.Builder attackStrategy (AttackStrategy aAttackStrategy){
-            this.attackStrategy = aAttackStrategy;
+
+        Wall.Builder damageCalculator(CalculateDamageStrategy aCalculateDamageStrategy) {
+            this.damageCalculator=aCalculateDamageStrategy;
             return this;
         }
 
-        Wall build(){
-            Set<String> emptyFields = new HashSet<>();
-            if (stats == null){
+        Wall.Builder damageApplier(DamageApplierIf aDamageApplier) {
+            this.damageApplier=aDamageApplier;
+            return this;
+        }
+
+        Wall.Builder attackStrategy(AttackStrategy aAttackStrategy) {
+            this.attackStrategy=aAttackStrategy;
+            return this;
+        }
+
+        Wall build() {
+            Set<String> emptyFields=new HashSet<>();
+            if (stats == null) {
                 emptyFields.add("stats");
             }
-            if (!emptyFields.isEmpty()){
+            if (!emptyFields.isEmpty()) {
                 throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
             }
 
-            Wall ret = createInstance(stats);
-            if(amount == null){
+            Wall ret=createInstance(stats);
+            if (amount == null) {
                 ret.amount=1;
-            }
-            else{
-                ret.amount = amount;
+            } else {
+                ret.amount=amount;
             }
             if (damageApplier != null) {
-                ret.damageApplier = damageApplier;
-            }
-            else {
-                ret.damageApplier = new DefaultDamageApplier();
+                ret.damageApplier=damageApplier;
+            } else {
+                ret.damageApplier=new DefaultDamageApplier();
             }
 
             return ret;
@@ -207,56 +217,59 @@ public class Wall implements BattleObject, Fortification {
         private DamageApplierIf damageApplier;
         private Integer amount;
 
-        BuilderForTesting name (String name){
-            this.name = name;
+        BuilderForTesting name(String name) {
+            this.name=name;
             return this;
         }
-        BuilderForTesting maxHp (int maxHp){
-            this.maxHp = maxHp;
+
+        BuilderForTesting maxHp(int maxHp) {
+            this.maxHp=maxHp;
             return this;
         }
-        BuilderForTesting damage (int damage){
-            this.damage = damage;
+
+        BuilderForTesting damage(int damage) {
+            this.damage=damage;
             return this;
         }
-        BuilderForTesting amount(int amount){
+
+        BuilderForTesting amount(int amount) {
             this.amount=amount;
             return this;
         }
-        BuilderForTesting damageApplier (DamageApplierIf aDamageApplier) {
-            this.damageApplier = aDamageApplier;
+
+        BuilderForTesting damageApplier(DamageApplierIf aDamageApplier) {
+            this.damageApplier=aDamageApplier;
             return this;
         }
-        Wall build(){
-            Set<String> emptyFields = new HashSet<>();
-            if (name == null ){
+
+        Wall build() {
+            Set<String> emptyFields=new HashSet<>();
+            if (name == null) {
                 emptyFields.add("name");
             }
-            if (maxHp == null){
+            if (maxHp == null) {
                 emptyFields.add("maxHp");
             }
 
-            if (damage == null){
+            if (damage == null) {
                 emptyFields.add("damage");
             }
-            if (!emptyFields.isEmpty()){
+            if (!emptyFields.isEmpty()) {
                 throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
             }
 
-            FortificationStatisticIf stats = new FortificationStatisticForTesting(name, maxHp, damage);
-            Wall ret = createInstance(stats);
-            if(amount == null){
+            FortificationStatisticIf stats=new FortificationStatisticForTesting(name, maxHp, damage);
+            Wall ret=createInstance(stats);
+            if (amount == null) {
                 ret.amount=1;
-            }
-            else{
-                ret.amount = amount;
+            } else {
+                ret.amount=amount;
             }
 
             if (damageApplier != null) {
-                ret.damageApplier = damageApplier;
-            }
-            else {
-                ret.damageApplier = new DefaultDamageApplier();
+                ret.damageApplier=damageApplier;
+            } else {
+                ret.damageApplier=new DefaultDamageApplier();
             }
 
             return ret;

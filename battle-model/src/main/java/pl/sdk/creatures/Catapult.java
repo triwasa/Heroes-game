@@ -9,22 +9,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class Catapult extends Creature implements BattleObject {
+public class Catapult  implements BattleObject {
 
 
     private int currentHp;
     private PossibleAttackManagerIf possibleAttackManager;
     private CreatureStatisticIf stats;
     private CalculateDamageStrategy calculateDamageStrategy;
-    private DefaultCalculateStrategy damageCalculator=new DefaultCalculateStrategy();
+    private DefaultCalculateStrategy damageCalculator;
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
 
     Catapult() {
-        stats = CreatureStatistic.TEST;
+        stats = CreatureStatistic.CATAPULT;
         calculateDamageStrategy = new DefaultCalculateStrategy();
         damageApplier = new DefaultDamageApplier();
+        attackStrategy = new DefaultAttackStrategy();
+        damageCalculator = new DefaultCalculateStrategy();
         possibleAttackManager = new PossibleAttackManagerForMachine();
     }
 
@@ -33,6 +35,11 @@ public class Catapult extends Creature implements BattleObject {
         this.stats=aStats;
         currentHp=stats.getMaxHp();
         possibleAttackManager=new PossibleAttackManagerForMachine();
+        calculateDamageStrategy = new DefaultCalculateStrategy();
+        damageApplier = new DefaultDamageApplier();
+        attackStrategy = new DefaultAttackStrategy();
+        damageCalculator = new DefaultCalculateStrategy();
+        possibleAttackManager = new PossibleAttackManagerForMachine();
     }
 
 
@@ -124,8 +131,8 @@ public class Catapult extends Creature implements BattleObject {
     }
 
     @Override
-    public void currentHpAfterAttack(int currentHp) {
-
+    public void currentHpAfterAttack(int aCurrentHp) {
+        currentHp = aCurrentHp;
     }
 
     @Override
@@ -135,6 +142,7 @@ public class Catapult extends Creature implements BattleObject {
 
     @Override
     public void amountAfterAttack(int aAmount) {
+        amount =aAmount;
 
     }
 

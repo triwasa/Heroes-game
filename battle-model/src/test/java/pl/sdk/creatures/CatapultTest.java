@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.AttackEngine;
 import pl.sdk.Board;
+import pl.sdk.DefaultDamageApplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static pl.sdk.fortifications.FortificationStatistic.WALL;
@@ -23,34 +24,26 @@ class CatapultTest {
     public void shouldAttackWalls() {
         Catapult catapult=new Catapult.BuilderForTesting()
                 .name("Catapult")
-                .attack(10)
+                .attack(0)
                 .armor(NOT_IMPORTANT)
                 .maxHp(NOT_IMPORTANT)
                 .moveRange(NOT_IMPORTANT)
-                .damage(Range.closed(2, 2))
+                .damage(Range.closed(3, 3))
                 .build();
 
-        Creature defender1=new Creature.BuilderForTesting()
-                .name("Defender")
-                .attack(NOT_IMPORTANT)
-                .armor(10)
-                .maxHp(100)
-                .moveRange(NOT_IMPORTANT)
-                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
-                .build();
 
-        Wall wall = new Wall.BuilderForTesting()
+        Wall wall=new Wall.BuilderForTesting()
                 .name("Wall")
-                .maxHp(100)
-                .damage(5)
+                .amount(1)
+                .maxHp(6)
+                .damage(NOT_IMPORTANT)
                 .build();
 
-        attackEngine.attack(catapult, defender1);
-//        assertEquals(100, defender1.getCurrentHp());
+        attackEngine.attack(catapult, wall);
+        assertEquals(3, wall.getCurrentHp());
 
 
     }
-
 
 
 }

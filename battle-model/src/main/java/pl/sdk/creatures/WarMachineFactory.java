@@ -4,7 +4,7 @@ public class WarMachineFactory extends AbstractFactory {
     private static final String EXCEPTION_MESSAGE="We support tiers from 1 to 3";
 
     @Override
-    public BattleObject create(boolean aIsUpgraded, int aTier, int aAmount) {
+    public Creature create(boolean aIsUpgraded, int aTier, int aAmount) {
 
 
         switch (aTier) {
@@ -16,7 +16,7 @@ public class WarMachineFactory extends AbstractFactory {
                         .build();
 //                return new ShootingCreatureDecorator(catapult);
             case 2:
-                return new FirstAidTent(CreatureStatistic.FIRSTAIDTENT);
+                //return new FirstAidTent(CreatureStatistic.FIRSTAIDTENT);
             case 3:
                 Ballista ballista = new Ballista.Builder()
                         .statistic(CreatureStatistic.BALLISTA)
