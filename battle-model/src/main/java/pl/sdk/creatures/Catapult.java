@@ -66,7 +66,7 @@ public class Catapult  implements BattleObject {
 
     @Override
     public double getAttackRange() {
-        return 20.0;
+        return Double.MAX_VALUE;
     }
 
 

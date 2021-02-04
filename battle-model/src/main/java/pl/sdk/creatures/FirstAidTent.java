@@ -39,7 +39,7 @@ public class FirstAidTent implements BattleObject  {
 
     @Override
     public double getAttackRange() {
-        return 0;
+        return Double.MAX_VALUE;
     }
 
     @Override
@@ -53,12 +53,13 @@ public class FirstAidTent implements BattleObject  {
     }
 
     @Override
-    public void currentHpAfterAttack(int currentHp) {
-        currentHp = currentHp;
+    public void currentHpAfterAttack(int aCurrentHp) {
+        currentHp = aCurrentHp;
     }
 
     @Override
     public void amountAfterAttack(int aAmount) {
+        amount = aAmount;
         
     }
 

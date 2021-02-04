@@ -70,7 +70,7 @@ public class Ballista extends Creature implements BattleObject {
 
     @Override
     public double getAttackRange() {
-        return 20.0;
+        return Double.MAX_VALUE;
     }
 
     @Override
