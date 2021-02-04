@@ -14,7 +14,8 @@ public class WarMachineFactory extends AbstractFactory {
                         .amount(1)
                         .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                         .build();
-                return new ShootingCreatureDecorator(catapult);
+//                return new ShootingCreatureDecorator(catapult);
+                return null;
             case 2:
                 //return new FirstAidTent(CreatureStatistic.FIRSTAIDTENT);
             case 3:
@@ -23,7 +24,8 @@ public class WarMachineFactory extends AbstractFactory {
                         .amount(1)
                         .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                         .build();
-                return new ShootingCreatureDecorator(ballista);
+//                return new ShootingCreatureDecorator(ballista);
+                return null;
             default:
                 throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
