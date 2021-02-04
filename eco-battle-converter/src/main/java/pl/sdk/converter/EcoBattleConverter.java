@@ -70,7 +70,7 @@ public class EcoBattleConverter {
         return ret;
     }
 
-    public static void startEditting()
+    public static void startEditing()
     {
         Scene scene = null;
         try {
@@ -124,4 +124,5 @@ public class EcoBattleConverter {
     public static Hero convertHero(EconomyHero economyHero) {
         return Converter.convert(economyHero);
     }
+
 }
