@@ -1,6 +1,6 @@
-package pl.sdk;
+package pl.sdk.creatures;
 
-import pl.sdk.creatures.AbstractDamageApplier;
+
 
 public class DefaultDamageApplier extends AbstractDamageApplier {
 

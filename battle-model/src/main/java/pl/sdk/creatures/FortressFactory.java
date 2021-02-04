@@ -1,7 +1,5 @@
 package pl.sdk.creatures;
 
-import com.google.common.collect.Range;
-
 public class FortressFactory extends AbstractFactory {
 
     private static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 7";

@@ -1,33 +1,13 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-import pl.sdk.DefaultDamageApplier;
-import pl.sdk.fortifications.FortificationStatistic;
-import pl.sdk.fortifications.FortificationStatisticIf;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+public class Wall implements BattleObject {
 
-public class Wall implements BattleObject, Fortification {
-
-    private int currentHp;
-    private FortificationStatisticIf stats;
+    private int maxHp = 2;
+    private int currentHp = 2;
+    private int level = 1;
     private DamageApplierIf damageApplier;
-    private int amount;
-
-    Wall() {
-        stats=FortificationStatistic.WALL;
-        damageApplier=new DefaultDamageApplier();
-
-    }
-
-
-    Wall(FortificationStatisticIf aStats) {
-        this.stats=aStats;
-        currentHp=stats.getMaxHp();
-        damageApplier=new DefaultDamageApplier();
-    }
 
 
     @Override
@@ -56,7 +36,7 @@ public class Wall implements BattleObject, Fortification {
     }
 
     @Override
-    public boolean canFortificationAttack() {
+    public boolean canFortifficationAttack() {
         return false;
     }
 
@@ -66,73 +46,18 @@ public class Wall implements BattleObject, Fortification {
     }
 
     @Override
+    public DamageApplierIf getDamageApplier() {
+        return null;
+    }
+
+    @Override
+    public void applyDamage(int damageToApply) {
+
+    }
+
+    @Override
     public int getLevel() {
         return 0;
-    }
-
-    @Override
-    public DamageApplierIf getDamageApplier() {
-        return damageApplier;
-    }
-
-    @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-        currentHp=aCurrentHp;
-    }
-
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        amount=aAmount;
-    }
-
-    @Override
-    public boolean isCreature() {
-        return false;
-    }
-
-    @Override
-    public boolean isFortification() {
-        return true;
-    }
-
-    @Override
-    public void counterAttack(Attacker attacker) {
-
-    }
-
-    @Override
-    public boolean isAlive() {
-        return amount > 0;
-    }
-
-    @Override
-    public String getName() {
-        return stats.getTranslatedName();
-    }
-
-    @Override
-    public int getArmor() {
-        return 0;
-    }
-
-    @Override
-    public int getAmount() {
-        return amount;
-    }
-
-    @Override
-    public int getMaxHp() {
-        return stats.getMaxHp();
-    }
-
-    @Override
-    public int getCurrentHp() {
-        return currentHp;
-    }
-
-    @Override
-    public boolean[][] getSplashRange() {
-        return new boolean[0][];
     }
 
     @Override
@@ -145,138 +70,57 @@ public class Wall implements BattleObject, Fortification {
         return 0;
     }
 
-    static class Builder {
-        private FortificationStatisticIf stats;
-        private CalculateDamageStrategy damageCalculator;
-        private DamageApplierIf damageApplier;
-        private AttackStrategy attackStrategy;
-        private Integer amount;
-
-        Wall.Builder statistic(FortificationStatisticIf aStats) {
-            this.stats=aStats;
-            return this;
-        }
-
-        ;
-
-        Wall.Builder amount(int amount) {
-            this.amount=amount;
-            return this;
-        }
-
-        Wall.Builder damageCalculator(CalculateDamageStrategy aCalculateDamageStrategy) {
-            this.damageCalculator=aCalculateDamageStrategy;
-            return this;
-        }
-
-        Wall.Builder damageApplier(DamageApplierIf aDamageApplier) {
-            this.damageApplier=aDamageApplier;
-            return this;
-        }
-
-        Wall.Builder attackStrategy(AttackStrategy aAttackStrategy) {
-            this.attackStrategy=aAttackStrategy;
-            return this;
-        }
-
-        Wall build() {
-            Set<String> emptyFields=new HashSet<>();
-            if (stats == null) {
-                emptyFields.add("stats");
-            }
-            if (!emptyFields.isEmpty()) {
-                throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
-            }
-
-            Wall ret=createInstance(stats);
-            if (amount == null) {
-                ret.amount=1;
-            } else {
-                ret.amount=amount;
-            }
-            if (damageApplier != null) {
-                ret.damageApplier=damageApplier;
-            } else {
-                ret.damageApplier=new DefaultDamageApplier();
-            }
-
-            return ret;
-
-        }
-
-        Wall createInstance(FortificationStatisticIf aStats) {
-            return new Wall(aStats);
-        }
-
+    @Override
+    public boolean isAlive() {
+        return false;
     }
 
-    static class BuilderForTesting {
-        private String name;
-        private Integer maxHp;
-        private Integer damage;
-        private DamageApplierIf damageApplier;
-        private Integer amount;
+    @Override
+    public int getCurrentHp() {
+        return 0;
+    }
 
-        BuilderForTesting name(String name) {
-            this.name=name;
-            return this;
-        }
+    @Override
+    public boolean[][] getSplashRange() {
+        return new boolean[0][];
+    }
 
-        BuilderForTesting maxHp(int maxHp) {
-            this.maxHp=maxHp;
-            return this;
-        }
+    @Override
+    public String getName() {
+        return null;
+    }
 
-        BuilderForTesting damage(int damage) {
-            this.damage=damage;
-            return this;
-        }
+    @Override
+    public int getAmount() {
+        return 0;
+    }
 
-        BuilderForTesting amount(int amount) {
-            this.amount=amount;
-            return this;
-        }
+    @Override
+    public int getMaxHp() {
+        return 0;
+    }
 
-        BuilderForTesting damageApplier(DamageApplierIf aDamageApplier) {
-            this.damageApplier=aDamageApplier;
-            return this;
-        }
 
-        Wall build() {
-            Set<String> emptyFields=new HashSet<>();
-            if (name == null) {
-                emptyFields.add("name");
-            }
-            if (maxHp == null) {
-                emptyFields.add("maxHp");
-            }
 
-            if (damage == null) {
-                emptyFields.add("damage");
-            }
-            if (!emptyFields.isEmpty()) {
-                throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
-            }
+    @Override
+    public int getArmor() {
+        return 0;
+    }
 
-            FortificationStatisticIf stats=new FortificationStatisticForTesting(name, maxHp, damage);
-            Wall ret=createInstance(stats);
-            if (amount == null) {
-                ret.amount=1;
-            } else {
-                ret.amount=amount;
-            }
 
-            if (damageApplier != null) {
-                ret.damageApplier=damageApplier;
-            } else {
-                ret.damageApplier=new DefaultDamageApplier();
-            }
 
-            return ret;
-        }
+    @Override
+    public boolean isCreature() {
+        return false;
+    }
 
-        Wall createInstance(FortificationStatisticIf aStats) {
-            return new Wall(aStats);
-        }
+    @Override
+    public boolean isFortification() {
+        return true;
+    }
+
+    @Override
+    public void counterAttack(BattleObject attacker) {
+
     }
 }

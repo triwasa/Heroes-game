@@ -11,22 +11,19 @@ public class MulitpleAttackAttackStrategy extends DefaultAttackStrategy {
     }
 
     @Override
-    public void beforeAttack(Attacker aAttacker, Defender aDefender) {
-        decoratedAttackStrategy.beforeAttack(aAttacker,aDefender);
+    public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
+        return;
     }
 
     @Override
-    public void attack(Attacker aAttacker, Defender aDefender) {
+    public void attack(BattleObject aAttacker, BattleObject aDefender) {
         for(int i = 0; i < attackCount; i++) {
-            if (aAttacker.isAlive()){
-                int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
-                aDefender.getDamageApplier().applyDamage(damageToDeal, aDefender);;
-            }
+            decoratedAttackStrategy.attack(aAttacker,aDefender);
         }
     }
 
     @Override
-    public void afterAttack(Attacker aAttacker, Defender aDefender) {
-        decoratedAttackStrategy.afterAttack(aAttacker,aDefender);
+    public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
+        return;
     }
 }

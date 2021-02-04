@@ -1,11 +1,8 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.sdk.AttackEngine;
-import pl.sdk.Board;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,7 +11,6 @@ public class ApplyDamageTest {
     private static final int NOT_IMPORTANT = 5;
     private Creature defender;
     private static final int IMMORTAL=99999;
-    private AttackEngine attackEngine;
 
     @BeforeEach
     void init(){
@@ -27,7 +23,6 @@ public class ApplyDamageTest {
                 .moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
                 .build();
-         attackEngine = new AttackEngine(new Board());
     }
     @Test
     void shouldLostOneCreatureFromStackAndHasFullHp(){
@@ -40,7 +35,8 @@ public class ApplyDamageTest {
                 .damage(Range.closed(100, 100))
                 .build();
 
-        attackEngine.attack(attacker,defender);
+        int damageToDeal = attacker.getCalculateDamage().calculateDamage(attacker,defender);
+        defender.getDamageApplier().calculateDamageToApply(damageToDeal, defender);
 
         assertEquals(9, defender.getAmount());
         assertEquals(100, defender.getCurrentHp());
@@ -57,7 +53,8 @@ public class ApplyDamageTest {
                 .damage(Range.closed(200, 200))
                 .build();
 
-        attackEngine.attack(attacker,defender);
+        int damageToDeal = attacker.getCalculateDamage().calculateDamage(attacker,defender);
+        defender.getDamageApplier().calculateDamageToApply(damageToDeal, defender);
 
         assertEquals(8, defender.getAmount());
         assertEquals(100, defender.getCurrentHp());
@@ -74,7 +71,8 @@ public class ApplyDamageTest {
                 .damage(Range.closed(199, 199))
                 .build();
 
-        attackEngine.attack(attacker,defender);
+        int damageToDeal = attacker.getCalculateDamage().calculateDamage(attacker,defender);
+        defender.getDamageApplier().calculateDamageToApply(damageToDeal, defender);
 
         assertEquals(9, defender.getAmount());
         assertEquals(1, defender.getCurrentHp());
@@ -91,7 +89,8 @@ public class ApplyDamageTest {
                 .damage(Range.closed(99, 99))
                 .build();
 
-        attackEngine.attack(attacker,defender);
+        int damageToDeal = attacker.getCalculateDamage().calculateDamage(attacker,defender);
+        defender.getDamageApplier().calculateDamageToApply(damageToDeal, defender);
 
         assertEquals(10, defender.getAmount());
         assertEquals(1, defender.getCurrentHp());
@@ -108,8 +107,9 @@ public class ApplyDamageTest {
                 .damage(Range.closed(99, 99))
                 .build();
 
-        attackEngine.attack(attacker,defender);
-        attackEngine.attack(attacker,defender);
+        int damageToDeal = attacker.getCalculateDamage().calculateDamage(attacker,defender);
+        defender.getDamageApplier().calculateDamageToApply(damageToDeal, defender);
+        defender.getDamageApplier().calculateDamageToApply(damageToDeal, defender);
 
         assertEquals(9, defender.getAmount());
         assertEquals(2, defender.getCurrentHp());

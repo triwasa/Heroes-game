@@ -1,7 +1,5 @@
 package pl.sdk.creatures;
 
-import com.google.common.collect.Range;
-
 import java.util.List;
 
 public class InfernoFactory extends AbstractFactory {

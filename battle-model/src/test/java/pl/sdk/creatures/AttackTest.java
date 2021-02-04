@@ -13,17 +13,16 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class AttackEngineTest {
+class AttackTest {
 
     public static final int NOT_IMPORTANT = 5;
     private Random randomizer;
-    private AttackEngine attackEngine;
 
     @BeforeEach
     void init(){
         randomizer = mock(Random.class);
         when(randomizer.nextInt(anyInt())).thenReturn(4);
-        attackEngine = new AttackEngine(new Board());
+
     }
 
 
@@ -46,8 +45,7 @@ class AttackEngineTest {
                 .damage(Range.closed(5,5))
                 .build();
 
-        attackEngine.attack(attacker,defender);
-
+        attacker.getAttackStrategy().attack(attacker,defender);
         assertEquals(80,defender.getCurrentHp());
     }
 
@@ -70,7 +68,8 @@ class AttackEngineTest {
                 .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
                 .build();
 
-        attackEngine.attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker,defender);
+
 
         assertEquals(78,defender.getCurrentHp());
     }
@@ -93,7 +92,7 @@ class AttackEngineTest {
                 .moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
                 .build();
-        attackEngine.attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker,defender);
 
         assertEquals(87,defender.getCurrentHp());
     }
@@ -116,19 +115,9 @@ class AttackEngineTest {
                 .moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
                 .build();
-        attackEngine.attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker,defender);
 
         assertEquals(74,defender.getCurrentHp());
     }
 
-    @Test
-    void canAttack() {
-        assertFalse(attackEngine.canAttack(new Creature(),new Wall()));
-        assertTrue(attackEngine.canAttack(new Creature(),new Ballista()));
-        assertTrue(attackEngine.canAttack(new Ballista(),new Creature()));
-        assertTrue(attackEngine.canAttack(new Keep(),new Creature()));
-        assertFalse(attackEngine.canAttack(new Catapult(), new Creature()));
-        assertTrue(attackEngine.canAttack(new Catapult(), new Wall()));
-        assertFalse(attackEngine.canAttack(new Wall(), new Catapult()));
-    }
 }

@@ -2,9 +2,8 @@ package pl.sdk.creatures;
 
 public interface Defender extends BattleObjectStatistic {
     DamageApplierIf getDamageApplier();
-    void currentHpAfterAttack(int currentHp);
-    void amountAfterAttack(int aAmount);
+    void applyDamage(int damageToApply);
     boolean isCreature();
     boolean isFortification();
-    void counterAttack(Attacker attacker);
+    void counterAttack(BattleObject attacker);
 }
