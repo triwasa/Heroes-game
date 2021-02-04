@@ -39,7 +39,6 @@ public class Catapult  implements BattleObject {
         damageApplier = new DefaultDamageApplier();
         attackStrategy = new DefaultAttackStrategy();
         damageCalculator = new DefaultCalculateStrategy();
-        possibleAttackManager = new PossibleAttackManagerForMachine();
     }
 
 
@@ -175,82 +174,6 @@ public class Catapult  implements BattleObject {
 
     }
 
-
-
-
-    static class Builder {
-        private CreatureStatisticIf stats;
-        private CalculateDamageStrategy damageCalculator;
-        private DamageApplierIf damageApplier;
-        private AttackStrategy attackStrategy;
-        private Integer amount;
-
-        Catapult.Builder statistic(CreatureStatisticIf aStats) {
-            this.stats=aStats;
-            return this;
-        }
-
-
-        Catapult.Builder amount(int amount) {
-            this.amount=amount;
-            return this;
-        }
-
-        Catapult.Builder damageCalculator(CalculateDamageStrategy aCalculateDamageStrategy) {
-            this.damageCalculator=aCalculateDamageStrategy;
-            return this;
-        }
-
-        Catapult.Builder damageApplier(DamageApplierIf aDamageApplier) {
-            this.damageApplier=aDamageApplier;
-            return this;
-        }
-
-        Catapult.Builder attackStrategy(AttackStrategy aAttackStrategy) {
-            this.attackStrategy=aAttackStrategy;
-            return this;
-        }
-
-        Catapult build() {
-            Set<String> emptyFields=new HashSet<>();
-            if (stats == null) {
-                emptyFields.add("stats");
-            }
-            if (!emptyFields.isEmpty()) {
-                throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
-            }
-
-            Catapult ret=createInstance(stats);
-            if (amount == null) {
-                ret.amount=1;
-            } else {
-                ret.amount=amount;
-            }
-            if (damageCalculator != null) {
-                ret.calculateDamageStrategy=damageCalculator;
-            } else {
-                ret.calculateDamageStrategy=new DefaultCalculateStrategy();
-            }
-            if (damageApplier != null) {
-                ret.damageApplier=damageApplier;
-            } else {
-                ret.damageApplier=new DefaultDamageApplier();
-            }
-            if (attackStrategy != null) {
-                ret.attackStrategy=attackStrategy;
-            } else {
-                ret.attackStrategy=new DefaultAttackStrategy();
-            }
-
-            return ret;
-
-        }
-
-        Catapult createInstance(CreatureStatisticIf aStats) {
-            return new Catapult(aStats);
-        }
-
-    }
 
     static class BuilderForTesting {
         private String name;
