@@ -1,6 +1,6 @@
 package skills;
 
-import pl.sdk.Hero;
+import pl.sdk.hero.Hero;
 
 import java.util.*;
 

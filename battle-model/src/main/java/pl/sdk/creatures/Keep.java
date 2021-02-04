@@ -54,6 +54,16 @@ public class Keep implements BattleObject, Fortification {
     }
 
     @Override
+    public void currentHpAfterAttack(int currentHp) {
+        currentHp = currentHp;
+    }
+
+    @Override
+    public void amountAfterAttack(int aAmount) {
+        aAmount = aAmount;
+    }
+
+    @Override
     public DamageApplierIf getDamageApplier() {
         return null;
     }

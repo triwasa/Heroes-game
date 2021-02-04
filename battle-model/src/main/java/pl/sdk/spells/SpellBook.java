@@ -1,6 +1,6 @@
 package pl.sdk.spells;
 
-import pl.sdk.Hero;
+import pl.sdk.hero.Hero;
 
 import java.util.HashMap;
 

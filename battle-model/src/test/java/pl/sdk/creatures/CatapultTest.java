@@ -5,10 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.AttackEngine;
 import pl.sdk.Board;
-import pl.sdk.DefaultDamageApplier;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pl.sdk.fortifications.FortificationStatistic.WALL;
 
 class CatapultTest {
 

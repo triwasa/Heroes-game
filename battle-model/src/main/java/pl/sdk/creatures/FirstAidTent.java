@@ -8,7 +8,7 @@ public class FirstAidTent implements BattleObject  {
 
     private CreatureStatisticIf stats;
     private int currentHp;
-    private PossbileAttackMangerIf possibleAttacKManager;
+    private PossibleAttackManagerIf possibleAttacKManager;
 
 
     FirstAidTent(CreatureStatisticIf aStats){
@@ -42,13 +42,23 @@ public class FirstAidTent implements BattleObject  {
     }
 
     @Override
-    public boolean canFortifficationAttack() {
-        return false;
+    public boolean canFortificationAttack() {
+        return possibleAttacKManager.canFortificationAttack();
     }
 
     @Override
     public boolean canCreatureAttack() {
         return true;
+    }
+
+    @Override
+    public void currentHpAfterAttack(int currentHp) {
+        currentHp = currentHp;
+    }
+
+    @Override
+    public void amountAfterAttack(int aAmount) {
+        
     }
 
     @Override
@@ -59,11 +69,6 @@ public class FirstAidTent implements BattleObject  {
     @Override
     public void applyDamage(int damageToApply) {
 
-    }
-
-    @Override
-    public int getLevel() {
-        return 0;
     }
 
     @Override

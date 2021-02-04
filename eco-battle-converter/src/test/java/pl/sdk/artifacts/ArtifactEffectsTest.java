@@ -2,7 +2,7 @@ package pl.sdk.artifacts;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.sdk.Hero;
+import pl.sdk.hero.Hero;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
 
@@ -14,9 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ArtifactEffectsTest {
     private static final int NOT_IMPORTANT = 1;
     private Hero hero;
-    private final ArtifactPrimary1Factory artifactFactory = new ArtifactPrimary1Factory();
+    private final ArtifactPrimaryFactory artifactFactory = new ArtifactPrimaryFactory();
 
-    @BeforeEach
     void init(){
         HeroEquipment heroEquipment = new HeroEquipment();
         List<Creature> creatureList = new ArrayList<>();

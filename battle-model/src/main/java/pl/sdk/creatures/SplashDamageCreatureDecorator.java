@@ -52,11 +52,6 @@ public class SplashDamageCreatureDecorator extends Creature {
     }
 
     @Override
-    public int getLevel() {
-        return decorated.getLevel();
-    }
-
-    @Override
     public boolean isAlive() {
         return decorated.isAlive();
     }

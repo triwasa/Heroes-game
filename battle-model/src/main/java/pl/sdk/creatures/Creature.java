@@ -153,6 +153,15 @@ public class Creature implements PropertyChangeListener, BattleObject {
         return stats.getMaxHp();
     }
 
+    @Override
+    public void currentHpAfterAttack(int aCurrentHp) {
+        currentHp = aCurrentHp;
+    }
+
+    @Override
+    public void amountAfterAttack(int aAmount) {
+        amount = aAmount;
+    }
 
     public String currentHealth() {
         StringBuilder sb = new StringBuilder();

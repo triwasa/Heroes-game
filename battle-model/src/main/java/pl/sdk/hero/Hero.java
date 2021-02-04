@@ -2,6 +2,7 @@ package pl.sdk.hero;
 
 import pl.sdk.creatures.Creature;
 import pl.sdk.heroClass.HeroClassStatisticIf;
+import pl.sdk.spells.Spell;
 
 import java.util.*;
 
@@ -10,8 +11,14 @@ public class Hero {
     List<Creature> creatures = new ArrayList<>();
     HeroClassStatisticIf classStats;
 
+
+
     public Hero(HeroClassStatisticIf aStats) {
         classStats = aStats;
+    }
+
+    public Hero() {
+        this(new HeroStatisticForTesting(0,0,0,0));
     }
 
     public void addCreatures(List<Creature> aCreatures) {

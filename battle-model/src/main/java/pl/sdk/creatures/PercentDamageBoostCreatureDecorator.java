@@ -19,16 +19,16 @@ public class PercentDamageBoostCreatureDecorator extends Creature {
         decorated.setCurrentHpToMaximum();
     }
 
-    @Override
-    public void attack(Creature aDefender) {
-        int bonusDamage = calculateDamage(decorated, aDefender);
-        System.out.println(bonusDamage);
-        decorated.attack(aDefender);
-        aDefender.applyDamage(bonusDamage);
-    }
+//    @Override
+//    public void attack(BattleObject aDefender) {
+////        int bonusDamage = calculateDamage(decorated, aDefender);
+//        System.out.println(bonusDamage);
+//        decorated.attack(aDefender);
+//        aDefender.applyDamage(bonusDamage);
+//    }
 
     @Override
-    protected void counterAttack(Creature aDefender) {
+    public void counterAttack(BattleObject aDefender) {
         decorated.counterAttack(aDefender);
     }
 
@@ -42,10 +42,10 @@ public class PercentDamageBoostCreatureDecorator extends Creature {
         decorated.applyDamage(aDamageToApply);
     }
 
-    @Override
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
-        return Math.round(decorated.calculateDamage(aAttacker, aDefender) * damageBoost);
-    }
+//    @Override
+//    int calculateDamage(Creature aAttacker, Creature aDefender) {
+//        return Math.round(decorated.calculateDamage(aAttacker, aDefender) * damageBoost);
+//    }
 
     @Override
     public boolean isAlive() {

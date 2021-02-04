@@ -19,15 +19,15 @@ public class DoubleDamagePercentChanceDecorator extends Creature {
         decorated.setCurrentHpToMaximum();
     }
 
-    @Override
-    public void attack(Creature aDefender) {
-        int bonusDamage = calculateDamage(decorated, aDefender);
-        aDefender.applyDamage(bonusDamage);
-        decorated.attack(aDefender);
-    }
+//    @Override
+//    public void attack(BattleObject aDefender) {
+//        int bonusDamage = calculateDamage(decorated, aDefender);
+//        aDefender.applyDamage(bonusDamage);
+//        decorated.attack(aDefender);
+//    }
 
     @Override
-    protected void counterAttack(Creature aDefender) {
+    public void counterAttack(BattleObject aDefender) {
         decorated.counterAttack(aDefender);
     }
 
@@ -41,19 +41,19 @@ public class DoubleDamagePercentChanceDecorator extends Creature {
         decorated.applyDamage(aDamageToApply);
     }
 
-    @Override
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
-        Random rand = new Random();
-        int roll = (rand.nextInt(100) + 1);
-        System.out.println("rolld100 = " + roll);
-        if (roll > percentToDealDoubleDamage){
-            return 0;
-        }
-        else{
-            return (decorated.calculateDamage(aAttacker, aDefender));
-        }
-
-    }
+//    @Override
+//    int calculateDamage(Creature aAttacker, Creature aDefender) {
+//        Random rand = new Random();
+//        int roll = (rand.nextInt(100) + 1);
+//        System.out.println("rolld100 = " + roll);
+//        if (roll > percentToDealDoubleDamage){
+//            return 0;
+//        }
+//        else{
+//            return (decorated.calculateDamage(aAttacker, aDefender));
+//        }
+//
+//    }
 
     @Override
     public boolean isAlive() {
