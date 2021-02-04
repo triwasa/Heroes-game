@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class BuyingArtifactTest {
 
     private EconomyHero hero1;
-    private final EconomyArtifactPrimary1Factory artifactFactory = new EconomyArtifactPrimary1Factory();
+    private final EconomyArtifactPrimaryFactory economyArtifactFactory = new EconomyArtifactPrimaryFactory();
     private EconomyEngine economyEngine;
     private EconomyHero hero2;
 
@@ -24,32 +24,33 @@ public class BuyingArtifactTest {
 
     @Test
     void heroShouldCanBuyArtifact() {
-        economyEngine.buyArtifact(artifactFactory.create("Centaur's Ax")); // 120 gold
+        economyEngine.buyArtifact(economyArtifactFactory.create("Centaur's Ax")); // 120 gold
 
         assertEquals(880, hero1.getGold());
     }
 
     @Test
     void heroShouldCanBuyFewArtifacts() {
-        economyEngine.buyArtifact(artifactFactory.create("Centaur's Ax")); // 120 gold
-        economyEngine.buyArtifact(artifactFactory.create("Shield of the Dwarven Lords")); // 120 gold
+        economyEngine.buyArtifact(economyArtifactFactory.create("Centaur's Ax")); // 120 gold
+        economyEngine.buyArtifact(economyArtifactFactory.create("Shield of the Dwarven Lords")); // 120 gold
 
         assertEquals(760, hero1.getGold());
     }
 
     @Test
     void heroCannotBuyArtifactWhenHasNotEnoughGold() {
-        assertThrows(IllegalStateException.class, () -> economyEngine.buyArtifact(artifactFactory.create("Titan's Gladius")));
+        assertThrows(IllegalStateException.class, () -> economyEngine.buyArtifact(economyArtifactFactory.create("Titan's Gladius")));
         assertEquals(1000, hero1.getGold());
         assertEquals(0, hero1.getArtifacts().size());
     }
 
     @Test
     void heroCannotBuyArtifactWhenHasOneAlreadyInSlot() {
-        economyEngine.buyArtifact(artifactFactory.create("Centaur's Ax"));
+        economyEngine.buyArtifact(economyArtifactFactory.create("Centaur's Ax"));
 
-        assertThrows(IllegalStateException.class, () -> economyEngine.buyArtifact(artifactFactory.create("Blackshard of the Dead Knight")));
+        assertThrows(IllegalStateException.class, () -> economyEngine.buyArtifact(economyArtifactFactory.create("Blackshard of the Dead Knight")));
         assertEquals(880, hero1.getGold());
         assertEquals(1, hero1.getArtifacts().size());
     }
+
 }

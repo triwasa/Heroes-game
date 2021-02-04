@@ -5,11 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.sdk.Board;
+import pl.sdk.Hero;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.gui.BattleMapController;
 import pl.sdk.gui.MapEditorController;
 import pl.sdk.hero.EconomyHero;
+import pl.sdk.skill.Skill;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +26,7 @@ public class EcoBattleConverter {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(EcoBattleConverter.class.getClassLoader().getResource("fxml/battleMap.fxml"));
             loader.setController(new BattleMapController(convert(aPlayer1),convert(aPlayer2)));
+            //loader.setController(new BattleMapController(convertToHero(aPlayer1).getCreatures(),convertToHero(aPlayer2).getCreatures()));
             scene = new Scene(loader.load());
 //            ObjectMapper objectMapper = new ObjectMapper();
 //            Board board = objectMapper.readValue(new File("result.json"), Board.class);
@@ -40,9 +43,19 @@ public class EcoBattleConverter {
     public static List<Creature> convert(EconomyHero aPlayer1) {
         List<Creature>ret = new ArrayList<>();
         NecropolisFactory factory = new NecropolisFactory();
-        aPlayer1.getCreatures().forEach(ecoCreature ->
-                ret.add(factory.create(ecoCreature.isUpgraded(),ecoCreature.getTier(),ecoCreature.getAmount())));
+                aPlayer1.getCreatures().forEach(ecoCreature -> {
+                    Creature c = factory.create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
+//                    aPlayer1.getArtifacts().forEach(a -> a.apply(c));
+//                    aPlayer1.getSkills().forEach(a -> a.apply(c));
+//                    c.increaseStats(aPlayer1.getStats());
+                    ret.add(c);
+                }
+        );
         return ret;
+    }
+
+    public static Hero convertToHero(EconomyHero economyHero) {
+        return Converter.convert(economyHero);
     }
 
     public static void startEditting()
@@ -77,9 +90,5 @@ public class EcoBattleConverter {
         ObjectMapper objectMapper = new ObjectMapper();
         Board boardOfObstacles = objectMapper.readValue(file, Board.class);
         return boardOfObstacles;
-    }
-
-    public static Hero convertHero(EconomyHero economyHero) {
-        return Converter.convert(economyHero);
     }
 }

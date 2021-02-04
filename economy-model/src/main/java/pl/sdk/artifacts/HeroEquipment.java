@@ -1,12 +1,13 @@
 package pl.sdk.artifacts;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class HeroEquipment {
 
-    private HashMap<String, Artifact> equipment = new HashMap<>();
+    private HashMap<String, EconomyArtifact> equipment = new HashMap<>();
 
-    void equip(Artifact artifact){
+    void equip(EconomyArtifact artifact){
         if (equipment.containsKey(artifact.getSlotName())) {
             throw new IllegalStateException("Hero has got already item with same slot name");
         }
@@ -14,4 +15,9 @@ public class HeroEquipment {
             equipment.put(artifact.getSlotName(), artifact);
         }
     }
+
+    public List<EconomyArtifact> getArtifacts() {
+        return List.copyOf(equipment.values());
+    }
+
 }

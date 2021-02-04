@@ -12,6 +12,21 @@ public class EconomyHero {
         return null;
     }
 
+    public int getAttack() {
+        return 0;
+    }
+
+    public int getDefense() {
+        return 0;
+    }
+
+    public int getSpellPower() {
+        return 0;
+    }
+
+    public int getKnowledge() {
+        return 0;
+    }
     public enum Fraction {
         NECROPOLIS;
     }

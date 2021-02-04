@@ -2,7 +2,7 @@ package pl.sdk.artifacts;
 
 public class EconomyArtifact {
 
-    private final ArtifactStatistic stats;
+    private final ArtifactStatisticIf stats;
     private final int goldCost;
 
 
@@ -14,5 +14,9 @@ public class EconomyArtifact {
     public int getGoldCost() { return goldCost; }
 
     public String getName() { return stats.getTranslatedName(); }
+
+    public String getSlotName() { return stats.getSlotName(); }
+
+    public String getDescription() { return stats.getDescription(); }
 
 }
