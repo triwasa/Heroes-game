@@ -3,6 +3,7 @@ package pl.sdk;
 import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.GuiBattleObject;
+import pl.sdk.hero.Hero;
 import pl.sdk.special_fields.Field;
 
 import java.beans.PropertyChangeEvent;
@@ -23,6 +24,8 @@ public class GameEngine {
     private final Board board;
     private final CreatureTurnQueue queue;
     private final PropertyChangeSupport observerSupport;
+    private final Hero hero1;
+    private final Hero hero2;
     private boolean blockMoving;
     private boolean blockAttacking;
     private List<Creature> creatures1;
@@ -33,15 +36,17 @@ public class GameEngine {
 //        this(aCreatures1, aCreatures2, new Board());
 //    }
 
-    public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2, Board aBoard) {
+    public GameEngine(Hero aHero1, Hero aHero2, Board aBoard) {
         board = aBoard;
-        creatures1 = aCreatures1;
-        creatures2 = aCreatures2;
+        hero1 = aHero1;
+        hero2 = aHero2;
+        creatures1 = aHero1.getCreatures();
+        creatures2 = aHero2.getCreatures();
         attackEngine = new AttackEngine(board);
         putCreaturesToBoard(creatures1, creatures2);
         List<Creature> twoSidesCreatures = new ArrayList<>();
-        twoSidesCreatures.addAll(aCreatures1);
-        twoSidesCreatures.addAll(aCreatures2);
+        twoSidesCreatures.addAll(creatures1);
+        twoSidesCreatures.addAll(creatures2);
         twoSidesCreatures.sort((c1, c2) -> c2.getMoveRange() - c1.getMoveRange());
         queue = new CreatureTurnQueue(twoSidesCreatures);
         twoSidesCreatures.forEach(queue::addObserver);

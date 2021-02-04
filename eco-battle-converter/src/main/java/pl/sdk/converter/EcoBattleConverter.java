@@ -62,12 +62,14 @@ public class EcoBattleConverter {
         }
     }
 
-    public static List<Creature> convert(EconomyHero aPlayer1) {
+    public static Hero convert(EconomyHero aPlayer1) {
         List<Creature>ret = new ArrayList<>();
         NecropolisFactory factory = new NecropolisFactory();
         aPlayer1.getCreatures().forEach(ecoCreature ->
                 ret.add(factory.create(ecoCreature.isUpgraded(),ecoCreature.getTier(),ecoCreature.getAmount())));
-        return ret;
+        Hero a = new Hero();
+        a.addCreatures(ret);
+        return a;
     }
 
     public static void startEditing()

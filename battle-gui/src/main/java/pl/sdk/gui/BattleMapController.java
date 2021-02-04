@@ -8,8 +8,8 @@ import javafx.scene.paint.Color;
 import pl.sdk.*;
 import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.GuiBattleObject;
 import pl.sdk.creatures.NecropolisFactory;
+import pl.sdk.hero.Hero;
 import pl.sdk.special_fields.Field;
 
 import java.beans.PropertyChangeEvent;
@@ -41,15 +41,19 @@ public class BattleMapController implements PropertyChangeListener {
             upgradedCreatures.add(factory.create(true, i, 10));
         }
 
-        gameEngine = new GameEngine(notUpgradedCreatures, upgradedCreatures, new Board());
+        Hero h1 = new Hero();
+        h1.addCreatures(notUpgradedCreatures);
+        Hero h2 = new Hero();
+        h2.addCreatures(upgradedCreatures);
+        gameEngine = new GameEngine(h1, h2, new Board());
     }
 
-    public BattleMapController(List<Creature> aCreatures1, List<Creature> aCreatures2){
-        this(aCreatures1,aCreatures2, new Board());
+    public BattleMapController(Hero h1, Hero h2){
+        gameEngine = new GameEngine(h1, h2, new Board());
     }
 
-    public BattleMapController(List<Creature> aCreatures1, List<Creature> aCreatures2, Board board){
-        gameEngine = new GameEngine(aCreatures1, aCreatures2, board);
+    public BattleMapController(Hero h1, Hero h2, Board board){
+        gameEngine = new GameEngine(h1, h2, new Board());
         this.board= board;
     }
 
@@ -76,7 +80,7 @@ public class BattleMapController implements PropertyChangeListener {
                 Field field = gameEngine.getField(x, y);
                 if (c != null) {
                     boolean isRightPlayerCreature = gameEngine.isPlayerTwoUnit(x,y);
-                    rec.addCreature(c.getName(), c.getAmount(), isRightPlayerCreature);
+                    rec.addObject(c.getName(), c.getAmount(), isRightPlayerCreature);
 
                     if (c == gameEngine.getActiveCreature()) {
                         rec.setBackground(Color.GREEN);

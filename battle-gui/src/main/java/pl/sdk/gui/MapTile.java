@@ -23,7 +23,7 @@ public class MapTile extends StackPane {
         getChildren().add(rec);
     }
 
-    void addCreature(String aName, int aAmount){
+    void addObject(String aName, int aAmount){
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
         ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/graphics/creatures/" + aName + ".png")));
@@ -36,7 +36,7 @@ public class MapTile extends StackPane {
         getChildren().add(vbox);
     }
 
-    void addCreature(String aName, int aAmount, boolean isRightPlayerCreature) {
+    void addObject(String aName, int aAmount, boolean isRightPlayerCreature) {
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
         ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/graphics/creatures/" + aName + ".png")));
