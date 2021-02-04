@@ -4,6 +4,7 @@ import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.hero.CreatureShop;
 import pl.sdk.hero.EconomyHero;
+import pl.sdk.spell.EconomySpell;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -75,5 +76,8 @@ public class EconomyEngine {
 
     public void buyArtifact(EconomyArtifact aEconomyArtifact) {
 
+    }
+
+    public void buySpell(EconomySpell economySpell){
     }
 }
