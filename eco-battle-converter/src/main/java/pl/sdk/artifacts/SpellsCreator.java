@@ -1,6 +1,10 @@
 package pl.sdk.artifacts;
 
+import pl.sdk.spells.Spell;
+import pl.sdk.spells.SpellFactory;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class SpellsCreator {
     private final SpellFactory spellFactory = new SpellFactory();

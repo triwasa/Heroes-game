@@ -1,5 +1,9 @@
 package pl.sdk.artifacts;
 
+import pl.sdk.spells.Spell;
+
+import java.util.List;
+
 public class ArtifactDuration extends ArtifactSpellBuff {
     private final int durationValue;
 

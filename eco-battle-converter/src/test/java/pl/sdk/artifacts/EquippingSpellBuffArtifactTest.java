@@ -3,8 +3,11 @@ package pl.sdk.artifacts;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.hero.Hero;
+import pl.sdk.spells.Spell;
+import pl.sdk.spells.SpellFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -23,7 +26,7 @@ public class EquippingSpellBuffArtifactTest {
 
     @Test
     void ArtifactDamageShouldIncreaseSpellDamageOfOneSpell(){
-        Spell airSpell = new spellFactory.create("Magic Arrow");
+        Spell airSpell = spellFactory.create("Magic Arrow");
         spells.add(airSpell);
         hero.addSpells(spells);
 
@@ -35,9 +38,9 @@ public class EquippingSpellBuffArtifactTest {
 
     @Test
     void ArtifactDamageShouldIncreaseSpellDamageOfFewSpells(){
-        Spell airSpell = new spellFactory.create("Magic Arrow");
-        Spell airSpell2 = new spellFactory.create("Lightning Bolt");
-        Spell fireSpell = new spellFactory.create("Fire Ball");
+        Spell airSpell = spellFactory.create("Magic Arrow");
+        Spell airSpell2 = spellFactory.create("Lightning Bolt");
+        Spell fireSpell = spellFactory.create("Fire Ball");
 
         spells.add(airSpell);
         spells.add(airSpell2);
@@ -66,9 +69,9 @@ public class EquippingSpellBuffArtifactTest {
 
     @Test
     void ArtifactDurationShouldIncreaseSpellDurationOfFewSpells(){
-        Spell spell1 = new spellFactory.create("Bloodlust");
-        Spell spell2 = new spellFactory.create("Shield");
-        Spell spell3 = new spellFactory.create("Slow");
+        Spell spell1 = spellFactory.create("Bloodlust");
+        Spell spell2 = spellFactory.create("Shield");
+        Spell spell3 = spellFactory.create("Slow");
         spells.add(spell1);
         spells.add(spell2);
         spells.add(spell3);

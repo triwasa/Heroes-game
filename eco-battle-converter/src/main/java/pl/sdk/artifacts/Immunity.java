@@ -1,5 +1,10 @@
 package pl.sdk.artifacts;
 
+import pl.sdk.spells.Spell;
+import pl.sdk.spells.SpellFactory;
+
+import java.util.List;
+
 public class Immunity {
     private List<Spell> spells;
 

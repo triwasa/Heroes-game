@@ -1,5 +1,9 @@
 package pl.sdk.artifacts;
 
+import pl.sdk.spells.Spell;
+
+import java.util.List;
+
 public class ArtifactSpellBookTier extends ArtifactSpellBuff {
     private final int tier;
 

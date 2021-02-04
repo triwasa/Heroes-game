@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.hero.Hero;
+import pl.sdk.spells.Spell;
+import pl.sdk.spells.SpellFactory;
 
 import java.util.ArrayList;
 import java.util.List;

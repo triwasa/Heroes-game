@@ -1,6 +1,9 @@
 package pl.sdk.artifacts;
 
 import pl.sdk.hero.Hero;
+import pl.sdk.spells.Spell;
+
+import java.util.List;
 
 public abstract class ArtifactSpellBuff extends AbstractArtifact {
     @Override
