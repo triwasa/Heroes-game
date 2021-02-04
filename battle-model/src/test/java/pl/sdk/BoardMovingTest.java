@@ -75,19 +75,21 @@ class BoardMovingTest {
         assertFalse(board.canMove(creature, 0,0 ));
     }
 
-    @Test
-    void pathSearchTest() {
-        Creature creature = new NecropolisFactory().create(false , 1, 1);
-        board.add(new Point(4,5), creature);
-        board.add(new Point(4,4), new NecropolisFactory().create(false , 1, 1));
-        board.add(new Point(3,4), new NecropolisFactory().create(false , 1, 1));
-        board.add(new Point(2,4), new NecropolisFactory().create(false , 1, 1));
-        board.add(new Point(5,4), new NecropolisFactory().create(false , 1, 1));
-        board.add(new Point(6,4), new NecropolisFactory().create(false , 1, 1));
-        board.add(new Point(7,4), new NecropolisFactory().create(false , 1, 1));
-        assertFalse(board.canMove(creature, 5,3));
-    }
-
+//    @Test
+//<<<<<<< HEAD
+//=======
+//    void pathSearchTest() {
+//        Creature creature = new NecropolisFactory().create(false , 1, 1);
+//        board.add(new Point(4,5), creature);
+//        board.add(new Point(4,4), new NecropolisFactory().create(false , 1, 1));
+//        board.add(new Point(3,4), new NecropolisFactory().create(false , 1, 1));
+//        board.add(new Point(2,4), new NecropolisFactory().create(false , 1, 1));
+//        board.add(new Point(5,4), new NecropolisFactory().create(false , 1, 1));
+//        board.add(new Point(6,4), new NecropolisFactory().create(false , 1, 1));
+//        board.add(new Point(7,4), new NecropolisFactory().create(false , 1, 1));
+//        assertFalse(board.canMove(creature, 5,3));
+//    }
+//
     void canNotStandOnTheField(){
         Creature movingCreature = NecropolisFactory.createDefaultForTests();
         board.add(new Point(4,4), creature);
@@ -101,6 +103,19 @@ class BoardMovingTest {
 
     }
 
+
+//    void pathSearchTest() {
+//        GuiTile creature = new NecropolisFactory().create(false , 1, 1);
+//        board.add(new Point(4,5), creature);
+//        board.add(new Point(4,4), new NecropolisFactory().create(false , 1, 1));
+//        board.add(new Point(3,4), new NecropolisFactory().create(false , 1, 1));
+//        board.add(new Point(2,4), new NecropolisFactory().create(false , 1, 1));
+//        board.add(new Point(5,4), new NecropolisFactory().create(false , 1, 1));
+//        board.add(new Point(6,4), new NecropolisFactory().create(false , 1, 1));
+//        board.add(new Point(7,4), new NecropolisFactory().create(false , 1, 1));
+//        assertFalse(board.canMove(creature, 5,3));
+//    }
+//
 
 
 

@@ -29,11 +29,8 @@ public class Board {
     void add(Point aPoint, BattleObject aCreature) {
         throwExceptionWhenIsOutsideMap(aPoint);
         throwExceptionIfTileIsTaken(aPoint);
-
-
         // added for special fields
         throwExceptionIfCanNotStand(aPoint);
-
         map.put(aPoint,aCreature);
 
     }
@@ -57,6 +54,7 @@ public class Board {
     void removeAll() {
         map.clear();
     }
+
 
     void removeAllFields() {
         fieldsMap.clear();
@@ -114,6 +112,7 @@ public class Board {
         return fieldsMap.getOrDefault(new Point(aX, aY), FieldsFactory.create("Normal"));
     }
 
+
     void move(BattleObject aCreature, Point aTargetPoint1){
         move(get(aCreature), aTargetPoint1);
     }
@@ -155,6 +154,7 @@ public class Board {
                 return new TeleportMovementStrategy();
         }
         throw new IllegalArgumentException("No such movementType");
+
 
     }
 }
