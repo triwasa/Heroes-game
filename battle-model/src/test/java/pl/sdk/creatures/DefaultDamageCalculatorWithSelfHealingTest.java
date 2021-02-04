@@ -1,8 +1,11 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.sdk.AttackEngine;
+import pl.sdk.Board;
 
 import java.util.Random;
 
@@ -18,11 +21,13 @@ class DefaultDamageCalculatorWithSelfHealingTest {
     private Creature attacker;
     private Creature defender;
     private Random rand;
+    private AttackEngine attackEngine;
 
     @BeforeEach
     void init(){
         rand = mock(Random.class);
         when(rand.nextInt(anyInt())).thenReturn(0);
+        attackEngine = new AttackEngine(new Board());
         attacker = new Creature.BuilderForTesting()
                 .name("Selfheal Test Unit")
                 .maxHp(30)
@@ -32,8 +37,8 @@ class DefaultDamageCalculatorWithSelfHealingTest {
                 .damageCalculator(new DefaultCalculateStrategy(rand))
                 .moveRange(NOT_IMPORTANT)
                 .amount(10)
+                .attackStrategy(new HealAfterAttackAttackStrategy(new DefaultAttackStrategy(), 0.5))
                 .build();
-        attacker = new HealAfterAttackCreatureDecorator(attacker, 0.5);
         defender = new Creature.BuilderForTesting()
                 .name("Defender")
                 .maxHp(NOT_IMPORTANT)
@@ -47,7 +52,7 @@ class DefaultDamageCalculatorWithSelfHealingTest {
 
     @Test
     void shouldHeal50HpBecauseAttackedFor100(){
-        attacker.attack(defender);
+        attackEngine.attack(attacker,defender);
 
         assertEquals(11,attacker.getAmount());
         assertEquals(20,attacker.getCurrentHp());

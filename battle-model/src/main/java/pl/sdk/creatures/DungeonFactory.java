@@ -16,20 +16,23 @@ public class DungeonFactory extends AbstractFactory {
                     Creature harpyHag = new Creature.Builder()
                             .statistic(CreatureStatistic.HARPY_HAG)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(harpyHag);
+                    return new CreatureMoveToPreviousPositionAfterAttackDecorator(harpyHag);
                 case 3:
                     Creature grandElf = new Creature.Builder()
                             .statistic(CreatureStatistic.EVIL_EYE)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(grandElf));
+                    return new ShootingCreatureDecorator(grandElf);
                 case 4:
                     Creature medusaQueen = new Creature.Builder()
                             .statistic(CreatureStatistic.MEDUSA_QUEEN)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(medusaQueen));
+                    return new ShootingCreatureDecorator(medusaQueen);
                 case 5:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.MINOTAUR_KING)
@@ -57,22 +60,24 @@ public class DungeonFactory extends AbstractFactory {
                             .amount(aAmount)
                             .build();
                 case 2:
-                    return new Creature.Builder()
+                    return new CreatureMoveToPreviousPositionAfterAttackDecorator(new Creature.Builder()
                             .statistic(CreatureStatistic.HARPY)
                             .amount(aAmount)
-                            .build();
+                            .build());
                 case 3:
                     Creature beholder = new Creature.Builder()
                             .statistic(CreatureStatistic.BEHOLDER)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(beholder));
+                    return new ShootingCreatureDecorator(beholder);
                 case 4:
                     Creature medusa = new Creature.Builder()
                             .statistic(CreatureStatistic.MEDUSA)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(medusa));
+                    return new ShootingCreatureDecorator(medusa);
                 case 5:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.MINOTAUR)

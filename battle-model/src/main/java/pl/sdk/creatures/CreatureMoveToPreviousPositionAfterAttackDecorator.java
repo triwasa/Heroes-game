@@ -19,13 +19,8 @@ public class CreatureMoveToPreviousPositionAfterAttackDecorator extends Creature
     }
 
     @Override
-    public void attack(Creature aDefender) {
-        decorated.attack(aDefender);
-    }
-
-    @Override
-    protected void counterAttack(Creature aDefender) {
-        decorated.counterAttack(aDefender);
+    public void counterAttack(BattleObject aAttacker) {
+        decorated.counterAttack(aAttacker);
     }
 
     @Override
@@ -34,14 +29,25 @@ public class CreatureMoveToPreviousPositionAfterAttackDecorator extends Creature
     }
 
     @Override
-    public void applyDamage(int aDamageToApply) {
-        decorated.applyDamage(aDamageToApply);
+    public String getMovementType() {
+        return decorated.getMovementType();
     }
 
     @Override
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
-        return decorated.calculateDamage(aAttacker, aDefender);
+    public DamageApplierIf getDamageApplier() {
+        return decorated.getDamageApplier();
     }
+
+    @Override
+    public AttackStrategy getAttackStrategy() {
+        return decorated.getAttackStrategy();
+    }
+
+    @Override
+    public CalculateDamageStrategy getCalculateDamage() {
+        return decorated.getCalculateDamage();
+    }
+
 
     @Override
     public boolean isAlive() {
@@ -76,6 +82,15 @@ public class CreatureMoveToPreviousPositionAfterAttackDecorator extends Creature
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
 
+    }
+    @Override
+    public void currentHpAfterAttack(int aCurrentHp) {
+        decorated.currentHpAfterAttack(aCurrentHp);
+    }
+
+    @Override
+    public void amountAfterAttack(int aAmount) {
+        decorated.amountAfterAttack(aAmount);
     }
 
     @Override

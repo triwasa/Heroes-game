@@ -2,6 +2,8 @@ package pl.sdk.creatures;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.sdk.AttackEngine;
+import pl.sdk.Board;
 import pl.sdk.GameEngine;
 
 import java.util.List;
@@ -18,9 +20,11 @@ public class MultipleRetaliationsCreatureTest {
     private Creature attacker;
     private Creature defender;
     private Random rand;
+    private AttackEngine attackEngine;
 
     @BeforeEach
     void init() {
+        attackEngine = new AttackEngine(new Board());
         rand = mock(Random.class);
         when(rand.nextInt(anyInt())).thenReturn(0);
 
@@ -36,12 +40,12 @@ public class MultipleRetaliationsCreatureTest {
         @Test
         void hasTwoRetaliationsPerRound() {
         defender = new MultipleRetaliationsCreatureDecorator(defender,2);
-        GameEngine gameEngine = new GameEngine(List.of(attacker), List.of(defender));
+        GameEngine gameEngine = new GameEngine(List.of(attacker), List.of(defender) , new Board());
 
-        attacker.attack(defender);
+        attackEngine.attack(attacker,defender);
         assertTrue(defender.canCounterAttack());
 
-        attacker.attack(defender);
+        attackEngine.attack(attacker,defender);
         assertFalse(defender.canCounterAttack());
 
         gameEngine.pass();
@@ -49,7 +53,7 @@ public class MultipleRetaliationsCreatureTest {
 
         assertTrue(defender.canCounterAttack());
 
-        attacker.attack(defender);
+        attackEngine.attack(attacker,defender);
         assertTrue(defender.canCounterAttack());
 
 

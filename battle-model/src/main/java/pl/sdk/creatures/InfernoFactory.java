@@ -19,14 +19,16 @@ public class InfernoFactory extends AbstractFactory {
                     Creature magog = new Creature.Builder()
                             .statistic(CreatureStatistic.MAGOG)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(new SplashDamageCreatureDecorator(magog, getSplashForMagog())));
+                    return new ShootingCreatureDecorator(new SplashDamageCreatureDecorator(magog, getSplashForMagog()));
                 case 3:
                     Creature cerberus = new Creature.Builder()
                             .statistic(CreatureStatistic.CERBERUS)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new SplashDamageCreatureDecorator(cerberus, getSplashForCerberus()));
+                    return new SplashDamageCreatureDecorator(cerberus, getSplashForCerberus());
                 case 4:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.HORNED_DEAMON)
@@ -44,12 +46,12 @@ public class InfernoFactory extends AbstractFactory {
                             .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.GENIE.getTranslatedName(), CreatureStatistic.MASTER_GENIE.getTranslatedName())))
                             .build();
                 case 7:
-                    Creature archDevil = new Creature.Builder()
+                    return new Creature.Builder()
                             .statistic(CreatureStatistic.ARCH_DEVIL)
                             .amount(aAmount)
                             .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.ANGEL.getTranslatedName(), CreatureStatistic.ARCH_DEVIL.getTranslatedName())))
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(archDevil);
                 default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
             }
@@ -65,8 +67,9 @@ public class InfernoFactory extends AbstractFactory {
                     Creature gog = new Creature.Builder()
                             .statistic(CreatureStatistic.GOG)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(gog));
+                    return new ShootingCreatureDecorator(gog);
                 case 3:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.HELL_HOUND)
@@ -89,12 +92,12 @@ public class InfernoFactory extends AbstractFactory {
                             .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.GENIE.getTranslatedName(), CreatureStatistic.MASTER_GENIE.getTranslatedName())))
                             .build();
                 case 7:
-                    Creature devil = new Creature.Builder()
+                    return new Creature.Builder()
                             .statistic(CreatureStatistic.DEVIL)
                             .amount(aAmount)
                             .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.ANGEL.getTranslatedName(), CreatureStatistic.ARCH_DEVIL.getTranslatedName())))
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(devil);
                 default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
 

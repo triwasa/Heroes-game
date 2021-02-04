@@ -1,3 +1,4 @@
+/*
 package pl.sdk;
 
 
@@ -74,3 +75,4 @@ public class CraetureMoveToPreviousPositionAfterAttackTest {
     }
 
 }
+*/

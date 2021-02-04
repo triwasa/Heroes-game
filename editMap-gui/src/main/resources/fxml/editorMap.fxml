@@ -23,21 +23,8 @@
          </children>
       </HBox>
    </top>
-   <bottom>
-      <HBox BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="saveButton" mnemonicParsing="false" text="Save" />
-         </children>
-      </HBox>
-   </bottom>
    <right>
-      <VBox BorderPane.alignment="CENTER_RIGHT">
-         <children>
-            <Button fx:id="addingButton" mnemonicParsing="false" text="Add" />
-         </children>
-         <children>
-            <Button fx:id="removeButton" mnemonicParsing="false" text="Remove" />
-         </children>
+      <VBox fx:id= "buttonLabel" BorderPane.alignment="CENTER_RIGHT">
          <children>
             <Button fx:id="randomButton" mnemonicParsing="false" text="Random" />
          </children>

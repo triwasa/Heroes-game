@@ -1,7 +1,9 @@
 package pl.sdk;
 
+import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.GuiTile;
+import pl.sdk.creatures.GuiBattleObject;
+import pl.sdk.special_fields.Field;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -25,16 +27,17 @@ public class GameEngine {
     private boolean blockAttacking;
     private List<Creature> creatures1;
     private List<Creature> creatures2;
-    private final PositionSaver positionSaver;
+    private final AttackEngine attackEngine;
 
-    public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
-        this(aCreatures1, aCreatures2, new Board());
-    }
+//    public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
+//        this(aCreatures1, aCreatures2, new Board());
+//    }
 
-    GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2, Board aBoard) {
+    public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2, Board aBoard) {
         board = aBoard;
         creatures1 = aCreatures1;
         creatures2 = aCreatures2;
+        attackEngine = new AttackEngine(board);
         putCreaturesToBoard(creatures1, creatures2);
         List<Creature> twoSidesCreatures = new ArrayList<>();
         twoSidesCreatures.addAll(aCreatures1);
@@ -45,7 +48,7 @@ public class GameEngine {
 
         observerSupport = new PropertyChangeSupport(this);
 
-        positionSaver = new PositionSaver(this);
+
     }
 
     public void addObserver(String aEventType, PropertyChangeListener aObs) {
@@ -89,17 +92,7 @@ public class GameEngine {
             return;
         }
         Creature activeCreature = queue.getActiveCreature();
-        boolean[][] splashRange = activeCreature.getSplashRange();
-        for (int x = 0; x < splashRange.length; x++) {
-            for (int y = 0; y < splashRange.length; y++) {
-                if (splashRange[x][y]) {
-                    Creature attackedCreature = (Creature) board.get(aX + x - 1, aY + y - 1);
-                    if (attackedCreature != null){
-                        activeCreature.attack((Creature) board.get(aX + x - 1, aY + y - 1));
-                    }
-                }
-            }
-        }
+        attackEngine.attack(activeCreature, aX, aY);
         blockAttacking = true;
         blockMoving = true;
         notifyObservers(new PropertyChangeEvent(this, CREATURE_ATTACKED, null, null));
@@ -116,11 +109,16 @@ public class GameEngine {
         }
     }
 
-    public GuiTile get(int aX, int aY) {
+    public BattleObject get(int aX, int aY) {
         return board.get(aX, aY);
     }
 
-    public Creature getActiveCreature() {
+    public Field getField(int aX, int aY)
+    {
+        return board.getField(aX,aY);
+    }
+
+    public BattleObject getActiveCreature() {
         return queue.getActiveCreature();
     }
 
@@ -136,11 +134,18 @@ public class GameEngine {
         boolean isP1Creature = creatures1.contains(getActiveCreature());
         boolean theSamePlayerUnit;
         if (isP1Creature) {
-            theSamePlayerUnit = creatures1.contains(board.get(aX, aY));
+            theSamePlayerUnit = isPlayerOneUnit(aX, aY);
         } else {
-            theSamePlayerUnit = creatures2.contains(board.get(aX, aY));
+            theSamePlayerUnit = isPlayerTwoUnit(aX, aY);
         }
 
-        return !theSamePlayerUnit && board.get(getActiveCreature()).distance(new Point(aX, aY)) <= getActiveCreature().getAttackRange();
+        return !theSamePlayerUnit && board.get(getActiveCreature()).distance(new Point(aX, aY)) <= getActiveCreature().getAttackRange()
+                && attackEngine.canAttack(getActiveCreature(), get(aX, aY));
+    }
+    public boolean isPlayerOneUnit(int aX,int aY) {
+        return creatures1.contains(board.get(aX, aY));
+    }
+    public boolean isPlayerTwoUnit(int aX,int aY){
+        return creatures2.contains(board.get(aX, aY));
     }
 }

@@ -15,8 +15,9 @@ public class TowerFactory extends AbstractFactory {
                     Creature masterGremlin = new Creature.Builder()
                             .statistic(CreatureStatistic.MASTER_GREMLIN)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(masterGremlin));
+                    return new ShootingCreatureDecorator(masterGremlin);
                 case 2:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.OBSIDIAN_GARGOYLE)
@@ -31,8 +32,9 @@ public class TowerFactory extends AbstractFactory {
                     Creature archMage = new Creature.Builder()
                             .statistic(CreatureStatistic.ARCH_MAGE)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(archMage));
+                    return new ShootingCreatureDecorator(archMage);
                 case 5:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.MASTER_GENIE)
@@ -40,17 +42,19 @@ public class TowerFactory extends AbstractFactory {
                             .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.EFREET_SULTAN.getTranslatedName(), CreatureStatistic.EFREETI.getTranslatedName())))
                             .build();
                 case 6:
-                    return new BlockCounterAttackCreatureDecorator.Builder()
+                    return new Creature.Builder()
                             .statistic(CreatureStatistic.NAGA_QUEEN)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
                 case 7:
                     Creature titan = new Creature.Builder()
                             .statistic(CreatureStatistic.TITAN)
                             .amount(aAmount)
                             .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.BLACK_DRAGON.getTranslatedName())))
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(titan));
+                    return new ShootingCreatureDecorator(titan);
                 default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
             }
@@ -77,18 +81,21 @@ public class TowerFactory extends AbstractFactory {
                     Creature mage = new Creature.Builder()
                             .statistic(CreatureStatistic.MAGE)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(mage));
+                    return new ShootingCreatureDecorator(mage);
                 case 5:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.GENIE)
                             .amount(aAmount)
                             .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.EFREET_SULTAN.getTranslatedName(), CreatureStatistic.EFREETI.getTranslatedName())))
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
                 case 6:
-                    return new BlockCounterAttackCreatureDecorator.Builder()
+                    return new Creature.Builder()
                             .statistic(CreatureStatistic.NAGA)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
                 case 7:
                     return new Creature.Builder()

@@ -6,9 +6,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
 
 
 public class MapTile extends StackPane {
@@ -34,6 +36,28 @@ public class MapTile extends StackPane {
         getChildren().add(vbox);
     }
 
+    void addCreature(String aName, int aAmount, boolean isRightPlayerCreature) {
+        VBox vbox = new VBox();
+        vbox.setAlignment(Pos.CENTER);
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/graphics/creatures/" + aName + ".png")));
+        if(isRightPlayerCreature) {
+            flip(image);
+        }
+        image.setFitHeight(46);
+        image.setFitWidth(46);
+        vbox.getChildren().add(image);
+        Text text = new Text(String.valueOf(aAmount));
+        text.setFont(new Font(10.0));
+        vbox.getChildren().add(text);
+        getChildren().add(vbox);
+    }
+
+    private void flip(ImageView image) {
+        image.setTranslateZ(image.getBoundsInLocal().getWidth() / 2.0);
+        image.setRotationAxis(Rotate.Y_AXIS);
+        image.setRotate(180);
+    }
+
     void addCreatureWithoutAmount(String aName)
     {
         VBox vbox = new VBox();
@@ -45,6 +69,11 @@ public class MapTile extends StackPane {
         getChildren().add(vbox);
     }
 
+    void setBackGroundImage(String aName)
+    {
+        Image image = (new Image(getClass().getResourceAsStream("/graphics/creatures/" + aName + ".png")));
+        rec.setFill(new ImagePattern(image));
+    }
     void setBackground(Color aColor){
         rec.setFill(aColor);
     }

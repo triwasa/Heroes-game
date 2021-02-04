@@ -1,6 +1,7 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.DefaultDamageApplier;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -8,19 +9,23 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Creature implements GuiTile,PropertyChangeListener {
+public class Creature implements PropertyChangeListener, BattleObject {
 
     private final CreatureStatisticIf stats;
     private int currentHp;
     private boolean counterAttackedInThisTurn;
     private CalculateDamageStrategy calculateDamageStrategy;
+    private DamageApplierIf damageApplier;
+    private AttackStrategy attackStrategy;
     private int amount;
-    private int additionalDamage;
+    private PossibleAttackManagerIf possibleAttacKManager;
 
     // Constructor for mockito. Don't use it! You have builder here.
     Creature(){
         stats = CreatureStatistic.TEST;
         calculateDamageStrategy = new DefaultCalculateStrategy();
+        damageApplier = new DefaultDamageApplier();
+        possibleAttacKManager = new PossibleAttackManagerForCreature();
     }
 
     Creature(CreatureStatisticIf aStats){
@@ -28,23 +33,11 @@ public class Creature implements GuiTile,PropertyChangeListener {
         currentHp = stats.getMaxHp();
     }
 
-    public void attack(Creature aDefender) {
-        if (isAlive()){
-            int damageToDeal = calculateDamage(this, aDefender);
-            aDefender.applyDamage(damageToDeal);
-            counterAttack(aDefender);
-        }
-    }
-
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
-        return calculateDamageStrategy.calculateDamage(aAttacker, aDefender);
-    }
-
-    void counterAttack(Creature aDefender) {
-        if (aDefender.canCounterAttack()){
-            int damageToDealInCounterAttack = aDefender.calculateDamage(aDefender, this);
-            applyDamage(damageToDealInCounterAttack);
-            aDefender.counterAttackedInThisTurn();
+    public void counterAttack(BattleObject aAttacker) {
+        if (canCounterAttack()){
+            int damageToDealInCounterAttack = getCalculateDamage().calculateDamage(this, aAttacker);
+            aAttacker.getDamageApplier().applyDamage(damageToDealInCounterAttack, aAttacker);
+            counterAttackedInThisTurn();
         }
     }
 
@@ -52,48 +45,39 @@ public class Creature implements GuiTile,PropertyChangeListener {
         counterAttackedInThisTurn = true;
     }
 
-    public void applyDamage(int aDamageToApply) {
-        int fullCurrentHp = (stats.getMaxHp() * (amount - 1)) + currentHp - aDamageToApply;
-        if (fullCurrentHp <= 0) {
-            amount = 0;
-            currentHp = 0;
-        }
-        else
-        {
-            if(fullCurrentHp % stats.getMaxHp()==0)
-            {
-                currentHp=stats.getMaxHp();
-                amount=fullCurrentHp/stats.getMaxHp();
-            }
-            else
-            {
-                currentHp = fullCurrentHp % stats.getMaxHp();
-                if (aDamageToApply >= 0){
-                    amount = (fullCurrentHp/stats.getMaxHp()) + 1;
-                }else{
-                    amount = (fullCurrentHp/stats.getMaxHp());
-                }
-            }
-        }
-    }
-
     public boolean isAlive() {
         return amount > 0;
+    }
+
+    @Override
+    public void currentHpAfterAttack(int aCurrentHp) {
+        currentHp = aCurrentHp;
+    }
+
+    @Override
+    public void amountAfterAttack(int aAmount) {
+        amount = aAmount;
+    }
+
+    @Override
+    public boolean isCreature() {
+        return true;
+    }
+
+    @Override
+    public boolean isFortification() {
+        return false;
+    }
+
+    @Override
+    public void counterAttack(Attacker attacker) {
+
     }
 
     public int getCurrentHp() {
         return currentHp;
     }
 
-    @Override
-    public boolean isMovePossible() {
-        return true;
-    }
-
-    @Override
-    public boolean isAttackPossible() {
-        return true;
-    }
 
     public String getName(){
         return stats.getTranslatedName();
@@ -107,14 +91,35 @@ public class Creature implements GuiTile,PropertyChangeListener {
         return stats.getMoveRange();
     }
 
+    public String getMovementType() {
+        return stats.getMovementType();
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         counterAttackedInThisTurn = false;
     }
 
 
+
+    @Override
+    public DamageApplierIf getDamageApplier() {
+        return damageApplier;
+    }
+
+
     public int getAttack() {
         return stats.getAttack();
+    }
+
+    @Override
+    public AttackStrategy getAttackStrategy() {
+        return attackStrategy;
+    }
+
+    @Override
+    public CalculateDamageStrategy getCalculateDamage() {
+        return calculateDamageStrategy;
     }
 
     public int getArmor() {
@@ -132,10 +137,7 @@ public class Creature implements GuiTile,PropertyChangeListener {
     public int getMaxHp() {
         return stats.getMaxHp();
     }
-    @Override
-    public boolean isItObstacle() {
-        return false;
-    }
+
 
     public String currentHealth() {
         StringBuilder sb = new StringBuilder();
@@ -160,6 +162,16 @@ public class Creature implements GuiTile,PropertyChangeListener {
         return 1.0;
     }
 
+    @Override
+    public boolean canFortificationAttack() {
+        return possibleAttacKManager.canFortificationAttack();
+    }
+
+    @Override
+    public boolean canCreatureAttack() {
+        return possibleAttacKManager.canCreatureAttack();
+    }
+
     void setCurrentHpToMaximum() {
         currentHp = stats.getMaxHp();
     }
@@ -174,9 +186,12 @@ public class Creature implements GuiTile,PropertyChangeListener {
         return false;
     }
 
+
     static class Builder {
         private CreatureStatisticIf stats;
         private CalculateDamageStrategy damageCalculator;
+        private DamageApplierIf damageApplier;
+        private AttackStrategy attackStrategy;
         private Integer amount;
 
         Builder statistic (CreatureStatisticIf aStats){
@@ -189,6 +204,14 @@ public class Creature implements GuiTile,PropertyChangeListener {
         }
         Builder damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
             this.damageCalculator = aCalculateDamageStrategy;
+            return this;
+        }
+        Builder damageApplier (DamageApplierIf aDamageApplier){
+            this.damageApplier = aDamageApplier;
+            return this;
+        }
+        Builder attackStrategy (AttackStrategy aAttackStrategy){
+            this.attackStrategy = aAttackStrategy;
             return this;
         }
 
@@ -214,12 +237,27 @@ public class Creature implements GuiTile,PropertyChangeListener {
             else{
                 ret.calculateDamageStrategy = new DefaultCalculateStrategy();
             }
+            if (damageApplier != null) {
+                ret.damageApplier = damageApplier;
+            }
+            else {
+                ret.damageApplier = new DefaultDamageApplier();
+            }
+            if (attackStrategy != null) {
+                ret.attackStrategy = attackStrategy;
+            }
+            else {
+                ret.attackStrategy = new DefaultAttackStrategy();
+            }
+
             return ret;
+
         }
 
         Creature createInstance(CreatureStatisticIf aStats) {
             return new Creature(aStats);
         }
+
     }
 
     static class BuilderForTesting {
@@ -230,6 +268,8 @@ public class Creature implements GuiTile,PropertyChangeListener {
         private Integer moveRange;
         private Range<Integer> damage;
         private CalculateDamageStrategy damageCalculator;
+        private DamageApplierIf damageApplier;
+        private AttackStrategy attackStrategy;
         private Integer amount;
 
         BuilderForTesting name (String name){
@@ -262,6 +302,14 @@ public class Creature implements GuiTile,PropertyChangeListener {
         }
         BuilderForTesting damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
             this.damageCalculator = aCalculateDamageStrategy;
+            return this;
+        }
+        BuilderForTesting damageApplier (DamageApplierIf aDamageApplier) {
+            this.damageApplier = aDamageApplier;
+            return this;
+        }
+        BuilderForTesting attackStrategy (AttackStrategy aAttackStrategy){
+            this.attackStrategy = aAttackStrategy;
             return this;
         }
 
@@ -303,6 +351,19 @@ public class Creature implements GuiTile,PropertyChangeListener {
             else{
                 ret.calculateDamageStrategy = new DefaultCalculateStrategy();
             }
+            if (damageApplier != null) {
+                ret.damageApplier = damageApplier;
+            }
+            else {
+                ret.damageApplier = new DefaultDamageApplier();
+            }
+            if (attackStrategy != null) {
+                ret.attackStrategy = attackStrategy;
+            }
+            else {
+                ret.attackStrategy = new DefaultAttackStrategy();
+            }
+
             return ret;
         }
 

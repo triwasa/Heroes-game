@@ -14,19 +14,11 @@ public class SplashDamageCreatureDecorator extends Creature {
         splashDamageTable = aSplashDamageTable;
     }
 
-    @Override
-    public void attack(Creature aDefender) {
-        decorated.attack(aDefender);
-    }
+
 
     @Override
-    int calculateDamage(Creature aAttacker, Creature aDefender) {
-        return decorated.calculateDamage(aAttacker, aDefender);
-    }
-
-    @Override
-    void counterAttack(Creature aDefender) {
-        decorated.counterAttack(aDefender);
+    public void counterAttack(BattleObject aAttacker) {
+        decorated.counterAttack(aAttacker);
     }
 
     @Override
@@ -35,9 +27,25 @@ public class SplashDamageCreatureDecorator extends Creature {
     }
 
     @Override
-    public void applyDamage(int aDamageToApply) {
-        decorated.applyDamage(aDamageToApply);
+    public String getMovementType() {
+        return decorated.getMovementType();
     }
+
+    @Override
+    public DamageApplierIf getDamageApplier() {
+        return decorated.getDamageApplier();
+    }
+
+    @Override
+    public AttackStrategy getAttackStrategy() {
+        return decorated.getAttackStrategy();
+    }
+
+    @Override
+    public CalculateDamageStrategy getCalculateDamage() {
+        return decorated.getCalculateDamage();
+    }
+
 
     @Override
     public boolean isAlive() {
@@ -67,6 +75,15 @@ public class SplashDamageCreatureDecorator extends Creature {
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         decorated.propertyChange(aPropertyChangeEvent);
+    }
+    @Override
+    public void currentHpAfterAttack(int aCurrentHp) {
+        decorated.currentHpAfterAttack(aCurrentHp);
+    }
+
+    @Override
+    public void amountAfterAttack(int aAmount) {
+        decorated.amountAfterAttack(aAmount);
     }
 
     @Override

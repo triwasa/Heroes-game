@@ -20,26 +20,29 @@ public class CastleFactory extends AbstractFactory {
                     Creature marksman = new Creature.Builder()
                             .statistic(CreatureStatistic.MARKSMAN)
                             .amount(aAmount)
+                            .attackStrategy(new MulitpleAttackAttackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()),2))
                             .build();
-                    return new MultipleAttackCreatureDecorator(new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(marksman)), 2);
+                    return new ShootingCreatureDecorator(marksman);
                 case 3:
-                    Creature royalGriffin = new Creature.Builder()
+                    return new  Creature.Builder()
                             .statistic(CreatureStatistic.ROYAL_GRIFFIN)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(royalGriffin);
                 case 4:
-                    Creature crusader = new Creature.Builder()
+                    return new Creature.Builder()
                             .statistic(CreatureStatistic.CRUSADER)
                             .amount(aAmount)
+                            .attackStrategy(new MulitpleAttackAttackStrategy(new DefaultAttackStrategy(),2))
                             .build();
-                    return new MultipleAttackCreatureDecorator(crusader, 2);
+
                 case 5:
                     Creature zealot = new Creature.Builder()
                             .statistic(CreatureStatistic.ZEALOT)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(zealot));
+                    return new ShootingCreatureDecorator(zealot);
                 case 6:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.CHAMPION)
@@ -66,8 +69,9 @@ public class CastleFactory extends AbstractFactory {
                     Creature archer = new Creature.Builder()
                             .statistic(CreatureStatistic.ARCHER)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(archer));
+                    return new ShootingCreatureDecorator(archer);
                 case 3:
                     Creature griffin = new Creature.Builder()
                             .statistic(CreatureStatistic.GRIFFIN)
@@ -83,8 +87,9 @@ public class CastleFactory extends AbstractFactory {
                     Creature monk = new Creature.Builder()
                             .statistic(CreatureStatistic.MONK)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
-                    return new BlockCounterAttackCreatureDecorator(new ShootingCreatureDecorator(monk));
+                    return new ShootingCreatureDecorator(monk);
                 case 6:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.CAVALIER)

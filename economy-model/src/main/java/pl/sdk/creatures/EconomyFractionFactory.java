@@ -1,3 +1,4 @@
+/*
 package pl.sdk.creatures;
 
 public class EconomyFractionFactory {
@@ -37,3 +38,4 @@ public class EconomyFractionFactory {
         }
     }
 }
+*/
