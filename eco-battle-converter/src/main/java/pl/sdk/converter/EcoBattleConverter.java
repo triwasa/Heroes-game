@@ -32,7 +32,7 @@ public class EcoBattleConverter {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(EcoBattleConverter.class.getClassLoader().getResource("fxml/battleMap.fxml"));
-            loader.setController(new BattleMapController(convert(aPlayer1),convert(aPlayer2)));
+            loader.setController(new BattleMapController(convert(aPlayer1),convert(aPlayer2),xmlToBoardConverter()));
             scene = new Scene(loader.load());
 //            ObjectMapper objectMapper = new ObjectMapper();
 //            Board board = objectMapper.readValue(new File("result.json"), Board.class);
@@ -57,7 +57,7 @@ public class EcoBattleConverter {
                     aStage.close();
                 }
             });
-        } catch (IOException aE) {
+        } catch (IOException | JAXBException aE) {
             aE.printStackTrace();
         }
     }

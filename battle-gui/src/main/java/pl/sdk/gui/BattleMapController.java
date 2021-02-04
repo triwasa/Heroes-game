@@ -53,7 +53,7 @@ public class BattleMapController implements PropertyChangeListener {
     }
 
     public BattleMapController(Hero h1, Hero h2, Board board){
-        gameEngine = new GameEngine(h1, h2, new Board());
+        gameEngine = new GameEngine(h1, h2, board);
         this.board= board;
     }
 
