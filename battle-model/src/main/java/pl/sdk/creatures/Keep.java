@@ -9,6 +9,7 @@ public class Keep implements BattleObject, Fortification {
     private int maxHp = 2;
     private int currentHp = 2;
     private int attack = 1;
+    private int amount;
     private int level = 1;
     public Range<Integer> damage = Range.closed(15,15);
     private DefaultCalculateStrategy dealDamageCalc = new DefaultCalculateStrategy();
@@ -69,7 +70,16 @@ public class Keep implements BattleObject, Fortification {
     }
 
     @Override
-    public void applyDamage(int damageToApply) {
+    public void applyDamage(int aDamageToApply) {
+        int fullCurrentHp = currentHp - aDamageToApply;
+        if (fullCurrentHp <= 0) {
+            amount = 0;
+            currentHp = 0;
+        }
+        else
+        {
+            currentHp = fullCurrentHp;
+        }
 
     }
 

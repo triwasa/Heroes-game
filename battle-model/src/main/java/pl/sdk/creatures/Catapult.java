@@ -2,6 +2,8 @@ package pl.sdk.creatures;
 
 
 import com.google.common.collect.Range;
+import pl.sdk.creatures.DefaultDamageApplier;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,6 +58,7 @@ public class Catapult  implements BattleObject {
         return stats.getDamage();
     }
 
+
     @Override
     public int getAttack() {
         return stats.getAttack();
@@ -84,14 +87,25 @@ public class Catapult  implements BattleObject {
     }
 
     @Override
-    public void applyDamage(int damageToApply) {
+    public void applyDamage(int aDamageToApply) {
+        int fullCurrentHp = currentHp - aDamageToApply;
+        if (fullCurrentHp <= 0) {
+            amount = 0;
+            currentHp = 0;
+        }
+        else
+        {
+            currentHp = fullCurrentHp;
+        }
 
     }
+
 
     @Override
     public String getMovementType() {
         return stats.getMovementType();
     }
+
 
     @Override
     public int getMoveRange() {
@@ -160,6 +174,8 @@ public class Catapult  implements BattleObject {
     public void counterAttack(BattleObject attacker) {
 
     }
+
+
 
 
     static class Builder {

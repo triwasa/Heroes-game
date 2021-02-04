@@ -1,6 +1,7 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.creatures.DefaultDamageApplier;
 import pl.sdk.fortifications.FortificationStatistic;
 import pl.sdk.fortifications.FortificationStatisticIf;
 
@@ -75,8 +76,16 @@ public class Wall implements BattleObject, Fortification {
     }
 
     @Override
-    public void applyDamage(int damageToApply) {
-        
+    public void applyDamage(int aDamageToApply) {
+        int fullCurrentHp = currentHp - aDamageToApply;
+        if (fullCurrentHp <= 0) {
+            amount = 0;
+            currentHp = 0;
+        }
+        else
+        {
+            currentHp = fullCurrentHp;
+        }
     }
 
     @Override
@@ -103,6 +112,7 @@ public class Wall implements BattleObject, Fortification {
     public void counterAttack(BattleObject attacker) {
 
     }
+
 
     @Override
     public boolean isAlive() {

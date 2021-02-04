@@ -45,6 +45,18 @@ public class Ballista extends Creature implements BattleObject {
         return calculateDamageStrategy;
     }
 
+    @Override
+    public void applyDamage(int aDamageToApply) {
+        int fullCurrentHp = currentHp - aDamageToApply;
+        if (fullCurrentHp <= 0) {
+            amount = 0;
+            currentHp = 0;
+        }
+        else
+        {
+            currentHp = fullCurrentHp;
+        }
+    }
 
     @Override
     public Range<Integer> getDamage() {

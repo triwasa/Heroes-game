@@ -9,6 +9,7 @@ public class FirstAidTent implements BattleObject  {
     private CreatureStatisticIf stats;
     private int currentHp;
     private PossibleAttackManagerIf possibleAttacKManager;
+    private int amount;
 
 
     FirstAidTent(CreatureStatisticIf aStats){
@@ -67,7 +68,16 @@ public class FirstAidTent implements BattleObject  {
     }
 
     @Override
-    public void applyDamage(int damageToApply) {
+    public void applyDamage(int aDamageToApply) {
+        int fullCurrentHp = currentHp - aDamageToApply;
+        if (fullCurrentHp <= 0) {
+            amount = 0;
+            currentHp = 0;
+        }
+        else
+        {
+            currentHp = fullCurrentHp;
+        }
 
     }
 
