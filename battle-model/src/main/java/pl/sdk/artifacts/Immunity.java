@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Immunity {
     private List<Spell> spells;
+    private int resistance;
 
     protected void add(SpellEnum aSpellName){
         Spell spell = createSpell(aSpellName);
@@ -17,6 +18,15 @@ public class Immunity {
         else{
             throw new IllegalArgumentException("Creature already have that spell immunity");
         }
+    }
+
+    protected void addResistance(int aResistance){
+        resistance += aResistance;
+    }
+
+    protected int getResistance(){
+        int resistanceToReturn = resistance;
+        return resistanceToReturn;
     }
 
     protected Boolean checkImmunity(Spell aSpell){
