@@ -1,5 +1,7 @@
 package pl.sdk.artifacts;
 
+import static pl.sdk.artifacts.ArtifactName.*;
+
 public class ArtifactPrimaryFactory extends ArtifactAbstractFactory {
 
     private static final String EXCEPTION_MESSAGE = "There is no artifact with that name";
@@ -7,81 +9,81 @@ public class ArtifactPrimaryFactory extends ArtifactAbstractFactory {
     @Override
     public ArtifactPrimary create(String aName){
         switch (aName) {
-            case "Centaur's Ax":
+            case CENTAURS_AX:
                 return new ArtifactPrimary(ArtifactStatistic.CENTAURS_AX, ArtifactPrimaryStatistic.CENTAURS_AX);
-            case "Blackshard of the Dead Knight":
+            case BLACKSHARD_OF_THE_DEAD_KNIGHT:
                 return new ArtifactPrimary(ArtifactStatistic.BLACKSHARD_OF_THE_DEAD_KNIGHT, ArtifactPrimaryStatistic.BLACKSHARD_OF_THE_DEAD_KNIGHT);
-            case "Greater Gnoll's Flail":
+            case GREATER_GNOLLS_FLAIL:
                 return new ArtifactPrimary(ArtifactStatistic.GREATER_GNOLLS_FLAIL, ArtifactPrimaryStatistic.GREATER_GNOLLS_FLAIL);
-            case "Ogre's Club of Havoc":
+            case OGRES_CLUB_OF_HOVOC:
                 return new ArtifactPrimary(ArtifactStatistic.OGRES_CLUB_OF_HOVOC, ArtifactPrimaryStatistic.OGRES_CLUB_OF_HOVOC);
-            case "Sword of Hellfire":
+            case SWORD_OF_HELLFIRE:
                 return new ArtifactPrimary(ArtifactStatistic.SWORD_OF_HELLFIRE, ArtifactPrimaryStatistic.SWORD_OF_HELLFIRE);
-            case "Titan's Gladius":
+            case TITANS_GLADIUS:
                 return new ArtifactPrimary(ArtifactStatistic.TITANS_GLADIUS, ArtifactPrimaryStatistic.TITANS_GLADIUS);
-            case "Shield of the Dwarven Lords":
+            case SHIELD_OF_THE_DWARVEN_LORDS:
                 return new ArtifactPrimary(ArtifactStatistic.SHIELD_OF_THE_DWARVEN_LORDS, ArtifactPrimaryStatistic.SHIELD_OF_THE_DWARVEN_LORDS);
-            case "Shield of the Yawning Dead":
+            case SHIELD_OF_THE_YAWNING_DEAD:
                 return new ArtifactPrimary(ArtifactStatistic.SHIELD_OF_THE_YAWNING_DEAD, ArtifactPrimaryStatistic.SHIELD_OF_THE_YAWNING_DEAD);
-            case "Buckler of the Gnoll King":
+            case BUCKLER_OF_THE_GNOLL_KING:
                 return new ArtifactPrimary(ArtifactStatistic.BUCKLER_OF_THE_GNOLL_KING, ArtifactPrimaryStatistic.BUCKLER_OF_THE_GNOLL_KING);
-            case "Targ of the Rampaging Ogre":
+            case TARG_OF_THE_RAMPAGING_OGRE:
                 return new ArtifactPrimary(ArtifactStatistic.TARG_OF_THE_RAMPAGING_OGRE, ArtifactPrimaryStatistic.TARG_OF_THE_RAMPAGING_OGRE);
-            case "Shield of the Damned":
+            case SHIELD_OF_THE_DAMNED:
                 return new ArtifactPrimary(ArtifactStatistic.SHIELD_OF_THE_DAMNED, ArtifactPrimaryStatistic.SHIELD_OF_THE_DAMNED);
-            case "Sentinel's Shield":
+            case SENTINELS_SHIELD:
                 return new ArtifactPrimary(ArtifactStatistic.SENTINELS_SHIELD, ArtifactPrimaryStatistic.SENTINELS_SHIELD);
-            case "Breastplate of Petrified Wood":
+            case BREASTPLATE_OF_PETRIFIED_WOOD:
                 return new ArtifactPrimary(ArtifactStatistic.BREASTPLATE_OF_PETRIFIED_WOOD, ArtifactPrimaryStatistic.BREASTPLATE_OF_PETRIFIED_WOOD);
-            case "Rib Cage":
+            case RIB_CAGE:
                 return new ArtifactPrimary(ArtifactStatistic.RIB_CAGE, ArtifactPrimaryStatistic.RIB_CAGE);
-            case "Scales of the Greater Basilisk":
+            case SCALES_OF_THE_GREATER_BASILISK:
                 return new ArtifactPrimary(ArtifactStatistic.SCALES_OF_THE_GREATER_BASILISK, ArtifactPrimaryStatistic.SCALES_OF_THE_GREATER_BASILISK);
-            case "Tunic of the Cyclops King":
+            case TUNIC_OF_THE_CYCLOPS_KING:
                 return new ArtifactPrimary(ArtifactStatistic.TUNIC_OF_THE_CYCLOPS_KING, ArtifactPrimaryStatistic.TUNIC_OF_THE_CYCLOPS_KING);
-            case "Breastplate of Brimstone":
+            case BREASTPLATE_OF_BRIMSTONE:
                 return new ArtifactPrimary(ArtifactStatistic.BREASTPLATE_OF_BRIMSTONE, ArtifactPrimaryStatistic.BREASTPLATE_OF_BRIMSTONE);
-            case "Titan's Cuiras":
+            case TITANS_CUIRAS:
                 return new ArtifactPrimary(ArtifactStatistic.TITANS_CUIRAS, ArtifactPrimaryStatistic.TITANS_CUIRAS);
-            case "Helm of the Alabaster Unicorn":
+            case HELM_OF_THE_ALABASTER_UNICORN:
                 return new ArtifactPrimary(ArtifactStatistic.HELM_OF_THE_ALABASTER_UNICORN, ArtifactPrimaryStatistic.HELM_OF_THE_ALABASTER_UNICORN);
-            case "Skull Helmet":
+            case SKULL_HELMET:
                 return new ArtifactPrimary(ArtifactStatistic.SKULL_HELMET, ArtifactPrimaryStatistic.SKULL_HELMET);
-            case "Helm of Chaos":
+            case HELM_OF_CHAOS:
                 return new ArtifactPrimary(ArtifactStatistic.HELM_OF_CHAOS, ArtifactPrimaryStatistic.HELM_OF_CHAOS);
-            case "Crown of the Supreme Magi":
+            case CROWN_OF_THE_SUPREME_MAGI:
                 return new ArtifactPrimary(ArtifactStatistic.CROWN_OF_THE_SUPREME_MAGI, ArtifactPrimaryStatistic.CROWN_OF_THE_SUPREME_MAGI);
-            case "Hellstorm Helmet":
+            case HELLSTORM_HELMET:
                 return new ArtifactPrimary(ArtifactStatistic.HELLSTORM_HELMET, ArtifactPrimaryStatistic.HELLSTORM_HELMET);
-            case "Thunder Helmet":
+            case THUNDER_HELMET:
                 return new ArtifactPrimary(ArtifactStatistic.THUNDER_HELMET, ArtifactPrimaryStatistic.THUNDER_HELMET);
-            case "Quiet Eye of the Dragon":
+            case QUIET_EYE_OF_THE_DRAGON:
                 return new ArtifactPrimary(ArtifactStatistic.QUIET_EYE_OF_THE_DRAGON, ArtifactPrimaryStatistic.QUIET_EYE_OF_THE_DRAGON);
-            case "Red Dragon Flame Tongue":
+            case RED_DRAGON_FLAME_TONGUE:
                 return new ArtifactPrimary(ArtifactStatistic.RED_DRAGON_FLAME_TONGUE, ArtifactPrimaryStatistic.RED_DRAGON_FLAME_TONGUE);
-            case "Dragon Scale Shield":
+            case DRAGON_SCALE_SHIELD:
                 return new ArtifactPrimary(ArtifactStatistic.DRAGON_SCALE_SHIELD, ArtifactPrimaryStatistic.DRAGON_SCALE_SHIELD);
-            case "Dragon Scale Armor":
+            case DRAGON_SCALE_ARMOR:
                 return new ArtifactPrimary(ArtifactStatistic.DRAGON_SCALE_ARMOR, ArtifactPrimaryStatistic.DRAGON_SCALE_ARMOR);
-            case "Dragonbone Greaves":
+            case DRAGONBONE_GREAVES:
                 return new ArtifactPrimary(ArtifactStatistic.DRAGONBONE_GREAVES, ArtifactPrimaryStatistic.DRAGONBONE_GREAVES);
-            case "Dragon Wing Tabard":
+            case DRAGON_WING_TABARD:
                 return new ArtifactPrimary(ArtifactStatistic.DRAGON_WING_TABARD, ArtifactPrimaryStatistic.DRAGON_WING_TABARD);
-            case "Necklace of Dragonteeth":
+            case NECKLACE_OF_DRAGONTEETH:
                 return new ArtifactPrimary(ArtifactStatistic.NECKLACE_OF_DRAGONTEETH, ArtifactPrimaryStatistic.NECKLACE_OF_DRAGONTEETH);
-            case "Crown of Dragontooth":
+            case CROWN_OF_DRAGONTOOTH:
                 return new ArtifactPrimary(ArtifactStatistic.CROWN_OF_DRAGONTOOTH, ArtifactPrimaryStatistic.CROWN_OF_DRAGONTOOTH);
-            case "Armor of Wonder":
+            case ARMOR_OF_WONDER:
                 return new ArtifactPrimary(ArtifactStatistic.ARMOR_OF_WONDER, ArtifactPrimaryStatistic.ARMOR_OF_WONDER);
-            case "Sandals of the Saint":
+            case SANDALS_OF_THE_SAINT:
                 return new ArtifactPrimary(ArtifactStatistic.SANDALS_OF_THE_SAINT, ArtifactPrimaryStatistic.SANDALS_OF_THE_SAINT);
-            case "Celestial Necklace of Bliss":
-                return new ArtifactPrimary(ArtifactStatistic.CELESTIAL_NECKLACE_OFBLISS, ArtifactPrimaryStatistic.CELESTIAL_NECKLACE_OFBLISS);
-            case "Lion's Shield of Courage":
+            case CELESTIAL_NECKLACE_OF_BLISS:
+                return new ArtifactPrimary(ArtifactStatistic.CELESTIAL_NECKLACE_OF_BLISS, ArtifactPrimaryStatistic.CELESTIAL_NECKLACE_OFBLISS);
+            case LIONS_SHIELD_OF_COURAGE:
                 return new ArtifactPrimary(ArtifactStatistic.LIONS_SHIELD_OF_COURAGE, ArtifactPrimaryStatistic.LIONS_SHIELD_OF_COURAGE);
-            case "Sword of Judjement":
+            case SWORD_OF_JUJEMENT:
                 return new ArtifactPrimary(ArtifactStatistic.SWORD_OF_JUJEMENT, ArtifactPrimaryStatistic.SWORD_OF_JUJEMENT);
-            case "Helm of Heavenly Enlightenment":
+            case HELM_OF_HEAVENLY_ENLIGHTENMENT:
                 return new ArtifactPrimary(ArtifactStatistic.HELM_OF_HEAVENLY_ENLIGHTENMENT, ArtifactPrimaryStatistic.HELM_OF_HEAVENLY_ENLIGHTENMENT);
 
             default:

@@ -1,47 +1,58 @@
 package pl.sdk.artifacts;
 
+import static pl.sdk.artifacts.ArtifactName.*;
+
 public class ArtifactCreatureBuffFactory  extends  ArtifactAbstractFactory {
     private static final String EXCEPTION_MESSAGE = "There is no artifact with that name";
+    private static final String BERZERK = "Berzerk";
+    private static final String BLIND = "Blind";
+    private static final String CURSE = "Curse";
+    private static final String DEATH_RIPPLE = "Death Ripple";
+    private static final String DESTROY_UNDEAD = "Destroy Undead";
+    private static final String HYPNOTIZE = "Hypnotize";
+    private static final String LIGHTNING_BOLT = "Lightning Bolt";
+    private static final String FORGETFULNESS = "Forgetfulness";
+    private static final String DISPEL = "Dispel";
 
     @Override
     public ArtifactCreatureBuff create(String aName) {
         switch (aName) {
-            case "Ring of Vitality":
+            case RING_OF_VITALITY:
                 return new ArtifactHealth(ArtifactStatistic.RING_OF_VITALITY, 1);
-            case "Ring of Life":
+            case RING_OF_LIFE:
                 return new ArtifactHealth(ArtifactStatistic.RING_OF_LIFE, 1);
-            case "Vial of Lifeblood":
+            case VIAL_OF_LIFEBLOOD:
                 return new ArtifactHealth(ArtifactStatistic.VIAL_OF_LIFEBLOOD, 2);
-            case "Garniture of Interference":
+            case GARNITURE_OF_INTERFERENCE:
                 return new ArtifactResistance(ArtifactStatistic.GARNITURE_OF_INTERFERENCE, 5);
-            case "Surcoat of Counterpoise":
+            case SURCOAT_OF_COUNTERPOISE:
                 return new ArtifactResistance(ArtifactStatistic.SURCOAT_OF_COUNTERPOISE, 10);
-            case "Boots of Polarity":
+            case BOOTS_OF_POLARITY:
                 return new ArtifactResistance(ArtifactStatistic.BOOTS_OF_POLARITY, 15);
-            case "Necklace of Swiftness":
+            case NECKLACE_OF_SWIFTNESS:
                 return new ArtifactSpeed(ArtifactStatistic.NECKLACE_OF_SWIFTNESS, 1);
-            case "Ring of the Wayfarer":
+            case RING_OF_THE_WAYFARER:
                 return new ArtifactSpeed(ArtifactStatistic.RING_OF_THE_WAYFARER, 1);
-            case "Cape of Velocity":
+            case CAPE_OF_VELOCITY:
                 return new ArtifactSpeed(ArtifactStatistic.CAPE_OF_VELOCITY, 2);
-            case "Pendant of Dispassion":
-                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_DISPASSION, "BERZERK");
-            case "Pendant of Second Sight":
-                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_SECOND_SIGHT, "BLIND");
-            case "Pendant of Holiness":
-                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_HOLINESS, "CURSE");
-            case "Pendant of Life":
-                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_LIFE, "DEATH RIPPLE");
-            case "Pendant of Death":
-                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_DEATH, "DESTROY UNDEAD");
-            case "Pendant of Free Will":
-                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_FREE_WILL, "HYPNOTIZE");
-            case "Pendant of Negativity":
-                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_NEGATIVITY, "LIGHTINING");
-            case "Pendant of Total Recall":
-                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_TOTAL_RECALL, "FORGETFULNESS");
-            case "Sphere of Permanence":
-                return new ArtifactImmunity(ArtifactStatistic.SPHERE_OF_PERMANENCE, "DISPEL");
+            case PENDANT_OF_DISPASSION:
+                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_DISPASSION, BERZERK);
+            case PENDANT_OF_SECOND_SIGHT:
+                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_SECOND_SIGHT, BLIND);
+            case PENDANT_OF_HOLINESS:
+                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_HOLINESS, CURSE);
+            case PENDANT_OF_LIFE:
+                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_LIFE, DEATH_RIPPLE);
+            case PENDANT_OF_DEATH:
+                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_DEATH, DESTROY_UNDEAD);
+            case PENDANT_OF_FREE_WILL:
+                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_FREE_WILL, HYPNOTIZE);
+            case PENDANT_OF_NEGATIVITY:
+                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_NEGATIVITY, LIGHTNING_BOLT);
+            case PENDANT_OF_TOTAL_RECALL:
+                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_TOTAL_RECALL, FORGETFULNESS);
+            case SPHERE_OF_PERMANENCE:
+                return new ArtifactImmunity(ArtifactStatistic.SPHERE_OF_PERMANENCE, DISPEL);
 
             default:
                 throw new IllegalArgumentException(EXCEPTION_MESSAGE);
