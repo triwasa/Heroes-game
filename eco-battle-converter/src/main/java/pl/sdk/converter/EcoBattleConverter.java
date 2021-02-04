@@ -1,15 +1,19 @@
 package pl.sdk.converter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import pl.sdk.Board;
+import pl.sdk.Holder;
+import pl.sdk.PointHolder;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.gui.BattleMapController;
 import pl.sdk.gui.MapEditorController;
 import pl.sdk.hero.EconomyHero;
+import pl.sdk.hero.Hero;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -46,13 +50,14 @@ public class EcoBattleConverter {
                         String fileWithFieldsToString = file.toString()+"/fields.xml";
                         Files.deleteIfExists(Paths.get(fileWithPointsToString));
                         Files.deleteIfExists(Paths.get(fileWithFieldsToString));
-                    } catch (IOException e) {
-                        e.printStackTrace();
+//                    } catch (IOException | JAXBException aE) {
+                    } catch (IOException aE) {
+                        aE.printStackTrace();
                     }
                     aStage.close();
                 }
             });
-        } catch (IOException | JAXBException aE) {
+        } catch (IOException aE) {
             aE.printStackTrace();
         }
     }
@@ -85,14 +90,15 @@ public class EcoBattleConverter {
                 public void handle(WindowEvent windowEvent) {
                     mapEditorController.terminateThread();
                     try {
-                        mapEditorController.saveFile();
-                    } catch (JAXBException e) {
-                        e.printStackTrace();
+                    mapEditorController.saveFile();
+                    } catch (JAXBException aE) {
+                        aE.printStackTrace();
                     }
                     aStage.close();
                 }
             });
             aStage.show();
+//        } catch (IOException | JAXBException aE) {
         } catch (IOException | JAXBException aE) {
             aE.printStackTrace();
         }

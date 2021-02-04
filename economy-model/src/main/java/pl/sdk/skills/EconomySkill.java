@@ -26,4 +26,8 @@ public class EconomySkill {
     public int getGoldCost() {
         return 0;
     }
+
+    public Integer getLevel() {
+        return null;
+    }
 }

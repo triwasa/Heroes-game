@@ -1,7 +1,8 @@
 package pl.sdk.converter;
 
 import pl.sdk.hero.EconomyHero;
-import pl.sdk.skill.Skill;
+import pl.sdk.skills.EconomySkill;
+import skills.Skill;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,13 +10,13 @@ import java.util.stream.Collectors;
 
 public class HeroSpellMastery {
 
-    HashMap<String, Integer> heroSpellMastery = new HashMap<String, Integer>();
+    HashMap<String, Integer> heroSpellMastery = new HashMap<>();
 
     HeroSpellMastery(EconomyHero economyHero) {
-        List<Skill> skills = economyHero.getSkills().stream()
+        List<EconomySkill> skills = economyHero.getSkills().stream()
                 .collect(Collectors.toList());
 
-        for (Skill skill : skills) {
+        for (EconomySkill skill : skills) {
             if (skill.getName().equals("Air Magic")) {
                 heroSpellMastery.put("Air Magic", skill.getLevel());
             }

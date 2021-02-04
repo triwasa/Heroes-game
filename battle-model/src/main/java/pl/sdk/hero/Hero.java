@@ -45,33 +45,33 @@ public class Hero {
         return 0;
     }
 
-    static class BuilderForTesting {
+    public static class BuilderForTesting {
         private Integer attack;
         private  Integer defence;
         private  Integer power;
         private  Integer knowledge;
 
-        Hero.BuilderForTesting attack (Integer attack){
+        public Hero.BuilderForTesting attack (Integer attack){
             this.attack = attack;
             return this;
         }
 
-        Hero.BuilderForTesting defence (Integer defence){
+        public Hero.BuilderForTesting defence (Integer defence){
             this.defence = defence;
             return this;
         }
 
-        Hero.BuilderForTesting power (Integer power){
+        public Hero.BuilderForTesting power (Integer power){
             this.power = power;
             return this;
         }
 
-        Hero.BuilderForTesting knowledge (Integer knowledge){
+        public Hero.BuilderForTesting knowledge (Integer knowledge){
             this.knowledge = knowledge;
             return this;
         }
 
-        Hero build() {
+        public Hero build() {
             Set<String> emptyFields = new HashSet<>();
             if (attack == null ){
                 emptyFields.add("attack");
@@ -95,7 +95,7 @@ public class Hero {
             return ret;
         }
 
-        Hero createInstance(HeroClassStatisticIf aStats) {
+        public Hero createInstance(HeroClassStatisticIf aStats) {
             return new Hero(aStats);
         }
     }

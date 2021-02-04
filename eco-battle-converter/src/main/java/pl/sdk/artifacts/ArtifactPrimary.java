@@ -25,10 +25,10 @@ class ArtifactPrimary extends AbstractArtifact {
     }
 
     void increaseHeroStatistic(Hero hero){
-        hero.increaseAttack(getAttack());
-        hero.increaseDefence(getDefence());
-        hero.increaseSpellPower(getSpellPower());
-        hero.increaseKnowledge(getKnowledge());
+//        hero.increaseAttack(getAttack());
+//        hero.increaseDefence(getDefence());
+//        hero.increaseSpellPower(getSpellPower());
+//        hero.increaseKnowledge(getKnowledge());
     }
 
 }

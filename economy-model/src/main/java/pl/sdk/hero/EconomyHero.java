@@ -5,9 +5,7 @@ import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.artifacts.HeroEquipment;
 import pl.sdk.skills.EconomySkill;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class EconomyHero {
 
@@ -28,6 +26,7 @@ public class EconomyHero {
     public int getKnowledge() {
         return 0;
     }
+
     public enum Fraction {
         NECROPOLIS;
     }
@@ -42,6 +41,10 @@ public class EconomyHero {
         creatureList = new ArrayList<>();
         heroEquipment = new HeroEquipment();
         skillList = new HashMap<>();
+    }
+
+    public Set<EconomySkill> getSkills() {
+        return skillList.keySet();
     }
 
     void addCreature(EconomyCreature aCreature){

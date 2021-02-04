@@ -1,6 +1,7 @@
 package pl.sdk.artifacts;
 
 import pl.sdk.spells.Spell;
+import pl.sdk.spells.SpellEnum;
 import pl.sdk.spells.SpellFactory;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public class Immunity {
     private List<Spell> spells;
 
-    protected void add(String aSpellName){
+    protected void add(SpellEnum aSpellName){
         Spell spell = createSpell(aSpellName);
         if(!spells.contains(spell)){
             spells.add(spell);
@@ -27,7 +28,7 @@ public class Immunity {
         }
     }
 
-    private Spell createSpell(String spellName) {
+    private Spell createSpell(SpellEnum spellName) {
         SpellFactory spellFactory = new SpellFactory();
         return spellFactory.create(spellName);
     }

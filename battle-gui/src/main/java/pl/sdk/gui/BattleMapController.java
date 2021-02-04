@@ -41,7 +41,11 @@ public class BattleMapController implements PropertyChangeListener {
             upgradedCreatures.add(factory.create(true, i, 10));
         }
 
-        gameEngine = new GameEngine(notUpgradedCreatures, upgradedCreatures, board);
+        gameEngine = new GameEngine(notUpgradedCreatures, upgradedCreatures, new Board());
+    }
+
+    public BattleMapController(List<Creature> aCreatures1, List<Creature> aCreatures2){
+        this(aCreatures1,aCreatures2, new Board());
     }
 
     public BattleMapController(List<Creature> aCreatures1, List<Creature> aCreatures2, Board board){
