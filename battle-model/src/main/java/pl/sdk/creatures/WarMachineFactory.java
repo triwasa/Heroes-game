@@ -14,7 +14,7 @@ public class WarMachineFactory extends AbstractFactory {
                         .amount(1)
                         .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                         .build();
-//                return new ShootingCreatureDecorator(catapult);
+                return new ShootingCreatureDecorator(catapult);
             case 2:
                 //return new FirstAidTent(CreatureStatistic.FIRSTAIDTENT);
             case 3:

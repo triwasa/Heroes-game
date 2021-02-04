@@ -2,26 +2,13 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
-import java.beans.PropertyChangeEvent;
 
-class ShootingCreatureDecorator extends Creature {
+class ShootingCreatureDecorator implements Attacker {
 
-    private final Creature decorated;
+    private final Attacker decorated;
 
-    ShootingCreatureDecorator(Creature aDecorated){
+    ShootingCreatureDecorator(Attacker aDecorated){
         decorated = aDecorated;
-    }
-
-
-
-    @Override
-    public void counterAttack(BattleObject aAttacker) {
-        decorated.counterAttack(aAttacker);
-    }
-
-    @Override
-    void counterAttackedInThisTurn() {
-        decorated.counterAttackedInThisTurn();
     }
 
     @Override
@@ -35,11 +22,6 @@ class ShootingCreatureDecorator extends Creature {
     }
 
     @Override
-    protected void setCurrentHpToMaximum() {
-        decorated.setCurrentHpToMaximum();
-    }
-
-    @Override
     public String getName() {
         return decorated.getName();
     }
@@ -47,11 +29,6 @@ class ShootingCreatureDecorator extends Creature {
     @Override
     public String getMovementType() {
         return decorated.getMovementType();
-    }
-
-    @Override
-    public DamageApplierIf getDamageApplier() {
-        return decorated.getDamageApplier();
     }
 
     @Override
@@ -64,15 +41,9 @@ class ShootingCreatureDecorator extends Creature {
         return decorated.getCalculateDamage();
     }
 
-
     @Override
     public boolean[][] getSplashRange() {
         return decorated.getSplashRange();
-    }
-
-    @Override
-    public boolean canCounterAttack() {
-        return decorated.canCounterAttack();
     }
 
     @Override
@@ -80,17 +51,6 @@ class ShootingCreatureDecorator extends Creature {
         return decorated.getMoveRange();
     }
     
-
-    @Override
-    public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
-        decorated.propertyChange(aPropertyChangeEvent);
-    }
-
-    @Override
-    public void applyDamage(int aDamageToApply) {
-        decorated.applyDamage(aDamageToApply);
-    }
-
     @Override
     public int getAttack() {
         return decorated.getAttack();
@@ -111,10 +71,6 @@ class ShootingCreatureDecorator extends Creature {
         return decorated.getAmount();
     }
 
-    @Override
-    public String currentHealth() {
-        return decorated.currentHealth();
-    }
 
     @Override
     public String toString() {
@@ -127,12 +83,18 @@ class ShootingCreatureDecorator extends Creature {
     }
 
     @Override
+    public boolean canFortificationAttack() {
+        return false;
+    }
+
+    @Override
+    public boolean canCreatureAttack() {
+        return false;
+    }
+
+    @Override
     public int getMaxHp() {
         return decorated.getMaxHp();
     }
 
-    @Override
-    public boolean backToPreviousPositionMechanic() {
-        return decorated.backToPreviousPositionMechanic();
-    }
 }
