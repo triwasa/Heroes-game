@@ -1,6 +1,8 @@
 package pl.sdk.artifacts;
 
-enum ArtifactPrimaryStatistic implements PrimaryStatisticIf {
+import pl.sdk.heroClass.HeroClassStatisticIf;
+
+enum ArtifactPrimaryStatistic implements HeroClassStatisticIf {
     // PRIMARY 1
     CENTAURS_AX(2, 0,0,0),
     BLACKSHARD_OF_THE_DEAD_KNIGHT(3, 0, 0, 0),
@@ -43,13 +45,13 @@ enum ArtifactPrimaryStatistic implements PrimaryStatisticIf {
 
     private final int attack;
     private final int defence;
-    private final int spellPower;
+    private final int power;
     private final int knowledge;
 
-    ArtifactPrimaryStatistic(int aAttack, int aDefence, int aSpellPower, int aKnowledge ) {
+    ArtifactPrimaryStatistic(int aAttack, int aDefence, int aPower, int aKnowledge ) {
         this.attack = aAttack;
         this.defence = aDefence;
-        this.spellPower = aSpellPower;
+        this.power = aPower;
         this.knowledge = aKnowledge;
     }
 
@@ -57,7 +59,7 @@ enum ArtifactPrimaryStatistic implements PrimaryStatisticIf {
 
     public int getDefence() { return defence; }
 
-    public int getSpellPower() { return spellPower; }
+    public int getPower() { return power; }
 
     public int getKnowledge() { return knowledge; }
 

@@ -1,23 +1,16 @@
 package pl.sdk.artifacts;
 
 import pl.sdk.hero.Hero;
+import pl.sdk.heroClass.HeroClassStatisticIf;
 
 class ArtifactPrimary extends AbstractArtifact {
 
-    private final PrimaryStatisticIf primaryStats;
+    private final HeroClassStatisticIf primaryStats;
 
-    public ArtifactPrimary(ArtifactStatisticIf aStats, PrimaryStatisticIf aPrimaryStats) {
+    public ArtifactPrimary(ArtifactStatisticIf aStats, HeroClassStatisticIf aPrimaryStats) {
         stats = aStats;
         this.primaryStats = aPrimaryStats;
     }
-
-    public int getAttack() { return primaryStats.getAttack(); }
-
-    public int getDefence() { return primaryStats.getDefence(); }
-
-    public int getSpellPower() { return primaryStats.getSpellPower(); }
-
-    public int getKnowledge() { return primaryStats.getKnowledge(); }
 
     @Override
     void buff(Hero hero) {
@@ -25,10 +18,7 @@ class ArtifactPrimary extends AbstractArtifact {
     }
 
     void increaseHeroStatistic(Hero hero){
-//        hero.increaseAttack(getAttack());
-//        hero.increaseDefence(getDefence());
-//        hero.increaseSpellPower(getSpellPower());
-//        hero.increaseKnowledge(getKnowledge());
+//        hero.increaseStats(primaryStats);
     }
 
 }

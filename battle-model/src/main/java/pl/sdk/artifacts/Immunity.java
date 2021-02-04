@@ -50,12 +50,7 @@ public class Immunity {
     }
 
     protected Boolean checkImmunity(Spell aSpell){
-        if(spells.contains(aSpell)){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return spells.contains(aSpell);
     }
 
     private Spell createSpell(SpellEnum spellName) {
