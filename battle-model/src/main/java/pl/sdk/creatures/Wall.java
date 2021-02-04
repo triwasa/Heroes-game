@@ -4,6 +4,10 @@ import com.google.common.collect.Range;
 import pl.sdk.DefaultDamageApplier;
 import pl.sdk.fortifications.FortificationStatisticIf;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Wall implements BattleObject, Fortification {
 
     private int currentHp;
@@ -48,7 +52,7 @@ public class Wall implements BattleObject, Fortification {
     }
 
     @Override
-    public boolean canFortifficationAttack() {
+    public boolean canFortificationAttack() {
         return false;
     }
 
@@ -133,5 +137,133 @@ public class Wall implements BattleObject, Fortification {
     @Override
     public int getMoveRange() {
         return 0;
+    }
+
+    static class Builder {
+        private FortificationStatisticIf stats;
+        private CalculateDamageStrategy damageCalculator;
+        private DamageApplierIf damageApplier;
+        private AttackStrategy attackStrategy;
+        private Integer amount;
+
+        Wall.Builder statistic (FortificationStatisticIf aStats){
+            this.stats = aStats;
+            return this;
+        };
+        Wall.Builder amount(int amount){
+            this.amount=amount;
+            return this;
+        }
+        Wall.Builder damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
+            this.damageCalculator = aCalculateDamageStrategy;
+            return this;
+        }
+        Wall.Builder damageApplier (DamageApplierIf aDamageApplier){
+            this.damageApplier = aDamageApplier;
+            return this;
+        }
+        Wall.Builder attackStrategy (AttackStrategy aAttackStrategy){
+            this.attackStrategy = aAttackStrategy;
+            return this;
+        }
+
+        Wall build(){
+            Set<String> emptyFields = new HashSet<>();
+            if (stats == null){
+                emptyFields.add("stats");
+            }
+            if (!emptyFields.isEmpty()){
+                throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
+            }
+
+            Wall ret = createInstance(stats);
+            if(amount == null){
+                ret.amount=1;
+            }
+            else{
+                ret.amount = amount;
+            }
+            if (damageApplier != null) {
+                ret.damageApplier = damageApplier;
+            }
+            else {
+                ret.damageApplier = new DefaultDamageApplier();
+            }
+
+            return ret;
+
+        }
+
+        Wall createInstance(FortificationStatisticIf aStats) {
+            return new Wall(aStats);
+        }
+
+    }
+
+    static class BuilderForTesting {
+        private String name;
+        private Integer maxHp;
+        private Integer damage;
+        private DamageApplierIf damageApplier;
+        private Integer amount;
+
+        BuilderForTesting name (String name){
+            this.name = name;
+            return this;
+        }
+        BuilderForTesting maxHp (int maxHp){
+            this.maxHp = maxHp;
+            return this;
+        }
+        BuilderForTesting damage (int damage){
+            this.damage = damage;
+            return this;
+        }
+        BuilderForTesting amount(int amount){
+            this.amount=amount;
+            return this;
+        }
+        BuilderForTesting damageApplier (DamageApplierIf aDamageApplier) {
+            this.damageApplier = aDamageApplier;
+            return this;
+        }
+        Wall build(){
+            Set<String> emptyFields = new HashSet<>();
+            if (name == null ){
+                emptyFields.add("name");
+            }
+            if (maxHp == null){
+                emptyFields.add("maxHp");
+            }
+
+            if (damage == null){
+                emptyFields.add("damage");
+            }
+            if (!emptyFields.isEmpty()){
+                throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
+            }
+
+            FortificationStatisticIf stats = new FortificationStatisticForTesting(name, maxHp, damage);
+            Wall ret = createInstance(stats);
+            if(amount == null){
+                ret.amount=1;
+            }
+            else{
+                ret.amount = amount;
+            }
+
+            if (damageApplier != null) {
+                ret.damageApplier = damageApplier;
+            }
+            else {
+                ret.damageApplier = new DefaultDamageApplier();
+            }
+
+            return ret;
+        }
+
+        Wall createInstance(FortificationStatisticIf aStats) {
+            return new Wall(aStats);
+        }
     }
 }

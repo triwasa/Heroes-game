@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class Catapult  implements BattleObject {
+public class Catapult extends Creature implements BattleObject {
 
 
     private int currentHp;
@@ -64,7 +64,7 @@ public class Catapult  implements BattleObject {
 
 
     @Override
-    public boolean canFortifficationAttack() {
+    public boolean canFortificationAttack() {
         return possibleAttackManager.canFortificationAttack();
     }
 

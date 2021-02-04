@@ -34,7 +34,7 @@ public class AttackEngine {
             return attacker.canCreatureAttack();
         }
         if(possibleDefender.isFortification()) {
-            return attacker.canFortifficationAttack();
+            return attacker.canFortificationAttack();
         }
         throw new IllegalArgumentException();
     }

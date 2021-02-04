@@ -78,7 +78,7 @@ public class FirstAidTent implements BattleObject {
     }
 
     @Override
-    public boolean canFortifficationAttack() {
+    public boolean canFortificationAttack() {
         return false;
     }
 

@@ -63,7 +63,7 @@ public class Ballista extends Creature implements BattleObject {
     }
 
     @Override
-    public boolean canFortifficationAttack() {
+    public boolean canFortificationAttack() {
         return possibleAttackManager.canFortificationAttack();
     }
 

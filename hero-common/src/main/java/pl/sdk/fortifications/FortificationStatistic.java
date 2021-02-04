@@ -15,7 +15,7 @@ public enum FortificationStatistic implements FortificationStatisticIf {
     private final String description;
 
 
-    FortificationStatistic(String aName, int aMaxHp, int aDamage, int aLevel, String aDescription) {
+     FortificationStatistic(String aName, int aMaxHp, int aDamage, int aLevel, String aDescription) {
         name=aName;
         maxHp=aMaxHp;
         damage = aDamage;

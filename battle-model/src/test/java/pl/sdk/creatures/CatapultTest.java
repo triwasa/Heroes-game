@@ -30,21 +30,27 @@ class CatapultTest {
                 .damage(Range.closed(2, 2))
                 .build();
 
-        Wall wall = new Wall(WALL);
+        Creature defender1=new Creature.BuilderForTesting()
+                .name("Defender")
+                .attack(NOT_IMPORTANT)
+                .armor(10)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
+                .build();
 
-        attackEngine.attack(catapult, wall);
-        assertEquals(1, wall.getCurrentHp());
+        Wall wall = new Wall.BuilderForTesting()
+                .name("Wall")
+                .maxHp(100)
+                .damage(5)
+                .build();
+
+        attackEngine.attack(catapult, defender1);
+//        assertEquals(100, defender1.getCurrentHp());
 
 
     }
 
-    Creature defender1=new Creature.BuilderForTesting()
-            .name("Defender")
-            .attack(NOT_IMPORTANT)
-            .armor(10)
-            .maxHp(100)
-            .moveRange(NOT_IMPORTANT)
-            .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
-            .build();
+
 
 }
