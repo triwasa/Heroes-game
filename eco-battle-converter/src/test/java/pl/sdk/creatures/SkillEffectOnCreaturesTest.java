@@ -4,10 +4,8 @@ import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.hero.Hero;
-import skills.Skill;
-import skills.SkillApplier;
-import skills.SkillFactory;
-import skills.SkillSet;
+import pl.sdk.skills.SkillApplier;
+import pl.sdk.skills.SkillSet;
 
 
 import java.util.ArrayList;

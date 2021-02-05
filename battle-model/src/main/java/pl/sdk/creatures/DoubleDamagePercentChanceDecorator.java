@@ -45,7 +45,6 @@ public class DoubleDamagePercentChanceDecorator extends Creature {
 //    int calculateDamage(Creature aAttacker, Creature aDefender) {
 //        Random rand = new Random();
 //        int roll = (rand.nextInt(100) + 1);
-//        System.out.println("rolld100 = " + roll);
 //        if (roll > percentToDealDoubleDamage){
 //            return 0;
 //        }
