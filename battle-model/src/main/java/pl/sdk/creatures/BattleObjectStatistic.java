@@ -13,4 +13,5 @@ public interface BattleObjectStatistic {
     boolean[][] getSplashRange();
     String getMovementType();
     int getMoveRange();
+    DamageApplierIf getDamageApplier();
 }
