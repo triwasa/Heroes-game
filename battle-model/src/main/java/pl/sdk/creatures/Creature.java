@@ -78,8 +78,17 @@ public class Creature implements PropertyChangeListener, BattleObject{
     }
 
     public int getMoveRange() {
+        return stats.getMoveRange() + additionalStats.getAdditionalMoveRange();
+    }
+
+    public int getBaseMoveRange() {
         return stats.getMoveRange();
     }
+
+    public int getResistance() {
+        return additionalStats.getResistance();
+    }
+
 
     public String getMovementType() {
         return stats.getMovementType();
@@ -152,6 +161,9 @@ public class Creature implements PropertyChangeListener, BattleObject{
     }
 
     public int getMaxHp() {
+        return stats.getMaxHp() + additionalStats.getAdditionalHp();
+    }
+    public int getBaseMaxHp() {
         return stats.getMaxHp();
     }
 
