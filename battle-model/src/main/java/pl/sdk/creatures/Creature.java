@@ -26,6 +26,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
         calculateDamageStrategy = new DefaultCalculateStrategy();
         damageApplier = new DefaultDamageApplier();
         possibleAttacKManager = new PossibleAttackManagerForCreature();
+        additionalStats = new CreatureAdditionalStatistic();
     }
 
     Creature(CreatureStatisticIf aStats){

@@ -1,10 +1,10 @@
-/*
 package pl.sdk;
 
 import org.junit.jupiter.api.Test;
 
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
+import pl.sdk.hero.Hero;
 
 import java.beans.PropertyChangeEvent;
 import java.util.List;
@@ -21,7 +21,11 @@ public class EndOfTurnTests {
     void shouldResetCounterAttackFlagAfterEndOfTurn(){
         Creature attacker = NecropolisFactory.createDefaultForTests();
         Creature defender = NecropolisFactory.createDefaultForTests();
-        GameEngine engine = new GameEngine(List.of(attacker), List.of(defender) , new Board());
+        Hero hero1 = new Hero();
+        hero1.addCreatures(List.of(attacker));
+        Hero hero2 = new Hero();
+        hero2.addCreatures(List.of(defender));
+        GameEngine engine = new GameEngine(hero1,hero2 , new Board());
 
         assertEquals(true, defender.canCounterAttack());
         attacker.getAttackStrategy().attack(attacker,defender);
@@ -36,11 +40,14 @@ public class EndOfTurnTests {
     void shouldCallPropertyChangeAfterEndOfTurn(){
         Creature attacker = spy(Creature.class);
         Creature defender = NecropolisFactory.createDefaultForTests();
-        GameEngine engine = new GameEngine(List.of(attacker), List.of(defender), new Board());
+        Hero hero1 = new Hero();
+        hero1.addCreatures(List.of(attacker));
+        Hero hero2 = new Hero();
+        hero2.addCreatures(List.of(defender));
+        GameEngine engine = new GameEngine(hero1,hero2, new Board());
 
         engine.pass();
         engine.pass();
         verify(attacker).propertyChange(any(PropertyChangeEvent.class));
     }
 }
-*/
