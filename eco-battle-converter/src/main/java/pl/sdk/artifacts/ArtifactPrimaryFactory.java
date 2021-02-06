@@ -83,8 +83,24 @@ public class ArtifactPrimaryFactory extends ArtifactAbstractFactory {
                 return new ArtifactPrimary(ArtifactStatistic.LIONS_SHIELD_OF_COURAGE, ArtifactPrimaryStatistic.LIONS_SHIELD_OF_COURAGE);
             case SWORD_OF_JUJEMENT:
                 return new ArtifactPrimary(ArtifactStatistic.SWORD_OF_JUJEMENT, ArtifactPrimaryStatistic.SWORD_OF_JUJEMENT);
-            case HELM_OF_HEAVENLY_ENLIGHTENMENT:
-                return new ArtifactPrimary(ArtifactStatistic.HELM_OF_HEAVENLY_ENLIGHTENMENT, ArtifactPrimaryStatistic.HELM_OF_HEAVENLY_ENLIGHTENMENT);
+            case BADGE_OF_COURAGE:
+                return new ArtifactPrimary(ArtifactStatistic.BADGE_OF_COURAGE, ArtifactPrimaryStatistic.BADGE_OF_COURAGE);
+            case CREST_OF_VALOR:
+                return new ArtifactPrimary(ArtifactStatistic.CREST_OF_VALOR, ArtifactPrimaryStatistic.CREST_OF_VALOR);
+            case GLYPH_OF_GALLANTRY:
+                return new ArtifactPrimary(ArtifactStatistic.GLYPH_OF_GALLANTRY, ArtifactPrimaryStatistic.GLYPH_OF_GALLANTRY);
+            case CLOVER_OF_FORTUNE:
+                return new ArtifactPrimary(ArtifactStatistic.CLOVER_OF_FORTUNE, ArtifactPrimaryStatistic.CLOVER_OF_FORTUNE);
+            case CARDS_OF_PROPHECY:
+                return new ArtifactPrimary(ArtifactStatistic.CARDS_OF_PROPHECY, ArtifactPrimaryStatistic.CARDS_OF_PROPHECY);
+            case LADYBIRD_OF_LUCK:
+                return new ArtifactPrimary(ArtifactStatistic.LADYBIRD_OF_LUCK, ArtifactPrimaryStatistic.LADYBIRD_OF_LUCK);
+            case STILL_EYE_OF_THE_DRAGON:
+                return new ArtifactPrimary(ArtifactStatistic.STILL_EYE_OF_THE_DRAGON, ArtifactPrimaryStatistic.STILL_EYE_OF_THE_DRAGON);
+            case PENDANT_OF_COURAGE:
+                return new ArtifactPrimary(ArtifactStatistic.PENDANT_OF_COURAGE, ArtifactPrimaryStatistic.PENDANT_OF_COURAGE);
+
+
 
             default:
                 throw new IllegalArgumentException(EXCEPTION_MESSAGE);

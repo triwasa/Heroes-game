@@ -42,6 +42,14 @@ public class ArtifactName {
     public final static String LIONS_SHIELD_OF_COURAGE = "Lion's Shield of Courage";
     public final static String SWORD_OF_JUJEMENT = "Sword of Judjement";
     public final static String HELM_OF_HEAVENLY_ENLIGHTENMENT = "Helm of Heavenly Enlightenment";
+    public final static String BADGE_OF_COURAGE = "Badge of Courage";
+    public final static String CREST_OF_VALOR = "Crest of Valor";
+    public final static String GLYPH_OF_GALLANTRY = "Glyph of Gallantry";
+    public final static String CLOVER_OF_FORTUNE = "Clover of Fortune";
+    public final static String CARDS_OF_PROPHECY = "Cards of Prophecy";
+    public final static String LADYBIRD_OF_LUCK = "Ladybird of Luck";
+    public final static String STILL_EYE_OF_THE_DRAGON = "Still Eye of the Dragon";
+    public final static String PENDANT_OF_COURAGE = "Pendant of Courage";
 
     // COMBAT
     public final static String GOLDEN_BOW = "Golden Bow";

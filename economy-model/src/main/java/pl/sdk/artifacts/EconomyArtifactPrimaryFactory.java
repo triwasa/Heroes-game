@@ -82,8 +82,22 @@ public class EconomyArtifactPrimaryFactory {
                 return new EconomyArtifact(ArtifactStatistic.LIONS_SHIELD_OF_COURAGE,1000);
             case SWORD_OF_JUJEMENT:
                 return new EconomyArtifact(ArtifactStatistic.SWORD_OF_JUJEMENT, 1300);
-            case HELM_OF_HEAVENLY_ENLIGHTENMENT:
-                return new EconomyArtifact(ArtifactStatistic.HELM_OF_HEAVENLY_ENLIGHTENMENT, 1800);
+            case BADGE_OF_COURAGE:
+                return new EconomyArtifact(ArtifactStatistic.BADGE_OF_COURAGE, 600);
+            case CREST_OF_VALOR:
+                return new EconomyArtifact(ArtifactStatistic.CREST_OF_VALOR, 600);
+            case GLYPH_OF_GALLANTRY:
+                return new EconomyArtifact(ArtifactStatistic.GLYPH_OF_GALLANTRY, 600);
+            case CLOVER_OF_FORTUNE:
+                return new EconomyArtifact(ArtifactStatistic.CLOVER_OF_FORTUNE, 600);
+            case CARDS_OF_PROPHECY:
+                return new EconomyArtifact(ArtifactStatistic.CARDS_OF_PROPHECY, 600);
+            case LADYBIRD_OF_LUCK:
+                return new EconomyArtifact(ArtifactStatistic.LADYBIRD_OF_LUCK, 600);
+            case STILL_EYE_OF_THE_DRAGON:
+                return new EconomyArtifact(ArtifactStatistic.STILL_EYE_OF_THE_DRAGON, 1300);
+            case PENDANT_OF_COURAGE:
+                return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_COURAGE, 4000);
 
             case RING_OF_VITALITY:
                 return new EconomyArtifact(ArtifactStatistic.RING_OF_VITALITY, 450);

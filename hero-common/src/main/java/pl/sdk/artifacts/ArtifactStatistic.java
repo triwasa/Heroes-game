@@ -43,6 +43,14 @@ enum ArtifactStatistic implements ArtifactStatisticIf {
     LIONS_SHIELD_OF_COURAGE(ArtifactName.LIONS_SHIELD_OF_COURAGE, "left hand", "relic", "+4 to all 4 primary skills"),
     SWORD_OF_JUJEMENT(ArtifactName.SWORD_OF_JUJEMENT, "right hand", "relic", "+5 to all 4 primary skills"),
     HELM_OF_HEAVENLY_ENLIGHTENMENT(ArtifactName.HELM_OF_HEAVENLY_ENLIGHTENMENT, "head", "relic", "+6 to all 4 primary skills"),
+    BADGE_OF_COURAGE(ArtifactName.BADGE_OF_COURAGE, "misc", "treasure", "+1 morale"),
+    CREST_OF_VALOR(ArtifactName.CREST_OF_VALOR, "misc", "treasure", "+1 morale"),
+    GLYPH_OF_GALLANTRY(ArtifactName.GLYPH_OF_GALLANTRY, "misc", "treasure", "+1 morale"),
+    CLOVER_OF_FORTUNE(ArtifactName.CLOVER_OF_FORTUNE, "misc", "treasure", "+1 luck"),
+    CARDS_OF_PROPHECY(ArtifactName.CARDS_OF_PROPHECY, "misc", "treasure", "+1 luck"),
+    LADYBIRD_OF_LUCK(ArtifactName.LADYBIRD_OF_LUCK, "misc", "treasure", "+1 luck"),
+    STILL_EYE_OF_THE_DRAGON(ArtifactName.STILL_EYE_OF_THE_DRAGON, "finger", "treasure", "+1 luck and morale"),
+    PENDANT_OF_COURAGE(ArtifactName.PENDANT_OF_COURAGE, "neck", "major", "+3 luck and morale"),
 
     // COMBAT
     GOLDEN_BOW(ArtifactName.GOLDEN_BOW, "misc", "major", "Your troops can shoot at any distance, through any obstacle without penalty"),
