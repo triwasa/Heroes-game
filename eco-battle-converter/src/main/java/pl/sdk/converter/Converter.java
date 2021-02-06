@@ -1,7 +1,7 @@
 package pl.sdk.converter;
 
 import pl.sdk.artifacts.AbstractArtifact;
-import pl.sdk.artifacts.ArtifactPrimaryFactory;
+import pl.sdk.artifacts.ArtifactFactory;
 import pl.sdk.skills.Skill;
 import pl.sdk.skills.SkillFactory;
 import pl.sdk.hero.Hero;
@@ -17,7 +17,7 @@ import java.util.List;
 public class Converter {
 
     public static Hero convert(EconomyHero economyHero) {
-        ArtifactPrimaryFactory artifactFactory = new ArtifactPrimaryFactory();
+        ArtifactFactory artifactFactory = new ArtifactFactory();
         SkillFactory skillFactory = new SkillFactory();
 
         List<AbstractArtifact> artifacts = new ArrayList<>();

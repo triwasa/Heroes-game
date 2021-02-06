@@ -17,7 +17,7 @@ public class EquippingSpellBuffArtifactTest {
 
     private Hero hero;
     private List<Spell> spells;
-    private final ArtifactAbstractFactory artifactFactory = new ArtifactPrimaryFactory();
+    private final ArtifactFactory artifactFactory = new ArtifactFactory();
     private final SpellFactory spellFactory = new SpellFactory();
 
     @BeforeEach

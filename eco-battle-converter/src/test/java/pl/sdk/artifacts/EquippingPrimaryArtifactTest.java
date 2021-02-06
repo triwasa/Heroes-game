@@ -12,7 +12,7 @@ import static pl.sdk.artifacts.ArtifactName.*;
 public class EquippingPrimaryArtifactTest {
 
     private Hero hero;
-    private final ArtifactAbstractFactory artifactFactory = new ArtifactPrimaryFactory();
+    private final ArtifactFactory artifactFactory = new ArtifactFactory();
 
     @BeforeEach
     void init() {
