@@ -1,6 +1,8 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.spells.Immunity;
+import pl.sdk.spells.SpellEnum;
 
 import java.beans.PropertyChangeEvent;
 
@@ -22,10 +24,54 @@ public class MultipleRetaliationsCreatureDecorator extends Creature {
     }
 
 
+    @Override
+    public boolean isCreature() {
+        return decorated.isCreature();
+    }
 
     @Override
-    public void counterAttack(BattleObject aAttacker) {
-        decorated.counterAttack(aAttacker);
+    public boolean isFortification() {
+        return decorated.isFortification();
+    }
+
+    @Override
+    public int getBaseMoveRange() {
+        return decorated.getBaseMoveRange();
+    }
+
+    @Override
+    public int getResistance() {
+        return decorated.getResistance();
+    }
+
+    @Override
+    public int getBaseMaxHp() {
+        return decorated.getBaseMaxHp();
+    }
+
+    @Override
+    public boolean canFortificationAttack() {
+        return decorated.canFortificationAttack();
+    }
+
+    @Override
+    public boolean canCreatureAttack() {
+        return decorated.canCreatureAttack();
+    }
+
+    @Override
+    public void increaseSpeed(int aMoveRangeToIncrease) {
+        decorated.increaseSpeed(aMoveRangeToIncrease);
+    }
+
+    @Override
+    public void increaseHealth(int aHpToIncrease) {
+        decorated.increaseHealth(aHpToIncrease);
+    }
+
+    @Override
+    public void increaseResistance(int aResistanceToIncrease) {
+        decorated.increaseResistance(aResistanceToIncrease);
     }
 
     @Override
@@ -50,7 +96,16 @@ public class MultipleRetaliationsCreatureDecorator extends Creature {
 
 
     @Override
-    protected void counterAttackedInThisTurn() {
+    public void addImmunity(SpellEnum s) {
+        decorated.addImmunity(s);
+    }
+
+    @Override
+    public Immunity getImmunity() {
+        return decorated.getImmunity();
+    }
+    @Override
+    public void counterAttackedInThisTurn() {
         currentRetaliationsAmount = currentRetaliationsAmount - 1;
     }
 

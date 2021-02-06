@@ -53,15 +53,7 @@ public class Keep implements BattleObject, Fortification {
         return possibleAttacKManager.canCreatureAttack();
     }
 
-    @Override
-    public void currentHpAfterAttack(int currentHp) {
-        currentHp = currentHp;
-    }
 
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        aAmount = aAmount;
-    }
 
     @Override
     public DamageApplierIf getDamageApplier() {
@@ -86,6 +78,11 @@ public class Keep implements BattleObject, Fortification {
     @Override
     public int getMoveRange() {
         return 0;
+    }
+
+    @Override
+    public boolean canCounterAttack() {
+        return false;
     }
 
     @Override
@@ -137,8 +134,9 @@ public class Keep implements BattleObject, Fortification {
         return true;
     }
 
+
     @Override
-    public void counterAttack(BattleObject attacker) {
+    public void counterAttackedInThisTurn() {
 
     }
 }

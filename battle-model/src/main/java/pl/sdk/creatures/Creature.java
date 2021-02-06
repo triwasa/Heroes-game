@@ -1,6 +1,8 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.spells.Immunity;
+import pl.sdk.spells.SpellEnum;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -8,46 +10,45 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Creature implements PropertyChangeListener, BattleObject {
+public class Creature implements PropertyChangeListener, BattleObject{
 
     private final CreatureStatisticIf stats;
+    private CreatureAdditionalStatistic additionalStats;
     private int currentHp;
     private boolean counterAttackedInThisTurn;
     private CalculateDamageStrategy calculateDamageStrategy;
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
-    private PossibleAttackManagerIf possibleAttacKManager;
+    private PossibleAttackManagerIf possibleAttackManager;
+    private Immunity immunity;
 
     // Constructor for mockito. Don't use it! You have builder here.
     Creature(){
         stats = CreatureStatistic.TEST;
         calculateDamageStrategy = new DefaultCalculateStrategy();
         damageApplier = new DefaultDamageApplier();
-        possibleAttacKManager = new PossibleAttackManagerForCreature();
+        possibleAttackManager = new PossibleAttackManagerForCreature();
+        additionalStats = new CreatureAdditionalStatistic();
+        immunity = new Immunity();
     }
 
     Creature(CreatureStatisticIf aStats){
         stats = aStats;
+        additionalStats = new CreatureAdditionalStatistic();
         currentHp = stats.getMaxHp();
+        immunity = new Immunity();
     }
 
-    public void counterAttack(BattleObject aAttacker) {
-        if (canCounterAttack()){
-            int damageToDealInCounterAttack = getCalculateDamage().calculateDamage(this, aAttacker);
-            aAttacker.getDamageApplier().calculateDamageToApply(damageToDealInCounterAttack, aAttacker);
-            counterAttackedInThisTurn();
-        }
-    }
 
-    void counterAttackedInThisTurn() {
+
+    public void counterAttackedInThisTurn() {
         counterAttackedInThisTurn = true;
     }
 
     public boolean isAlive() {
         return amount > 0;
     }
-
 
 
     @Override
@@ -60,7 +61,11 @@ public class Creature implements PropertyChangeListener, BattleObject {
         return false;
     }
 
+    public void addImmunity(SpellEnum s) {immunity.add(s);}
 
+    public Immunity getImmunity() {
+        return immunity;
+    }
 
     public int getCurrentHp() {
         return currentHp;
@@ -76,8 +81,17 @@ public class Creature implements PropertyChangeListener, BattleObject {
     }
 
     public int getMoveRange() {
+        return stats.getMoveRange() + additionalStats.getAdditionalMoveRange();
+    }
+
+    public int getBaseMoveRange() {
         return stats.getMoveRange();
     }
+
+    public int getResistance() {
+        return additionalStats.getResistance();
+    }
+
 
     public String getMovementType() {
         return stats.getMovementType();
@@ -150,18 +164,13 @@ public class Creature implements PropertyChangeListener, BattleObject {
     }
 
     public int getMaxHp() {
+        return stats.getMaxHp() + additionalStats.getAdditionalHp();
+    }
+    public int getBaseMaxHp() {
         return stats.getMaxHp();
     }
 
-    @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-        currentHp = aCurrentHp;
-    }
 
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        amount = aAmount;
-    }
 
     public String currentHealth() {
         StringBuilder sb = new StringBuilder();
@@ -188,12 +197,12 @@ public class Creature implements PropertyChangeListener, BattleObject {
 
     @Override
     public boolean canFortificationAttack() {
-        return possibleAttacKManager.canFortificationAttack();
+        return possibleAttackManager.canFortificationAttack();
     }
 
     @Override
     public boolean canCreatureAttack() {
-        return possibleAttacKManager.canCreatureAttack();
+        return possibleAttackManager.canCreatureAttack();
     }
 
     void setCurrentHpToMaximum() {
@@ -211,11 +220,28 @@ public class Creature implements PropertyChangeListener, BattleObject {
     }
 
 
+    public void increaseSpeed(int aMoveRangeToIncrease) {
+        additionalStats.increaseMoveRange(aMoveRangeToIncrease);
+    }
+
+
+    public void increaseHealth(int aHpToIncrease) {
+        additionalStats.increaseHp(aHpToIncrease);
+        setCurrentHpToMaximum();
+    }
+
+
+     public void increaseResistance(int aResistanceToIncrease) {
+        additionalStats.increaseResistance(aResistanceToIncrease);
+    }
+
+
     static class Builder {
         private CreatureStatisticIf stats;
         private CalculateDamageStrategy damageCalculator;
         private DamageApplierIf damageApplier;
         private AttackStrategy attackStrategy;
+        private PossibleAttackManagerIf possibleAttackManager;
         private Integer amount;
 
         Builder statistic (CreatureStatisticIf aStats){
@@ -236,6 +262,10 @@ public class Creature implements PropertyChangeListener, BattleObject {
         }
         Builder attackStrategy (AttackStrategy aAttackStrategy){
             this.attackStrategy = aAttackStrategy;
+            return this;
+        }
+        Builder possibleAttackManager(PossibleAttackManagerIf aPossbileAttackManager) {
+            this.possibleAttackManager = aPossbileAttackManager;
             return this;
         }
 
@@ -273,6 +303,12 @@ public class Creature implements PropertyChangeListener, BattleObject {
             else {
                 ret.attackStrategy = new DefaultAttackStrategy();
             }
+            if (possibleAttackManager != null) {
+                ret.possibleAttackManager = possibleAttackManager;
+            }
+            else {
+                ret.possibleAttackManager = new PossibleAttackManagerForCreature();
+            }
 
             return ret;
 
@@ -294,6 +330,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
         private CalculateDamageStrategy damageCalculator;
         private DamageApplierIf damageApplier;
         private AttackStrategy attackStrategy;
+        private PossibleAttackManagerIf possibleAttackManager;
         private Integer amount;
 
         BuilderForTesting name (String name){
@@ -334,6 +371,10 @@ public class Creature implements PropertyChangeListener, BattleObject {
         }
         BuilderForTesting attackStrategy (AttackStrategy aAttackStrategy){
             this.attackStrategy = aAttackStrategy;
+            return this;
+        }
+        BuilderForTesting possibleAttackManager(PossibleAttackManagerIf aPossbileAttackManager) {
+            this.possibleAttackManager = aPossbileAttackManager;
             return this;
         }
 
@@ -386,6 +427,12 @@ public class Creature implements PropertyChangeListener, BattleObject {
             }
             else {
                 ret.attackStrategy = new DefaultAttackStrategy();
+            }
+            if (possibleAttackManager != null) {
+                ret.possibleAttackManager = possibleAttackManager;
+            }
+            else {
+                ret.possibleAttackManager = new PossibleAttackManagerForCreature();
             }
 
             return ret;

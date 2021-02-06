@@ -1,6 +1,8 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.spells.Immunity;
+import pl.sdk.spells.SpellEnum;
 
 import java.beans.PropertyChangeEvent;
 
@@ -19,21 +21,58 @@ public class PercentDamageBoostCreatureDecorator extends Creature {
         decorated.setCurrentHpToMaximum();
     }
 
-//    @Override
-//    public void attack(BattleObject aDefender) {
-////        int bonusDamage = calculateDamage(decorated, aDefender);
-//        System.out.println(bonusDamage);
-//        decorated.attack(aDefender);
-//        aDefender.applyDamage(bonusDamage);
-//    }
-
     @Override
-    public void counterAttack(BattleObject aDefender) {
-        decorated.counterAttack(aDefender);
+    public boolean isCreature() {
+        return decorated.isCreature();
     }
 
     @Override
-    void counterAttackedInThisTurn() {
+    public boolean isFortification() {
+        return decorated.isFortification();
+    }
+
+    @Override
+    public int getBaseMoveRange() {
+        return decorated.getBaseMoveRange();
+    }
+
+    @Override
+    public int getResistance() {
+        return decorated.getResistance();
+    }
+
+    @Override
+    public int getBaseMaxHp() {
+        return decorated.getBaseMaxHp();
+    }
+
+    @Override
+    public boolean canFortificationAttack() {
+        return decorated.canFortificationAttack();
+    }
+
+    @Override
+    public boolean canCreatureAttack() {
+        return decorated.canCreatureAttack();
+    }
+
+    @Override
+    public void increaseSpeed(int aMoveRangeToIncrease) {
+        decorated.increaseSpeed(aMoveRangeToIncrease);
+    }
+
+    @Override
+    public void increaseHealth(int aHpToIncrease) {
+        decorated.increaseHealth(aHpToIncrease);
+    }
+
+    @Override
+    public void increaseResistance(int aResistanceToIncrease) {
+        decorated.increaseResistance(aResistanceToIncrease);
+    }
+
+    @Override
+    public void counterAttackedInThisTurn() {
         decorated.counterAttackedInThisTurn();
     }
 
@@ -42,10 +81,16 @@ public class PercentDamageBoostCreatureDecorator extends Creature {
         decorated.applyDamage(aDamageToApply);
     }
 
-//    @Override
-//    int calculateDamage(Creature aAttacker, Creature aDefender) {
-//        return Math.round(decorated.calculateDamage(aAttacker, aDefender) * damageBoost);
-//    }
+
+    @Override
+    public void addImmunity(SpellEnum s) {
+        decorated.addImmunity(s);
+    }
+
+    @Override
+    public Immunity getImmunity() {
+        return decorated.getImmunity();
+    }
 
     @Override
     public boolean isAlive() {

@@ -126,20 +126,12 @@ public class Ballista extends Creature implements BattleObject {
     }
 
 
-    @Override
-    public void currentHpAfterAttack(int currentHp) {
-
-    }
 
     @Override
     public int getArmor() {
         return stats.getArmor();
     }
 
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        amount = aAmount;
-    }
 
     @Override
     public boolean isCreature() {
@@ -151,10 +143,6 @@ public class Ballista extends Creature implements BattleObject {
         return false;
     }
 
-    @Override
-    public void counterAttack(BattleObject attacker) {
-
-    }
 
     static class Builder {
         private CreatureStatisticIf stats;
