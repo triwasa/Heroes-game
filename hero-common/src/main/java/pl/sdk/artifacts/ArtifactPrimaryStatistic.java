@@ -1,6 +1,6 @@
 package pl.sdk.artifacts;
 
-import pl.sdk.heroClass.HeroClassStatisticIf;
+import pl.sdk.hero.HeroClassStatisticIf;
 
 enum ArtifactPrimaryStatistic implements HeroClassStatisticIf {
     // PRIMARY 1

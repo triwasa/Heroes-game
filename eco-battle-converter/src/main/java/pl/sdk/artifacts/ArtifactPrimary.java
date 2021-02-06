@@ -1,7 +1,7 @@
 package pl.sdk.artifacts;
 
 import pl.sdk.hero.Hero;
-import pl.sdk.heroClass.HeroClassStatisticIf;
+import pl.sdk.hero.HeroClassStatisticIf;
 
 class ArtifactPrimary extends AbstractArtifact {
 
@@ -18,7 +18,7 @@ class ArtifactPrimary extends AbstractArtifact {
     }
 
     void increaseHeroStatistic(Hero hero){
-//        hero.increaseStats(primaryStats);
+        hero.increaseStats(primaryStats);
     }
 
 }
