@@ -32,7 +32,7 @@ public class EcoBattleConverter {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(EcoBattleConverter.class.getClassLoader().getResource("fxml/battleMap.fxml"));
-            loader.setController(new BattleMapController(convert(aPlayer1),convert(aPlayer2)));
+            loader.setController(new BattleMapController(convert(aPlayer1),convert(aPlayer2),xmlToBoardConverter()));
             scene = new Scene(loader.load());
 //            ObjectMapper objectMapper = new ObjectMapper();
 //            Board board = objectMapper.readValue(new File("result.json"), Board.class);
@@ -57,17 +57,19 @@ public class EcoBattleConverter {
                     aStage.close();
                 }
             });
-        } catch (IOException aE) {
+        } catch (IOException | JAXBException aE) {
             aE.printStackTrace();
         }
     }
 
-    public static List<Creature> convert(EconomyHero aPlayer1) {
+    public static Hero convert(EconomyHero aPlayer1) {
         List<Creature>ret = new ArrayList<>();
         NecropolisFactory factory = new NecropolisFactory();
         aPlayer1.getCreatures().forEach(ecoCreature ->
                 ret.add(factory.create(ecoCreature.isUpgraded(),ecoCreature.getTier(),ecoCreature.getAmount())));
-        return ret;
+        Hero a = new Hero();
+        a.addCreatures(ret);
+        return a;
     }
 
     public static void startEditing()

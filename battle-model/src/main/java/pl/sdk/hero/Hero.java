@@ -1,7 +1,6 @@
 package pl.sdk.hero;
 
 import pl.sdk.creatures.Creature;
-import pl.sdk.heroClass.HeroClassStatisticIf;
 import pl.sdk.spells.Spell;
 import pl.sdk.spells.SpellBook;
 
@@ -10,16 +9,16 @@ import java.util.*;
 public class Hero {
     private List<Creature> creatures = new ArrayList<>();
     private HeroClassStatisticIf classStats;
+    private HeroAdditionalStatisticIf additionalStats;
     private SpellBook spellBook;
-
-
 
     public Hero(HeroClassStatisticIf aStats) {
         classStats = aStats;
+        additionalStats = new HeroAdditionalStatistic(0,0,0,0);
     }
 
     public Hero() {
-        this(new HeroStatisticForTesting(0,0,0,0));
+        this(new HeroStatistic(0,0,0,0));
         spellBook = new SpellBook();
     }
 
@@ -27,10 +26,8 @@ public class Hero {
         this.creatures = aCreatures;
     }
 
-
-    //TODO go away!
-    public void addSpells(List<Spell> aSpells) {
-        aSpells.forEach(s -> spellBook.addSpell(s));
+    public void increaseStats(HeroClassStatisticIf values) {
+        additionalStats.increaseStats(values);
     }
 
     public List<Creature> getCreatures() {
@@ -39,8 +36,12 @@ public class Hero {
 
     public Set<Spell> getSpells() { return spellBook.getSpellBook(); }
 
-    public Object getStats() {
-        return classStats;
+    public HeroClassStatisticIf getStats() {
+        return new HeroStatistic(
+                classStats.getAttack() + additionalStats.getAttack(),
+                classStats.getDefence() + additionalStats.getDefence(),
+                classStats.getPower() + additionalStats.getPower(),
+                classStats.getKnowledge() + additionalStats.getKnowledge());
     }
 
 
@@ -94,7 +95,7 @@ public class Hero {
                 throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
             }
 
-            HeroClassStatisticIf stats = new HeroStatisticForTesting(attack, defence, power, knowledge);
+            HeroClassStatisticIf stats = new HeroStatistic(attack, defence, power, knowledge);
             Hero ret = createInstance(stats);
             return ret;
         }

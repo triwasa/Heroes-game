@@ -3,10 +3,6 @@ package pl.sdk.skills;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.hero.Hero;
-import skills.Skill;
-import skills.SkillApplier;
-import skills.SkillFactory;
-import skills.SkillSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

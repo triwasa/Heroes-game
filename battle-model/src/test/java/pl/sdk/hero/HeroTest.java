@@ -10,7 +10,7 @@ public class HeroTest {
     void createHeroTest() {
         Hero hero = new Hero.BuilderForTesting().attack(1).defence(2).power(3).knowledge(4).build();
 
-        HeroStatisticForTesting stats = (HeroStatisticForTesting) hero.getStats();
+        HeroStatistic stats = (HeroStatistic) hero.getStats();
 
         assertEquals(stats.getAttack(), 1);
         assertEquals(stats.getDefence(), 2);

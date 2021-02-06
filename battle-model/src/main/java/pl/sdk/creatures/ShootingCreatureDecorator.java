@@ -12,8 +12,6 @@ class ShootingCreatureDecorator extends Creature {
         decorated = aDecorated;
     }
 
-
-
     @Override
     public void counterAttack(BattleObject aAttacker) {
         decorated.counterAttack(aAttacker);
@@ -79,7 +77,7 @@ class ShootingCreatureDecorator extends Creature {
     public int getMoveRange() {
         return decorated.getMoveRange();
     }
-    
+
 
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {

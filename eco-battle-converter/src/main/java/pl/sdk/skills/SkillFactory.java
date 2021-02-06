@@ -1,6 +1,4 @@
-package skills;
-
-import pl.sdk.skills.SkillStatistic;
+package pl.sdk.skills;
 
 public class SkillFactory {
 

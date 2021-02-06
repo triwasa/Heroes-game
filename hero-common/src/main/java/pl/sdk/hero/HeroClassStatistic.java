@@ -1,4 +1,4 @@
-package pl.sdk.heroClass;
+package pl.sdk.hero;
 
 enum HeroClassStatistic implements HeroClassStatisticIf {
 

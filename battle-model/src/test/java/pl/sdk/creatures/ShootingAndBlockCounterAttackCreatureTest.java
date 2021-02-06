@@ -4,6 +4,7 @@ import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
 import pl.sdk.Board;
 import pl.sdk.GameEngine;
+import pl.sdk.hero.Hero;
 
 import java.util.List;
 
@@ -35,7 +36,12 @@ public class ShootingAndBlockCounterAttackCreatureTest {
                 .moveRange(NOT_IMPORTANT)
                 .amount(NOT_IMPORTANT)
                 .build();
-        GameEngine engine = new GameEngine(List.of(shootingCreature), List.of(normalCreature), new Board());
+
+        Hero h1 = new Hero();
+        h1.addCreatures(List.of(shootingCreature));
+        Hero h2 = new Hero();
+        h2.addCreatures(List.of(normalCreature));
+        GameEngine engine = new GameEngine(h1,h2, new Board());
 
         assertTrue(engine.canAttack(GameEngine.BOARD_WIDTH-1,1));
 
