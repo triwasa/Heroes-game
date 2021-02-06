@@ -11,8 +11,8 @@ public abstract class ArtifactSpellBuff extends AbstractArtifact {
     @Override
     public void buff(Hero hero) {
         Set<Spell> spells = hero.getSpells();
-        buffSpell(new ArrayList<>(spells));
+        buffSpell(spells);
     }
 
-    abstract void buffSpell(List<Spell> spells);
+    abstract void buffSpell(Set<Spell> spells);
 }

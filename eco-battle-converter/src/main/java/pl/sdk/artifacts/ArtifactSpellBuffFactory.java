@@ -1,13 +1,12 @@
 package pl.sdk.artifacts;
 
+import pl.sdk.spells.SpellEnum;
+
 import static pl.sdk.artifacts.ArtifactName.*;
 
 public class ArtifactSpellBuffFactory extends ArtifactAbstractFactory{
     private static final String EXCEPTION_MESSAGE = "There is no artifact with that name";
-    private static final String AIR = "AIR";
-    private static final String EARTH = "EARTH";
-    private static final String FIRE = "FIRE";
-    private static final String WATER = "WATER";
+
 
     @Override
     public ArtifactSpellBuff create(String aName) {
@@ -19,21 +18,21 @@ public class ArtifactSpellBuffFactory extends ArtifactAbstractFactory{
             case CAPE_OF_CONJURING:
                 return new ArtifactDuration(ArtifactStatistic.CAPE_OF_CONJURING, 3);
             case ORB_OF_THE_FIRMAMENT:
-                return new ArtifactDamage(ArtifactStatistic.ORB_OF_THE_FIRMAMENT, 0.5, AIR);
+                return new ArtifactDamage(ArtifactStatistic.ORB_OF_THE_FIRMAMENT, 0.5, SpellEnum.magicTypeOfSpell.AIR);
             case ORB_OF_SILT:
-                return new ArtifactDamage(ArtifactStatistic.ORB_OF_SILT, 0.5, EARTH);
+                return new ArtifactDamage(ArtifactStatistic.ORB_OF_SILT, 0.5, SpellEnum.magicTypeOfSpell.EARTH);
             case ORB_OF_TEMPSTUOUS_FIRE:
-                return new ArtifactDamage(ArtifactStatistic.ORB_OF_TEMPSTUOUS_FIRE, 0.5, FIRE);
+                return new ArtifactDamage(ArtifactStatistic.ORB_OF_TEMPSTUOUS_FIRE, 0.5, SpellEnum.magicTypeOfSpell.FIRE);
             case ORB_OF_DRIVING_RAIN:
-                return new ArtifactDamage(ArtifactStatistic.ORB_OF_DRIVING_RAIN, 0.5, WATER);
+                return new ArtifactDamage(ArtifactStatistic.ORB_OF_DRIVING_RAIN, 0.5, SpellEnum.magicTypeOfSpell.WATER);
             case TOME_OF_AIR_MAGIC:
-                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_AIR_MAGIC, AIR);
+                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_AIR_MAGIC, SpellEnum.magicTypeOfSpell.AIR);
             case TOME_OF_EARTH_MAGIC:
-                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_EARTH_MAGIC, EARTH);
+                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_EARTH_MAGIC, SpellEnum.magicTypeOfSpell.EARTH);
             case TOME_OF_FIRE_MAGIC:
-                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_FIRE_MAGIC, FIRE);
+                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_FIRE_MAGIC, SpellEnum.magicTypeOfSpell.FIRE);
             case TOME_OF_WATER_MAGIC:
-                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_WATER_MAGIC, WATER);
+                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_WATER_MAGIC, SpellEnum.magicTypeOfSpell.WATER);
             case SPELLBINDERS_HAT:
                 return new ArtifactSpellBookTier(ArtifactStatistic.SPELLBINDERS_HAT, 5);
 

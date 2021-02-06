@@ -1,24 +1,24 @@
 package pl.sdk.artifacts;
 
 import pl.sdk.spells.Spell;
+import pl.sdk.spells.SpellEnum;
 import pl.sdk.spells.SpellFactory;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SpellsCreator {
     private final SpellFactory spellFactory = new SpellFactory();
     private final String EXCEPTION = "Cannot create spells with that magic type or tier";
-    private final String FIRE = "FIRE";
-    private final String AIR = "AIR";
-    private final String WATER = "WATER";
-    private final String EARTH = "EARTH";
 
 
-    protected List<Spell> createSpellsByMagicType(String aMagicType){
-        List<Spell> spellList = new ArrayList<>();
+    protected Set<Spell> createSpellsByMagicType(SpellEnum.magicTypeOfSpell aMagicType){
+        Set<Spell> spellList = new HashSet<>();
         switch (aMagicType){
-//            case FIRE:
+//            case SpellEnum.magicTypeOfSpell.FIRE:
 //                spellList.add(spellFactory.create(MAGIC_ARROW));
 //                spellList.add(spellFactory.create(VISIONS));
 //                spellList.add(spellFactory.create(BLOODLUST));
@@ -37,7 +37,7 @@ public class SpellsCreator {
 //                spellList.add(spellFactory.create(SLAYER));
 //                spellList.add(spellFactory.create(SACRIFICE));
 //                spellList.add(spellFactory.create(SUMMON_FIRE_ELEMENTAL));
-//            case AIR:
+//            case SpellEnum.magicTypeOfSpell.AIR:
 //                spellList.add(spellFactory.create(MAGIC_ARROW));
 //                spellList.add(spellFactory.create(VISIONS));
 //                spellList.add(spellFactory.create(HASTE));
@@ -58,7 +58,7 @@ public class SpellsCreator {
 //                spellList.add(spellFactory.create(MAGIC_MIROR));
 //                spellList.add(spellFactory.create(SUMMON_AIR_ELEMENTAL));
 //                spellList.add(spellFactory.create(TITANS_LIGHTNING_BOLT));
-//            case EARTH:
+//            case SpellEnum.magicTypeOfSpell.EARTH:
 //                spellList.add(spellFactory.create(MAGIC_ARROW));
 //                spellList.add(spellFactory.create(VISIONS));
 //                spellList.add(spellFactory.create(SHIELD));
@@ -78,7 +78,7 @@ public class SpellsCreator {
 //                spellList.add(spellFactory.create(TOWN PORTAL));
 //                spellList.add(spellFactory.create(IMPLOSION));
 //                spellList.add(spellFactory.create(SUMMON_EARTH_ELEMENTAL));
-//            case WATER:
+//            case SpellEnum.magicTypeOfSpell.WATER:
 //                spellList.add(spellFactory.create(MAGIC_ARROW));
 //                spellList.add(spellFactory.create(VISIONS));
 //                spellList.add(spellFactory.create(CURE));
@@ -104,8 +104,8 @@ public class SpellsCreator {
 //        return spellList;
     }
 
-    protected List<Spell> createSpellsByTier(int aTier){
-        List<Spell> spellList = new ArrayList<>();
+    protected Set<Spell> createSpellsByTier(int aTier){
+        Set<Spell> spellList = new HashSet<>();
         switch (aTier) {
             case 5:
 //                spellList.add(spellFactory.create(DIMENSION_DOOR));
