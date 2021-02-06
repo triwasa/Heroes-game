@@ -1,6 +1,9 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.spells.Immunity;
+import pl.sdk.spells.SpellEnum;
+
 import java.beans.PropertyChangeEvent;
 import java.util.Random;
 
@@ -79,7 +82,15 @@ public class DoubleDamagePercentChanceDecorator extends Creature {
     public void applyDamage(int aDamageToApply) {
         decorated.applyDamage(aDamageToApply);
     }
+    @Override
+    public void addImmunity(SpellEnum s) {
+        decorated.addImmunity(s);
+    }
 
+    @Override
+    public Immunity getImmunity() {
+        return decorated.getImmunity();
+    }
 
     @Override
     public boolean isAlive() {

@@ -1,6 +1,8 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.spells.Immunity;
+import pl.sdk.spells.SpellEnum;
 
 import java.beans.PropertyChangeEvent;
 
@@ -90,6 +92,16 @@ public class PercentDamageReduceCreatureDecorator extends Creature {
     @Override
     public boolean[][] getSplashRange() {
         return decorated.getSplashRange();
+    }
+
+    @Override
+    public void addImmunity(SpellEnum s) {
+        decorated.addImmunity(s);
+    }
+
+    @Override
+    public Immunity getImmunity() {
+        return decorated.getImmunity();
     }
 
     @Override

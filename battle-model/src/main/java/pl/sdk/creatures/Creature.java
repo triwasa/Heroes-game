@@ -30,12 +30,14 @@ public class Creature implements PropertyChangeListener, BattleObject{
         damageApplier = new DefaultDamageApplier();
         possibleAttackManager = new PossibleAttackManagerForCreature();
         additionalStats = new CreatureAdditionalStatistic();
+        immunity = new Immunity();
     }
 
     Creature(CreatureStatisticIf aStats){
         stats = aStats;
         additionalStats = new CreatureAdditionalStatistic();
         currentHp = stats.getMaxHp();
+        immunity = new Immunity();
     }
 
 
@@ -60,6 +62,10 @@ public class Creature implements PropertyChangeListener, BattleObject{
     }
 
     public void addImmunity(SpellEnum s) {immunity.add(s);}
+
+    public Immunity getImmunity() {
+        return immunity;
+    }
 
     public int getCurrentHp() {
         return currentHp;

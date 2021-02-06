@@ -1,6 +1,8 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.spells.Immunity;
+import pl.sdk.spells.SpellEnum;
 
 import java.beans.PropertyChangeEvent;
 
@@ -93,6 +95,15 @@ public class MultipleRetaliationsCreatureDecorator extends Creature {
     }
 
 
+    @Override
+    public void addImmunity(SpellEnum s) {
+        decorated.addImmunity(s);
+    }
+
+    @Override
+    public Immunity getImmunity() {
+        return decorated.getImmunity();
+    }
     @Override
     public void counterAttackedInThisTurn() {
         currentRetaliationsAmount = currentRetaliationsAmount - 1;
