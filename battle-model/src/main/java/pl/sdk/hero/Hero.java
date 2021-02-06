@@ -22,12 +22,12 @@ public class Hero {
         spellBook = new SpellBook();
     }
 
-    public void addCreatures(List<Creature> aCreatures) {
-        this.creatures = aCreatures;
-    }
-
     public void increaseStats(HeroClassStatisticIf values) {
         additionalStats.increaseStats(values);
+    }
+
+    public void addCreatures(List<Creature> aCreatures) {
+        this.creatures = aCreatures;
     }
 
     public List<Creature> getCreatures() {
@@ -36,15 +36,18 @@ public class Hero {
 
     public Set<Spell> getSpells() { return spellBook.getSpellBook(); }
 
-    public HeroClassStatisticIf getStats() {
-        return new HeroStatistic(
-                classStats.getAttack() + additionalStats.getAttack(),
-                classStats.getDefence() + additionalStats.getDefence(),
-                classStats.getPower() + additionalStats.getPower(),
-                classStats.getKnowledge() + additionalStats.getKnowledge());
+    public int getAttack() {
+        return classStats.getAttack() + additionalStats.getAttack();
     }
-
-
+    public int getDefence() {
+        return classStats.getDefence() + additionalStats.getDefence();
+    }
+    public int getPower() {
+        return classStats.getPower() + additionalStats.getPower();
+    }
+    public int getKnowledge() {
+        return classStats.getKnowledge() + additionalStats.getKnowledge();
+    }
 
     public int getLuck() {
         return 0;
