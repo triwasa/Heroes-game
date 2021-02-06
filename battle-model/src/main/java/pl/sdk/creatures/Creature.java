@@ -8,9 +8,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Creature implements PropertyChangeListener, BattleObject {
+public class Creature implements PropertyChangeListener, BattleObject{
 
     private final CreatureStatisticIf stats;
+    private CreatureAdditionalStatistic additionalStats;
     private int currentHp;
     private boolean counterAttackedInThisTurn;
     private CalculateDamageStrategy calculateDamageStrategy;
@@ -29,6 +30,7 @@ public class Creature implements PropertyChangeListener, BattleObject {
 
     Creature(CreatureStatisticIf aStats){
         stats = aStats;
+        additionalStats = new CreatureAdditionalStatistic();
         currentHp = stats.getMaxHp();
     }
 
@@ -208,6 +210,22 @@ public class Creature implements PropertyChangeListener, BattleObject {
 
     public boolean backToPreviousPositionMechanic() {
         return false;
+    }
+
+
+    public void increaseSpeed(int aMoveRangeToIncrease) {
+        additionalStats.increaseMoveRange(aMoveRangeToIncrease);
+    }
+
+
+    public void increaseHealth(int aHpToIncrease) {
+        additionalStats.increaseHp(aHpToIncrease);
+        setCurrentHpToMaximum();
+    }
+
+
+     public void increaseResistance(int aResistanceToIncrease) {
+        additionalStats.increaseResistance(aResistanceToIncrease);
     }
 
 
