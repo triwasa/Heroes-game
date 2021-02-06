@@ -48,9 +48,11 @@ public class Hero {
     public int getKnowledge() {
         return classStats.getKnowledge() + additionalStats.getKnowledge();
     }
-
     public int getLuck() {
-        return 0;
+        return additionalStats.getLuck();
+    }
+    public int getMorale() {
+        return additionalStats.getMorale();
     }
 
     public static class BuilderForTesting {
