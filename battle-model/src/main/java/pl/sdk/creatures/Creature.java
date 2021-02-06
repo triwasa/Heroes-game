@@ -1,6 +1,8 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.spells.Immunity;
+import pl.sdk.spells.SpellEnum;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -19,6 +21,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
     private AttackStrategy attackStrategy;
     private int amount;
     private PossibleAttackManagerIf possibleAttackManager;
+    private Immunity immunity;
 
     // Constructor for mockito. Don't use it! You have builder here.
     Creature(){
@@ -46,7 +49,6 @@ public class Creature implements PropertyChangeListener, BattleObject{
     }
 
 
-
     @Override
     public boolean isCreature() {
         return true;
@@ -57,7 +59,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
         return false;
     }
 
-
+    public void addImmunity(SpellEnum s) {immunity.add(s);}
 
     public int getCurrentHp() {
         return currentHp;
