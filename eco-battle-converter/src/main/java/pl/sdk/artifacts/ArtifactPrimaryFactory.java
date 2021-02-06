@@ -71,6 +71,8 @@ public class ArtifactPrimaryFactory extends ArtifactAbstractFactory {
                 return new ArtifactPrimary(ArtifactStatistic.DRAGON_WING_TABARD, ArtifactPrimaryStatistic.DRAGON_WING_TABARD);
             case NECKLACE_OF_DRAGONTEETH:
                 return new ArtifactPrimary(ArtifactStatistic.NECKLACE_OF_DRAGONTEETH, ArtifactPrimaryStatistic.NECKLACE_OF_DRAGONTEETH);
+            case HELM_OF_HEAVENLY_ENLIGHTENMENT:
+                return new ArtifactPrimary(ArtifactStatistic.HELM_OF_HEAVENLY_ENLIGHTENMENT, ArtifactPrimaryStatistic.HELM_OF_HEAVENLY_ENLIGHTENMENT);
             case CROWN_OF_DRAGONTOOTH:
                 return new ArtifactPrimary(ArtifactStatistic.CROWN_OF_DRAGONTOOTH, ArtifactPrimaryStatistic.CROWN_OF_DRAGONTOOTH);
             case ARMOR_OF_WONDER:

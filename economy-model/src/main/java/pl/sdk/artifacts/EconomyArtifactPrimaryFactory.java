@@ -82,6 +82,8 @@ public class EconomyArtifactPrimaryFactory {
                 return new EconomyArtifact(ArtifactStatistic.LIONS_SHIELD_OF_COURAGE,1000);
             case SWORD_OF_JUJEMENT:
                 return new EconomyArtifact(ArtifactStatistic.SWORD_OF_JUJEMENT, 1300);
+            case HELM_OF_HEAVENLY_ENLIGHTENMENT:
+                return new EconomyArtifact(ArtifactStatistic.HELM_OF_HEAVENLY_ENLIGHTENMENT, 2500);
             case BADGE_OF_COURAGE:
                 return new EconomyArtifact(ArtifactStatistic.BADGE_OF_COURAGE, 600);
             case CREST_OF_VALOR:
