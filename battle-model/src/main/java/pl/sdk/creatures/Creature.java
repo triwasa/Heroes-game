@@ -18,14 +18,14 @@ public class Creature implements PropertyChangeListener, BattleObject{
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
-    private PossibleAttackManagerIf possibleAttacKManager;
+    private PossibleAttackManagerIf possibleAttackManager;
 
     // Constructor for mockito. Don't use it! You have builder here.
     Creature(){
         stats = CreatureStatistic.TEST;
         calculateDamageStrategy = new DefaultCalculateStrategy();
         damageApplier = new DefaultDamageApplier();
-        possibleAttacKManager = new PossibleAttackManagerForCreature();
+        possibleAttackManager = new PossibleAttackManagerForCreature();
         additionalStats = new CreatureAdditionalStatistic();
     }
 
@@ -35,15 +35,9 @@ public class Creature implements PropertyChangeListener, BattleObject{
         currentHp = stats.getMaxHp();
     }
 
-    public void counterAttack(BattleObject aAttacker) {
-        if (canCounterAttack()){
-            int damageToDealInCounterAttack = getCalculateDamage().calculateDamage(this, aAttacker);
-            aAttacker.getDamageApplier().calculateDamageToApply(damageToDealInCounterAttack, aAttacker);
-            counterAttackedInThisTurn();
-        }
-    }
 
-    void counterAttackedInThisTurn() {
+
+    public void counterAttackedInThisTurn() {
         counterAttackedInThisTurn = true;
     }
 
@@ -168,15 +162,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
         return stats.getMaxHp();
     }
 
-    @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-        currentHp = aCurrentHp;
-    }
 
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        amount = aAmount;
-    }
 
     public String currentHealth() {
         StringBuilder sb = new StringBuilder();
@@ -203,12 +189,12 @@ public class Creature implements PropertyChangeListener, BattleObject{
 
     @Override
     public boolean canFortificationAttack() {
-        return possibleAttacKManager.canFortificationAttack();
+        return possibleAttackManager.canFortificationAttack();
     }
 
     @Override
     public boolean canCreatureAttack() {
-        return possibleAttacKManager.canCreatureAttack();
+        return possibleAttackManager.canCreatureAttack();
     }
 
     void setCurrentHpToMaximum() {
@@ -247,6 +233,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
         private CalculateDamageStrategy damageCalculator;
         private DamageApplierIf damageApplier;
         private AttackStrategy attackStrategy;
+        private PossibleAttackManagerIf possibleAttackManager;
         private Integer amount;
 
         Builder statistic (CreatureStatisticIf aStats){
@@ -267,6 +254,10 @@ public class Creature implements PropertyChangeListener, BattleObject{
         }
         Builder attackStrategy (AttackStrategy aAttackStrategy){
             this.attackStrategy = aAttackStrategy;
+            return this;
+        }
+        Builder possibleAttackManager(PossibleAttackManagerIf aPossbileAttackManager) {
+            this.possibleAttackManager = aPossbileAttackManager;
             return this;
         }
 
@@ -304,6 +295,12 @@ public class Creature implements PropertyChangeListener, BattleObject{
             else {
                 ret.attackStrategy = new DefaultAttackStrategy();
             }
+            if (possibleAttackManager != null) {
+                ret.possibleAttackManager = possibleAttackManager;
+            }
+            else {
+                ret.possibleAttackManager = new PossibleAttackManagerForCreature();
+            }
 
             return ret;
 
@@ -325,6 +322,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
         private CalculateDamageStrategy damageCalculator;
         private DamageApplierIf damageApplier;
         private AttackStrategy attackStrategy;
+        private PossibleAttackManagerIf possibleAttackManager;
         private Integer amount;
 
         BuilderForTesting name (String name){
@@ -365,6 +363,10 @@ public class Creature implements PropertyChangeListener, BattleObject{
         }
         BuilderForTesting attackStrategy (AttackStrategy aAttackStrategy){
             this.attackStrategy = aAttackStrategy;
+            return this;
+        }
+        BuilderForTesting possibleAttackManager(PossibleAttackManagerIf aPossbileAttackManager) {
+            this.possibleAttackManager = aPossbileAttackManager;
             return this;
         }
 
@@ -417,6 +419,12 @@ public class Creature implements PropertyChangeListener, BattleObject{
             }
             else {
                 ret.attackStrategy = new DefaultAttackStrategy();
+            }
+            if (possibleAttackManager != null) {
+                ret.possibleAttackManager = possibleAttackManager;
+            }
+            else {
+                ret.possibleAttackManager = new PossibleAttackManagerForCreature();
             }
 
             return ret;

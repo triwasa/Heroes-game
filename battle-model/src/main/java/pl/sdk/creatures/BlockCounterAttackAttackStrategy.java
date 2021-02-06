@@ -9,7 +9,6 @@ public class BlockCounterAttackAttackStrategy extends DefaultAttackStrategy {
     @Override
     public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
         decoratedAttackStrategy.afterAttack(aAttacker,aDefender);
-        return;
     }
 
     @Override
@@ -26,7 +25,6 @@ public class BlockCounterAttackAttackStrategy extends DefaultAttackStrategy {
     @Override
     public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
         decoratedAttackStrategy.afterAttack(aAttacker,aDefender);
-        return;
     }
 
 }

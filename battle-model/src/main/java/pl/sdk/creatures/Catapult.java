@@ -99,6 +99,11 @@ public class Catapult  implements BattleObject {
     }
 
     @Override
+    public boolean canCounterAttack() {
+        return false;
+    }
+
+    @Override
     public boolean isAlive() {
         return amount > 0;
     }
@@ -130,21 +135,14 @@ public class Catapult  implements BattleObject {
         return stats.getMaxHp();
     }
 
-    @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-        currentHp = aCurrentHp;
-    }
+
 
     @Override
     public int getArmor() {
         return stats.getArmor();
     }
 
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        amount =aAmount;
 
-    }
 
     @Override
     public boolean isCreature() {
@@ -157,7 +155,7 @@ public class Catapult  implements BattleObject {
     }
 
     @Override
-    public void counterAttack(BattleObject attacker) {
+    public void counterAttackedInThisTurn() {
 
     }
 

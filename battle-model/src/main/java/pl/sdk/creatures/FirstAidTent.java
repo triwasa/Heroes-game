@@ -51,15 +51,6 @@ public class FirstAidTent implements BattleObject  {
         return true;
     }
 
-    @Override
-    public void currentHpAfterAttack(int currentHp) {
-        currentHp = currentHp;
-    }
-
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        
-    }
 
     @Override
     public DamageApplierIf getDamageApplier() {
@@ -79,6 +70,11 @@ public class FirstAidTent implements BattleObject  {
     @Override
     public int getMoveRange() {
         return 0;
+    }
+
+    @Override
+    public boolean canCounterAttack() {
+        return false;
     }
 
     @Override
@@ -130,8 +126,10 @@ public class FirstAidTent implements BattleObject  {
         return false;
     }
 
+
+
     @Override
-    public void counterAttack(BattleObject attacker) {
+    public void counterAttackedInThisTurn() {
 
     }
 }

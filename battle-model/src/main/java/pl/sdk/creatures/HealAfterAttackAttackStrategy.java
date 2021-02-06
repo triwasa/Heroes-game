@@ -9,14 +9,9 @@ public class HealAfterAttackAttackStrategy extends DefaultAttackStrategy {
         selfHealingPercentage = aSelfHealingPercentage;
         decoratedAttackStrategy = attackStrategy;
     }
-    @Override
-    public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
-        return;
-    }
 
     @Override
     public void attack(BattleObject aAttacker, BattleObject aDefender) {
-        beforeAttack(aAttacker,aDefender);
         decoratedAttackStrategy.attack(aAttacker, aDefender);
         afterAttack(aAttacker,aDefender);
     }

@@ -13,22 +13,65 @@ public class PercentDamageReduceCreatureDecorator extends Creature {
         decorated = aDecorated;
         damageResist = 1 - (float)percent/100;
     }
+    @Override
+    public boolean isCreature() {
+        return decorated.isCreature();
+    }
+
+    @Override
+    public boolean isFortification() {
+        return decorated.isFortification();
+    }
+
+    @Override
+    public int getBaseMoveRange() {
+        return decorated.getBaseMoveRange();
+    }
+
+    @Override
+    public int getResistance() {
+        return decorated.getResistance();
+    }
+
+    @Override
+    public int getBaseMaxHp() {
+        return decorated.getBaseMaxHp();
+    }
+
+    @Override
+    public boolean canFortificationAttack() {
+        return decorated.canFortificationAttack();
+    }
+
+    @Override
+    public boolean canCreatureAttack() {
+        return decorated.canCreatureAttack();
+    }
+
+    @Override
+    public void increaseSpeed(int aMoveRangeToIncrease) {
+        decorated.increaseSpeed(aMoveRangeToIncrease);
+    }
+
+    @Override
+    public void increaseHealth(int aHpToIncrease) {
+        decorated.increaseHealth(aHpToIncrease);
+    }
+
+    @Override
+    public void increaseResistance(int aResistanceToIncrease) {
+        decorated.increaseResistance(aResistanceToIncrease);
+    }
 
     @Override
     protected void setCurrentHpToMaximum() {
         decorated.setCurrentHpToMaximum();
     }
 
-//    @Override
-//    public void attack(BattleObject aDefender) { decorated.attack(aDefender); }
+
 
     @Override
-    public void counterAttack(BattleObject aDefender) {
-        decorated.counterAttack(aDefender);
-    }
-
-    @Override
-    void counterAttackedInThisTurn() {
+    public void counterAttackedInThisTurn() {
         decorated.counterAttackedInThisTurn();
     }
 
@@ -38,10 +81,6 @@ public class PercentDamageReduceCreatureDecorator extends Creature {
         decorated.applyDamage(decreasedDamage);
     }
 
-//    @Override
-//    int calculateDamage(Creature aAttacker, Creature aDefender) {
-//        return decorated.calculateDamage(aAttacker, aDefender);
-//    }
 
     @Override
     public boolean isAlive() {
