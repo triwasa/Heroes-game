@@ -13,7 +13,7 @@ class ArtifactPrimary extends AbstractArtifact {
     }
 
     @Override
-    void buff(Hero hero) {
+    public void buff(Hero hero) {
         increaseHeroStatistic(hero);
     }
 
