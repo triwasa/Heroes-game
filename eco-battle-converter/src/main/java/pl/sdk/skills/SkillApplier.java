@@ -1,4 +1,4 @@
-package skills;
+package pl.sdk.skills;
 
 import pl.sdk.hero.Hero;
 import pl.sdk.creatures.Creature;
