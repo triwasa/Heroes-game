@@ -5,4 +5,6 @@ public interface HeroClassStatisticIf {
     int getDefence();
     int getPower();
     int getKnowledge();
+    int getLuck();
+    int getMorale();
 }

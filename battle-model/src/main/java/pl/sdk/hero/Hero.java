@@ -14,11 +14,11 @@ public class Hero {
 
     public Hero(HeroClassStatisticIf aStats) {
         classStats = aStats;
-        additionalStats = new HeroAdditionalStatistic(0,0,0,0);
+        additionalStats = new HeroAdditionalStatistic(0,0,0,0,0,0);
     }
 
     public Hero() {
-        this(new HeroStatistic(0,0,0,0));
+        this(new HeroStatistic(0,0,0,0,0,0));
         spellBook = new SpellBook();
     }
 
@@ -49,10 +49,10 @@ public class Hero {
         return classStats.getKnowledge() + additionalStats.getKnowledge();
     }
     public int getLuck() {
-        return additionalStats.getLuck();
+        return classStats.getLuck() + additionalStats.getLuck();
     }
     public int getMorale() {
-        return additionalStats.getMorale();
+        return classStats.getMorale() + additionalStats.getMorale();
     }
 
     public static class BuilderForTesting {
@@ -60,6 +60,8 @@ public class Hero {
         private  Integer defence;
         private  Integer power;
         private  Integer knowledge;
+        private Integer luck;
+        private Integer morale;
 
         public Hero.BuilderForTesting attack (Integer attack){
             this.attack = attack;
@@ -81,6 +83,16 @@ public class Hero {
             return this;
         }
 
+        public Hero.BuilderForTesting luck (Integer luck){
+            this.luck = luck;
+            return this;
+        }
+
+        public Hero.BuilderForTesting morale (Integer morale){
+            this.morale = morale;
+            return this;
+        }
+
         public Hero build() {
             Set<String> emptyFields = new HashSet<>();
             if (attack == null ){
@@ -95,12 +107,18 @@ public class Hero {
             if (knowledge == null ){
                 emptyFields.add("knowledge");
             }
+            if (luck == null){
+                emptyFields.add("luck");
+            }
+            if (morale == null){
+                emptyFields.add("morale");
+            }
 
             if (!emptyFields.isEmpty()){
                 throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
             }
 
-            HeroClassStatisticIf stats = new HeroStatistic(attack, defence, power, knowledge);
+            HeroClassStatisticIf stats = new HeroStatistic(attack, defence, power, knowledge, luck, morale);
             Hero ret = createInstance(stats);
             return ret;
         }

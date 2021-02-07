@@ -9,13 +9,13 @@ public class HeroAdditionalStatistic implements HeroAdditionalStatisticIf {
     private int morale;
 
 
-    HeroAdditionalStatistic(int aAttack, int aDefence, int aPower, int aKnowledge) {
+    HeroAdditionalStatistic(int aAttack, int aDefence, int aPower, int aKnowledge, int aLuck, int aMorale) {
         attack = aAttack;
         defence = aDefence;
         power = aPower;
         knowledge = aKnowledge;
-        luck = 0;
-        morale = 0;
+        luck = aLuck;
+        morale = aMorale;
     }
 
     HeroAdditionalStatistic(HeroClassStatisticIf stats) {
@@ -23,6 +23,8 @@ public class HeroAdditionalStatistic implements HeroAdditionalStatisticIf {
         defence = stats.getDefence();
         power = stats.getPower();
         knowledge = stats.getKnowledge();
+        luck = stats.getLuck();
+        morale = stats.getMorale();
     }
 
     public int getAttack() {
@@ -54,5 +56,7 @@ public class HeroAdditionalStatistic implements HeroAdditionalStatisticIf {
         defence += x.getDefence();
         power += x.getPower();
         knowledge += x.getKnowledge();
+        luck += x.getLuck();
+        morale += x.getMorale();
     }
 }
