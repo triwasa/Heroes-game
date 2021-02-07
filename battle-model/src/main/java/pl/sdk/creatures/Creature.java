@@ -206,7 +206,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
     }
 
     void setCurrentHpToMaximum() {
-        currentHp = stats.getMaxHp();
+        currentHp = stats.getMaxHp() + additionalStats.getAdditionalHp();
     }
 
     public boolean[][] getSplashRange() {
