@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
+import pl.sdk.special_fields.Field;
 import pl.sdk.special_fields.FieldsFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -75,21 +76,7 @@ class BoardMovingTest {
         assertFalse(board.canMove(creature, 0,0 ));
     }
 
-//    @Test
-//<<<<<<< HEAD
-//=======
-//    void pathSearchTest() {
-//        Creature creature = new NecropolisFactory().create(false , 1, 1);
-//        board.add(new Point(4,5), creature);
-//        board.add(new Point(4,4), new NecropolisFactory().create(false , 1, 1));
-//        board.add(new Point(3,4), new NecropolisFactory().create(false , 1, 1));
-//        board.add(new Point(2,4), new NecropolisFactory().create(false , 1, 1));
-//        board.add(new Point(5,4), new NecropolisFactory().create(false , 1, 1));
-//        board.add(new Point(6,4), new NecropolisFactory().create(false , 1, 1));
-//        board.add(new Point(7,4), new NecropolisFactory().create(false , 1, 1));
-//        assertFalse(board.canMove(creature, 5,3));
-//    }
-//
+
     void canNotStandOnTheField(){
         Creature movingCreature = NecropolisFactory.createDefaultForTests();
         board.add(new Point(4,4), creature);
@@ -103,19 +90,35 @@ class BoardMovingTest {
 
     }
 
+    @Test
+    void pathSearchTestForGroundCreature() {
+        BattleObject creature = new NecropolisFactory().create(false , 1, 1);
+        board.add(new Point(4,5), creature);
+        board.add(new Point(4,4), new NecropolisFactory().create(false , 1, 1));
+        board.add(new Point(3,4), new NecropolisFactory().create(false , 1, 1));
+        board.add(new Point(2,4), new NecropolisFactory().create(false , 1, 1));
+        board.add(new Point(5,4), new NecropolisFactory().create(false , 1, 1));
+        board.add(new Point(6,4), new NecropolisFactory().create(false , 1, 1));
+        board.add(new Point(7,4), new NecropolisFactory().create(false , 1, 1));
+        assertFalse(board.canMove(creature, 5,3));
+        assertTrue(board.canMove(creature,1,4));
+    }
+    @Test
+    void pathSearchForGroundCreatureUsingFields() {
+        BattleObject groundCreature = new NecropolisFactory().create(false , 1, 1);
+        board.add(new Point(4,5),groundCreature);
+        board.add(new Point(4,4),  FieldsFactory.create("Stone"));
+        board.add(new Point(3,4),FieldsFactory.create("Stone"));
+        board.add(new Point(2,4), FieldsFactory.create("Stone"));
+        board.add(new Point(5,4), FieldsFactory.create("Stone"));
+        board.add(new Point(6,4), FieldsFactory.create("Stone"));
+        board.add(new Point(7,4), FieldsFactory.create("Stone"));
+        assertFalse(board.canMove(groundCreature,5,3));
+        assertTrue(board.canMove(groundCreature,1,4));
 
-//    void pathSearchTest() {
-//        GuiTile creature = new NecropolisFactory().create(false , 1, 1);
-//        board.add(new Point(4,5), creature);
-//        board.add(new Point(4,4), new NecropolisFactory().create(false , 1, 1));
-//        board.add(new Point(3,4), new NecropolisFactory().create(false , 1, 1));
-//        board.add(new Point(2,4), new NecropolisFactory().create(false , 1, 1));
-//        board.add(new Point(5,4), new NecropolisFactory().create(false , 1, 1));
-//        board.add(new Point(6,4), new NecropolisFactory().create(false , 1, 1));
-//        board.add(new Point(7,4), new NecropolisFactory().create(false , 1, 1));
-//        assertFalse(board.canMove(creature, 5,3));
-//    }
-//
+    }
+
+
 
 
 
