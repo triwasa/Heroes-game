@@ -27,6 +27,14 @@ public class EconomyHero {
         return 0;
     }
 
+    public int getLuck() {
+        return 0;
+    }
+
+    public int getMorale() {
+        return 0;
+    }
+
     public enum Fraction {
         NECROPOLIS;
     }
