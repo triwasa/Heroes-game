@@ -1,10 +1,14 @@
 package pl.sdk.creatures;
 
+
+import com.google.common.collect.Range;
+
 public class CreatureAdditionalStatistic implements CreatureAdditionalStatisticIf  {
 
     private int additionalMoveRange;
     private int additionalHp;
     private int resistance;
+    private Range<Integer> additionalDamage;
 
     @Override
     public int getAdditionalMoveRange() {
@@ -21,6 +25,10 @@ public class CreatureAdditionalStatistic implements CreatureAdditionalStatisticI
         return resistance;
     }
 
+    @Override
+    public Range<Integer> getAdditionalDamage() {
+        return additionalDamage;
+    }
 
 
     void increaseMoveRange(int aMoveRangeToIncrease) {
@@ -35,5 +43,8 @@ public class CreatureAdditionalStatistic implements CreatureAdditionalStatisticI
 
     void increaseResistance(int aResistanceToIncrease) {
         resistance += aResistanceToIncrease;
+    }
+
+    void increaseDamage(int aLowerBound, int aUpperBound) { additionalDamage = Range.closed(additionalDamage.lowerEndpoint() + aLowerBound, additionalDamage.upperEndpoint() + aUpperBound);
     }
 }

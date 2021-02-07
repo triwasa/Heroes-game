@@ -156,7 +156,16 @@ public class Creature implements PropertyChangeListener, BattleObject{
     }
 
     public Range<Integer> getDamage() {
+        return Range.closed(stats.getDamage().lowerEndpoint() + additionalStats.getAdditionalDamage().lowerEndpoint(),
+                stats.getDamage().upperEndpoint() + additionalStats.getAdditionalDamage().upperEndpoint());
+    }
+
+    public Range<Integer> getBasicDamage() {
         return stats.getDamage();
+    }
+
+    public void increaseDamage(int aLowerBound, int aUpperBound) {
+        additionalStats.increaseDamage(aLowerBound,aUpperBound);
     }
 
     public int getAmount(){
@@ -205,7 +214,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
         return possibleAttackManager.canCreatureAttack();
     }
 
-    void setCurrentHpToMaximum() {
+     void setCurrentHpToMaximum() {
         currentHp = stats.getMaxHp() + additionalStats.getAdditionalHp();
     }
 

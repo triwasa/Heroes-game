@@ -19,7 +19,7 @@ public class MultipleRetaliationsCreatureDecorator extends Creature {
     }
 
     @Override
-    protected void setCurrentHpToMaximum() {
+    void setCurrentHpToMaximum() {
         decorated.setCurrentHpToMaximum();
     }
 

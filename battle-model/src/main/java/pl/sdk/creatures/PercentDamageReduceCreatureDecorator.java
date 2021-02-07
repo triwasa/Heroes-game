@@ -66,7 +66,7 @@ public class PercentDamageReduceCreatureDecorator extends Creature {
     }
 
     @Override
-    protected void setCurrentHpToMaximum() {
+    void setCurrentHpToMaximum() {
         decorated.setCurrentHpToMaximum();
     }
 
