@@ -1,4 +1,4 @@
-package pl.sdk.artifacts;
+package pl.sdk.spells;
 
 import pl.sdk.spells.Spell;
 import pl.sdk.spells.SpellEnum;
@@ -9,7 +9,7 @@ import java.util.List;
 public class Immunity {
     private List<Spell> spells;
 
-    protected void add(SpellEnum aSpellName){
+    public void add(SpellEnum aSpellName){
         Spell spell = createSpell(aSpellName);
         if(!spells.contains(spell)){
             spells.add(spell);
@@ -32,4 +32,6 @@ public class Immunity {
         SpellFactory spellFactory = new SpellFactory();
         return spellFactory.create(spellName);
     }
+
+
 }

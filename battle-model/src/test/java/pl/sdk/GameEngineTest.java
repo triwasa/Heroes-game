@@ -1,8 +1,7 @@
 package pl.sdk;
 
 import org.junit.jupiter.api.Test;
-import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.NecropolisFactory;
+import pl.sdk.creatures.*;
 import pl.sdk.hero.Hero;
 
 import java.util.List;
@@ -27,6 +26,15 @@ class GameEngineTest {
         assertTrue(engine.canAttack(GameEngine.BOARD_WIDTH-1, 1));
         assertFalse(engine.canAttack(0,1));
         assertFalse(engine.canAttack(0,1));
+   }
+   @Test
+    void canAttackTestForSpecifiedBattleObjects() {
+        AttackEngine attackEngine = new AttackEngine(new Board());
+        Creature creature = AbstractFactory.getFraction(AbstractFactory.NECROPOLIS).create(true,1,1);
+        BattleObject balista = AbstractFactory.getFraction(AbstractFactory.WARMACHINE).create(false,3,1);
+
+       assertTrue(attackEngine.canAttack(balista,creature));
+       assertTrue(attackEngine.canAttack(creature,balista));
    }
 
 }

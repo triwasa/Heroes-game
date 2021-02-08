@@ -7,7 +7,7 @@ import java.util.List;
 
 public abstract class ArtifactCreatureBuff extends AbstractArtifact {
     @Override
-    void buff(Hero hero) {
+    public void buff(Hero hero) {
         List<Creature> creatures = hero.getCreatures();
         buffCreature(creatures);
     }

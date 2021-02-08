@@ -11,8 +11,7 @@ public class AttackEngine {
         board = aBoard;
     }
 
-    //TODO it should be private!
-    public void attack(BattleObject aAttacker, BattleObject aDefender) {
+    private void attack(BattleObject aAttacker, BattleObject aDefender) {
             aAttacker.getAttackStrategy().attack(aAttacker, aDefender);
     }
 

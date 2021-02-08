@@ -3,6 +3,7 @@ package pl.sdk.skills;
 import pl.sdk.hero.Hero;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.*;
+
 import com.google.common.collect.Range;
 import java.util.List;
 import java.util.ListIterator;
@@ -10,7 +11,7 @@ import java.util.ListIterator;
 public class SkillApplier {
 
     private static String EXCEPTION_MESSEAGE = "There is no such skill";
-
+  
     public void apply(Skill skill, Hero hero) {
         String aName = skill.getName();
         int aTier = skill.getTier();
@@ -245,4 +246,3 @@ public class SkillApplier {
     }
 
 }
-
