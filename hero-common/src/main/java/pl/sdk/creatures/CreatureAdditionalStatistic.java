@@ -10,6 +10,10 @@ public class CreatureAdditionalStatistic implements CreatureAdditionalStatisticI
     private int resistance;
     private Range<Integer> additionalDamage;
 
+    CreatureAdditionalStatistic() {
+        additionalDamage = Range.closed(0,0);
+    }
+
     @Override
     public int getAdditionalMoveRange() {
         return additionalMoveRange;
