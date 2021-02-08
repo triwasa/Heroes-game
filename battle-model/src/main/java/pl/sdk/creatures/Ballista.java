@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class Ballista extends Creature implements BattleObject {
+public class Ballista implements BattleObject {
 
 
     private int currentHp;
@@ -17,7 +17,7 @@ public class Ballista extends Creature implements BattleObject {
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
-
+    boolean counterAttackedThisTurn=true;
 
 
     Ballista(CreatureStatisticIf aStats) {
@@ -101,6 +101,11 @@ public class Ballista extends Creature implements BattleObject {
     }
 
     @Override
+    public boolean canCounterAttack() {
+        return false;
+    }
+
+    @Override
     public boolean isAlive() {
         return amount > 0;
     }
@@ -154,6 +159,11 @@ public class Ballista extends Creature implements BattleObject {
     public boolean isFortification() {
         return false;
     }
+
+    @Override
+    public void counterAttackedInThisTurn() {
+
+            }
 
 
     static class BuilderForTesting {
