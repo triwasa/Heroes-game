@@ -1,4 +1,3 @@
-/*
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
@@ -54,4 +53,4 @@ class DefaultDamageCalculatorWithSelfHealingTest {
         assertEquals(20,attacker.getCurrentHp());
     }
 
-}*/
+}

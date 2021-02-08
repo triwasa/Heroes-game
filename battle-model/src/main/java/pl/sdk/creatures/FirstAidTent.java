@@ -65,15 +65,9 @@ public class FirstAidTent implements BattleObject {
         return possibleAttackManager.canCreatureAttack();
     }
 
-    @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-        currentHp=aCurrentHp;
-    }
 
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        amount=aAmount;
-    }
+
+
 
     @Override
     public DamageApplierIf getDamageApplier() {
@@ -100,6 +94,11 @@ public class FirstAidTent implements BattleObject {
     @Override
     public int getMoveRange() {
         return stats.getMoveRange();
+    }
+
+    @Override
+    public boolean canCounterAttack() {
+        return false;
     }
 
     @Override
@@ -147,9 +146,12 @@ public class FirstAidTent implements BattleObject {
         return false;
     }
 
-    @Override
-    public void counterAttack(BattleObject attacker) {
-    }
+
+
+
+
+    public void counterAttackedInThisTurn() {}
+
 
     static class BuilderForTesting {
         private String name;

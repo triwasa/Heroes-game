@@ -1,27 +1,29 @@
 package pl.sdk.artifacts;
 
 import pl.sdk.spells.Spell;
+import pl.sdk.spells.SpellEnum;
 
 import java.util.List;
+import java.util.Set;
 
 public class ArtifactSpellBookType extends ArtifactSpellBuff {
-    private final String magicType;
+    private final SpellEnum.magicTypeOfSpell magicType;
 
-    public ArtifactSpellBookType(ArtifactStatisticIf aStat, String aMagicType) {
+    public ArtifactSpellBookType(ArtifactStatisticIf aStat, SpellEnum.magicTypeOfSpell aMagicType) {
         stats = aStat;
         this.magicType = aMagicType;
     }
 
     @Override
-    void buffSpell(List<Spell> spells) {
-        List<Spell> spellsToAdd = createSpells();
+    void buffSpell(Set<Spell> spells) {
+        Set<Spell> spellsToAdd = createSpells();
         spellsToAdd.forEach(spell -> {
             if(!spells.contains(spell)) {
                 spells.add(spell);
             }});
     }
 
-    private List<Spell> createSpells(){
+    private Set<Spell> createSpells(){
         SpellsCreator spellsCreator = new SpellsCreator();
         return spellsCreator.createSpellsByMagicType(magicType);
     }

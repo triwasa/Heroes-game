@@ -1,8 +1,10 @@
 package pl.sdk.artifacts;
 
 import pl.sdk.spells.Spell;
+import pl.sdk.spells.SpellEnum;
 
 import java.util.List;
+import java.util.Set;
 
 public class ArtifactDuration extends ArtifactSpellBuff {
     private final int durationValue;
@@ -13,7 +15,15 @@ public class ArtifactDuration extends ArtifactSpellBuff {
     }
 
     @Override
-    void buffSpell(List<Spell> spells) {
-        // TODO implement buffing duration of spells
+    void buffSpell(Set<Spell> spells) {
+        spells.forEach(spell -> {
+            if (checkSpell(spell)) {
+                // TODO increase duration of Spell
+            }
+        });
+    }
+
+    private boolean checkSpell(Spell spell) {
+        return false; // (spell.getType() == SpellEnum.typeOfSpell.BUFF);
     }
 }

@@ -88,15 +88,6 @@ public class Wall implements BattleObject, Fortification {
         }
     }
 
-    @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-        currentHp=aCurrentHp;
-    }
-
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        amount=aAmount;
-    }
 
     @Override
     public boolean isCreature() {
@@ -108,10 +99,6 @@ public class Wall implements BattleObject, Fortification {
         return true;
     }
 
-    @Override
-    public void counterAttack(BattleObject attacker) {
-
-    }
 
 
     @Override
@@ -157,6 +144,16 @@ public class Wall implements BattleObject, Fortification {
     @Override
     public int getMoveRange() {
         return 0;
+    }
+
+    @Override
+    public boolean canCounterAttack() {
+        return false;
+    }
+
+    @Override
+    public void counterAttackedInThisTurn() {
+
     }
 
     static class Builder {

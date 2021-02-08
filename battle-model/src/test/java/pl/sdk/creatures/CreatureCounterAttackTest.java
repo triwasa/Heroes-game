@@ -1,12 +1,8 @@
-/*
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.sdk.AttackEngine;
-import pl.sdk.Board;
+
 
 import java.util.List;
 
@@ -90,4 +86,4 @@ class CreatureCounterAttackTest {
         assertEquals(6,attacker.getCurrentHp());
     }
 
-}*/
+}
