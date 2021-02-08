@@ -2,6 +2,7 @@ package pl.sdk.converter;
 
 import pl.sdk.hero.EconomyHero;
 import pl.sdk.skills.EconomySkill;
+import pl.sdk.skills.Skill;
 
 import java.util.ArrayList;
 import java.util.HashMap;

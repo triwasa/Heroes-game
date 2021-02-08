@@ -90,7 +90,17 @@ public class DoubleDamagePercentChanceDecorator extends Creature {
     @Override
     public Immunity getImmunity() {
         return decorated.getImmunity();
-    }
+//    @Override
+//    int calculateDamage(Creature aAttacker, Creature aDefender) {
+//        Random rand = new Random();
+//        int roll = (rand.nextInt(100) + 1);
+//        if (roll > percentToDealDoubleDamage){
+//            return 0;
+//        }
+//        else{
+//            return (decorated.calculateDamage(aAttacker, aDefender));
+//        }
+//
 
     @Override
     public boolean isAlive() {
