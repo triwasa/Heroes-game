@@ -2,10 +2,7 @@ package pl.sdk;
 
 import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.creatures.EconomyCreature;
-import pl.sdk.hero.CreatureShop;
-import pl.sdk.hero.ArtifactShop;
-import pl.sdk.hero.EconomyHero;
-import pl.sdk.hero.SkillShop;
+import pl.sdk.hero.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -84,6 +81,10 @@ public class EconomyEngine {
 
     public void buySkill(EconomySkill aEconomySkill){
         SkillShop.buy(activeHero,aEconomySkill);
+    }
+
+    public void buySpell(EconomySpell aEconomySpell){
+        SpellShop.buy(activeHero,aEconomySpell);
     }
 
 

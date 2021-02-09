@@ -20,6 +20,7 @@ public class EconomyHero {
     private final List<EconomyCreature> creatureList;
     private final HeroEquipment heroEquipment;
     private final HashMap<EconomySkill,String> skillList;
+    private final List<EconomySpell> spellList;
     private int gold;
     public EconomyHero(Fraction aFraction, int aGold) {
         fraction = aFraction;
@@ -42,9 +43,16 @@ public class EconomyHero {
     public void addSkill(EconomySklill aEconomySklill) {
 
         if (skillList.containsKey(aEconomySklill.getCoreName())){
-            throw new IllegalStateException("hero already has the item");
+            throw new IllegalStateException("hero already has the skill");
         }
         skillList.put(aEconomySklill,aEconomySklill.getName());
+    }
+
+    public void addSpell(EconomySpell aEconomySpell){
+        if (spellList.contains(aEconomySpell)){
+            throw new IllegalStateException("hero already has the spell");
+        }
+        spellList.add(aEconomySpell);
     }
 
     public int getGold() {
@@ -62,6 +70,12 @@ public class EconomyHero {
     public HashMap<String, Artifact> getArtifacts() {
         return heroEquipment.getEquipment();
     }
+
+    public HashMap<EconomySkill,String> getSkill(){return skillList;}
+
+    public List<EconomySpell> getSpell(){return spellList;}
+
+
 
 
 
