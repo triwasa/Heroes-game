@@ -24,10 +24,9 @@ public class FirstAidTent implements BattleObject {
         this.stats=aStats;
         currentHp=stats.getMaxHp();
         possibleAttackManager=new PossibleAttackManagerForCreature();
-        calculateDamageStrategy = new DefaultCalculateStrategy();
+        calculateDamageStrategy = new HealCalculateDamageStrategy();
         damageApplier = new DefaultDamageApplier();
         attackStrategy = new DefaultAttackStrategy();
-        damageCalculator = new DefaultCalculateStrategy();
     }
 
     @Override
