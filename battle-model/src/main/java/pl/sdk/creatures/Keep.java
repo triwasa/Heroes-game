@@ -2,6 +2,8 @@ package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
 
+import java.beans.PropertyChangeEvent;
+
 public class Keep implements BattleObject, Fortification {
 
 
@@ -147,6 +149,11 @@ public class Keep implements BattleObject, Fortification {
 
     @Override
     public void counterAttackedInThisTurn() {
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
 
     }
 }

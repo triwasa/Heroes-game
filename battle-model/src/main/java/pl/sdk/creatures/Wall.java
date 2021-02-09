@@ -5,6 +5,7 @@ import pl.sdk.creatures.DefaultDamageApplier;
 import pl.sdk.fortifications.FortificationStatistic;
 import pl.sdk.fortifications.FortificationStatisticIf;
 
+import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -153,6 +154,11 @@ public class Wall implements BattleObject, Fortification {
 
     @Override
     public void counterAttackedInThisTurn() {
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
 
     }
 

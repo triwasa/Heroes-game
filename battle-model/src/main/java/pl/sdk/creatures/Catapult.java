@@ -4,6 +4,7 @@ package pl.sdk.creatures;
 import com.google.common.collect.Range;
 import pl.sdk.creatures.DefaultDamageApplier;
 
+import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -169,6 +170,11 @@ public class Catapult  implements BattleObject {
 
     @Override
     public void counterAttackedInThisTurn() {
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
 
     }
 

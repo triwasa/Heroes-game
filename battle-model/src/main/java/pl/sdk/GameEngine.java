@@ -50,7 +50,7 @@ public class GameEngine {
         attackEngine = new AttackEngine(board);
         putCreaturesToBoard(creatures1, creatures2);
         putMachinesToBoard(machines1, machines2);
-        List<Creature> twoSidesCreatures = new ArrayList<>();
+        List<BattleObject> twoSidesCreatures = new ArrayList<>();
         twoSidesCreatures.addAll(creatures1);
         twoSidesCreatures.addAll(creatures2);
         twoSidesCreatures.sort((c1, c2) -> c2.getMoveRange() - c1.getMoveRange());
@@ -92,11 +92,11 @@ public class GameEngine {
     }
 
     public void pass() {
-        Creature oldActiveCreature = queue.getActiveCreature();
+        BattleObject oldActiveCreature = queue.getActiveCreature();
         queue.next();
         blockAttacking = false;
         blockMoving = false;
-        Creature newActiveCreature = queue.getActiveCreature();
+        BattleObject newActiveCreature = queue.getActiveCreature();
         notifyObservers(new PropertyChangeEvent(this, CURRENT_CREATURE_CHANGED, oldActiveCreature, newActiveCreature));
     }
 
@@ -104,7 +104,7 @@ public class GameEngine {
         if (blockAttacking) {
             return;
         }
-        Creature activeCreature = queue.getActiveCreature();
+        BattleObject activeCreature = queue.getActiveCreature();
         attackEngine.attack(activeCreature, aX, aY);
         blockAttacking = true;
         blockMoving = true;

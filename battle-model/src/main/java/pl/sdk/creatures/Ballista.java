@@ -1,6 +1,8 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+
+import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -164,6 +166,11 @@ public class Ballista implements BattleObject {
     public void counterAttackedInThisTurn() {
 
             }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+
+    }
 
 
     static class BuilderForTesting {
