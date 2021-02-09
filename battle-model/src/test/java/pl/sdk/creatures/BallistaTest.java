@@ -21,7 +21,7 @@ class BallistaTest {
     }
 
     @Test
-    void shouldShot() {
+    void shouldShoot() {
         Ballista ballista=new Ballista.BuilderForTesting()
                 .name("Ballista")
                 .attack(10)
