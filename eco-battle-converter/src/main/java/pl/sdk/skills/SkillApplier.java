@@ -205,36 +205,50 @@ public class SkillApplier {
         while (listIter.hasNext()) {
             Creature buffedCreature = listIter.next();
             if (buffedCreature.getName() == "Catapult"){
-                //metoda buffowania do ustalenia
+                switch (skillTier){
+                    case 1:{
+                        //buffedMachine.increaseDamage(0,25);
+                        break;
+                    }
+                    case 2:{
+                        //buffedMachine.increaseDamage(0, 50);
+                        break;
+                    }
+                    case 3:{
+                        //buffedMachine.increaseDamage(0,75);
+                        break;
+                    }
+
+                }
             }
             listIter.set(buffedCreature);
         }
     }
 
     private void buffFirstAidTent(Hero hero, int skillTier){
-        List<Creature> creatures = hero.getCreatures();
-        ListIterator<Creature> listIter = creatures.listIterator();
+        List<BattleObject> machines = hero.getMachines();
+        ListIterator<BattleObject> listIter = machines.listIterator();
         while (listIter.hasNext()) {
-            Creature buffedCreature = listIter.next();
-            if (buffedCreature.getName() == "First Aid Tent"){
+            BattleObject buffedMachine = listIter.next();
+            if (buffedMachine.getName() == "First Aid Tent"){
                 switch (skillTier){
                     case 1:{
-                        buffedCreature.increaseDamage(0,25);
+                        //buffedMachine.increaseDamage(0,25);
                         break;
                     }
                     case 2:{
-                        buffedCreature.increaseDamage(0, 50);
+                        //buffedMachine.increaseDamage(0, 50);
                         break;
                     }
                     case 3:{
-                        buffedCreature.increaseDamage(0,75);
+                        //buffedMachine.increaseDamage(0,75);
                         break;
                     }
 
                 }
 
             }
-            listIter.set(buffedCreature);
+            listIter.set(buffedMachine);
         }
     }
 

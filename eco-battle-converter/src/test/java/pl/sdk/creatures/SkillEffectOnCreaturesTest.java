@@ -25,12 +25,14 @@ public class SkillEffectOnCreaturesTest {
     Creature defender;
     SkillApplier applier;
     List<Creature> creatures;
+    List<BattleObject> machines;
 
     @BeforeEach
     void init(){
         hero = new Hero();
         applier = new SkillApplier();
         creatures = new ArrayList<>();
+        machines = new ArrayList<>();
         attacker = new Creature.BuilderForTesting()
                 .name("attacker")
                 .attack(5)
@@ -48,7 +50,6 @@ public class SkillEffectOnCreaturesTest {
                 .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
                 .moveRange(NOT_IMPORTANT)
                 .build();
-
     }
     //standard dmg = 62
 
@@ -274,18 +275,13 @@ public class SkillEffectOnCreaturesTest {
         assertEquals(5, attacker.getResistance());
     }
 
-//    @Test
-//    void IncreaseLuckTest() {
-//        Skill luck1 = SkillFactory.createForTest(SkillStatistic.LUCK1);
-//        applier.apply(luck1, hero);
-//        assertEquals(1, hero.getLuck());
-//    }
+    @Test
+    void NewBallistaTest() {
+        Skill ballistick1 = SkillFactory.createForTest(SkillStatistic.BALLISTICS1.getCoreName(), 1);
+        Ballista ballista = new Ballista.BuilderForTesting().name("Ballsita").build();
+        hero.getMachines().add(ballista);
+        applier.apply(ballistick1, hero);
+    }
 
-//    @Test
-//    void IncreaseMoraleTest() {
-//        Skill leadership1 = SkillFactory.createForTest(SkillStatistic.LEADERSHIP1);
-//        applier.apply(leadership1, hero);
-//        assertEquals(1, hero.getMorale());
-//    }
 
 }
