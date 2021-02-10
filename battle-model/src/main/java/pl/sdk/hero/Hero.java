@@ -11,10 +11,13 @@ public class Hero {
     private HeroClassStatisticIf classStats;
     private HeroAdditionalStatisticIf additionalStats;
     private SpellBook spellBook;
+    private HeroMana mana;
 
     public Hero(HeroClassStatisticIf aStats) {
         classStats = aStats;
         additionalStats = new HeroAdditionalStatistic(0,0,0,0,0,0);
+        mana = new HeroMana(aStats.getKnowledge());
+        spellBook = new SpellBook();
     }
 
     public Hero() {
@@ -24,6 +27,11 @@ public class Hero {
 
     public void increaseStats(HeroClassStatisticIf values) {
         additionalStats.increaseStats(values);
+        mana.increaseMana(values.getKnowledge());
+    }
+
+    public void increaseManaPercent(double percent) {
+        mana.increaseManaPercent(percent);
     }
 
     public void addCreatures(List<Creature> aCreatures) {
@@ -53,6 +61,10 @@ public class Hero {
     }
     public int getMorale() {
         return classStats.getMorale() + additionalStats.getMorale();
+    }
+
+    public int getMana() {
+        return mana.getMana();
     }
 
     public static class BuilderForTesting {

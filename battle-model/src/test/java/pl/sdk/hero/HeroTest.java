@@ -29,10 +29,22 @@ public class HeroTest {
         assertEquals(hero.getDefence(), 1 + 1);
         assertEquals(hero.getPower(), 1 + 2);
         assertEquals(hero.getKnowledge(), 1 + 2);
-        assertEquals(hero.getLuck(), 0);
-        assertEquals(hero.getMorale(), 0);
+        assertEquals(hero.getLuck(), 1);
+        assertEquals(hero.getMorale(), 1);
     }
 
+    @Test
+    void increaseHeroMana() {
+        Hero hero = new Hero.BuilderForTesting().attack(1).defence(1).power(1).knowledge(1).luck(1).morale(1).build();
+
+        // mana = 10 * knowledge
+        assertEquals(hero.getMana(), 10);
+
+        // Intelligence	skill can increase mana by 25%, 50%, 100%
+        hero.increaseManaPercent(0.25);
+        assertEquals(hero.getMana(), 10 + 10 * 0.25);
+
+    }
 
 
 }
