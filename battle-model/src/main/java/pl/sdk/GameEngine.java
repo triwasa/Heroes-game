@@ -6,6 +6,7 @@ import pl.sdk.creatures.GuiBattleObject;
 import pl.sdk.hero.Hero;
 import pl.sdk.special_fields.Field;
 
+import javax.management.MBeanAttributeInfo;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -30,6 +31,8 @@ public class GameEngine {
     private boolean blockAttacking;
     private List<Creature> creatures1;
     private List<Creature> creatures2;
+    private List<BattleObject> machines1;
+    private List<BattleObject> machines2;
     private final AttackEngine attackEngine;
 
 //    public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
@@ -42,9 +45,12 @@ public class GameEngine {
         hero2 = aHero2;
         creatures1 = aHero1.getCreatures();
         creatures2 = aHero2.getCreatures();
+        machines1 = aHero1.getMachines();
+        machines2 = aHero2.getMachines();
         attackEngine = new AttackEngine(board);
         putCreaturesToBoard(creatures1, creatures2);
-        List<Creature> twoSidesCreatures = new ArrayList<>();
+        putMachinesToBoard(machines1, machines2);
+        List<BattleObject> twoSidesCreatures = new ArrayList<>();
         twoSidesCreatures.addAll(creatures1);
         twoSidesCreatures.addAll(creatures2);
         twoSidesCreatures.sort((c1, c2) -> c2.getMoveRange() - c1.getMoveRange());
@@ -55,6 +61,8 @@ public class GameEngine {
 
 
     }
+
+
 
     public void addObserver(String aEventType, PropertyChangeListener aObs) {
         if (END_OF_TURN.equals(aEventType)) {
@@ -84,11 +92,11 @@ public class GameEngine {
     }
 
     public void pass() {
-        Creature oldActiveCreature = queue.getActiveCreature();
+        BattleObject oldActiveCreature = queue.getActiveCreature();
         queue.next();
         blockAttacking = false;
         blockMoving = false;
-        Creature newActiveCreature = queue.getActiveCreature();
+        BattleObject newActiveCreature = queue.getActiveCreature();
         notifyObservers(new PropertyChangeEvent(this, CURRENT_CREATURE_CHANGED, oldActiveCreature, newActiveCreature));
     }
 
@@ -96,7 +104,7 @@ public class GameEngine {
         if (blockAttacking) {
             return;
         }
-        Creature activeCreature = queue.getActiveCreature();
+        BattleObject activeCreature = queue.getActiveCreature();
         attackEngine.attack(activeCreature, aX, aY);
         blockAttacking = true;
         blockMoving = true;
@@ -113,6 +121,17 @@ public class GameEngine {
             board.add(new Point(aX, i * 2 + 1), aCreatures.get(i));
         }
     }
+    private void putMachinesToBoard(List<BattleObject> aMachines1, List<BattleObject> aMachines2) {
+        putMachinesFromOneSideToBoard(aMachines1, 0);
+        putMachinesFromOneSideToBoard(aMachines2, GameEngine.BOARD_WIDTH - 1);
+    }
+
+    private void putMachinesFromOneSideToBoard(List<BattleObject> aMachines, int aX) {
+        for (int i = 0; i < aMachines.size(); i++) {
+            board.add(new Point(aX, 13-i*2), aMachines.get(i));
+        }
+    }
+
 
     public BattleObject get(int aX, int aY) {
         return board.get(aX, aY);

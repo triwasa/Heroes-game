@@ -1,5 +1,7 @@
 package pl.sdk.creatures;
 
+import pl.sdk.hero.Hero;
+
 import java.util.Random;
 
 public class CalculateDamageWithChanceToKillTopCreatureStrategy extends AbstractCalculateDamageStrategy {
@@ -38,5 +40,10 @@ public class CalculateDamageWithChanceToKillTopCreatureStrategy extends Abstract
              amount = aAttacker.getAmount() - (10 * i + 1);
         }
         return aWholeStackDamageToDeal;
+    }
+
+    @Override
+    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
+        return 0;
     }
 }

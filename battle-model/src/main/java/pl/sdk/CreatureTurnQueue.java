@@ -11,12 +11,12 @@ import java.util.*;
 class CreatureTurnQueue {
 
 
-    private final Collection<Creature> creatures;
-    private final Queue<Creature> creaturesQueue;
-    private Creature activeCreature;
+    private final Collection<BattleObject> creatures;
+    private final Queue<BattleObject> creaturesQueue;
+    private BattleObject activeCreature;
     private final PropertyChangeSupport observerSupport;
 
-    public CreatureTurnQueue(Collection<Creature> aCreatureList) {
+    public CreatureTurnQueue(Collection<BattleObject> aCreatureList) {
         creatures = aCreatureList;
         creaturesQueue = new LinkedList<>();
         observerSupport = new PropertyChangeSupport(this);
@@ -40,7 +40,7 @@ class CreatureTurnQueue {
         creaturesQueue.addAll(creatures);
     }
 
-    Creature getActiveCreature() {
+    BattleObject getActiveCreature() {
         return activeCreature;
     }
 

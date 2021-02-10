@@ -1,5 +1,6 @@
 package pl.sdk.hero;
 
+import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
 import pl.sdk.spells.Spell;
 import pl.sdk.spells.SpellBook;
@@ -8,6 +9,7 @@ import java.util.*;
 
 public class Hero {
     private List<Creature> creatures = new ArrayList<>();
+    private List<BattleObject> machines = new ArrayList<>();
     private HeroClassStatisticIf classStats;
     private HeroAdditionalStatisticIf additionalStats;
     private SpellBook spellBook;
@@ -41,6 +43,10 @@ public class Hero {
     public List<Creature> getCreatures() {
         return creatures;
     }
+    public List<BattleObject> getMachines() {
+        return machines;
+    }
+
 
     public Set<Spell> getSpells() { return spellBook.getSpellBook(); }
 

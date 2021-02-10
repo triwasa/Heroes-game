@@ -1,5 +1,7 @@
 package pl.sdk.creatures;
 
+import pl.sdk.hero.Hero;
+
 public  class DefaultAttackStrategy implements AttackStrategy {
 
     public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
@@ -16,7 +18,12 @@ public  class DefaultAttackStrategy implements AttackStrategy {
         }
     }
 
-   public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
+    @Override
+    public void attack(BattleObject aAttacker, BattleObject aDefender, Hero aHero) {
+
+    }
+
+    public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
 
    }
 

@@ -1,34 +1,39 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+
+import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 
-public class Ballista extends Creature implements BattleObject {
+public class Ballista implements BattleObject {
 
 
     private int currentHp;
     private PossibleAttackManagerIf possibleAttackManager;
     private CreatureStatisticIf stats;
     private CalculateDamageStrategy calculateDamageStrategy;
-    private DefaultCalculateStrategy damageCalculator=new DefaultCalculateStrategy();
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
-
+    boolean counterAttackedThisTurn=true;
 
 
     Ballista(CreatureStatisticIf aStats) {
         this.stats=aStats;
         currentHp=stats.getMaxHp();
         possibleAttackManager = new PossibleAttackManagerForCreature();
+        calculateDamageStrategy = new CalculateDamageBallistaStrategy();
+        damageApplier = new DefaultDamageApplier();
+        attackStrategy = new BallistaAttackStrategy();
+        amount = 1;
     }
 
     public Ballista() {
-        stats = CreatureStatistic.TEST;
-        calculateDamageStrategy = new DefaultCalculateStrategy();
+        stats = CreatureStatistic.BALLISTA;
+        calculateDamageStrategy = new CalculateDamageBallistaStrategy();
         damageApplier = new DefaultDamageApplier();
         possibleAttackManager = new PossibleAttackManagerForCreature();
     }
@@ -45,6 +50,18 @@ public class Ballista extends Creature implements BattleObject {
         return calculateDamageStrategy;
     }
 
+    @Override
+    public void applyDamage(int aDamageToApply) {
+        int fullCurrentHp = currentHp - aDamageToApply;
+        if (fullCurrentHp <= 0) {
+            amount = 0;
+            currentHp = 0;
+        }
+        else
+        {
+            currentHp = fullCurrentHp;
+        }
+    }
 
     @Override
     public Range<Integer> getDamage() {
@@ -58,7 +75,7 @@ public class Ballista extends Creature implements BattleObject {
 
     @Override
     public double getAttackRange() {
-        return 20.0;
+        return Double.MAX_VALUE;
     }
 
     @Override
@@ -86,6 +103,11 @@ public class Ballista extends Creature implements BattleObject {
     @Override
     public int getMoveRange() {
         return 0;
+    }
+
+    @Override
+    public boolean canCounterAttack() {
+        return false;
     }
 
     @Override
@@ -143,79 +165,16 @@ public class Ballista extends Creature implements BattleObject {
         return false;
     }
 
+    @Override
+    public void counterAttackedInThisTurn() {
 
-    static class Builder {
-        private CreatureStatisticIf stats;
-        private CalculateDamageStrategy damageCalculator;
-        private DamageApplierIf damageApplier;
-        private AttackStrategy attackStrategy;
-        private Integer amount;
-
-        Ballista.Builder statistic (CreatureStatisticIf aStats){
-            this.stats = aStats;
-            return this;
-        };
-        Ballista.Builder amount(int amount){
-            this.amount=amount;
-            return this;
-        }
-        Ballista.Builder damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
-            this.damageCalculator = aCalculateDamageStrategy;
-            return this;
-        }
-        Ballista.Builder damageApplier (DamageApplierIf aDamageApplier){
-            this.damageApplier = aDamageApplier;
-            return this;
-        }
-        Ballista.Builder attackStrategy (AttackStrategy aAttackStrategy){
-            this.attackStrategy = aAttackStrategy;
-            return this;
-        }
-
-        Ballista build(){
-            Set<String> emptyFields = new HashSet<>();
-            if (stats == null){
-                emptyFields.add("stats");
-            }
-            if (!emptyFields.isEmpty()){
-                throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
             }
 
-            Ballista ret = createInstance(stats);
-            if(amount == null){
-                ret.amount=1;
-            }
-            else{
-                ret.amount = amount;
-            }
-            if (damageCalculator != null){
-                ret.calculateDamageStrategy = damageCalculator;
-            }
-            else{
-                ret.calculateDamageStrategy = new DefaultCalculateStrategy();
-            }
-            if (damageApplier != null) {
-                ret.damageApplier = damageApplier;
-            }
-            else {
-                ret.damageApplier = new DefaultDamageApplier();
-            }
-            if (attackStrategy != null) {
-                ret.attackStrategy = attackStrategy;
-            }
-            else {
-                ret.attackStrategy = new DefaultAttackStrategy();
-            }
-
-            return ret;
-
-        }
-
-        Ballista createInstance(CreatureStatisticIf aStats) {
-            return new Ballista(aStats);
-        }
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
 
     }
+
 
     static class BuilderForTesting {
         private String name;
@@ -224,7 +183,7 @@ public class Ballista extends Creature implements BattleObject {
         private Integer maxHp;
         private Integer moveRange;
         private Range<Integer> damage;
-        private CalculateDamageStrategy damageCalculator;
+        private CalculateDamageBallistaStrategy damageCalculator;
         private DamageApplierIf damageApplier;
         private AttackStrategy attackStrategy;
         private Integer amount;
@@ -257,7 +216,7 @@ public class Ballista extends Creature implements BattleObject {
             this.amount=amount;
             return this;
         }
-        Ballista.BuilderForTesting damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
+        Ballista.BuilderForTesting damageCalculator (CalculateDamageBallistaStrategy aCalculateDamageStrategy){
             this.damageCalculator = aCalculateDamageStrategy;
             return this;
         }
@@ -306,7 +265,7 @@ public class Ballista extends Creature implements BattleObject {
                 ret.calculateDamageStrategy = damageCalculator;
             }
             else{
-                ret.calculateDamageStrategy = new DefaultCalculateStrategy();
+                ret.calculateDamageStrategy = new CalculateDamageBallistaStrategy();
             }
             if (damageApplier != null) {
                 ret.damageApplier = damageApplier;
@@ -318,7 +277,7 @@ public class Ballista extends Creature implements BattleObject {
                 ret.attackStrategy = attackStrategy;
             }
             else {
-                ret.attackStrategy = new DefaultAttackStrategy();
+                ret.attackStrategy = new BallistaAttackStrategy();
             }
 
             return ret;

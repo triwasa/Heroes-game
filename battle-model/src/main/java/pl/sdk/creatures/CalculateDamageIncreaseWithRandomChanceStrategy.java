@@ -1,5 +1,7 @@
 package pl.sdk.creatures;
 
+import pl.sdk.hero.Hero;
+
 import java.util.Random;
 
 class CalculateDamageIncreaseWithRandomChanceStrategy extends AbstractCalculateDamageStrategy {
@@ -23,5 +25,10 @@ class CalculateDamageIncreaseWithRandomChanceStrategy extends AbstractCalculateD
             aDamageToChange = aDamageToChange * increaseFactor;
         }
         return aDamageToChange;
+    }
+
+    @Override
+    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
+        return 0;
     }
 }
