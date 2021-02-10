@@ -274,4 +274,18 @@ public class SkillEffectOnCreaturesTest {
         assertEquals(5, attacker.getResistance());
     }
 
+//    @Test
+//    void IncreaseLuckTest() {
+//        Skill luck1 = SkillFactory.createForTest(SkillStatistic.LUCK1);
+//        applier.apply(luck1, hero);
+//        assertEquals(1, hero.getLuck());
+//    }
+
+//    @Test
+//    void IncreaseMoraleTest() {
+//        Skill leadership1 = SkillFactory.createForTest(SkillStatistic.LEADERSHIP1);
+//        applier.apply(leadership1, hero);
+//        assertEquals(1, hero.getMorale());
+//    }
+
 }

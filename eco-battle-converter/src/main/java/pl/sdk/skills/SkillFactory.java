@@ -155,6 +155,10 @@ public class SkillFactory {
         throw new IllegalArgumentException(EXCEPTION_MESSEAGE);
     }
 
+    public static Skill createForTest(SkillStatistic stats) {
+        return new Skill(stats);
+    }
+
     public static Skill createForTest(String aName, int tier) {
         if (aName == SkillStatistic.OFFENCE1.getCoreName()) {
             switch (tier) {

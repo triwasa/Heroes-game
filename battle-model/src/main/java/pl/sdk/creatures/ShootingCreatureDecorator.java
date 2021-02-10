@@ -8,7 +8,7 @@ class ShootingCreatureDecorator extends Creature {
 
     private final Creature decorated;
 
-    ShootingCreatureDecorator(Creature aDecorated){
+    ShootingCreatureDecorator(Creature aDecorated) {
         decorated = aDecorated;
     }
 
@@ -26,6 +26,9 @@ class ShootingCreatureDecorator extends Creature {
     public int getBaseMoveRange() {
         return decorated.getBaseMoveRange();
     }
+
+    @Override
+    public Range<Integer> getBasicDamage() { return decorated.getBasicDamage(); }
 
     @Override
     public int getResistance() {
@@ -60,6 +63,11 @@ class ShootingCreatureDecorator extends Creature {
     @Override
     public void increaseResistance(int aResistanceToIncrease) {
         decorated.increaseResistance(aResistanceToIncrease);
+    }
+
+    @Override
+    public void increaseDamage(int aLowerBound, int aUpperBound) {
+        decorated.increaseDamage(aLowerBound, aUpperBound);
     }
 
     @Override
