@@ -310,6 +310,9 @@ public class SkillFactory {
                     return new Skill(SkillStatistic.WATER_MAGIC3);
             }
         }
-        throw new IllegalArgumentException(EXCEPTION_MESSEAGE);
+        else {
+            throw new IllegalArgumentException(EXCEPTION_MESSEAGE);
+        }
+        return null;
     }
 }

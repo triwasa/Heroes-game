@@ -1,5 +1,7 @@
 package pl.sdk.creatures;
 
+import org.w3c.dom.ranges.Range;
+
 import java.util.Random;
 
 public  class DoubleDamagePercentChanceAttackStrategy implements AttackStrategy {
@@ -9,7 +11,12 @@ public  class DoubleDamagePercentChanceAttackStrategy implements AttackStrategy 
 
     DoubleDamagePercentChanceAttackStrategy(int aChance){
         chanceToDealDoubleDamage = aChance;
-        Random rand = new Random();
+        rand = new Random();
+    }
+
+    DoubleDamagePercentChanceAttackStrategy(int aChance, Random aRand){
+        chanceToDealDoubleDamage = aChance;
+        rand = aRand;
     }
 
     public void beforeAttack(BattleObject aAttacker, BattleObject aDefender) {
@@ -21,16 +28,24 @@ public  class DoubleDamagePercentChanceAttackStrategy implements AttackStrategy 
             beforeAttack(aAttacker,aDefender);
             int damageToDeal = aAttacker.getCalculateDamage().calculateDamage(aAttacker,aDefender);
             int roll = (rand.nextInt(100) + 1);
-            if (roll > chanceToDealDoubleDamage){
+            if (roll <= chanceToDealDoubleDamage){
                 damageToDeal = damageToDeal * 2;
             }
             aDefender.getDamageApplier().calculateDamageToApply(damageToDeal, aDefender);
             afterAttack(aAttacker,aDefender);
-            aDefender.counterAttack(aAttacker);
+            counterAttack(aAttacker,aDefender);
         }
     }
 
     public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
         return;
+    }
+
+    public void counterAttack(BattleObject aAttacker, BattleObject aDefender) {
+        if (aDefender.canCounterAttack()){
+            int damageToDealInCounterAttack = aDefender.getCalculateDamage().calculateDamage(aDefender, aAttacker);
+            aAttacker.getDamageApplier().calculateDamageToApply(damageToDealInCounterAttack, aAttacker);
+            aDefender.counterAttackedInThisTurn();
+        }
     }
 }

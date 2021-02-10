@@ -9,181 +9,170 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class SkillApplier {
-
     private static String EXCEPTION_MESSEAGE = "There is no such skill";
-  
     public void apply(Skill skill, Hero hero) {
-        String aName = skill.getName();
+        String aName = skill.getCoreName();
         int aTier = skill.getTier();
         if (aName == SkillStatistic.OFFENCE1.getCoreName()) {
             switch (aTier) {
                 case 1:
                     increaseMeleeDamage(hero, 10);
+                    break;
                 case 2:
                     increaseMeleeDamage(hero, 20);
+                    break;
                 case 3:
                     increaseMeleeDamage(hero, 30);
+                    break;
             }
         } else if (aName == SkillStatistic.ARCHERY1.getCoreName()) {
             switch (aTier) {
                 case 1:
                     increaseRangeDamage(hero, 10);
+                    break;
                 case 2:
                     increaseRangeDamage(hero, 25);
+                    break;
                 case 3:
-                    increaseRangeDamage(hero, 30);
+                    increaseRangeDamage(hero, 50);
+                    break;
             }
         } else if (aName == SkillStatistic.ARMOURER1.getCoreName()) {
             switch (aTier) {
                 case 1:
                     applyArmourer(hero,5);
+                    break;
                 case 2:
                     applyArmourer(hero,10);
+                    break;
                 case 3:
                     applyArmourer(hero,15);
+                    break;
             }
         } else if (aName == SkillStatistic.LEADERSHIP1.getCoreName()) {
             switch (aTier) {
                 case 1:
                     //hero.increaseMorale(1);
+                    break;
                 case 2:
                     //hero.increaseMorale(2);
+                    break;
                 case 3:
                     //hero.increaseMorale(3);
+                    break;
             }
         } else if (aName == SkillStatistic.LUCK1.getCoreName()) {
             switch (aTier) {
                 case 1:
                     //hero.increaseLuck(1);
+                    break;
                 case 2:
                     // hero.increaseLuck(2);
+                    break;
                 case 3:
                     //hero.increaseLuck(3);
+                    break;
             }
         } else if (aName == SkillStatistic.RESISTANCE1.getCoreName()) {
             switch (aTier) {
                 case 1:
-                    //increaseResistance(hero, 5);
+                    increaseResistance(hero, 5);
+                    break;
                 case 2:
-                    //increaseResistance(hero, 10);
+                    increaseResistance(hero, 10);
+                    break;
                 case 3:
-                    //increaseResistance(hero, 20);
-            }
-        } else if (aName == SkillStatistic.WISDOM1.getCoreName()) {
-            switch (aTier) {
-                case 1:
-                    //work in progress
-                case 2:
-                    //work in progress
-                case 3:
-                    //work in progress
-            }
-        } else if (aName == SkillStatistic.SORCERY1.getCoreName()) {
-            switch (aTier) {
-                case 1:
-                    //work in progress
-                case 2:
-                    //work in progress
-                case 3:
-                    //work in progress
+                    increaseResistance(hero, 20);
+                    break;
             }
         } else if (aName == SkillStatistic.ARTILLERY1.getCoreName()) {
             switch (aTier) {
                 case 1:
                     buffBallista(hero,50);
+                    break;
                 case 2:
                     buffBallista(hero,75);
+                    break;
                 case 3:
                     buffBallista(hero,100);
+                    break;
             }
         } else if (aName == SkillStatistic.BALLISTICS1.getCoreName()) {
             switch (aTier) {
                 case 1:
                     buffCatapult(hero,1);
+                    break;
                 case 2:
                     buffCatapult(hero,2);
+                    break;
                 case 3:
                     buffCatapult(hero,3);
+                    break;
             }
         } else if (aName == SkillStatistic.FIRSTAID1.getCoreName()) {
             switch (aTier) {
                 case 1:
                     buffFirstAidTent(hero,1);
+                    break;
                 case 2:
-                    buffFirstAidTent(hero,1);
+                    buffFirstAidTent(hero,2);
+                    break;
                 case 3:
-                    buffFirstAidTent(hero,1);
+                    buffFirstAidTent(hero,3);
+                    break;
             }
-        } else if (aName == SkillStatistic.EAGLEEYE1.getCoreName()) {
+        }else if (aName == SkillStatistic.INTELLIGENCE1.getCoreName()) {
             switch (aTier) {
                 case 1:
-                    //work in progress
+                    //hero.increseMana(25);
+                    break;
                 case 2:
-                    //work in progress
+                   // hero.increseMana(50);
+                    break;
                 case 3:
-                    //work in progress
-            }
-        } else if (aName == SkillStatistic.AIR_MAGIC1.getCoreName()) {
-            switch (aTier) {
-                case 1:
-                    //work in progress
-                case 2:
-                    //work in progress
-                case 3:
-                    //work in progress
-            }
-        } else if (aName == SkillStatistic.EARTH_MAGIC1.getCoreName()) {
-            switch (aTier) {
-                case 1:
-                    //work in progress
-                case 2:
-                    //work in progress
-                case 3:
-                    //work in progress
-            }
-        } else if (aName == SkillStatistic.FIRE_MAGIC1.getCoreName()) {
-            switch (aTier) {
-                case 1:
-                    //work in progress
-                case 2:
-                    //work in progress
-                case 3:
-                    //work in progress
-            }
-        } else if (aName == SkillStatistic.WATER_MAGIC1.getCoreName()) {
-            switch (aTier) {
-                case 1:
-                    //work in progress
-                case 2:
-                    //work in progress
-                case 3:
-                    //work in progress
+                    //hero.increseMana(100);
+                    break;
             }
         }
-        throw new IllegalArgumentException(EXCEPTION_MESSEAGE);
+        //skill which aren't used in applier
+        else if (aName == SkillStatistic.AIR_MAGIC1.getCoreName()) { }
+        else if (aName == SkillStatistic.EARTH_MAGIC1.getCoreName()) { }
+        else if (aName == SkillStatistic.FIRE_MAGIC1.getCoreName()) { }
+        else if (aName == SkillStatistic.WATER_MAGIC1.getCoreName()) {}
+        else if (aName == SkillStatistic.WISDOM1.getCoreName()) { }
+        else if (aName == SkillStatistic.EAGLEEYE1.getCoreName()) { }
+        else{
+            throw new IllegalArgumentException(EXCEPTION_MESSEAGE);
+        }
     }
 
-    //TODO: dostosować increaseDamage do implementacji
     private void increaseMeleeDamage(Hero hero, int percentDamageIncrease){
         List<Creature> creatures = hero.getCreatures();
         ListIterator<Creature> listIter = creatures.listIterator();
+        float bonus = (float) percentDamageIncrease/100;
         while (listIter.hasNext()) {
             Creature buffedCreature = listIter.next();
             if (buffedCreature.getAttackRange() == 1.0) {
-                //buffedCreature.increaseDamage()
+                Range<Integer> buff = buffedCreature.getBasicDamage();
+                int buffLowerEndpoint = Math.round(buff.lowerEndpoint() * bonus);
+                int buffUpperEndpoint = Math.round(buff.upperEndpoint() * bonus);
+                buffedCreature.increaseDamage(buffLowerEndpoint, buffUpperEndpoint);
             }
             listIter.set(buffedCreature);
         }
     }
 
-    //TODO: dostosować increasedamage do implementacji, sprawdzić zasieg ataku
     private void increaseRangeDamage(Hero hero, int percentDamageIncrease){
         List<Creature> creatures = hero.getCreatures();
         ListIterator<Creature> listIter = creatures.listIterator();
+        float bonus = (float) percentDamageIncrease/100;
         while (listIter.hasNext()) {
             Creature buffedCreature = listIter.next();
-            if (buffedCreature.getAttackRange() > 10.0) {
-                //buffedCreature.increaseDamage()
+            if (buffedCreature.getAttackRange() == Double.MAX_VALUE) {
+                Range<Integer> buff = buffedCreature.getBasicDamage();
+                int buffLowerEndpoint = Math.round(buff.lowerEndpoint() * bonus);
+                int buffUpperEndpoint = Math.round(buff.upperEndpoint() * bonus);
+                buffedCreature.increaseDamage(buffLowerEndpoint, buffUpperEndpoint);
             }
             listIter.set(buffedCreature);
         }
@@ -204,7 +193,7 @@ public class SkillApplier {
         ListIterator<Creature> listIter = creatures.listIterator();
         while (listIter.hasNext()) {
             Creature buffedCreature = listIter.next();
-            if (buffedCreature.getName() == "ballista"){
+            if (buffedCreature.getName() == "Ballista"){
                 //metoda buffowania do ustalenia
             }
             listIter.set(buffedCreature);
@@ -216,7 +205,7 @@ public class SkillApplier {
         ListIterator<Creature> listIter = creatures.listIterator();
         while (listIter.hasNext()) {
             Creature buffedCreature = listIter.next();
-            if (buffedCreature.getName() == "catapult"){
+            if (buffedCreature.getName() == "Catapult"){
                 //metoda buffowania do ustalenia
             }
             listIter.set(buffedCreature);
@@ -228,8 +217,23 @@ public class SkillApplier {
         ListIterator<Creature> listIter = creatures.listIterator();
         while (listIter.hasNext()) {
             Creature buffedCreature = listIter.next();
-            if (buffedCreature.getName() == "first aid tent"){
-                //metoda buffowania do ustalenia
+            if (buffedCreature.getName() == "First Aid Tent"){
+                switch (skillTier){
+                    case 1:{
+                        buffedCreature.increaseDamage(0,25);
+                        break;
+                    }
+                    case 2:{
+                        buffedCreature.increaseDamage(0, 50);
+                        break;
+                    }
+                    case 3:{
+                        buffedCreature.increaseDamage(0,75);
+                        break;
+                    }
+
+                }
+
             }
             listIter.set(buffedCreature);
         }
@@ -240,7 +244,7 @@ public class SkillApplier {
         ListIterator<Creature> listIter = creatures.listIterator();
         while (listIter.hasNext()) {
             Creature buffedCreature = listIter.next();
-            //buffedCreature.increaseResistance(additionalResistance);
+            buffedCreature.increaseResistance(additionalResistance);
             listIter.set(buffedCreature);
         }
     }

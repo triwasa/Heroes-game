@@ -20,7 +20,7 @@ public class SkillEffectOnHeroTest {
 
     @Test
     void luckShoudBeIncreasedCorrectly(){
-        Skill luck = SkillFactory.createForTest("luck 1");
+        Skill luck = SkillFactory.createForTest("luck",1);
         applier.apply(luck, hero);
         assertEquals(1, hero.getLuck());
     }
@@ -28,7 +28,7 @@ public class SkillEffectOnHeroTest {
 
     @Test
     void moraleShoudBeIncreasedCorrectly(){
-        Skill leadership = SkillFactory.createForTest("leadership 1");
+        Skill leadership = SkillFactory.createForTest("leadership", 1);
         applier.apply(leadership, hero);
 //        assertEquals(1, hero.getMorale());
     }
