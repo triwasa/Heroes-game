@@ -106,7 +106,16 @@ public class SkillFactory {
                 case 3:
                     return new Skill(SkillStatistic.FIRSTAID3);
             }
-        } else if (aName == SkillStatistic.EAGLEEYE1.getCoreName()) {
+        }else if (aName == SkillStatistic.INTELLIGENCE1.getCoreName()) {
+            switch (tier) {
+                case 1:
+                    return new Skill(SkillStatistic.INTELLIGENCE1);
+                case 2:
+                    return new Skill(SkillStatistic.INTELLIGENCE2);
+                case 3:
+                    return new Skill(SkillStatistic.INTELLIGENCE3);
+            }
+        }else if (aName == SkillStatistic.EAGLEEYE1.getCoreName()) {
             switch (tier) {
                 case 1:
                     return new Skill(SkillStatistic.EAGLEEYE1);
@@ -267,6 +276,15 @@ public class SkillFactory {
                     return new Skill(SkillStatistic.FIRSTAID2);
                 case 3:
                     return new Skill(SkillStatistic.FIRSTAID3);
+            }
+        }else if (aName == SkillStatistic.INTELLIGENCE1.getCoreName()) {
+            switch (tier) {
+                case 1:
+                    return new Skill(SkillStatistic.INTELLIGENCE1);
+                case 2:
+                    return new Skill(SkillStatistic.INTELLIGENCE2);
+                case 3:
+                    return new Skill(SkillStatistic.INTELLIGENCE3);
             }
         } else if (aName == SkillStatistic.EAGLEEYE1.getCoreName()) {
             switch (tier) {

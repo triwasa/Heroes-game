@@ -3,7 +3,6 @@ package pl.sdk.skills;
 import pl.sdk.hero.Hero;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.*;
-
 import com.google.common.collect.Range;
 import java.util.List;
 import java.util.ListIterator;
@@ -52,25 +51,25 @@ public class SkillApplier {
         } else if (aName == SkillStatistic.LEADERSHIP1.getCoreName()) {
             switch (aTier) {
                 case 1:
-                    //hero.increaseMorale(1);
+                    hero.increaseStats(SkillAdditionalStatistic.LEADERSHIP1);
                     break;
                 case 2:
-                    //hero.increaseMorale(2);
+                    hero.increaseStats(SkillAdditionalStatistic.LEADERSHIP2);
                     break;
                 case 3:
-                    //hero.increaseMorale(3);
+                    hero.increaseStats(SkillAdditionalStatistic.LEADERSHIP3);
                     break;
             }
         } else if (aName == SkillStatistic.LUCK1.getCoreName()) {
             switch (aTier) {
                 case 1:
-                    //hero.increaseLuck(1);
+                    hero.increaseStats(SkillAdditionalStatistic.LUCK1);
                     break;
                 case 2:
-                    // hero.increaseLuck(2);
+                    hero.increaseStats(SkillAdditionalStatistic.LUCK2);
                     break;
                 case 3:
-                    //hero.increaseLuck(3);
+                    hero.increaseStats(SkillAdditionalStatistic.LUCK3);
                     break;
             }
         } else if (aName == SkillStatistic.RESISTANCE1.getCoreName()) {
@@ -124,13 +123,13 @@ public class SkillApplier {
         }else if (aName == SkillStatistic.INTELLIGENCE1.getCoreName()) {
             switch (aTier) {
                 case 1:
-                    //hero.increseMana(25);
+                    hero.increaseManaPercent(0.25);
                     break;
                 case 2:
-                   // hero.increseMana(50);
+                    hero.increaseManaPercent(0.5);
                     break;
                 case 3:
-                    //hero.increseMana(100);
+                    hero.increaseManaPercent(1);
                     break;
             }
         }
@@ -250,3 +249,4 @@ public class SkillApplier {
     }
 
 }
+
