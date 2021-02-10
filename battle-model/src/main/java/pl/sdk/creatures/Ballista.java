@@ -15,7 +15,6 @@ public class Ballista implements BattleObject {
     private PossibleAttackManagerIf possibleAttackManager;
     private CreatureStatisticIf stats;
     private CalculateDamageStrategy calculateDamageStrategy;
-    private DefaultCalculateStrategy damageCalculator=new DefaultCalculateStrategy();
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
@@ -26,11 +25,15 @@ public class Ballista implements BattleObject {
         this.stats=aStats;
         currentHp=stats.getMaxHp();
         possibleAttackManager = new PossibleAttackManagerForCreature();
+        calculateDamageStrategy = new CalculateDamageBallistaStrategy();
+        damageApplier = new DefaultDamageApplier();
+        possibleAttackManager = new PossibleAttackManagerForCreature();
+        attackStrategy = new BallistaAttackStrategy();
     }
 
     public Ballista() {
-        stats = CreatureStatistic.TEST;
-        calculateDamageStrategy = new DefaultCalculateStrategy();
+        stats = CreatureStatistic.BALLISTA;
+        calculateDamageStrategy = new CalculateDamageBallistaStrategy();
         damageApplier = new DefaultDamageApplier();
         possibleAttackManager = new PossibleAttackManagerForCreature();
     }
@@ -180,7 +183,7 @@ public class Ballista implements BattleObject {
         private Integer maxHp;
         private Integer moveRange;
         private Range<Integer> damage;
-        private CalculateDamageStrategy damageCalculator;
+        private CalculateDamageBallistaStrategy damageCalculator;
         private DamageApplierIf damageApplier;
         private AttackStrategy attackStrategy;
         private Integer amount;
@@ -213,7 +216,7 @@ public class Ballista implements BattleObject {
             this.amount=amount;
             return this;
         }
-        Ballista.BuilderForTesting damageCalculator (CalculateDamageStrategy aCalculateDamageStrategy){
+        Ballista.BuilderForTesting damageCalculator (CalculateDamageBallistaStrategy aCalculateDamageStrategy){
             this.damageCalculator = aCalculateDamageStrategy;
             return this;
         }
@@ -262,7 +265,7 @@ public class Ballista implements BattleObject {
                 ret.calculateDamageStrategy = damageCalculator;
             }
             else{
-                ret.calculateDamageStrategy = new DefaultCalculateStrategy();
+                ret.calculateDamageStrategy = new CalculateDamageBallistaStrategy();
             }
             if (damageApplier != null) {
                 ret.damageApplier = damageApplier;
@@ -274,7 +277,7 @@ public class Ballista implements BattleObject {
                 ret.attackStrategy = attackStrategy;
             }
             else {
-                ret.attackStrategy = new DefaultAttackStrategy();
+                ret.attackStrategy = new BallistaAttackStrategy();
             }
 
             return ret;

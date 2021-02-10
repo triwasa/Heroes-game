@@ -1,5 +1,7 @@
 package pl.sdk.creatures;
 
+import pl.sdk.hero.Hero;
+
 import java.util.List;
 import java.util.Random;
 
@@ -23,5 +25,10 @@ public class CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy extends Abs
             aWholeStackDamageToDeal = aWholeStackDamageToDeal * increaseFactor/100;
         }
         return aWholeStackDamageToDeal;
+    }
+
+    @Override
+    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
+        return 0;
     }
 }

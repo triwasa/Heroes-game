@@ -1,5 +1,7 @@
 package pl.sdk.creatures;
 
+import pl.sdk.hero.Hero;
+
 import java.util.Random;
 
 public class HealCalculateDamageStrategy implements CalculateDamageStrategy {
@@ -19,5 +21,10 @@ public class HealCalculateDamageStrategy implements CalculateDamageStrategy {
         return -healValue;
 
 
+    }
+
+    @Override
+    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
+        return 0;
     }
 }
