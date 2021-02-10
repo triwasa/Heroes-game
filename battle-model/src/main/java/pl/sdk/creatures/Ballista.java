@@ -27,8 +27,8 @@ public class Ballista implements BattleObject {
         possibleAttackManager = new PossibleAttackManagerForCreature();
         calculateDamageStrategy = new CalculateDamageBallistaStrategy();
         damageApplier = new DefaultDamageApplier();
-        possibleAttackManager = new PossibleAttackManagerForCreature();
         attackStrategy = new BallistaAttackStrategy();
+        amount = 1;
     }
 
     public Ballista() {

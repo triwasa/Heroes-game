@@ -8,6 +8,7 @@ import pl.sdk.fortifications.FortificationStatisticIf;
 import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class Wall implements BattleObject, Fortification {
@@ -230,7 +231,7 @@ public class Wall implements BattleObject, Fortification {
     static class BuilderForTesting {
         private String name;
         private Integer maxHp;
-        private Integer damage;
+        private Range<Integer> damage;
         private DamageApplierIf damageApplier;
         private Integer amount;
 
@@ -244,7 +245,7 @@ public class Wall implements BattleObject, Fortification {
             return this;
         }
 
-        BuilderForTesting damage(int damage) {
+        BuilderForTesting damage(Range<Integer> damage) {
             this.damage=damage;
             return this;
         }

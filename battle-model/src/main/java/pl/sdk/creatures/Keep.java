@@ -1,39 +1,48 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.fortifications.FortificationStatisticIf;
 
 import java.beans.PropertyChangeEvent;
 
 public class Keep implements BattleObject, Fortification {
 
 
-    private String name = "Keep";
-    private int maxHp = 2;
-    private int currentHp = 2;
-    private int attack = 1;
+    private int currentHp;
+    private PossibleAttackManagerIf possibleAttackManager;
+    private FortificationStatisticIf stats;
+    private CalculateDamageStrategy calculateDamageStrategy;
+    private DamageApplierIf damageApplier;
+    private AttackStrategy attackStrategy;
     private int amount;
-    private int level = 1;
-    public Range<Integer> damage = Range.closed(15,15);
-    private DefaultCalculateStrategy dealDamageCalc = new DefaultCalculateStrategy();
-    private PossibleAttackManagerIf possibleAttacKManager;
+    boolean counterAttackedThisTurn=true;
 
 
-    public Keep() {
-        possibleAttacKManager = new PossibleAttackManagerForCreature();
+    Keep(FortificationStatisticIf aStats){
+        this.stats = aStats;
+        currentHp=stats.getMaxHp();
+        possibleAttackManager = new PossibleAttackManagerForCreature();
+        calculateDamageStrategy = new DefaultCalculateStrategy();
+        damageApplier = new DefaultDamageApplier();
+        attackStrategy = new DefaultAttackStrategy();
+        amount = 1;
+
     }
+
+
     @Override
     public AttackStrategy getAttackStrategy() {
-        return null;
+        return attackStrategy;
     }
 
     @Override
     public CalculateDamageStrategy getCalculateDamage() {
-        return null;
+        return calculateDamageStrategy;
     }
 
     @Override
     public Range<Integer> getDamage() {
-        return null;
+        return stats.getDamage();
     }
 
     @Override
@@ -48,19 +57,19 @@ public class Keep implements BattleObject, Fortification {
 
     @Override
     public boolean canFortificationAttack() {
-        return possibleAttacKManager.canFortificationAttack();
+        return possibleAttackManager.canFortificationAttack();
     }
 
     @Override
     public boolean canCreatureAttack() {
-        return possibleAttacKManager.canCreatureAttack();
+        return possibleAttackManager.canCreatureAttack();
     }
 
 
 
     @Override
     public DamageApplierIf getDamageApplier() {
-        return null;
+        return damageApplier;
     }
 
     @Override
@@ -99,12 +108,12 @@ public class Keep implements BattleObject, Fortification {
 
     @Override
     public boolean isAlive() {
-        return false;
+        return amount > 0;
     }
 
     @Override
     public int getCurrentHp() {
-        return 0;
+        return currentHp;
     }
 
     @Override
@@ -114,17 +123,17 @@ public class Keep implements BattleObject, Fortification {
 
     @Override
     public String getName() {
-        return null;
+        return stats.getTranslatedName();
     }
 
     @Override
     public int getAmount() {
-        return 0;
+        return amount;
     }
 
     @Override
     public int getMaxHp() {
-        return 0;
+        return stats.getMaxHp();
     }
 
 

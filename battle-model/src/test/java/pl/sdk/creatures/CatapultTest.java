@@ -35,7 +35,7 @@ class CatapultTest {
                 .name("Wall")
                 .amount(1)
                 .maxHp(6)
-                .damage(NOT_IMPORTANT)
+                .damage(Range.closed(0,0))
                 .build();
 
         catapult.getAttackStrategy().attack(catapult, wall);

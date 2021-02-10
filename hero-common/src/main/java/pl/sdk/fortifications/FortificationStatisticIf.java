@@ -8,7 +8,7 @@ public interface FortificationStatisticIf {
 
     int getMaxHp();
 
-    int getDamage();
+    Range<Integer> getDamage();
 
     int getLevel();
 
