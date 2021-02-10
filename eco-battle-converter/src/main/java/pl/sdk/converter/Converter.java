@@ -29,6 +29,8 @@ public class Converter {
                 .defence(economyHero.getDefense())
                 .power(economyHero.getSpellPower())
                 .knowledge(economyHero.getKnowledge())
+                .luck(economyHero.getLuck())
+                .morale(economyHero.getMorale())
                 .build();
 
 //        economyHero.getSkills().forEach(ecoSkill ->

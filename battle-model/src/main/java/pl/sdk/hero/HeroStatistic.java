@@ -2,16 +2,21 @@ package pl.sdk.hero;
 
 public class HeroStatistic implements HeroClassStatisticIf {
 
-    private Integer attack;
-    private Integer defence;
-    private Integer power;
-    private Integer knowledge;
+    private int attack;
+    private int defence;
+    private int power;
+    private int knowledge;
+    private int luck;
+    private int morale;
 
-    HeroStatistic(int aAttack, int aDefence, int aPower, int aKnowledge) {
+
+    HeroStatistic(int aAttack, int aDefence, int aPower, int aKnowledge, int aLuck, int aMorale) {
         attack = aAttack;
         defence = aDefence;
         power = aPower;
         knowledge = aKnowledge;
+        luck = aLuck;
+        morale = aMorale;
     }
 
     public int getAttack() {
@@ -30,4 +35,11 @@ public class HeroStatistic implements HeroClassStatisticIf {
         return knowledge;
     }
 
+    public int getLuck() {
+        return luck;
+    }
+
+    public int getMorale() {
+        return morale;
+    }
 }
