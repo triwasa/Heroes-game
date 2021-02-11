@@ -93,5 +93,50 @@ class FirstAidTentTest {
 
     }
 
+    @Test
+    void shouldTakeDamage() {
+        FirstAidTent tent=new FirstAidTent.BuilderForTesting()
+                .name("FirstAidTent")
+                .attack(NOT_IMPORTANT)
+                .armor(NOT_IMPORTANT)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
+                .build();
+        Creature attacker=new Creature.BuilderForTesting()
+                .name("Attacker")
+                .attack(5)
+                .armor(NOT_IMPORTANT)
+                .maxHp(NOT_IMPORTANT)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(5, 5))
+                .build();
+        attacker.getAttackStrategy().attack(attacker, tent);
+        assertEquals(95, tent.getCurrentHp());
+    }
+
+    @Test
+    void shouldGetDestroyed() {
+        FirstAidTent tent=new FirstAidTent.BuilderForTesting()
+                .name("FirstAidTent")
+                .attack(NOT_IMPORTANT)
+                .armor(NOT_IMPORTANT)
+                .maxHp(5)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(5, 5))
+                .build();
+        Creature attacker=new Creature.BuilderForTesting()
+                .name("Attacker")
+                .attack(5)
+                .armor(NOT_IMPORTANT)
+                .maxHp(NOT_IMPORTANT)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
+                .build();
+        attacker.getAttackStrategy().attack(attacker, tent);
+        assertEquals(0, tent.getCurrentHp());
+        assertEquals(0, tent.getAmount());
+    }
+
 
 }

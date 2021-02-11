@@ -40,9 +40,54 @@ class CatapultTest {
 
         catapult.getAttackStrategy().attack(catapult, wall);
         assertEquals(3, wall.getCurrentHp());
-
-
     }
+
+    @Test
+    void shouldTakeDamage() {
+        Catapult catapult=new Catapult.BuilderForTesting()
+                .name("Catapult")
+                .attack(NOT_IMPORTANT)
+                .armor(NOT_IMPORTANT)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
+                .build();
+        Creature attacker=new Creature.BuilderForTesting()
+                .name("Attacker")
+                .attack(5)
+                .armor(NOT_IMPORTANT)
+                .maxHp(NOT_IMPORTANT)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(5, 5))
+                .build();
+        attacker.getAttackStrategy().attack(attacker, catapult);
+        assertEquals(95, catapult.getCurrentHp());
+    }
+
+    @Test
+    void shouldGetDestroyed() {
+        Catapult catapult=new Catapult.BuilderForTesting()
+                .name("Catapult")
+                .attack(NOT_IMPORTANT)
+                .armor(NOT_IMPORTANT)
+                .maxHp(5)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(5, 5))
+                .build();
+        Creature attacker=new Creature.BuilderForTesting()
+                .name("Attacker")
+                .attack(5)
+                .armor(NOT_IMPORTANT)
+                .maxHp(NOT_IMPORTANT)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
+                .build();
+        attacker.getAttackStrategy().attack(attacker, catapult);
+        assertEquals(0, catapult.getCurrentHp());
+        assertEquals(0, catapult.getAmount());
+    }
+
+
 
 
 }

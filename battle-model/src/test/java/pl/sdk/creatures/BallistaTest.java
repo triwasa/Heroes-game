@@ -45,6 +45,51 @@ class BallistaTest {
         assertEquals(94, defender1.getCurrentHp());
     }
 
+    @Test
+    void shouldTakeDamage() {
+        Ballista ballista=new Ballista.BuilderForTesting()
+                .name("Ballista")
+                .attack(NOT_IMPORTANT)
+                .armor(NOT_IMPORTANT)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
+                .build();
+        Creature attacker=new Creature.BuilderForTesting()
+                .name("Attacker")
+                .attack(5)
+                .armor(10)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
+                .build();
+        attacker.getAttackStrategy().attack(attacker, ballista);
+        assertEquals(95, ballista.getCurrentHp());
+    }
+
+    @Test
+    void shouldGetDestroyed() {
+        Ballista ballista=new Ballista.BuilderForTesting()
+                .name("Ballista")
+                .attack(NOT_IMPORTANT)
+                .armor(NOT_IMPORTANT)
+                .maxHp(5)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
+                .build();
+        Creature attacker=new Creature.BuilderForTesting()
+                .name("Attacker")
+                .attack(5)
+                .armor(10)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
+                .build();
+        attacker.getAttackStrategy().attack(attacker, ballista);
+        assertEquals(0, ballista.getCurrentHp());
+        assertEquals(0, ballista.getAmount());
+    }
+
 }
 
 
