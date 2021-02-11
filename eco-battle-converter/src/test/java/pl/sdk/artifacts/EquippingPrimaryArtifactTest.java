@@ -41,4 +41,34 @@ public class EquippingPrimaryArtifactTest {
         assertEquals(primaryHeroAttack + 2, hero.getAttack());
         assertEquals(primaryHeroDefense + 2, hero.getDefence());
     }
+
+    @Test
+    void heroShouldIncreaseLuckWithPurchasedArtifact() {
+        int primaryHeroLuck = hero.getLuck();
+
+        (artifactFactory.create(CLOVER_OF_FORTUNE)).buff(hero); // +1 luck
+
+        assertEquals(primaryHeroLuck + 1, hero.getLuck());
+    }
+
+    @Test
+    void heroShouldIncreaseMoraleWithPurchasedArtifact() {
+        int primaryHeroMorale= hero.getMorale();
+
+        (artifactFactory.create(CREST_OF_VALOR)).buff(hero); // +1 morale
+
+        assertEquals(primaryHeroMorale + 1, hero.getMorale());
+    }
+
+    @Test
+    void heroShouldIncreaseLuckAndMoraleWithPurchasedArtifact() {
+        int primaryHeroMorale= hero.getMorale();
+        int primaryHeroLuck= hero.getLuck();
+
+        (artifactFactory.create(PENDANT_OF_COURAGE)).buff(hero); // +3 morale and luck
+
+        assertEquals(primaryHeroMorale + 3, hero.getMorale());
+        assertEquals(primaryHeroLuck + 3, hero.getLuck());
+    }
+
 }

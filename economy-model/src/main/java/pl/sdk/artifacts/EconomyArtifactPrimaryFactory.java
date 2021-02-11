@@ -141,6 +141,8 @@ public class EconomyArtifactPrimaryFactory {
                 return new EconomyArtifact(ArtifactStatistic.TOME_OF_FIRE_MAGIC, 1500);
             case TOME_OF_WATER_MAGIC:
                 return new EconomyArtifact(ArtifactStatistic.TOME_OF_WATER_MAGIC, 1500);
+            case SPELLBINDERS_HAT:
+                return new EconomyArtifact(ArtifactStatistic.SPELLBINDERS_HAT, 4000);
             case PENDANT_OF_DEATH:
                 return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_DEATH, 450);
             case PENDANT_OF_DISPASSION:
@@ -157,11 +159,12 @@ public class EconomyArtifactPrimaryFactory {
                 return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_SECOND_SIGHT, 450);
             case PENDANT_OF_TOTAL_RECALL:
                 return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_TOTAL_RECALL, 450);
+            case SPHERE_OF_PERMANENCE:
+                return new EconomyArtifact(ArtifactStatistic.SPHERE_OF_PERMANENCE, 450);
             case RECANTERS_CLOAK:
                 return new EconomyArtifact(ArtifactStatistic.RECANTERS_CLOAK, 900);
             case ORB_OF_INHIBITION:
                 return new EconomyArtifact(ArtifactStatistic.ORB_OF_INHIBITION, 2000);
-
 
             default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
