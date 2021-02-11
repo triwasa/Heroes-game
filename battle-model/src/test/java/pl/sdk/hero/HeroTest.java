@@ -42,7 +42,7 @@ public class HeroTest {
 
         // Intelligence	skill can increase mana by 25%, 50%, 100%
         hero.increaseManaPercent(0.25);
-        assertEquals(hero.getMana(), 10 + 10 * 0.25);
+        assertEquals(hero.getMana(), (int) Math.round(10 + 10 * 0.25));
 
     }
 
