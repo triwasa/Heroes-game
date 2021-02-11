@@ -3,6 +3,8 @@ package pl.sdk;
 import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.hero.*;
+import pl.sdk.skills.EconomySkill;
+import pl.sdk.spell.EconomySpell;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

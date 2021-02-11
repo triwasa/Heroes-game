@@ -1,6 +1,7 @@
 package pl.sdk.creatures;
 
 import org.w3c.dom.ranges.Range;
+import pl.sdk.hero.Hero;
 
 import java.util.Random;
 
@@ -35,6 +36,11 @@ public  class DoubleDamagePercentChanceAttackStrategy implements AttackStrategy 
             afterAttack(aAttacker,aDefender);
             counterAttack(aAttacker,aDefender);
         }
+    }
+
+    @Override
+    public void attack(BattleObject aAttacker, BattleObject aDefender, Hero aHero) {
+
     }
 
     public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {

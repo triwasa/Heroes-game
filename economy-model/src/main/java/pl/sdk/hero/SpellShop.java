@@ -4,7 +4,7 @@ import pl.sdk.spell.EconomySpell;
 
 
 public class SpellShop {
-    public void buy(EconomyHero aHero, EconomySpell aEconomySpell) {
+    public static void buy(EconomyHero aHero, EconomySpell aEconomySpell) {
         aHero.substractGold(aEconomySpell.getCost());
         try{
             aHero.addSpell(aEconomySpell);

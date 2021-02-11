@@ -1,5 +1,7 @@
 package pl.sdk.creatures;
 
+import pl.sdk.hero.Hero;
+
 import java.util.Random;
 
 public  class ballistickAttackStrategy implements AttackStrategy {
@@ -63,6 +65,11 @@ public  class ballistickAttackStrategy implements AttackStrategy {
                 afterAttack(aAttacker,aDefender);
             }
         }
+    }
+
+    @Override
+    public void attack(BattleObject aAttacker, BattleObject aDefender, Hero aHero) {
+
     }
 
     public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {

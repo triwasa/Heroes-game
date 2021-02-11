@@ -5,6 +5,8 @@ import pl.sdk.artifacts.EconomyArtifact;
 
 
 public class ArtifactShop {
+    public void buy(EconomyHero aActiveHero, EconomyArtifact aEconomyArtifact) {
+    }
 //    ArtifactPrimary1Factory artifactPrimary1Factory = new ArtifactPrimary1Factory();
 //
 //    public void buy(EconomyHero aHero, EconomyArtifact aEconomyArtifact) {

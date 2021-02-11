@@ -1,6 +1,8 @@
 package pl.sdk.creatures;
 
 
+import pl.sdk.hero.Hero;
+
 import java.util.Random;
 
 class MaxCalculateDamageStrategy extends AbstractCalculateDamageStrategy {
@@ -35,6 +37,11 @@ class MaxCalculateDamageStrategy extends AbstractCalculateDamageStrategy {
         double wholeStackDamageToDeal = aAttacker.getAmount() * oneCreatureDamageToDeal;
         double wholeStackDamageToDealAfterChange = changeDamageAfter(wholeStackDamageToDeal, aAttacker, aDefender);
         return (int)wholeStackDamageToDealAfterChange;
+    }
+
+    @Override
+    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
+        return 0;
     }
 
     @Override

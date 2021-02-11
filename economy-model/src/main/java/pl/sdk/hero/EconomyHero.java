@@ -4,6 +4,7 @@ import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.artifacts.HeroEquipment;
 import pl.sdk.skills.EconomySkill;
+import pl.sdk.spell.EconomySpell;
 
 import java.util.*;
 
@@ -33,6 +34,10 @@ public class EconomyHero {
 
     public int getMorale() {
         return 0;
+    }
+
+    void addSpell(EconomySpell aEconomySpell) {
+        
     }
 
     public enum Fraction {
