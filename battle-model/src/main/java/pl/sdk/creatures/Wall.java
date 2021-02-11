@@ -1,11 +1,14 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.creatures.DefaultDamageApplier;
 import pl.sdk.fortifications.FortificationStatistic;
 import pl.sdk.fortifications.FortificationStatisticIf;
 
+import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class Wall implements BattleObject, Fortification {
@@ -75,19 +78,18 @@ public class Wall implements BattleObject, Fortification {
     }
 
     @Override
-    public void applyDamage(int damageToApply) {
-        
+    public void applyDamage(int aDamageToApply) {
+        int fullCurrentHp = currentHp - aDamageToApply;
+        if (fullCurrentHp <= 0) {
+            amount = 0;
+            currentHp = 0;
+        }
+        else
+        {
+            currentHp = fullCurrentHp;
+        }
     }
 
-    @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-        currentHp=aCurrentHp;
-    }
-
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        amount=aAmount;
-    }
 
     @Override
     public boolean isCreature() {
@@ -99,10 +101,7 @@ public class Wall implements BattleObject, Fortification {
         return true;
     }
 
-    @Override
-    public void counterAttack(BattleObject attacker) {
 
-    }
 
     @Override
     public boolean isAlive() {
@@ -147,6 +146,21 @@ public class Wall implements BattleObject, Fortification {
     @Override
     public int getMoveRange() {
         return 0;
+    }
+
+    @Override
+    public boolean canCounterAttack() {
+        return false;
+    }
+
+    @Override
+    public void counterAttackedInThisTurn() {
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+
     }
 
     static class Builder {
@@ -217,7 +231,7 @@ public class Wall implements BattleObject, Fortification {
     static class BuilderForTesting {
         private String name;
         private Integer maxHp;
-        private Integer damage;
+        private Range<Integer> damage;
         private DamageApplierIf damageApplier;
         private Integer amount;
 
@@ -231,7 +245,7 @@ public class Wall implements BattleObject, Fortification {
             return this;
         }
 
-        BuilderForTesting damage(int damage) {
+        BuilderForTesting damage(Range<Integer> damage) {
             this.damage=damage;
             return this;
         }

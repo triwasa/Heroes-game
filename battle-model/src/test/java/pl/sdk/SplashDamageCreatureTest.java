@@ -1,13 +1,10 @@
-/*
 package pl.sdk;
 
 import org.junit.jupiter.api.Test;
+import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
 
-
-import java.util.Collections;
-import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -15,7 +12,7 @@ public class SplashDamageCreatureTest {
 
     @Test
     void checkSplashDamage(){
-        Creature splashCreature = new NecropolisFactory().create(true,5, 1);
+        BattleObject splashCreature = new NecropolisFactory().create(true,5, 1);
         Creature defender = spy(Creature.class);
         Creature splashMock1 = spy(Creature.class);
         Creature splashMock2 = spy(Creature.class);
@@ -35,17 +32,18 @@ public class SplashDamageCreatureTest {
         board.add(new Point(11,13),splashMock4);
         board.add(new Point(0,2),splashMock4);
 
-        GameEngine gameEngine = new GameEngine(List.of(splashCreature), Collections.emptyList(), board);
-        gameEngine.attack(10,10);
+        AttackEngine attackEngine = new AttackEngine(board);
+        attackEngine.attack(splashCreature,10,10);
 
-        verify(defender).getDamageApplier().calculateDamageToApply(anyInt(),defender);
-        verify(notSplashMock1,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock1);
-        verify(notSplashMock2,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock2);
-        verify(notSplashMock3,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock3);
-        verify(splashMock1).getDamageApplier().calculateDamageToApply(anyInt(),splashMock1);
-        verify(splashMock2).getDamageApplier().calculateDamageToApply(anyInt(),splashMock2);
-        verify(splashMock3).getDamageApplier().calculateDamageToApply(anyInt(),splashMock3);
-        verify(splashMock4).getDamageApplier().calculateDamageToApply(anyInt(),splashMock4);
+
+        verify(defender).applyDamage(anyInt());
+        verify(notSplashMock1,never()).applyDamage(anyInt());
+        verify(notSplashMock2,never()).applyDamage(anyInt());
+        verify(notSplashMock3,never()).applyDamage(anyInt());
+        verify(splashMock1).applyDamage(anyInt());
+        verify(splashMock2).applyDamage(anyInt());
+        verify(splashMock3).applyDamage(anyInt());
+        verify(splashMock4).applyDamage(anyInt());
     };
 
     @Test
@@ -70,19 +68,18 @@ public class SplashDamageCreatureTest {
         board.add(new Point(11,13),splashMock4);
         board.add(new Point(3,2),splashMock4);
 
-        GameEngine gameEngine = new GameEngine(List.of(notSplashCreature), Collections.emptyList(), board);
-        gameEngine.attack(1,1);
+        AttackEngine attackEngine = new AttackEngine(board);
+        attackEngine.attack(notSplashCreature,1,1);
 
-        verify(defender).getDamageApplier().calculateDamageToApply(anyInt(),defender);
-        verify(notSplashMock1,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock1);
-        verify(notSplashMock2,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock2);
-        verify(notSplashMock3,never()).getDamageApplier().calculateDamageToApply(anyInt(),notSplashMock3);
-        verify(splashMock1,never()).getDamageApplier().calculateDamageToApply(anyInt(),splashMock1);
-        verify(splashMock2,never()).getDamageApplier().calculateDamageToApply(anyInt(),splashMock2);
-        verify(splashMock3,never()).getDamageApplier().calculateDamageToApply(anyInt(),splashMock3);
-        verify(splashMock4,never()).getDamageApplier().calculateDamageToApply(anyInt(),splashMock4);
+        verify(defender).applyDamage(anyInt());
+        verify(notSplashMock1,never()).applyDamage(anyInt());
+        verify(notSplashMock2,never()).applyDamage(anyInt());
+        verify(notSplashMock3,never()).applyDamage(anyInt());
+        verify(splashMock1,never()).applyDamage(anyInt());
+        verify(splashMock2,never()).applyDamage(anyInt());
+        verify(splashMock3,never()).applyDamage(anyInt());
+        verify(splashMock4,never()).applyDamage(anyInt());
     };
 
 
 }
-*/

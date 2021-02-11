@@ -1,5 +1,6 @@
 package pl.sdk.creatures;
 
+import com.google.common.collect.Range;
 import pl.sdk.fortifications.FortificationStatisticIf;
 
 class FortificationStatisticForTesting implements FortificationStatisticIf {
@@ -7,12 +8,12 @@ class FortificationStatisticForTesting implements FortificationStatisticIf {
 
 
     private final String name;
-    private int damage;
+    private Range<Integer> damage;
     private final int maxHp;
 
 
 
-    FortificationStatisticForTesting(String aName, int aMaxHp, int aDamage) {
+    FortificationStatisticForTesting(String aName, int aMaxHp, Range<Integer> aDamage) {
         name=aName;
         maxHp=aMaxHp;
         damage = aDamage;
@@ -34,7 +35,7 @@ class FortificationStatisticForTesting implements FortificationStatisticIf {
     }
 
     @Override
-    public int getDamage() {
+    public Range<Integer> getDamage() {
         return damage;
     }
 

@@ -1,5 +1,7 @@
 package pl.sdk.creatures;
 
+import pl.sdk.hero.Hero;
+
 import java.util.Random;
 
 public class CalculateDamageDefenceDecreaseStrategy extends AbstractCalculateDamageStrategy {
@@ -22,6 +24,11 @@ public class CalculateDamageDefenceDecreaseStrategy extends AbstractCalculateDam
         int wholeStackDamageToDeal = super.calculateDamage(aAttacker,copyOfDefenderWithDecreasedArmor);
 
         return wholeStackDamageToDeal;
+    }
+
+    @Override
+    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
+        return 0;
     }
 
     @Override

@@ -2,6 +2,9 @@ package pl.sdk.creatures;
 
 
 import com.google.common.collect.Range;
+import pl.sdk.creatures.DefaultDamageApplier;
+
+import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -37,7 +40,6 @@ public class Catapult  implements BattleObject {
         damageApplier = new DefaultDamageApplier();
         attackStrategy = new DefaultAttackStrategy();
         damageCalculator = new DefaultCalculateStrategy();
-        possibleAttackManager = new PossibleAttackManagerForMachine();
     }
 
 
@@ -56,6 +58,7 @@ public class Catapult  implements BattleObject {
         return stats.getDamage();
     }
 
+
     @Override
     public int getAttack() {
         return stats.getAttack();
@@ -63,7 +66,7 @@ public class Catapult  implements BattleObject {
 
     @Override
     public double getAttackRange() {
-        return 20.0;
+        return Double.MAX_VALUE;
     }
 
 
@@ -84,18 +87,34 @@ public class Catapult  implements BattleObject {
     }
 
     @Override
-    public void applyDamage(int damageToApply) {
+    public void applyDamage(int aDamageToApply) {
+        int fullCurrentHp = currentHp - aDamageToApply;
+        if (fullCurrentHp <= 0) {
+            amount = 0;
+            currentHp = 0;
+        }
+        else
+        {
+            currentHp = fullCurrentHp;
+        }
 
     }
+
 
     @Override
     public String getMovementType() {
         return stats.getMovementType();
     }
 
+
     @Override
     public int getMoveRange() {
         return 0;
+    }
+
+    @Override
+    public boolean canCounterAttack() {
+        return false;
     }
 
     @Override
@@ -130,21 +149,14 @@ public class Catapult  implements BattleObject {
         return stats.getMaxHp();
     }
 
-    @Override
-    public void currentHpAfterAttack(int aCurrentHp) {
-        currentHp = aCurrentHp;
-    }
+
 
     @Override
     public int getArmor() {
         return stats.getArmor();
     }
 
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        amount =aAmount;
 
-    }
 
     @Override
     public boolean isCreature() {
@@ -157,84 +169,15 @@ public class Catapult  implements BattleObject {
     }
 
     @Override
-    public void counterAttack(BattleObject attacker) {
+    public void counterAttackedInThisTurn() {
 
     }
 
-
-    static class Builder {
-        private CreatureStatisticIf stats;
-        private CalculateDamageStrategy damageCalculator;
-        private DamageApplierIf damageApplier;
-        private AttackStrategy attackStrategy;
-        private Integer amount;
-
-        Catapult.Builder statistic(CreatureStatisticIf aStats) {
-            this.stats=aStats;
-            return this;
-        }
-
-
-        Catapult.Builder amount(int amount) {
-            this.amount=amount;
-            return this;
-        }
-
-        Catapult.Builder damageCalculator(CalculateDamageStrategy aCalculateDamageStrategy) {
-            this.damageCalculator=aCalculateDamageStrategy;
-            return this;
-        }
-
-        Catapult.Builder damageApplier(DamageApplierIf aDamageApplier) {
-            this.damageApplier=aDamageApplier;
-            return this;
-        }
-
-        Catapult.Builder attackStrategy(AttackStrategy aAttackStrategy) {
-            this.attackStrategy=aAttackStrategy;
-            return this;
-        }
-
-        Catapult build() {
-            Set<String> emptyFields=new HashSet<>();
-            if (stats == null) {
-                emptyFields.add("stats");
-            }
-            if (!emptyFields.isEmpty()) {
-                throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
-            }
-
-            Catapult ret=createInstance(stats);
-            if (amount == null) {
-                ret.amount=1;
-            } else {
-                ret.amount=amount;
-            }
-            if (damageCalculator != null) {
-                ret.calculateDamageStrategy=damageCalculator;
-            } else {
-                ret.calculateDamageStrategy=new DefaultCalculateStrategy();
-            }
-            if (damageApplier != null) {
-                ret.damageApplier=damageApplier;
-            } else {
-                ret.damageApplier=new DefaultDamageApplier();
-            }
-            if (attackStrategy != null) {
-                ret.attackStrategy=attackStrategy;
-            } else {
-                ret.attackStrategy=new DefaultAttackStrategy();
-            }
-
-            return ret;
-
-        }
-
-        Catapult createInstance(CreatureStatisticIf aStats) {
-            return new Catapult(aStats);
-        }
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
 
     }
+
 
     static class BuilderForTesting {
         private String name;

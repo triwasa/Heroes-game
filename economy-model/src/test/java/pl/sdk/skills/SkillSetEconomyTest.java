@@ -13,7 +13,7 @@ public class SkillSetEconomyTest {
     void skillShouldBeAddedCorrectly() {
         EconomySkillSet aSkillSet = new EconomySkillSet();
         EconomySkillFactory skillFactory = new EconomySkillFactory();
-        EconomySkill offence = skillFactory.create("offence 1");
+        EconomySkill offence = skillFactory.create("offence",1);
         aSkillSet.addSkill(offence);
         assertEquals(true, aSkillSet.contains(offence));
     }
@@ -22,9 +22,9 @@ public class SkillSetEconomyTest {
     void skillShouldBeReplacedCorrectly() {
         EconomySkillSet aSkillSet = new EconomySkillSet();
         EconomySkillFactory skillFactory = new EconomySkillFactory();
-        EconomySkill offence1 = skillFactory.create("offence 1");
+        EconomySkill offence1 = skillFactory.create("offence",1);
         aSkillSet.addSkill(offence1);
-        EconomySkill offence2 = skillFactory.create("offence 2");
+        EconomySkill offence2 = skillFactory.create("offence",2);
         aSkillSet.addSkill(offence2);
         assertEquals(false, aSkillSet.contains(offence1));
         assertEquals(true, aSkillSet.contains(offence2));

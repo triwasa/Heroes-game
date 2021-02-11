@@ -1,5 +1,7 @@
 package pl.sdk.creatures;
 
-public interface BattleObject extends Defender, Attacker {
-   // void moveX(Point);
+import java.beans.PropertyChangeListener;
+
+public interface BattleObject extends Defender, Attacker, PropertyChangeListener {
+    void counterAttackedInThisTurn();
 }

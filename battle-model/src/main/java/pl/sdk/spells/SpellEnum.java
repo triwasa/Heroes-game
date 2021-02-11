@@ -3,7 +3,7 @@ package pl.sdk.spells;
 public enum SpellEnum {
 
     MAGIC_ARROW_AIR("Magic Arrow", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.AIR, 1),
-    BLESS("Bless", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.WATHER, 1 );
+    BLESS("Bless", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 1 );
 
     public enum typeOfSpell{
         CURE, ATTACK, OTHER;
@@ -14,7 +14,7 @@ public enum SpellEnum {
     }
 
     public enum magicTypeOfSpell {
-        AIR, WATHER, FIRE, EARH;
+        AIR, WATER, FIRE, EARTH;
     }
 
     private String name;

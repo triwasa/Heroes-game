@@ -1,3 +1,4 @@
+
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
@@ -34,10 +35,10 @@ class CatapultTest {
                 .name("Wall")
                 .amount(1)
                 .maxHp(6)
-                .damage(NOT_IMPORTANT)
+                .damage(Range.closed(0,0))
                 .build();
 
-        attackEngine.attack(catapult, wall);
+        catapult.getAttackStrategy().attack(catapult, wall);
         assertEquals(3, wall.getCurrentHp());
 
 

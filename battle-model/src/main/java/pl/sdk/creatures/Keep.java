@@ -1,36 +1,48 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.fortifications.FortificationStatisticIf;
+
+import java.beans.PropertyChangeEvent;
 
 public class Keep implements BattleObject, Fortification {
 
 
-    private String name = "Keep";
-    private int maxHp = 2;
-    private int currentHp = 2;
-    private int attack = 1;
-    private int level = 1;
-    public Range<Integer> damage = Range.closed(15,15);
-    private DefaultCalculateStrategy dealDamageCalc = new DefaultCalculateStrategy();
-    private PossibleAttackManagerIf possibleAttacKManager;
+    private int currentHp;
+    private PossibleAttackManagerIf possibleAttackManager;
+    private FortificationStatisticIf stats;
+    private CalculateDamageStrategy calculateDamageStrategy;
+    private DamageApplierIf damageApplier;
+    private AttackStrategy attackStrategy;
+    private int amount;
+    boolean counterAttackedThisTurn=true;
 
 
-    public Keep() {
-        possibleAttacKManager = new PossibleAttackManagerForCreature();
+    Keep(FortificationStatisticIf aStats){
+        this.stats = aStats;
+        currentHp=stats.getMaxHp();
+        possibleAttackManager = new PossibleAttackManagerForCreature();
+        calculateDamageStrategy = new DefaultCalculateStrategy();
+        damageApplier = new DefaultDamageApplier();
+        attackStrategy = new DefaultAttackStrategy();
+        amount = 1;
+
     }
+
+
     @Override
     public AttackStrategy getAttackStrategy() {
-        return null;
+        return attackStrategy;
     }
 
     @Override
     public CalculateDamageStrategy getCalculateDamage() {
-        return null;
+        return calculateDamageStrategy;
     }
 
     @Override
     public Range<Integer> getDamage() {
-        return null;
+        return stats.getDamage();
     }
 
     @Override
@@ -45,31 +57,32 @@ public class Keep implements BattleObject, Fortification {
 
     @Override
     public boolean canFortificationAttack() {
-        return possibleAttacKManager.canFortificationAttack();
+        return possibleAttackManager.canFortificationAttack();
     }
 
     @Override
     public boolean canCreatureAttack() {
-        return possibleAttacKManager.canCreatureAttack();
+        return possibleAttackManager.canCreatureAttack();
     }
 
-    @Override
-    public void currentHpAfterAttack(int currentHp) {
-        currentHp = currentHp;
-    }
 
-    @Override
-    public void amountAfterAttack(int aAmount) {
-        aAmount = aAmount;
-    }
 
     @Override
     public DamageApplierIf getDamageApplier() {
-        return null;
+        return damageApplier;
     }
 
     @Override
-    public void applyDamage(int damageToApply) {
+    public void applyDamage(int aDamageToApply) {
+        int fullCurrentHp = currentHp - aDamageToApply;
+        if (fullCurrentHp <= 0) {
+            amount = 0;
+            currentHp = 0;
+        }
+        else
+        {
+            currentHp = fullCurrentHp;
+        }
 
     }
 
@@ -89,13 +102,18 @@ public class Keep implements BattleObject, Fortification {
     }
 
     @Override
-    public boolean isAlive() {
+    public boolean canCounterAttack() {
         return false;
     }
 
     @Override
+    public boolean isAlive() {
+        return amount > 0;
+    }
+
+    @Override
     public int getCurrentHp() {
-        return 0;
+        return currentHp;
     }
 
     @Override
@@ -105,17 +123,17 @@ public class Keep implements BattleObject, Fortification {
 
     @Override
     public String getName() {
-        return null;
+        return stats.getTranslatedName();
     }
 
     @Override
     public int getAmount() {
-        return 0;
+        return amount;
     }
 
     @Override
     public int getMaxHp() {
-        return 0;
+        return stats.getMaxHp();
     }
 
 
@@ -137,8 +155,14 @@ public class Keep implements BattleObject, Fortification {
         return true;
     }
 
+
     @Override
-    public void counterAttack(BattleObject attacker) {
+    public void counterAttackedInThisTurn() {
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
 
     }
 }

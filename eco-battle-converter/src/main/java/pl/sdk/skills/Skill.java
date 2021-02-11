@@ -1,4 +1,5 @@
-package skills;
+package pl.sdk.skills;
+
 
 import pl.sdk.skills.SkillStatistic;
 

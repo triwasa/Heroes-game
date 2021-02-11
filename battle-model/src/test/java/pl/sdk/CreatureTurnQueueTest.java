@@ -4,6 +4,7 @@ import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.CreatureTurnQueue;
+import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
 
@@ -17,7 +18,7 @@ class CreatureTurnQueueTest {
     private Creature a;
     private Creature b;
     private Creature c;
-    private Collection<Creature> creatureList;
+    private Collection<BattleObject> creatureList;
 
 
     @BeforeEach
