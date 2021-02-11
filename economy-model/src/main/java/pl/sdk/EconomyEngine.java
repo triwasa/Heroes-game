@@ -2,9 +2,7 @@ package pl.sdk;
 
 import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.creatures.EconomyCreature;
-import pl.sdk.hero.CreatureShop;
-import pl.sdk.hero.EconomyHero;
-import pl.sdk.spell.EconomySpell;
+import pl.sdk.hero.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -17,6 +15,8 @@ public class EconomyEngine {
     private final EconomyHero hero2;
     private EconomyHero activeHero;
     private final CreatureShop creatureShop = new CreatureShop();
+    private final ArtifactShop artifactShop = new ArtifactShop();
+    private final SkillShop skillShop = new SkillShop();
     private int roundNumber;
     private final PropertyChangeSupport observerSupport;
 
@@ -75,9 +75,21 @@ public class EconomyEngine {
     }
 
     public void buyArtifact(EconomyArtifact aEconomyArtifact) {
+        artifactShop.buy(activeHero,aEconomyArtifact);
 
     }
 
-    public void buySpell(EconomySpell economySpell){
+    public void buySkill(EconomySkill aEconomySkill){
+        SkillShop.buy(activeHero,aEconomySkill);
     }
+
+    public void buySpell(EconomySpell aEconomySpell){
+        SpellShop.buy(activeHero,aEconomySpell);
+    }
+
+
+
+
+
+
 }

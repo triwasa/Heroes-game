@@ -9,7 +9,7 @@ public class SkillShop {
             aHero.addSkill(aEconomySklill);
         }catch(Exception e){
             aHero.addGold(aEconomySklill.getGoldCost());
-            throw new IllegalStateException("hero already has the item");
+            throw new IllegalStateException("hero already has the skill");
         }
     }
 }
