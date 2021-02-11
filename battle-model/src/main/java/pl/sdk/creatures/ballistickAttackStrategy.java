@@ -67,10 +67,6 @@ public  class ballistickAttackStrategy implements AttackStrategy {
         }
     }
 
-    @Override
-    public void attack(BattleObject aAttacker, BattleObject aDefender, Hero aHero) {
-
-    }
 
     public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
 

@@ -27,8 +27,4 @@ public class CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy extends Abs
         return aWholeStackDamageToDeal;
     }
 
-    @Override
-    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
-        return 0;
-    }
 }

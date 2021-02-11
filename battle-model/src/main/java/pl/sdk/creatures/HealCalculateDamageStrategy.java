@@ -22,9 +22,4 @@ public class HealCalculateDamageStrategy implements CalculateDamageStrategy {
 
 
     }
-
-    @Override
-    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
-        return 0;
-    }
 }

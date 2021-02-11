@@ -22,8 +22,4 @@ public class DefaultCalculateStrategy extends AbstractCalculateDamageStrategy {
         return aWholeStackDamageToDeal;
     }
 
-    @Override
-    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
-        return 0;
-    }
 }

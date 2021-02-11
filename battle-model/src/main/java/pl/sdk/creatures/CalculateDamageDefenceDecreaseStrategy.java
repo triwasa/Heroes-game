@@ -27,11 +27,6 @@ public class CalculateDamageDefenceDecreaseStrategy extends AbstractCalculateDam
     }
 
     @Override
-    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
-        return 0;
-    }
-
-    @Override
     double changeDamageAfter(double aWholeStackDamageToDeal, Attacker aAttacker, Defender aDefender) {
         return aWholeStackDamageToDeal;
     }

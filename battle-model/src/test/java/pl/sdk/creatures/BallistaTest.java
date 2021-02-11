@@ -28,6 +28,7 @@ class BallistaTest {
         Ballista ballista=new Ballista.BuilderForTesting()
                 .name("Ballista")
                 .attack(10)
+                .hero(hero)
                 .armor(NOT_IMPORTANT)
                 .maxHp(NOT_IMPORTANT)
                 .moveRange(NOT_IMPORTANT)
@@ -41,7 +42,7 @@ class BallistaTest {
                 .moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
                 .build();
-        ballista.getAttackStrategy().attack(ballista, defender1, hero);
+        ballista.getAttackStrategy().attack(ballista, defender1);
         assertEquals(94, defender1.getCurrentHp());
     }
 

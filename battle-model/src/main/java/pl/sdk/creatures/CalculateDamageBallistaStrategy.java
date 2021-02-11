@@ -7,21 +7,19 @@ import java.util.Random;
 public class CalculateDamageBallistaStrategy extends AbstractCalculateDamageStrategy {
 
 
-    private final Random rand;
-    CalculateDamageBallistaStrategy() {
-        this(new Random());
-    }
+    private static final Random rand= new Random();
+    private int heroAttack;
 
-    CalculateDamageBallistaStrategy(Random aRandomizer) {
-        super(aRandomizer);
-        rand = aRandomizer;
+    CalculateDamageBallistaStrategy(int heroAttack) {
+        super(rand);
+        this.heroAttack = heroAttack;
     }
 
     @Override
-    public int calculateDamage(Attacker aAttacker, Defender aDefender, Hero hero) {
+    public int calculateDamage(Attacker aAttacker, Defender aDefender) {
         Random rand=new Random();
         int damage = rand.nextInt(aAttacker.getDamage().upperEndpoint() - aAttacker.getDamage().lowerEndpoint()+1) + aAttacker.getDamage().lowerEndpoint();
-        return damage * (hero.getAttack() + 1);
+        return damage * (heroAttack + 1);
 
     }
 
