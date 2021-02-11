@@ -5,21 +5,23 @@ import pl.sdk.spells.Immunity;
 import pl.sdk.spells.SpellEnum;
 
 import java.beans.PropertyChangeEvent;
+import java.util.Random;
 
-public class DecreasedArmorCreatureDecorator extends Creature {
+public class DoubleDamagePercentChanceDecorator extends Creature {
 
     private final Creature decorated;
-    private final int decreasedArmor;
+    private final int percentToDealDoubleDamage;
 
-    public DecreasedArmorCreatureDecorator(Creature aDecorated, int aDecreasedArmor){
+    public DoubleDamagePercentChanceDecorator(Creature aDecorated, int aPercent) {
         decorated = aDecorated;
-        decreasedArmor = aDecreasedArmor;
+        percentToDealDoubleDamage = aPercent;
     }
 
     @Override
     void setCurrentHpToMaximum() {
         decorated.setCurrentHpToMaximum();
     }
+
 
     @Override
     public boolean isCreature() {
@@ -77,6 +79,10 @@ public class DecreasedArmorCreatureDecorator extends Creature {
     }
 
     @Override
+    public void applyDamage(int aDamageToApply) {
+        decorated.applyDamage(aDamageToApply);
+    }
+    @Override
     public void addImmunity(SpellEnum s) {
         decorated.addImmunity(s);
     }
@@ -85,27 +91,17 @@ public class DecreasedArmorCreatureDecorator extends Creature {
     public Immunity getImmunity() {
         return decorated.getImmunity();
     }
-
-    @Override
-    public String getMovementType() {
-        return decorated.getMovementType();
-    }
-
-    @Override
-    public DamageApplierIf getDamageApplier() {
-        return decorated.getDamageApplier();
-    }
-
-    @Override
-    public AttackStrategy getAttackStrategy() {
-        return decorated.getAttackStrategy();
-    }
-
-    @Override
-    public CalculateDamageStrategy getCalculateDamage() {
-        return decorated.getCalculateDamage();
-    }
-
+//    @Override
+//    int calculateDamage(Creature aAttacker, Creature aDefender) {
+//        Random rand = new Random();
+//        int roll = (rand.nextInt(100) + 1);
+//        if (roll > percentToDealDoubleDamage){
+//            return 0;
+//        }
+//        else{
+//            return (decorated.calculateDamage(aAttacker, aDefender));
+//        }
+//
 
     @Override
     public boolean isAlive() {
@@ -123,9 +119,7 @@ public class DecreasedArmorCreatureDecorator extends Creature {
     }
 
     @Override
-    public String getName() {
-        return decorated.getName();
-    }
+    public String getName() { return decorated.getName(); }
 
     @Override
     public boolean canCounterAttack() {
@@ -138,14 +132,7 @@ public class DecreasedArmorCreatureDecorator extends Creature {
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
-        decorated.propertyChange(aPropertyChangeEvent);
-    }
-
-    @Override
-    public void applyDamage(int aDamageToApply) {
-        decorated.applyDamage(aDamageToApply);
-    }
+    public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) { }
 
     @Override
     public int getAttack() {
@@ -154,7 +141,7 @@ public class DecreasedArmorCreatureDecorator extends Creature {
 
     @Override
     public int getArmor() {
-        return decreasedArmor;
+        return decorated.getArmor();
     }
 
     @Override
@@ -186,7 +173,6 @@ public class DecreasedArmorCreatureDecorator extends Creature {
     public int getMaxHp() {
         return decorated.getMaxHp();
     }
-
     @Override
     public boolean backToPreviousPositionMechanic() {
         return decorated.backToPreviousPositionMechanic();

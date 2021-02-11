@@ -50,6 +50,7 @@ class ShootingCreatureDecorator extends Creature {
         return decorated.canCreatureAttack();
     }
 
+
     @Override
     public void increaseSpeed(int aMoveRangeToIncrease) {
         decorated.increaseSpeed(aMoveRangeToIncrease);

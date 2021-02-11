@@ -114,6 +114,13 @@ public class Board {
 
 
     void move(BattleObject aCreature, Point aTargetPoint1){
+        /*MovementStrategy movementStrategy = getMovementStrategy(get(aSourcePoint.getX(), aSourcePoint.getY()));
+        Field field;
+        LinkedList<Point> pathToGo = movementStrategy.getPath(this, aSourcePoint, aTargetPoint1);
+        for(Point point : pathToGo) {
+            field = getField(point.getX(), point.getY());
+            aCreature.accept(filed.getVisitor());
+        }*/
         move(get(aCreature), aTargetPoint1);
     }
 
@@ -122,8 +129,6 @@ public class Board {
         throwExceptionIfTileIsTaken(aTargetPoint1);
         throwExceptionIfCanNotStand(aTargetPoint1);
 
-        MovementStrategy movementStrategy = getMovementStrategy(get(aSourcePoint.getX(), aSourcePoint.getY()));
-        LinkedList<Point> pathToGo = movementStrategy.getPath(this, aSourcePoint, aTargetPoint1);
 
         BattleObject creatureFromSourcePoint = map.get(aSourcePoint);
         map.remove(aSourcePoint);

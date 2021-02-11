@@ -162,6 +162,16 @@ public class CreatureMoveToPreviousPositionAfterAttackDecorator extends Creature
     }
 
     @Override
+    public Range<Integer> getBasicDamage() {
+        return decorated.getBasicDamage();
+    }
+
+    @Override
+    public void increaseDamage(int aLowerBound, int aUpperBound) {
+        decorated.increaseDamage(aLowerBound, aUpperBound);
+    }
+
+    @Override
     public int getAmount() {
         return decorated.getAmount();
     }
