@@ -33,8 +33,37 @@ class KeepTest {
                 .build();
         keep.getAttackStrategy().attack(keep, defender1);
         assertEquals(85, defender1.getCurrentHp());
+    }
 
+    @Test
+    void shouldTakeDamage() {
+        Keep keep = new Keep(FortificationStatistic.KEEP);
+        Catapult catapult=new Catapult.BuilderForTesting()
+                .name("catapult")
+                .attack(5)
+                .armor(NOT_IMPORTANT)
+                .maxHp(NOT_IMPORTANT)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(1, 1))
+                .build();
+        catapult.getAttackStrategy().attack(catapult, keep);
+        assertEquals(1, keep.getCurrentHp());
+    }
 
+    @Test
+    void shouldGetDestroyed() {
+        Keep keep = new Keep(FortificationStatistic.KEEP);
+        Catapult catapult=new Catapult.BuilderForTesting()
+                .name("catapult")
+                .attack(5)
+                .armor(NOT_IMPORTANT)
+                .maxHp(NOT_IMPORTANT)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(2, 2))
+                .build();
+        catapult.getAttackStrategy().attack(catapult, keep);
+        assertEquals(0, keep.getCurrentHp());
+        assertEquals(0, keep.getAmount());
     }
 
 }
