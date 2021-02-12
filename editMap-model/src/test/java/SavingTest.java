@@ -32,12 +32,12 @@ public class SavingTest {
 
         Board boardFromFile = new Board();
 
-        JAXBContext contextFields = JAXBContext.newInstance(Holder.class);
+        JAXBContext contextFields = JAXBContext.newInstance(FieldsHolder.class);
         JAXBContext contextPoints = JAXBContext.newInstance(PointHolder.class);
         File file = new File("fields.xml");
         System.out.println(file.getAbsolutePath());
         if(file.canRead() && file.isFile()) {
-            Holder holder1 = (Holder) contextFields.createUnmarshaller().unmarshal(new FileReader("fields.xml"));
+            FieldsHolder holder1 = (FieldsHolder) contextFields.createUnmarshaller().unmarshal(new FileReader("fields.xml"));
             PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal(new FileReader("point.xml"));
             for (int i = 0; i < holder1.getThings().size(); i++) {
                 boardFromFile.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));

@@ -139,9 +139,9 @@ public class MapEditorEngine {
 
     public void save() throws  JAXBException {
 
-        JAXBContext context = JAXBContext.newInstance(Holder.class);
+        JAXBContext context = JAXBContext.newInstance(FieldsHolder.class);
         JAXBContext contextPoint = JAXBContext.newInstance(PointHolder.class);
-        Holder holder = new Holder();
+        FieldsHolder holder = new FieldsHolder();
         PointHolder pointHolder = new PointHolder();
         Set<Point> list = board.getFieldsMap().keySet();
         List<Field> guiTileList = board.getFieldsMap().values().stream().collect(Collectors.toList());
@@ -201,7 +201,7 @@ public class MapEditorEngine {
             randomX= random.nextInt(18) + 1;
             randomY = random.nextInt(15);
             if(!board.isTileTakenByField(new Point(randomX,randomY))) {
-                board.add(new Point(randomX, randomY),guiTileList.get((randomX+randomY)%4));
+                board.add(new Point(randomX, randomY),guiTileList.get((randomX+randomY)% guiTileList.size()));
             }else continue;
         }
         notifyObservers(new PropertyChangeEvent(this, RANDOM_GENERATE, null, null));
