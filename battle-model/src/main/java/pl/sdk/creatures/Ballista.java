@@ -1,6 +1,7 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
+import pl.sdk.hero.Hero;
 
 import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
@@ -18,24 +19,18 @@ public class Ballista implements BattleObject {
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
-    boolean counterAttackedThisTurn=true;
+    private Hero hero;
 
 
-    Ballista(CreatureStatisticIf aStats) {
+
+    Ballista(CreatureStatisticIf aStats, Hero hero) {
         this.stats=aStats;
         currentHp=stats.getMaxHp();
         possibleAttackManager = new PossibleAttackManagerForCreature();
-        calculateDamageStrategy = new CalculateDamageBallistaStrategy();
+        calculateDamageStrategy = new CalculateDamageBallistaStrategy(hero.getAttack());
         damageApplier = new DefaultDamageApplier();
-        attackStrategy = new BallistaAttackStrategy();
+        attackStrategy = new DefaultAttackStrategy();
         amount = 1;
-    }
-
-    public Ballista() {
-        stats = CreatureStatistic.BALLISTA;
-        calculateDamageStrategy = new CalculateDamageBallistaStrategy();
-        damageApplier = new DefaultDamageApplier();
-        possibleAttackManager = new PossibleAttackManagerForCreature();
     }
 
 
@@ -187,6 +182,7 @@ public class Ballista implements BattleObject {
         private DamageApplierIf damageApplier;
         private AttackStrategy attackStrategy;
         private Integer amount;
+        private Hero hero;
 
         Ballista.BuilderForTesting name (String name){
             this.name = name;
@@ -206,6 +202,10 @@ public class Ballista implements BattleObject {
         }
         Ballista.BuilderForTesting moveRange (int moveRange){
             this.moveRange = moveRange;
+            return this;
+        }
+        Ballista.BuilderForTesting hero (Hero hero){
+            this.hero = hero;
             return this;
         }
         Ballista.BuilderForTesting damage (Range<Integer> damage){
@@ -249,6 +249,9 @@ public class Ballista implements BattleObject {
             if (damage == null){
                 emptyFields.add("damage");
             }
+            if (hero == null){
+                emptyFields.add("hero");
+            }
             if (!emptyFields.isEmpty()){
                 throw new IllegalStateException("These fileds: " + Arrays.toString(emptyFields.toArray()) + " cannot be empty");
             }
@@ -265,7 +268,7 @@ public class Ballista implements BattleObject {
                 ret.calculateDamageStrategy = damageCalculator;
             }
             else{
-                ret.calculateDamageStrategy = new CalculateDamageBallistaStrategy();
+                ret.calculateDamageStrategy = new CalculateDamageBallistaStrategy(hero.getAttack());
             }
             if (damageApplier != null) {
                 ret.damageApplier = damageApplier;
@@ -277,14 +280,14 @@ public class Ballista implements BattleObject {
                 ret.attackStrategy = attackStrategy;
             }
             else {
-                ret.attackStrategy = new BallistaAttackStrategy();
+                ret.attackStrategy = new DefaultAttackStrategy();
             }
 
             return ret;
         }
 
         Ballista createInstance(CreatureStatisticIf aStats) {
-            return new Ballista(aStats);
+            return new Ballista(aStats, hero);
         }
     }
 

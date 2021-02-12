@@ -23,13 +23,19 @@ class CalculateDamageBallistaStrategyTest {
     @Test
     void shouldShoot() {
 
-        Hero hero = new Hero.BuilderForTesting().attack(3).defence(2).power(3).knowledge(4).build();
+        Hero hero = new Hero.BuilderForTesting()
+                .attack(3)
+                .defence(NOT_IMPORTANT)
+                .power(NOT_IMPORTANT)
+                .knowledge(NOT_IMPORTANT)
+                .luck(NOT_IMPORTANT)
+                .morale(NOT_IMPORTANT)
+                .build();
 
         Ballista ballista=new Ballista.BuilderForTesting()
                 .name("Ballista")
                 .attack(10)
-                .damageCalculator(new CalculateDamageBallistaStrategy())
-                .attackStrategy(new BallistaAttackStrategy())
+                .hero(hero)
                 .armor(NOT_IMPORTANT)
                 .maxHp(NOT_IMPORTANT)
                 .moveRange(NOT_IMPORTANT)
@@ -43,7 +49,7 @@ class CalculateDamageBallistaStrategyTest {
                 .moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
                 .build();
-        ballista.getAttackStrategy().attack(ballista, defender1, hero);
+        ballista.getAttackStrategy().attack(ballista, defender1);
         assertEquals(88, defender1.getCurrentHp());
     }
 

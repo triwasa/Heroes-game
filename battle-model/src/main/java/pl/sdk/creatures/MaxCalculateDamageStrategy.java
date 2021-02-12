@@ -39,10 +39,6 @@ class MaxCalculateDamageStrategy extends AbstractCalculateDamageStrategy {
         return (int)wholeStackDamageToDealAfterChange;
     }
 
-    @Override
-    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
-        return 0;
-    }
 
     @Override
     double changeDamageAfter(double aWholeStackDamageToDeal, Attacker aAttacker, Defender aDefender) {

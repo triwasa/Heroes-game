@@ -26,9 +26,5 @@ class CalculateDamageIncreaseWithRandomChanceStrategy extends AbstractCalculateD
         }
         return aDamageToChange;
     }
-
-    @Override
-    public int calculateDamage(Attacker attacker, Defender aDefender, Hero hero) {
-        return 0;
-    }
+    
 }

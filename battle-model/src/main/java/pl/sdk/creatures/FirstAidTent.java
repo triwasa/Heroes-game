@@ -15,7 +15,6 @@ public class FirstAidTent implements BattleObject {
     private PossibleAttackManagerIf possibleAttackManager;
     private CreatureStatisticIf stats;
     private CalculateDamageStrategy calculateDamageStrategy;
-    private DefaultCalculateStrategy damageCalculator;
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
