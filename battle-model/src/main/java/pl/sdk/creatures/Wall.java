@@ -16,7 +16,7 @@ public class Wall implements BattleObject, Fortification {
     private DamageApplierIf damageApplier;
     private int amount;
 
-    Wall() {
+    public Wall() {
         stats=FortificationStatistic.WALL;
         damageApplier=new DefaultDamageApplier();
 

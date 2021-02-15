@@ -126,7 +126,7 @@ public class PercentDamageReduceCreatureDecorator extends Creature{
     public double getAttackRange() { return decorated.getAttackRange(); }
 
     @Override
-    public boolean canFortificationAttack(Fortification fortification) { return decorated.canFortificationAttack(); }
+    public boolean canFortificationAttack(Fortification fortification) { return decorated.canFortificationAttack(fortification); }
 
     @Override
     public boolean canCreatureAttack() { return decorated.canCreatureAttack(); }

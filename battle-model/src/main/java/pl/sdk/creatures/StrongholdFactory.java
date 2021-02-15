@@ -42,8 +42,9 @@ public class StrongholdFactory extends AbstractFactory {
                             .statistic(CreatureStatistic.CYCLOPS_KING)
                             .amount(aAmount)
                             .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
+                            .possibleAttackManager(new PossbileAttackManagerForCyclop(true))
                             .build();
-                    return new CreatureCanAttackSiegeWallsDecorator(new ShootingCreatureDecorator(cyclopsKing),true);
+                    return  new ShootingCreatureDecorator(cyclopsKing);
                 case 7:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.ANCIENT_BEHEMOTH)
@@ -88,8 +89,9 @@ public class StrongholdFactory extends AbstractFactory {
                             .statistic(CreatureStatistic.CYCLOPS)
                             .amount(aAmount)
                             .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
+                            .possibleAttackManager(new PossbileAttackManagerForCyclop(true))
                             .build();
-                    return new CreatureCanAttackSiegeWallsDecorator(new ShootingCreatureDecorator(cyclops), false);
+                    return new ShootingCreatureDecorator(cyclops);
                 case 7:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.BEHEMOTH)

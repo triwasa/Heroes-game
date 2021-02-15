@@ -71,7 +71,7 @@ public class Catapult  implements BattleObject {
 
     @Override
     public boolean canFortificationAttack(Fortification fortification) {
-        return possibleAttackManager.canFortificationAttack();
+        return possibleAttackManager.canFortificationAttack(fortification);
     }
 
 
