@@ -5,10 +5,6 @@ import pl.sdk.spells.Immunity;
 import pl.sdk.spells.SpellEnum;
 
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public class PercentDamageReduceCreatureDecorator extends Creature{
 
@@ -130,7 +126,7 @@ public class PercentDamageReduceCreatureDecorator extends Creature{
     public double getAttackRange() { return decorated.getAttackRange(); }
 
     @Override
-    public boolean canFortificationAttack() { return decorated.canFortificationAttack(); }
+    public boolean canFortificationAttack(Fortification fortification) { return decorated.canFortificationAttack(); }
 
     @Override
     public boolean canCreatureAttack() { return decorated.canCreatureAttack(); }

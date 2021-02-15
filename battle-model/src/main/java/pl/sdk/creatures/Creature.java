@@ -205,7 +205,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
     }
 
     @Override
-    public boolean canFortificationAttack() {
+    public boolean canFortificationAttack(Fortification fortification) {
         return possibleAttackManager.canFortificationAttack();
     }
 

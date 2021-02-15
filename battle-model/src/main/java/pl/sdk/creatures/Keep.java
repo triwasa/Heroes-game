@@ -56,7 +56,7 @@ public class Keep implements BattleObject, Fortification {
     }
 
     @Override
-    public boolean canFortificationAttack() {
+    public boolean canFortificationAttack(Fortification fortification) {
         return possibleAttackManager.canFortificationAttack();
     }
 

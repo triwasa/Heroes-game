@@ -79,7 +79,7 @@ public class Ballista implements BattleObject {
     }
 
     @Override
-    public boolean canFortificationAttack() {
+    public boolean canFortificationAttack(Fortification fortification) {
         return possibleAttackManager.canFortificationAttack();
     }
 

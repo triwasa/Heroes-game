@@ -1,5 +1,7 @@
 package pl.sdk.creatures;
 
+import java.util.List;
+
 public class DungeonFactory extends AbstractFactory {
 
     private static final String EXCEPTION_MESSAGE = "We support tiers from 1 to 7";
@@ -47,6 +49,7 @@ public class DungeonFactory extends AbstractFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.BLACK_DRAGON)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageIncreaseVersusSpecifiedCreaturesStrategy(150, List.of(CreatureStatistic.GIANT.getTranslatedName(), CreatureStatistic.TITAN.getTranslatedName())))
                             .build();
                 default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);
