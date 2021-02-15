@@ -51,7 +51,7 @@ public class MultipleRetaliationsCreatureDecorator extends Creature {
 
     @Override
     public boolean canFortificationAttack(Fortification fortification) {
-        return decorated.canFortificationAttack();
+        return decorated.canFortificationAttack(fortification);
     }
 
     @Override
