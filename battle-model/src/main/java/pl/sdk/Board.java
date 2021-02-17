@@ -114,13 +114,16 @@ public class Board {
 
 
     void move(BattleObject aCreature, Point aTargetPoint1){
-        /*MovementStrategy movementStrategy = getMovementStrategy(get(aSourcePoint.getX(), aSourcePoint.getY()));
+        MovementStrategy movementStrategy = getMovementStrategy(aCreature);
         Field field;
-        LinkedList<Point> pathToGo = movementStrategy.getPath(this, aSourcePoint, aTargetPoint1);
+        LinkedList<Point> pathToGo = movementStrategy.getPath(this, get(aCreature), aTargetPoint1);
         for(Point point : pathToGo) {
+        aTargetPoint1 = point;
+
             field = getField(point.getX(), point.getY());
-            aCreature.accept(filed.getVisitor());
-        }*/
+            field.apply(aCreature, movementStrategy);
+            movementStrategy.accept(aCreature, field);
+        }
         move(get(aCreature), aTargetPoint1);
     }
 
@@ -159,7 +162,6 @@ public class Board {
                 return new TeleportMovementStrategy();
         }
         throw new IllegalArgumentException("No such movementType");
-
 
     }
 }

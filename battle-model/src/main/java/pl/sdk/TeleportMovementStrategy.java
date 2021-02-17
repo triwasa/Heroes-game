@@ -1,6 +1,7 @@
 package pl.sdk;
 
 import pl.sdk.creatures.BattleObject;
+import pl.sdk.special_fields.Field;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,5 +17,10 @@ public class TeleportMovementStrategy implements MovementStrategy {
     @Override
     public LinkedList<Point> getPath(Board board, Point aSourcePoint, Point aTargetPoint) {
         return (LinkedList<Point>) List.of(aSourcePoint);
+    }
+
+    @Override
+    public void accept(BattleObject battleObject, Field field) {
+        field.getVisitor().visit(battleObject, this, field);
     }
 }
