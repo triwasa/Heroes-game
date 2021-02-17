@@ -2,26 +2,26 @@ package pl.sdk.hero;
 
 enum HeroClassStatistic implements HeroClassStatisticIf {
 
-    KNIGHT("Knight",2,2,1,1,0,0),
-    CLERIC("Cleric",1,0,2,2,0,0),
-    RANGER("Ranger",1,3,1,1,0,0),
-    DRUID("Druid",0,2,1,2,0,0),
-    ALCHEMIST("Alchemist",1,1,2,2,0,0),
-    WIZARD("Wizard",0,0,2,3,0,0),
-    DEMONIAC("Demoniac",2,2,1,1,0,0),
-    HERETIC("Heretic",1,1,2,1,0,0),
-    DEATH_KNIGHT("Death Knight",1,2,2,1,0,0),
-    NECROMANCER("Necromancer",1,0,2,2,0,0),
-    OVERLORD("Overlord",2,2,1,1,0,0),
-    WARLOCK("Warlock",0,0,3,2,0,0),
-    BARBARIAN("Barbarian",4,0,1,1,0,0),
-    BATTLE_MAGE("Battle Mage",2,1,1,1,0,0),
-    BEASTMASTER("Beastmaster",0,4,1,1,0,0),
-    WITCH("Witch",0,1,2,2,0,0),
-    PLANESWALKER("Planeswalker",3,1,1,1,0,0),
-    ELEMENTALIST("Elementalist",0,0,3,3,0,0),
-    CAPTAIN("Captain",3,0,2,1,0,0),
-    NAVIGATOR("Navigator",2,0,1,2,0,0);
+    KNIGHT(HeroClassName.KNIGHT,2,2,1,1,0,0),
+    CLERIC(HeroClassName.CLERIC,1,0,2,2,0,0),
+    RANGER(HeroClassName.RANGER,1,3,1,1,0,0),
+    DRUID(HeroClassName.DRUID,0,2,1,2,0,0),
+    ALCHEMIST(HeroClassName.ALCHEMIST,1,1,2,2,0,0),
+    WIZARD(HeroClassName.WIZARD,0,0,2,3,0,0),
+    DEMONIAC(HeroClassName.DEMONIAC,2,2,1,1,0,0),
+    HERETIC(HeroClassName.HERETIC,1,1,2,1,0,0),
+    DEATH_KNIGHT(HeroClassName.DEATH_KNIGHT,1,2,2,1,0,0),
+    NECROMANCER(HeroClassName.NECROMANCER, 1,0,2,2,0,0),
+    OVERLORD(HeroClassName.OVERLORD,2,2,1,1,0,0),
+    WARLOCK(HeroClassName.WARLOCK,0,0,3,2,0,0),
+    BARBARIAN(HeroClassName.BARBARIAN,4,0,1,1,0,0),
+    BATTLE_MAGE(HeroClassName.BATTLE_MAGE,2,1,1,1,0,0),
+    BEASTMASTER(HeroClassName.BEASTMASTER,0,4,1,1,0,0),
+    WITCH(HeroClassName.WITCH,0,1,2,2,0,0),
+    PLANESWALKER(HeroClassName.PLANESWALKER,3,1,1,1,0,0),
+    ELEMENTALIST(HeroClassName.ELEMENTALIST,0,0,3,3,0,0),
+    CAPTAIN(HeroClassName.CAPTAIN,3,0,2,1,0,0),
+    NAVIGATOR(HeroClassName.NAVIGATOR,2,0,1,2,0,0);
 
 
     private final String name;
