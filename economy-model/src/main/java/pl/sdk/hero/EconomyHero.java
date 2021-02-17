@@ -43,17 +43,23 @@ public class EconomyHero {
     public enum Fraction {
         NECROPOLIS;
     }
+    private final String heroName;
     private final Fraction fraction;
     private final List<EconomyCreature> creatureList;
     private final HeroEquipment heroEquipment;
     private final HashMap<EconomySkill,String> skillList;
     private int gold;
-    public EconomyHero(Fraction aFraction, int aGold) {
+    public EconomyHero(Fraction aFraction ,String aHeroName, int aGold) {
         fraction = aFraction;
+        heroName = aHeroName;
         gold = aGold;
         creatureList = new ArrayList<>();
         heroEquipment = new HeroEquipment();
         skillList = new HashMap<>();
+    }
+
+    public String getClassName() {
+        return heroName;
     }
 
     public Set<EconomySkill> getSkills() {

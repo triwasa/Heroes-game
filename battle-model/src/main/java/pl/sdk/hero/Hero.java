@@ -40,6 +40,10 @@ public class Hero {
         this.creatures = aCreatures;
     }
 
+    public void addSpells(List<Spell> aSpells) {
+        aSpells.forEach(spell -> this.spellBook.addSpell(spell));
+    }
+
     public List<Creature> getCreatures() {
         return creatures;
     }

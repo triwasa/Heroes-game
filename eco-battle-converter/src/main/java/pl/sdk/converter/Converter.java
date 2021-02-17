@@ -2,6 +2,7 @@ package pl.sdk.converter;
 
 import pl.sdk.artifacts.AbstractArtifact;
 import pl.sdk.artifacts.ArtifactFactory;
+import pl.sdk.hero.HeroClassFactory;
 import pl.sdk.skills.Skill;
 import pl.sdk.skills.SkillFactory;
 import pl.sdk.hero.Hero;
@@ -19,26 +20,19 @@ public class Converter {
     public static Hero convert(EconomyHero economyHero) {
         ArtifactFactory artifactFactory = new ArtifactFactory();
         SkillFactory skillFactory = new SkillFactory();
+        HeroClassFactory heroClassFactory = new HeroClassFactory();
 
         List<AbstractArtifact> artifacts = new ArrayList<>();
         List<Skill> skills = new ArrayList<>();
 
-        // create new hero with default stats of economyHero
-        Hero hero = new Hero.BuilderForTesting()
-                .attack(economyHero.getAttack())
-                .defence(economyHero.getDefense())
-                .power(economyHero.getSpellPower())
-                .knowledge(economyHero.getKnowledge())
-                .luck(economyHero.getLuck())
-                .morale(economyHero.getMorale())
-                .build();
+        Hero hero = heroClassFactory.create(economyHero.getClassName());
 
-//        economyHero.getSkills().forEach(ecoSkill ->
-//                skills.add(skillFactory.create(ecoSkill.getName(), ecoSkill.getLevel())));
-//        economyHero.getArtifacts().forEach(ecoArtifact -> {
-//            artifacts.add(artifactFactory.create(ecoArtifact.getName()));
-//        });
 
+        economyHero.getSkills().forEach(ecoSkill ->
+                skills.add(skillFactory.create(ecoSkill.getName(), ecoSkill.getLevel())));
+        economyHero.getArtifacts().forEach(ecoArtifact -> {
+            artifacts.add(artifactFactory.create(ecoArtifact.getName()));
+        });
 
         HeroSpellMastery hsm = new HeroSpellMastery(economyHero);
 
@@ -46,12 +40,10 @@ public class Converter {
         List<Spell> spells = convertSpells(economyHero, hsm);
 
         hero.addCreatures(creatures);
-//        hero.addSpells(spells);
+        hero.addSpells(spells);
 
         // apply artifacts on hero -> modify hero's stats, creatures and spells
         artifacts.forEach(a -> a.buff(hero));
-
-        // TODO: convert pl.sdk.skills [Intelligence, Wisdom, Eagle Eye] - add to hero ?
 
         // check if hero has Intelligence skill -> if yes increase mana
 //        increaseMana(hero);
@@ -68,7 +60,7 @@ public class Converter {
 
             // apply creature pl.sdk.skills [Archery, Offence, Armourer, Resistance, Leadership, Luck]
             // apply war machines pl.sdk.skills [Artillery, Ballistics, First aid, Eagle Eye]
-//            skills.forEach(skill -> skill.apply(c));
+            skills.forEach(skill -> skill.apply(c));
 
             creatures.add(c);
         });
@@ -78,14 +70,14 @@ public class Converter {
     private static List<Spell> convertSpells(EconomyHero economyHero, HeroSpellMastery hsm) {
         SpellFactory spellFactory = new SpellFactory();
         List<Spell> spells = new ArrayList<Spell>();
-//        economyHero.getSpells().forEach(ecoSpell -> {
-//            Spell s = spellFactory.create(ecoSpell.getName(), hsm);
-//
-//            // pl.sdk.skills increasing damage - only [Sorcery]
-//            applySorcery(s);
-//
-//            spells.add(s);
-//        });
+        economyHero.getSpells().forEach(ecoSpell -> {
+            Spell s = spellFactory.create(ecoSpell.getName(), hsm);
+
+            // pl.sdk.skills increasing damage - only [Sorcery]
+            //applySorcery(s);
+
+            spells.add(s);
+        });
         return spells;
     }
 }
