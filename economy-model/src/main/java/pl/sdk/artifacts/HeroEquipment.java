@@ -7,7 +7,7 @@ public class HeroEquipment {
 
     private HashMap<String, EconomyArtifact> equipment = new HashMap<>();
 
-    void equip(EconomyArtifact artifact){
+    public void equip(EconomyArtifact artifact){
         if (equipment.containsKey(artifact.getSlotName())) {
             throw new IllegalStateException("Hero has got already item with same slot name");
         }

@@ -64,5 +64,6 @@ public class BuyingCreatureTest {
 
         assertEquals(580,hero1.getGold());
         assertEquals(7,hero1.getCreatures().size());
+
     }
 }

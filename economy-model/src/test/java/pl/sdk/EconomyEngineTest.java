@@ -4,8 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.creatures.EconomyNecropolisFactory;
 import pl.sdk.hero.EconomyHero;
+import pl.sdk.artifacts.EconomyArtifactPrimaryFactory;
+import pl.sdk.spell.EconomySpellFactory;
+
 
 import static org.junit.jupiter.api.Assertions.*;
+import static pl.sdk.artifacts.ArtifactName.CENTAURS_AX;
 
 class EconomyEngineTest {
 
@@ -13,6 +17,7 @@ class EconomyEngineTest {
     private EconomyHero h1;
     private EconomyHero h2;
     private EconomyNecropolisFactory creatureFactory;
+    private EconomyArtifactPrimaryFactory artifactFactory;
 
     @BeforeEach
     void init(){
@@ -20,6 +25,7 @@ class EconomyEngineTest {
         h2 = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
         economyEngine = new EconomyEngine(h1, h2);
         creatureFactory = new EconomyNecropolisFactory();
+
     }
 
     @Test
@@ -48,4 +54,16 @@ class EconomyEngineTest {
         assertEquals(900, h2.getGold());
         assertEquals(940, h1.getGold());
     }
+
+  /*  @Test
+    void shouldBuyArtifactInCorrectHero(){
+        economyEngine.buyArtifact(artifactFactory.create(CENTAURS_AX));
+        //assertEquals(1000-120, h1.getGold());
+    }
+
+    @Test
+    void shouldBuySpellInCorrectHero(){
+        economyEngine.buySpell(spe);
+
+    }*/
 }
