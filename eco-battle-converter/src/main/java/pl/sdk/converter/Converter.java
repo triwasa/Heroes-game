@@ -45,6 +45,8 @@ public class Converter {
         // apply artifacts on hero -> modify hero's stats, creatures and spells
         artifacts.forEach(a -> a.buff(hero));
 
+        applyIntelligenceSkill(hero, skills);
+
         return hero;
     }
 
@@ -75,5 +77,12 @@ public class Converter {
 //            spells.add(s);
 //        });
         return spells;
+    }
+
+    private static void applyIntelligenceSkill(Hero hero, List<Skill> skills) {
+        SkillApplier skillApplier = new SkillApplier();
+        skills.stream()
+                .filter(skill -> "intelligence".equals(skill.getCoreName()))
+                .findAny().ifPresent(foundSkill -> skillApplier.apply(foundSkill, hero));
     }
 }
