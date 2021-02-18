@@ -4,6 +4,7 @@ import pl.sdk.artifacts.AbstractArtifact;
 import pl.sdk.artifacts.ArtifactFactory;
 import pl.sdk.hero.HeroClassFactory;
 import pl.sdk.skills.Skill;
+import pl.sdk.skills.SkillApplier;
 import pl.sdk.skills.SkillFactory;
 import pl.sdk.hero.Hero;
 import pl.sdk.creatures.Creature;
@@ -35,7 +36,7 @@ public class Converter {
 
         HeroSpellMastery hsm = new HeroSpellMastery(economyHero);
 
-        List<Creature> creatures = convertCreatures(economyHero, skills);
+        List<Creature> creatures = convertCreatures(economyHero, hero, skills);
         List<Spell> spells = convertSpells(economyHero, hsm);
 
         hero.addCreatures(creatures);
@@ -47,15 +48,18 @@ public class Converter {
         return hero;
     }
 
-    private static List<Creature> convertCreatures(EconomyHero economyHero, List<Skill> skills) {
+    private static List<Creature> convertCreatures(EconomyHero economyHero, Hero hero,  List<Skill> skills) {
         NecropolisFactory factory = new NecropolisFactory();
         List<Creature> creatures = new ArrayList<>();
+        SkillApplier skillApplier = new SkillApplier();
+
         economyHero.getCreatures().forEach(ecoCreature -> {
             Creature c = factory.create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
 
-            skills.forEach(skill -> skill.apply(c));
+            skills.forEach(skill -> skillApplier.apply(skill, hero));
             creatures.add(c);
         });
+
         return creatures;
     }
 
