@@ -47,11 +47,13 @@ public class Converter {
 
     private static void convertCreatures(EconomyHero economyHero, Hero hero) {
         List<Creature> creatures = new ArrayList<>();
+        List<BattleObject> warmachines = new ArrayList<>();
         final String WARMACHINE = "Warmachine";
 
         economyHero.getCreatures().forEach(ecoCreature -> {
             if (ecoCreature.getFraction().equals(WARMACHINE))  {
-                BattleObject battleObject = FractionFactory.getFraction(ecoCreature.getFraction()).create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
+                BattleObject warmachine = FractionFactory.getFraction(ecoCreature.getFraction()).create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
+                warmachines.add(warmachine);
             }
             else {
                 Creature c = (Creature) FractionFactory.getFraction(ecoCreature.getFraction()).create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
@@ -60,6 +62,7 @@ public class Converter {
 
         });
         hero.addCreatures(creatures);
+        hero.addWarmachines(warmachines);
     }
 
     private static void convertSpells(EconomyHero economyHero, Hero hero, HeroSpellMastery hsm) {

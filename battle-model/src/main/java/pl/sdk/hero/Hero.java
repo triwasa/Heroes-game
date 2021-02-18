@@ -40,6 +40,10 @@ public class Hero {
         this.creatures = aCreatures;
     }
 
+    public void addWarmachines(List<BattleObject> warmachines) {
+        this.machines = warmachines;
+    }
+
     public void addSpells(List<Spell> aSpells) {
         aSpells.forEach(spell -> this.spellBook.addSpell(spell));
     }
@@ -73,6 +77,8 @@ public class Hero {
     public int getMana() {
         return mana.getMana();
     }
+
+
 
     public static class BuilderForTesting {
         private Integer attack;
