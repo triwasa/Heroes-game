@@ -24,6 +24,7 @@ class ConverterTest {
     private final EconomyArtifactPrimaryFactory economyArtifactFactory = new EconomyArtifactPrimaryFactory();
     private final EconomySkillFactory economySkillFactory = new EconomySkillFactory();
     private final EconomySpellFactory economySpellFactory = new EconomySpellFactory();
+    private final NecropolisFactory necropolisFactory = new NecropolisFactory();
 
     @Test
     void heroStatsShouldAffectCreatureStats(){
@@ -54,10 +55,9 @@ class ConverterTest {
     @Test
     void skillShouldAffectCreature() {
         EconomyHero economyHero = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, DEATH_KNIGHT, NOT_IMPORTANT);
-        NecropolisFactory necropolisFactory = new NecropolisFactory();
+
         // 5 - lich is shooting creature
-        EconomyCreature economyCreature = economyCreatureNecropolisFactory.create(false,5,1);
-        economyHero.addCreature(economyCreature);
+        economyHero.addCreature(economyCreatureNecropolisFactory.create(false,5,1));
         // adds 50% damage to attack to all shooting creatures
         economyHero.addSkill(economySkillFactory.create("Archery", 3));
 
@@ -79,9 +79,13 @@ class ConverterTest {
         // adds 50% to attack to all shooting creatures
         economyHero.addSkill(economySkillFactory.create("Archery", 3));
 
+        Creature creature = necropolisFactory.create(false,4,1);
+        int lowerEndpoint = creature.getBasicDamage().lowerEndpoint();
+        int upperEndpoint = creature.getBasicDamage().upperEndpoint();
+
         Hero hero = Converter.convert(economyHero);
 
-        assertEquals(Range.closed(5, 8), hero.getCreatures().get(0).getDamage());
+        assertEquals(Range.closed( lowerEndpoint, upperEndpoint), hero.getCreatures().get(0).getDamage());
     }
 
 
