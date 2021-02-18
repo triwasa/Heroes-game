@@ -12,28 +12,27 @@ import static pl.sdk.artifacts.ArtifactName.*;
 public class BuyingArtifactTest {
 
     private EconomyHero hero1;
-    private final EconomyArtifactPrimaryFactory economyArtifactFactory = new EconomyArtifactPrimaryFactory();
     private EconomyEngine economyEngine;
-    private EconomyHero hero2;
+    private final EconomyArtifactPrimaryFactory economyArtifactFactory = new EconomyArtifactPrimaryFactory();
 
     @BeforeEach
-    void init() {
+    void prepareHero() {
         hero1 = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
-        hero2 = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
+        EconomyHero hero2 = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
         economyEngine = new EconomyEngine(hero1, hero2);
     }
 
     @Test
     void heroShouldCanBuyArtifact() {
-        economyEngine.buyArtifact(economyArtifactFactory.create(CENTAURS_AX)); // 120 gold
+        economyEngine.buyArtifact(economyArtifactFactory.create(CENTAURS_AX));
 
         assertEquals(880, hero1.getGold());
     }
 
     @Test
     void heroShouldCanBuyFewArtifacts() {
-        economyEngine.buyArtifact(economyArtifactFactory.create(CENTAURS_AX)); // 120 gold
-        economyEngine.buyArtifact(economyArtifactFactory.create(SHIELD_OF_THE_DWARVEN_LORDS)); // 120 gold
+        economyEngine.buyArtifact(economyArtifactFactory.create(CENTAURS_AX));
+        economyEngine.buyArtifact(economyArtifactFactory.create(SHIELD_OF_THE_DWARVEN_LORDS));
 
         assertEquals(760, hero1.getGold());
     }
