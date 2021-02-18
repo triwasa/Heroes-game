@@ -22,6 +22,7 @@ public class Converter {
         ArtifactFactory artifactFactory = new ArtifactFactory();
         SkillFactory skillFactory = new SkillFactory();
         HeroClassFactory heroClassFactory = new HeroClassFactory();
+        SkillApplier skillApplier = new SkillApplier();
 
         List<AbstractArtifact> artifacts = new ArrayList<>();
         List<Skill> skills = new ArrayList<>();
@@ -36,32 +37,26 @@ public class Converter {
 
         HeroSpellMastery hsm = new HeroSpellMastery(economyHero);
 
-        List<Creature> creatures = convertCreatures(economyHero, hero, skills);
+        List<Creature> creatures = convertCreatures(economyHero);
         List<Spell> spells = convertSpells(economyHero, hsm);
 
         hero.addCreatures(creatures);
         hero.addSpells(spells);
 
-        // apply artifacts on hero -> modify hero's stats, creatures and spells
         artifacts.forEach(a -> a.buff(hero));
-
-        applyIntelligenceSkill(hero, skills);
+        skills.forEach(skill -> skillApplier.apply(skill, hero));
 
         return hero;
     }
 
-    private static List<Creature> convertCreatures(EconomyHero economyHero, Hero hero,  List<Skill> skills) {
+    private static List<Creature> convertCreatures(EconomyHero economyHero) {
         NecropolisFactory factory = new NecropolisFactory();
         List<Creature> creatures = new ArrayList<>();
-        SkillApplier skillApplier = new SkillApplier();
 
         economyHero.getCreatures().forEach(ecoCreature -> {
             Creature c = factory.create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
-
-            skills.forEach(skill -> skillApplier.apply(skill, hero));
             creatures.add(c);
         });
-
         return creatures;
     }
 
@@ -71,18 +66,8 @@ public class Converter {
 //        economyHero.getSpells().forEach(ecoSpell -> {
 //            Spell s = spellFactory.create(ecoSpell.getName(), hsm);
 //
-//            // pl.sdk.skills increasing damage - only [Sorcery]
-//            //applySorcery(s);
-//
 //            spells.add(s);
 //        });
         return spells;
-    }
-
-    private static void applyIntelligenceSkill(Hero hero, List<Skill> skills) {
-        SkillApplier skillApplier = new SkillApplier();
-        skills.stream()
-                .filter(skill -> "intelligence".equals(skill.getCoreName()))
-                .findAny().ifPresent(foundSkill -> skillApplier.apply(foundSkill, hero));
     }
 }
