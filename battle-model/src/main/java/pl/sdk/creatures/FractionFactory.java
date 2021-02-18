@@ -1,4 +1,4 @@
-/*
+
 package pl.sdk.creatures;
 
 public class FractionFactory {
@@ -42,4 +42,4 @@ public class FractionFactory {
         }
     }
 }
-*/
+

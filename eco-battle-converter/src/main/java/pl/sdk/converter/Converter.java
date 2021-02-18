@@ -2,13 +2,12 @@ package pl.sdk.converter;
 
 import pl.sdk.artifacts.AbstractArtifact;
 import pl.sdk.artifacts.ArtifactFactory;
+import pl.sdk.creatures.*;
 import pl.sdk.hero.HeroClassFactory;
 import pl.sdk.skills.Skill;
 import pl.sdk.skills.SkillApplier;
 import pl.sdk.skills.SkillFactory;
 import pl.sdk.hero.Hero;
-import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.hero.EconomyHero;
 import pl.sdk.spells.Spell;
 import pl.sdk.spells.SpellFactory;
@@ -37,11 +36,8 @@ public class Converter {
 
         HeroSpellMastery hsm = new HeroSpellMastery(economyHero);
 
-        List<Creature> creatures = convertCreatures(economyHero);
-        List<Spell> spells = convertSpells(economyHero, hsm);
-
-        hero.addCreatures(creatures);
-        hero.addSpells(spells);
+        convertCreatures(economyHero, hero);
+        convertSpells(economyHero, hero, hsm);
 
         artifacts.forEach(a -> a.buff(hero));
         skills.forEach(skill -> skillApplier.apply(skill, hero));
@@ -49,18 +45,24 @@ public class Converter {
         return hero;
     }
 
-    private static List<Creature> convertCreatures(EconomyHero economyHero) {
-        NecropolisFactory factory = new NecropolisFactory();
+    private static void convertCreatures(EconomyHero economyHero, Hero hero) {
         List<Creature> creatures = new ArrayList<>();
+        final String WARMACHINE = "Warmachine";
 
         economyHero.getCreatures().forEach(ecoCreature -> {
-            Creature c = factory.create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
-            creatures.add(c);
+            if (ecoCreature.getFraction().equals(WARMACHINE))  {
+                BattleObject battleObject = FractionFactory.getFraction(ecoCreature.getFraction()).create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
+            }
+            else {
+                Creature c = (Creature) FractionFactory.getFraction(ecoCreature.getFraction()).create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
+                creatures.add(c);
+            }
+
         });
-        return creatures;
+        hero.addCreatures(creatures);
     }
 
-    private static List<Spell> convertSpells(EconomyHero economyHero, HeroSpellMastery hsm) {
+    private static void convertSpells(EconomyHero economyHero, Hero hero, HeroSpellMastery hsm) {
         SpellFactory spellFactory = new SpellFactory();
         List<Spell> spells = new ArrayList<Spell>();
 //        economyHero.getSpells().forEach(ecoSpell -> {
@@ -68,6 +70,6 @@ public class Converter {
 //
 //            spells.add(s);
 //        });
-        return spells;
+        hero.addSpells(spells);
     }
 }

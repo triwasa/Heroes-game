@@ -31,4 +31,8 @@ public class EconomyCreature {
     public int getTier() {
         return stats.getTier();
     }
+
+    public String getFraction() {
+        return stats.getFraction();
+    }
 }
