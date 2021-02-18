@@ -68,15 +68,14 @@ public class EconomyHero {
     }
 
     public void addSkill(EconomySkill aSklill) {
-
-        if (skillList.contains(aSklill)){
+        if(skillList.contains(aSklill)) {
             throw new IllegalStateException("hero already has the skill");
         }
         skillList.addSkill(aSklill);
     }
 
     public void addSpell(EconomySpell aSpell){
-        if (spellList.contains(aSpell.getName())){
+        if (spellList.contains(aSpell)){
             throw new IllegalStateException("hero already has the spell");
         }
         spellList.add(aSpell);

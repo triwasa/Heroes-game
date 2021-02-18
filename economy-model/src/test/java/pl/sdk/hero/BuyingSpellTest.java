@@ -30,11 +30,17 @@ public class BuyingSpellTest {
     }
 
     @Test
+    void heroShouldCanBuyFewSpells(){
+        economyEngine.buySpell(spellFactory.create(EconomySpellEnum.BLESS));
+        economyEngine.buySpell(spellFactory.create(EconomySpellEnum.TELEPORT));
+        assertEquals(980,hero1.getGold());
+    }
+
+    @Test
     void heroShouldNotBuyTheSameSpell(){
         economyEngine.buySpell(spellFactory.create(EconomySpellEnum.BLESS));
         assertEquals(995,hero1.getGold());
-        //assertThrows(IllegalStateException.class, () -> economyEngine.buySpell(spellFactory.create(EconomySpellEnum.BLESS)));
-        System.out.println(hero1.getSpell().toString());
+        assertThrows(IllegalStateException.class, () -> economyEngine.buySpell(spellFactory.create(EconomySpellEnum.BLESS)));
     }
 
 }

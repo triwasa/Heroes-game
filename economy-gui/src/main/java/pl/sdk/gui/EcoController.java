@@ -1,19 +1,28 @@
 package pl.sdk.gui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import pl.sdk.EconomyEngine;
+import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.converter.EcoBattleConverter;
 import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.creatures.EconomyNecropolisFactory;
 import pl.sdk.hero.EconomyHero;
+import pl.sdk.skills.EconomySkill;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 
 public class EcoController implements PropertyChangeListener {
     @FXML
@@ -30,7 +39,14 @@ public class EcoController implements PropertyChangeListener {
     Label roundNumberLabel;
     @FXML
     Button editMapButton;
-
+    @FXML
+    Button creatureShop;
+    @FXML
+    Button artifactShop;
+    @FXML
+    Button spellShop;
+    @FXML
+    Button skillShop;
     private final EconomyEngine economyEngine;
 
     public EcoController(EconomyHero aHero1, EconomyHero aHero2) {
@@ -56,6 +72,22 @@ public class EcoController implements PropertyChangeListener {
         editMapButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
             goToEditor();
+        });
+
+        artifactShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
+        {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Demo.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setTitle("ABC");
+                stage.setScene(new Scene(root1));
+                stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
     }
 
@@ -96,6 +128,8 @@ public class EcoController implements PropertyChangeListener {
     void buy(EconomyCreature aCreature) {
         economyEngine.buy(aCreature);
     }
+    void buyArtifact(EconomyArtifact artifact){economyEngine.buyArtifact(artifact);}
+    void buySkill(EconomySkill aSkill){economyEngine.buySkill(aSkill);}
 
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
