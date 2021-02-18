@@ -27,7 +27,6 @@ public class Converter {
 
         Hero hero = heroClassFactory.create(economyHero.getClassName());
 
-
         economyHero.getSkills().forEach(ecoSkill ->
                 skills.add(skillFactory.create(ecoSkill.getName(), ecoSkill.getLevel())));
         economyHero.getArtifacts().forEach(ecoArtifact -> {
@@ -45,9 +44,6 @@ public class Converter {
         // apply artifacts on hero -> modify hero's stats, creatures and spells
         artifacts.forEach(a -> a.buff(hero));
 
-        // check if hero has Intelligence skill -> if yes increase mana
-//        increaseMana(hero);
-
         return hero;
     }
 
@@ -55,13 +51,9 @@ public class Converter {
         NecropolisFactory factory = new NecropolisFactory();
         List<Creature> creatures = new ArrayList<>();
         economyHero.getCreatures().forEach(ecoCreature -> {
-            // create creatures with modified stats by hero's default stats
             Creature c = factory.create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
 
-            // apply creature pl.sdk.skills [Archery, Offence, Armourer, Resistance, Leadership, Luck]
-            // apply war machines pl.sdk.skills [Artillery, Ballistics, First aid, Eagle Eye]
             skills.forEach(skill -> skill.apply(c));
-
             creatures.add(c);
         });
         return creatures;
@@ -70,14 +62,14 @@ public class Converter {
     private static List<Spell> convertSpells(EconomyHero economyHero, HeroSpellMastery hsm) {
         SpellFactory spellFactory = new SpellFactory();
         List<Spell> spells = new ArrayList<Spell>();
-        economyHero.getSpells().forEach(ecoSpell -> {
-            Spell s = spellFactory.create(ecoSpell.getName(), hsm);
-
-            // pl.sdk.skills increasing damage - only [Sorcery]
-            //applySorcery(s);
-
-            spells.add(s);
-        });
+//        economyHero.getSpells().forEach(ecoSpell -> {
+//            Spell s = spellFactory.create(ecoSpell.getName(), hsm);
+//
+//            // pl.sdk.skills increasing damage - only [Sorcery]
+//            //applySorcery(s);
+//
+//            spells.add(s);
+//        });
         return spells;
     }
 }

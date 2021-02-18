@@ -50,9 +50,7 @@ public class Hero {
     public List<BattleObject> getMachines() {
         return machines;
     }
-
-
-    public Set<Spell> getSpells() { return spellBook.getSpellBook(); }
+    public List<Spell> getSpells() { return new ArrayList<>(spellBook.getSpellBook()); }
 
     public int getAttack() {
         return classStats.getAttack() + additionalStats.getAttack();
@@ -72,7 +70,6 @@ public class Hero {
     public int getMorale() {
         return classStats.getMorale() + additionalStats.getMorale();
     }
-
     public int getMana() {
         return mana.getMana();
     }
