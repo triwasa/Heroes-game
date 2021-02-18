@@ -14,9 +14,9 @@ public class EconomyEngine {
     public static final String HERO_BOUGHT_CREATURE = "HERO_BOUGHT_CREATURE";
     public static final String ACTIVE_HERO_CHANGED = "ACTIVE_HERO_CHANGED";
     public static final String NEXT_ROUND = "NEXT_ROUND";
-    private static final String HERO_BOUGHT_ARTIFACT = " HERO_BOUGHT_ARTIFACT";
-    private static final String HERO_BOUGHT_SKILL = "HERO_BOUGHT_SKILL";
-    private static final String HERO_BOUGHT_SPELL = "HERO_BOUGHT_SPELL";
+    public static final String HERO_BOUGHT_ARTIFACT = " HERO_BOUGHT_ARTIFACT";
+    public static final String HERO_BOUGHT_SKILL = "HERO_BOUGHT_SKILL";
+    public static final String HERO_BOUGHT_SPELL = "HERO_BOUGHT_SPELL";
     private final EconomyHero hero1;
     private final EconomyHero hero2;
     private EconomyHero activeHero;

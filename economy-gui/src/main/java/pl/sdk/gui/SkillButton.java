@@ -1,35 +1,32 @@
 package pl.sdk.gui;
 
 import javafx.stage.Stage;
-import pl.sdk.artifacts.EconomyArtifactPrimaryFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import pl.sdk.skills.EconomySkillFactory;
-import pl.sdk.skills.Skill;
-
-import java.awt.*;
 
 public class SkillButton extends Button {
 
     private final String skillName;
+    private final int tier;
     private Stage dialog;
 
-    public SkillButton(EcoController aEcoController, EconomySkillFactory aFactory) {
+    public SkillButton(EcoController aEcoController, EconomySkillFactory aFactory, int tier) {
         super(aFactory.create().getName());
         skillName = aFactory.create().getName();
+        this.tier = tier;
         getStyleClass().add("skillButton");
 
         String finalSkillName = skillName;
         addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             int amount = startDialogAndGetCreatureAmount();
             if(amount != 0){
-                aEcoController.buySkill(aFactory.create(finalSkillName,);
+                aEcoController.buySkill(aFactory.create(finalSkillName,tier));
             }
             aEcoController.refreshGui();
         });

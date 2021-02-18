@@ -19,6 +19,7 @@ import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.creatures.EconomyNecropolisFactory;
 import pl.sdk.hero.EconomyHero;
 import pl.sdk.skills.EconomySkill;
+import pl.sdk.spell.EconomySpell;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -58,6 +59,9 @@ public class EcoController implements PropertyChangeListener {
         refreshGui();
         economyEngine.addObserver(EconomyEngine.ACTIVE_HERO_CHANGED, this);
         economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_CREATURE, this);
+        economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_ARTIFACT, this);
+        economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_SKILL, this);
+        economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_SPELL,this);
         economyEngine.addObserver(EconomyEngine.NEXT_ROUND, this);
 
         readyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
@@ -130,6 +134,7 @@ public class EcoController implements PropertyChangeListener {
     }
     void buyArtifact(EconomyArtifact artifact){economyEngine.buyArtifact(artifact);}
     void buySkill(EconomySkill aSkill){economyEngine.buySkill(aSkill);}
+    void buySpell(EconomySpell aspell){economyEngine.buySpell(aspell);}
 
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
