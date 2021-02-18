@@ -25,6 +25,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pl.sdk.converter.Converter.convert;
+
 public class EcoBattleConverter {
 
     public static void startBattle(EconomyHero aPlayer1, EconomyHero aPlayer2) {
@@ -62,15 +64,15 @@ public class EcoBattleConverter {
         }
     }
 
-    public static Hero convert(EconomyHero aPlayer1) {
-        List<Creature>ret = new ArrayList<>();
-        NecropolisFactory factory = new NecropolisFactory();
-        aPlayer1.getCreatures().forEach(ecoCreature ->
-                ret.add(factory.create(ecoCreature.isUpgraded(),ecoCreature.getTier(),ecoCreature.getAmount())));
-        Hero a = new Hero();
-        a.addCreatures(ret);
-        return a;
-    }
+//    public static Hero convert(EconomyHero aPlayer1) {
+//        List<Creature>ret = new ArrayList<>();
+//        NecropolisFactory factory = new NecropolisFactory();
+//        aPlayer1.getCreatures().forEach(ecoCreature ->
+//                ret.add(factory.create(ecoCreature.isUpgraded(),ecoCreature.getTier(),ecoCreature.getAmount())));
+//        Hero a = new Hero();
+//        a.addCreatures(ret);
+//        return a;
+//    }
 
     public static void startEditing()
     {
@@ -112,7 +114,7 @@ public class EcoBattleConverter {
         JAXBContext contextFields = JAXBContext.newInstance(Holder.class);
         JAXBContext contextPoints = JAXBContext.newInstance(PointHolder.class);
         File file = new File("./fields.xml");
-        if(file.canRead() && file.isFile()) {
+        if (file.canRead() && file.isFile()) {
             Holder holder1 = (Holder) contextFields.createUnmarshaller().unmarshal(new FileReader("./fields.xml"));
             PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal(new FileReader("./point.xml"));
 
@@ -122,9 +124,4 @@ public class EcoBattleConverter {
         }
         return board;
     }
-
-    public static Hero convertHero(EconomyHero economyHero) {
-        return Converter.convert(economyHero);
-    }
-
 }
