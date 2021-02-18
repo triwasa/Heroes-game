@@ -20,10 +20,6 @@ public class GroundMovementStrategy implements MovementStrategy {
         return new PathSearch(board).pathSearch(aSourcePoint,aTargetPoint);
     }
 
-    @Override
-    public void accept(BattleObject battleObject, Field field) {
-        field.getVisitor().visit(battleObject, this, field);
-    }
 
     //might be moved to other class like "MovePath" or smh
     private double distance(LinkedList<Point> path) {

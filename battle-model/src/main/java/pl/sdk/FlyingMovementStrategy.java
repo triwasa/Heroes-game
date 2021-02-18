@@ -18,8 +18,5 @@ public class FlyingMovementStrategy implements MovementStrategy {
         return new LinkedList<>();
     }
 
-    @Override
-    public void accept(BattleObject battleObject, Field field) {
-        field.getVisitor().visit(battleObject, this, field);
-    }
+
 }
