@@ -1,32 +1,32 @@
 package pl.sdk.gui;
 
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import pl.sdk.artifacts.EconomyArtifactPrimaryFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
+import pl.sdk.spell.EconomySpell;
+import pl.sdk.spell.EconomySpellFactory;
 
-public class ArtifactButton extends Button {
+public class SpellButton extends Button{
 
-    private final String artifactName;
+    private final String spellName;
     private Stage dialog;
 
-    public ArtifactButton(EcoController aEcoController, EconomyArtifactPrimaryFactory aFactory, String artifactName, String artifactName1) {
-        super(aFactory.create(artifactName).getName());
-        this.artifactName = artifactName1;
-        artifactName = aFactory.create(artifactName1).getName();
-        getStyleClass().add("artifactButton");
+    public SpellButton(EcoController aEcoController, EconomySpellFactory aFactory, String spellName) {
+        super(aFactory.create().getName());
+        this.spellName = spellName;
+        getStyleClass().add("spellButton");
 
-        String finalArtifactName = artifactName;
+        String finalSpelltName = spellName;
         addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             int amount = startDialogAndGetCreatureAmount();
             if(amount != 0){
-                aEcoController.buyArtifact(aFactory.create(finalArtifactName);
+                aEcoController.buySpell(aFactory.create(finalSpelltName));
             }
             aEcoController.refreshGui();
         });
@@ -48,7 +48,7 @@ public class ArtifactButton extends Button {
     }
 
     private void prepareTop(HBox aTopPane, Slider aSlider) {
-        aTopPane.getChildren().add(new Label ("Single Cost: " + "0"));
+        aTopPane.getChildren().add(new Label("Single Cost: " + "0"));
         Label slideValueLabel = new Label("0");
         aSlider.valueProperty().addListener((slider, aOld, aNew) -> slideValueLabel.setText(String.valueOf(aNew.intValue())));
         aTopPane.getChildren().add(slideValueLabel);
@@ -63,7 +63,7 @@ public class ArtifactButton extends Button {
         dialog.setScene(scene);
         dialog.initOwner(this.getScene().getWindow());
         dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.setTitle("Buying " + artifactName);
+        dialog.setTitle("Buying " + spellName);
 
         pane.setTop(aTop);
         pane.setCenter(aCenter);
@@ -101,5 +101,4 @@ public class ArtifactButton extends Button {
         slider.setBlockIncrement(10);
         return slider;
     }
-
 }
