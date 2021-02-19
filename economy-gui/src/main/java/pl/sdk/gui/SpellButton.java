@@ -13,7 +13,7 @@ import pl.sdk.spell.EconomySpell;
 import pl.sdk.spell.EconomySpellFactory;
 
 public class SpellButton extends Button{
-
+    /*
     private final String spellName;
     private Stage dialog;
 
@@ -101,4 +101,6 @@ public class SpellButton extends Button{
         slider.setBlockIncrement(10);
         return slider;
     }
+
+    */
 }

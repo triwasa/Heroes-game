@@ -2,6 +2,8 @@ package pl.sdk.hero;
 
 enum HeroClassStatistic implements HeroClassStatisticIf {
 
+    //FOR_TESTS("For testing",1,1,1,1,1,1),
+
     KNIGHT(HeroClassName.KNIGHT,2,2,1,1,0,0),
     CLERIC(HeroClassName.CLERIC,1,0,2,2,0,0),
     RANGER(HeroClassName.RANGER,1,3,1,1,0,0),

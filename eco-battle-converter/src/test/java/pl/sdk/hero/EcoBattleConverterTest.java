@@ -2,6 +2,7 @@ package pl.sdk.hero;
 
 
 import org.junit.jupiter.api.Test;
+import pl.sdk.converter.Converter;
 import pl.sdk.converter.EcoBattleConverter;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.EconomyNecropolisFactory;
@@ -9,12 +10,13 @@ import pl.sdk.creatures.EconomyNecropolisFactory;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static pl.sdk.hero.HeroClassName.DEATH_KNIGHT;
 
 class EcoBattleConverterTest {
 
     @Test
     void shouldConvertCreaturesCorrectly(){
-        EconomyHero ecoHero = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
+        EconomyHero ecoHero = new EconomyHero(DEATH_KNIGHT,1000);
         EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
         ecoHero.addCreature(factory.create(false,1,1));
         ecoHero.addCreature(factory.create(false,2,2));
@@ -24,7 +26,7 @@ class EcoBattleConverterTest {
         ecoHero.addCreature(factory.create(false,6,6));
         ecoHero.addCreature(factory.create(false,7,7));
 
-        List<Creature> convertedCreatures = EcoBattleConverter.convert(ecoHero).getCreatures();
+        List<Creature> convertedCreatures = Converter.convert(ecoHero).getCreatures();
 
         assertEquals(7,convertedCreatures.size());
 

@@ -13,6 +13,7 @@ public class EconomyHero {
 
 
 
+
     public int getAttack() {
         return 0;
     }
@@ -37,18 +38,15 @@ public class EconomyHero {
         return 0;
     }
 
-    public enum Fraction {
-        NECROPOLIS;
-    }
+
     private final String heroName;
-    private final Fraction fraction;
     private final List<EconomyCreature> creatureList;
     private final EconomySkillSet skillList;
     private final List<EconomySpell> spellList;
     private final HeroEquipment heroEquipment;
     private int gold;
-    public EconomyHero(Fraction aFraction ,String aHeroName, int aGold) {
-        fraction = aFraction;
+
+    public EconomyHero(String aHeroName, int aGold) {
         heroName = aHeroName;
         gold = aGold;
         creatureList = new ArrayList<>();

@@ -26,7 +26,7 @@ public class ArtifactButton extends Button {
         addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             int amount = startDialogAndGetCreatureAmount();
             if(amount != 0){
-                aEcoController.buyArtifact(aFactory.create(finalArtifactName);
+                aEcoController.buyArtifact(aFactory.create(finalArtifactName));
             }
             aEcoController.refreshGui();
         });

@@ -95,7 +95,7 @@ public class HeroTest {
         hero.addSpells(spellList);
 
         assertEquals(1, hero.getSpells().size());
-        assertEquals("Magic Arrow", hero.getSpells().get(0).getName());
+        assertEquals("Magic Arrow", hero.getSpells().stream().findFirst().get().getName());
 
     }
 }

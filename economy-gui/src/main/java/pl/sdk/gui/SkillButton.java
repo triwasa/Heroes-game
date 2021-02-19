@@ -11,7 +11,7 @@ import javafx.stage.Modality;
 import pl.sdk.skills.EconomySkillFactory;
 
 public class SkillButton extends Button {
-
+    /*
     private final String skillName;
     private final int tier;
     private Stage dialog;
@@ -101,4 +101,5 @@ public class SkillButton extends Button {
         slider.setBlockIncrement(10);
         return slider;
     }
+    */
 }

@@ -54,7 +54,7 @@ public class Hero {
     public List<BattleObject> getMachines() {
         return machines;
     }
-    public List<Spell> getSpells() { return new ArrayList<>(spellBook.getSpellBook()); }
+    public Set<Spell> getSpells() { return spellBook.getSpellBook(); }
 
     public int getAttack() {
         return classStats.getAttack() + additionalStats.getAttack();

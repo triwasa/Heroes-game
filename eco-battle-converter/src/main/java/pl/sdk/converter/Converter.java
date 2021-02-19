@@ -28,7 +28,7 @@ public class Converter {
 
         Hero hero = heroClassFactory.create(economyHero.getClassName());
 
-        economyHero.getSkills().forEach(ecoSkill ->
+        economyHero.getSkillList().forEach(ecoSkill ->
                 skills.add(skillFactory.create(ecoSkill.getName(), ecoSkill.getLevel())));
         economyHero.getArtifacts().forEach(ecoArtifact -> {
             artifacts.add(artifactFactory.create(ecoArtifact.getName()));
@@ -48,8 +48,8 @@ public class Converter {
     private static void convertCreatures(EconomyHero economyHero, Hero hero) {
         List<Creature> creatures = new ArrayList<>();
         List<BattleObject> warmachines = new ArrayList<>();
-        final String WARMACHINE = "Warmachine";
 
+        String WARMACHINE = "WARMACHINES";
         economyHero.getCreatures().forEach(ecoCreature -> {
             if (ecoCreature.getFraction().equals(WARMACHINE))  {
                 BattleObject warmachine = FractionFactory.getFraction(ecoCreature.getFraction()).create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());

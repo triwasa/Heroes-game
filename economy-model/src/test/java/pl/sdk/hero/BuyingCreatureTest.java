@@ -7,6 +7,7 @@ import pl.sdk.creatures.EconomyNecropolisFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static pl.sdk.hero.HeroClassName.DEATH_KNIGHT;
 
 public class BuyingCreatureTest {
 
@@ -17,8 +18,8 @@ public class BuyingCreatureTest {
 
     @BeforeEach
     void init() {
-        hero1 = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
-        hero2 = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
+        hero1 = new EconomyHero(DEATH_KNIGHT,  1000);
+        hero2 = new EconomyHero(DEATH_KNIGHT, 1000);
         economyEngine = new EconomyEngine(hero1, hero2);
     }
 

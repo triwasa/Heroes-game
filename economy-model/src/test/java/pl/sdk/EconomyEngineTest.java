@@ -10,6 +10,7 @@ import pl.sdk.spell.EconomySpellFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static pl.sdk.artifacts.ArtifactName.CENTAURS_AX;
+import static pl.sdk.hero.HeroClassName.DEATH_KNIGHT;
 
 class EconomyEngineTest {
 
@@ -21,8 +22,8 @@ class EconomyEngineTest {
 
     @BeforeEach
     void init(){
-        h1 = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
-        h2 = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
+        h1 = new EconomyHero(DEATH_KNIGHT, 1000);
+        h2 = new EconomyHero(DEATH_KNIGHT, 1000);
         economyEngine = new EconomyEngine(h1, h2);
         creatureFactory = new EconomyNecropolisFactory();
 
