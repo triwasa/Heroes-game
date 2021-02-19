@@ -36,18 +36,32 @@ public class Converter {
 
         HeroSpellMastery hsm = new HeroSpellMastery(economyHero);
 
-        convertCreatures(economyHero, hero);
+        convertBattleObjects(economyHero, hero);
         convertSpells(economyHero, hero, hsm);
 
         artifacts.forEach(a -> a.buff(hero));
+
+        heroIncreaseCreatureStats(hero);
+
         skills.forEach(skill -> skillApplier.apply(skill, hero));
 
         return hero;
     }
 
-    private static void convertCreatures(EconomyHero economyHero, Hero hero) {
+    private static void heroIncreaseCreatureStats(Hero hero) {
+        Integer heroAttack = hero.getAttack();
+        Integer heroDefence = hero.getDefence();
+
+        hero.getCreatures().forEach(creature -> {
+            creature.increaseAttack(heroAttack);
+            creature.increaseArmor(heroDefence);
+        });
+    }
+
+    private static void convertBattleObjects(EconomyHero economyHero, Hero hero) {
         List<Creature> creatures = new ArrayList<>();
         List<BattleObject> warmachines = new ArrayList<>();
+
 
         String WARMACHINE = "WARMACHINES";
         economyHero.getCreatures().forEach(ecoCreature -> {
