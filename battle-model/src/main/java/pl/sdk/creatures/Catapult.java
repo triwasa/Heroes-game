@@ -2,7 +2,6 @@ package pl.sdk.creatures;
 
 
 import com.google.common.collect.Range;
-import pl.sdk.creatures.DefaultDamageApplier;
 
 import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
@@ -71,8 +70,8 @@ public class Catapult  implements BattleObject {
 
 
     @Override
-    public boolean canFortificationAttack() {
-        return possibleAttackManager.canFortificationAttack();
+    public boolean canFortificationAttack(Fortification fortification) {
+        return possibleAttackManager.canFortificationAttack(fortification);
     }
 
 

@@ -1,3 +1,4 @@
+/*
 package pl.sdk;
 
 import java.beans.PropertyChangeEvent;
@@ -35,12 +36,14 @@ public class PositionSaver implements PropertyChangeListener {
       }
 
     }
-   /* public void possibleMove() {
+   */
+/* public void possibleMove() {
         if(engine.getActiveCreature().backToPreviousPositionMechanic() && oldPosition != null) {
             engine.unlockMoving();
             engine.move(oldPosition);
         }
-    }*/
+    }*//*
+
 
     public void additionalPercentOfDamageToDeal() {
         additionalPercentDamage = (int)Math.sqrt((oldPosition.getY() - currentPosition.getY()) * (oldPosition.getY() - currentPosition.getY())
@@ -56,3 +59,4 @@ public class PositionSaver implements PropertyChangeListener {
         }
     }
 }
+*/

@@ -1,14 +1,12 @@
 package pl.sdk.creatures;
 
 import com.google.common.collect.Range;
-import pl.sdk.creatures.DefaultDamageApplier;
 import pl.sdk.fortifications.FortificationStatistic;
 import pl.sdk.fortifications.FortificationStatisticIf;
 
 import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 
 public class Wall implements BattleObject, Fortification {
@@ -18,7 +16,7 @@ public class Wall implements BattleObject, Fortification {
     private DamageApplierIf damageApplier;
     private int amount;
 
-    Wall() {
+    public Wall() {
         stats=FortificationStatistic.WALL;
         damageApplier=new DefaultDamageApplier();
 
@@ -58,7 +56,7 @@ public class Wall implements BattleObject, Fortification {
     }
 
     @Override
-    public boolean canFortificationAttack() {
+    public boolean canFortificationAttack(Fortification fortification) {
         return false;
     }
 
