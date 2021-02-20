@@ -15,16 +15,17 @@ class BallistaTest {
 
     public static final int NOT_IMPORTANT=5;
     private AttackEngine attackEngine;
+    private Hero hero;
 
     @BeforeEach
     void init() {
         attackEngine=new AttackEngine(new Board());
+        hero = new Hero.BuilderForTesting().attack(1).defence(2).power(3).knowledge(4).luck(0).morale(0).build();
 
     }
 
     @Test
     void shouldShoot() {
-        Hero hero = new Hero.BuilderForTesting().attack(1).defence(2).power(3).knowledge(4).build();
         Ballista ballista=new Ballista.BuilderForTesting()
                 .name("Ballista")
                 .attack(10)
@@ -52,6 +53,7 @@ class BallistaTest {
                 .name("Ballista")
                 .attack(NOT_IMPORTANT)
                 .armor(NOT_IMPORTANT)
+                .hero(hero)
                 .maxHp(100)
                 .moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
@@ -73,6 +75,7 @@ class BallistaTest {
         Ballista ballista=new Ballista.BuilderForTesting()
                 .name("Ballista")
                 .attack(NOT_IMPORTANT)
+                .hero(hero)
                 .armor(NOT_IMPORTANT)
                 .maxHp(5)
                 .moveRange(NOT_IMPORTANT)
