@@ -77,6 +77,16 @@ public class SplashDamageCreatureDecorator extends Creature {
     }
 
     @Override
+    public void increaseAttack(int attackToIncrease) {
+        decorated.increaseAttack(attackToIncrease);
+    }
+
+    @Override
+    public void increaseDefence(int defenceToIncrease) {
+        decorated.increaseDefence(defenceToIncrease);
+    }
+
+    @Override
     public Immunity getImmunity() {
         return decorated.getImmunity();
     }

@@ -167,6 +167,13 @@ public class Creature implements PropertyChangeListener, BattleObject{
     public void increaseDamage(int aLowerBound, int aUpperBound) {
         additionalStats.increaseDamage(aLowerBound,aUpperBound);
     }
+    public void increaseAttack(int attackToIncrease) {
+        additionalStats.increaseAttack(attackToIncrease);
+    }
+
+    public void increaseDefence(int defenceToIncrease) {
+        additionalStats.increaseDefence(defenceToIncrease);
+    }
 
     public int getAmount(){
         return amount;
