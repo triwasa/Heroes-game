@@ -138,7 +138,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
 
 
     public int getAttack() {
-        return stats.getAttack();
+        return stats.getAttack() + additionalStats.getAdditionalAttack();
     }
 
     @Override
@@ -152,7 +152,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
     }
 
     public int getArmor() {
-        return stats.getArmor();
+        return stats.getArmor() + additionalStats.getAdditionalDefence();
     }
 
     public Range<Integer> getDamage() {

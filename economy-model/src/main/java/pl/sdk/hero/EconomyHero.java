@@ -11,34 +11,6 @@ import java.util.*;
 
 public class EconomyHero {
 
-
-
-
-    public int getAttack() {
-        return 0;
-    }
-
-    public int getDefense() {
-        return 0;
-    }
-
-    public int getSpellPower() {
-        return 0;
-    }
-
-    public int getKnowledge() {
-        return 0;
-    }
-
-    public int getLuck() {
-        return 0;
-    }
-
-    public int getMorale() {
-        return 0;
-    }
-
-
     private final String heroName;
     private final List<EconomyCreature> creatureList;
     private final EconomySkillSet skillList;
@@ -100,8 +72,8 @@ public class EconomyHero {
         return heroEquipment.getArtifacts();
     }
 
-    public HashSet<EconomySkill> getSkillList() {
-        return skillList.getSkillSet();
+    public List<EconomySkill> getSkillList() {
+        return new ArrayList<EconomySkill>(skillList.getSkillSet());
     }
 
     public List<EconomySpell> getSpell() {return List.copyOf(spellList);}

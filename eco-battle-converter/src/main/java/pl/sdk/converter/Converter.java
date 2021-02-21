@@ -28,8 +28,9 @@ public class Converter {
 
         Hero hero = heroClassFactory.create(economyHero.getClassName());
 
+
         economyHero.getSkillList().forEach(ecoSkill ->
-                skills.add(skillFactory.create(ecoSkill.getName(), ecoSkill.getLevel())));
+                skills.add(skillFactory.create(ecoSkill.getCoreName(),ecoSkill.getLevel())));
         economyHero.getArtifacts().forEach(ecoArtifact -> {
             artifacts.add(artifactFactory.create(ecoArtifact.getName()));
         });
@@ -49,31 +50,30 @@ public class Converter {
     }
 
     private static void heroIncreaseCreatureStats(Hero hero) {
-        Integer heroAttack = hero.getAttack();
-        Integer heroDefence = hero.getDefence();
+        int heroAttack = hero.getAttack();
+        int heroDefence = hero.getDefence();
 
         hero.getCreatures().forEach(creature -> {
             creature.increaseAttack(heroAttack);
-            creature.increaseArmor(heroDefence);
+            creature.increaseDefence(heroDefence);
         });
     }
 
     private static void convertBattleObjects(EconomyHero economyHero, Hero hero) {
+        WarMachineFactory warMachineFactory = new WarMachineFactory();
         List<Creature> creatures = new ArrayList<>();
         List<BattleObject> warmachines = new ArrayList<>();
-
-
         String WARMACHINE = "WARMACHINES";
+
         economyHero.getCreatures().forEach(ecoCreature -> {
             if (ecoCreature.getFraction().equals(WARMACHINE))  {
-                BattleObject warmachine = FractionFactory.getFraction(ecoCreature.getFraction()).create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
+                BattleObject warmachine = warMachineFactory.create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
                 warmachines.add(warmachine);
             }
             else {
-                Creature c = (Creature) FractionFactory.getFraction(ecoCreature.getFraction()).create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
+                Creature c = FractionFactory.getFraction(ecoCreature.getFraction()).create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
                 creatures.add(c);
             }
-
         });
         hero.addCreatures(creatures);
         hero.addWarmachines(warmachines);

@@ -2,8 +2,7 @@ package pl.sdk.skills;
 
 public class EconomySkillFactory {
 
-    private static String EXCEPTION_MESSEAGE = "There is no such skill";
-
+    private static String EXCEPTION_MESSEAGE = "There is no such economy skill";
 
     public EconomySkill create(String aName, int tier) {
         if (aName == SkillStatistic.OFFENCE1.getCoreName()) {
@@ -60,7 +59,7 @@ public class EconomySkillFactory {
                 case 3:
                     return new EconomySkill(SkillStatistic.RESISTANCE3, 300);
             }
-        } else if (aName == SkillStatistic.ARCHERY1.getCoreName()) {
+        } else if (aName == SkillStatistic.INTELLIGENCE1.getCoreName()) {
             switch (tier) {
                 case 1:
                     return new EconomySkill(SkillStatistic.INTELLIGENCE1, 100);
@@ -218,7 +217,7 @@ public class EconomySkillFactory {
                 case 3:
                     return new EconomySkill(SkillStatistic.RESISTANCE3, 300);
             }
-        } else if (aName == SkillStatistic.ARCHERY1.getCoreName()) {
+        } else if (aName == SkillStatistic.INTELLIGENCE1.getCoreName()) {
             switch (tier) {
                 case 1:
                     return new EconomySkill(SkillStatistic.INTELLIGENCE1, 100);

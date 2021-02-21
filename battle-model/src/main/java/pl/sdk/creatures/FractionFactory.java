@@ -35,8 +35,6 @@ public class FractionFactory {
                 return new NecropolisFactory();
             case NEUTRAL:
                 return new NeutralFactory();
-            case WARMACHINE:
-                return new WarMachineFactory();
             default:
                 throw new IllegalArgumentException(EXCEPTION);
         }

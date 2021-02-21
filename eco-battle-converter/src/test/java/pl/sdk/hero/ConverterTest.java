@@ -28,7 +28,6 @@ class ConverterTest {
     @Test
     void heroStatsShouldAffectCreatureStats(){
         EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
-
         economyHero.addCreature(economyCreatureNecropolisFactory.create(false,1,1));
 
         Hero hero = convert(economyHero);
@@ -41,24 +40,22 @@ class ConverterTest {
     @Test
     void artifactShouldAffectCreatureStats() {
         EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
-
         economyHero.addCreature(economyCreatureNecropolisFactory.create(false,1,1));
         economyHero.addArtifact(economyArtifactFactory.create("Dragon Scale Shield"));
 
         Hero hero = convert(economyHero);
 
         assertEquals(1 + 5 + 3, hero.getCreatures().get(0).getAttack());
-        assertEquals(2 + 4 + 3, hero.getCreatures().get(0).getCurrentHp());
+        assertEquals(2 + 4 + 3, hero.getCreatures().get(0).getArmor());
     }
 
     @Test
     void skillShouldAffectCreature() {
         EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
-
         // 5 - lich is shooting creature
         economyHero.addCreature(economyCreatureNecropolisFactory.create(false,5,1));
         // adds 50% damage to attack to all shooting creatures
-        economyHero.addSkill(economySkillFactory.create("archery", 3));
+        economyHero.addSkill(economySkillFactory.create("archery", 1));
 
         Creature creature = necropolisFactory.create(false,5,1);
         int lowerEndpoint = creature.getBasicDamage().lowerEndpoint();
@@ -66,7 +63,7 @@ class ConverterTest {
 
         Hero hero = convert(economyHero);
 
-        assertEquals(Range.closed( (int) Math.round(lowerEndpoint * 1.5), (int) Math.round(upperEndpoint * 1.5)), hero.getCreatures().get(0).getDamage());
+        assertEquals(Range.closed( (int) Math.round(lowerEndpoint * 1.1), (int) Math.round(upperEndpoint * 1.1)), hero.getCreatures().get(0).getDamage());
     }
 
     @Test
