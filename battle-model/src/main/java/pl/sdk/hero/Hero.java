@@ -40,14 +40,20 @@ public class Hero {
         this.creatures = aCreatures;
     }
 
+    public void addWarmachines(List<BattleObject> warmachines) {
+        this.machines = warmachines;
+    }
+
+    public void addSpells(List<Spell> aSpells) {
+        aSpells.forEach(spell -> this.spellBook.addSpell(spell));
+    }
+
     public List<Creature> getCreatures() {
         return creatures;
     }
     public List<BattleObject> getMachines() {
         return machines;
     }
-
-
     public Set<Spell> getSpells() { return spellBook.getSpellBook(); }
 
     public int getAttack() {
@@ -68,10 +74,11 @@ public class Hero {
     public int getMorale() {
         return classStats.getMorale() + additionalStats.getMorale();
     }
-
     public int getMana() {
         return mana.getMana();
     }
+
+
 
     public static class BuilderForTesting {
         private Integer attack;

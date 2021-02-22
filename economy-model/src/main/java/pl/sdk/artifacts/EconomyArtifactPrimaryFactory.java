@@ -100,7 +100,6 @@ public class EconomyArtifactPrimaryFactory {
                 return new EconomyArtifact(ArtifactStatistic.STILL_EYE_OF_THE_DRAGON, 1300);
             case PENDANT_OF_COURAGE:
                 return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_COURAGE, 4000);
-
             case RING_OF_VITALITY:
                 return new EconomyArtifact(ArtifactStatistic.RING_OF_VITALITY, 450);
             case RING_OF_LIFE:

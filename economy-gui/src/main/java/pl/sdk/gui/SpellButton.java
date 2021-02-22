@@ -1,5 +1,6 @@
 package pl.sdk.gui;
 
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,25 +9,24 @@ import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
-import pl.sdk.skills.EconomySkillFactory;
+import pl.sdk.spell.EconomySpell;
+import pl.sdk.spell.EconomySpellFactory;
 
-public class SkillButton extends Button {
+public class SpellButton extends Button{
     /*
-    private final String skillName;
-    private final int tier;
+    private final String spellName;
     private Stage dialog;
 
-    public SkillButton(EcoController aEcoController, EconomySkillFactory aFactory, int tier) {
+    public SpellButton(EcoController aEcoController, EconomySpellFactory aFactory, String spellName) {
         super(aFactory.create().getName());
-        skillName = aFactory.create().getName();
-        this.tier = tier;
-        getStyleClass().add("skillButton");
+        this.spellName = spellName;
+        getStyleClass().add("spellButton");
 
-        String finalSkillName = skillName;
+        String finalSpelltName = spellName;
         addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             int amount = startDialogAndGetCreatureAmount();
             if(amount != 0){
-                aEcoController.buySkill(aFactory.create(finalSkillName,tier));
+                aEcoController.buySpell(aFactory.create(finalSpelltName));
             }
             aEcoController.refreshGui();
         });
@@ -48,11 +48,11 @@ public class SkillButton extends Button {
     }
 
     private void prepareTop(HBox aTopPane, Slider aSlider) {
-        aTopPane.getChildren().add(new javafx.scene.control.Label("Single Cost: " + "0"));
-        javafx.scene.control.Label slideValueLabel = new javafx.scene.control.Label("0");
+        aTopPane.getChildren().add(new Label("Single Cost: " + "0"));
+        Label slideValueLabel = new Label("0");
         aSlider.valueProperty().addListener((slider, aOld, aNew) -> slideValueLabel.setText(String.valueOf(aNew.intValue())));
         aTopPane.getChildren().add(slideValueLabel);
-        aTopPane.getChildren().add(new javafx.scene.control.Label("Purchase Cost: "));
+        aTopPane.getChildren().add(new Label ("Purchase Cost: "));
     }
 
     private Stage prepareWindow(Pane aCenter, Pane aBottom, Pane aTop) {
@@ -63,7 +63,7 @@ public class SkillButton extends Button {
         dialog.setScene(scene);
         dialog.initOwner(this.getScene().getWindow());
         dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.setTitle("Buying " + skillName);
+        dialog.setTitle("Buying " + spellName);
 
         pane.setTop(aTop);
         pane.setCenter(aCenter);
@@ -72,11 +72,11 @@ public class SkillButton extends Button {
     }
 
     private void prepareConfirmAndCancelButton(HBox aBottomPane, Slider aSlider) {
-        javafx.scene.control.Button okButton = new javafx.scene.control.Button("OK");
+        Button okButton = new Button("OK");
         aBottomPane.setAlignment(Pos.CENTER);
         okButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> dialog.close());
         okButton.setPrefWidth(200);
-        javafx.scene.control.Button cancelButton = new javafx.scene.control.Button("CLOSE");
+        Button cancelButton = new Button("CLOSE");
         cancelButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
             aSlider.setValue(0);
@@ -101,5 +101,6 @@ public class SkillButton extends Button {
         slider.setBlockIncrement(10);
         return slider;
     }
+
     */
 }

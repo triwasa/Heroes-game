@@ -10,7 +10,7 @@ public class EconomySkillSet {
         skillSet = new HashSet<EconomySkill>();
     }
 
-    void addSkill(EconomySkill skill) {
+    public void addSkill(EconomySkill skill) {
         if (skill.getStats().getTier() == 1) {
             skillSet.add(skill);
         } else {
@@ -36,5 +36,7 @@ public class EconomySkillSet {
         return skillSet.contains(skill);
     }
 
-
+    public HashSet<EconomySkill> getSkillSet() {
+        return skillSet;
+    }
 }

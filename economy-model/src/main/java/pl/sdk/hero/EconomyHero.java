@@ -5,59 +5,30 @@ import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.artifacts.HeroEquipment;
 import pl.sdk.skills.EconomySkill;
 import pl.sdk.spell.EconomySpell;
+import pl.sdk.skills.EconomySkillSet;
 
 import java.util.*;
 
 public class EconomyHero {
 
-
-
-    public int getAttack() {
-        return 0;
-    }
-
-    public int getDefense() {
-        return 0;
-    }
-
-    public int getSpellPower() {
-        return 0;
-    }
-
-    public int getKnowledge() {
-        return 0;
-    }
-
-    public int getLuck() {
-        return 0;
-    }
-
-    public int getMorale() {
-        return 0;
-    }
-
-    void addSpell(EconomySpell aEconomySpell) {
-        
-    }
-
-    public enum Fraction {
-        NECROPOLIS;
-    }
-    private final Fraction fraction;
+    private final String heroName;
     private final List<EconomyCreature> creatureList;
+    private final EconomySkillSet skillList;
+    private final List<EconomySpell> spellList;
     private final HeroEquipment heroEquipment;
-    private final HashMap<EconomySkill,String> skillList;
     private int gold;
-    public EconomyHero(Fraction aFraction, int aGold) {
-        fraction = aFraction;
+
+    public EconomyHero(String aHeroName, int aGold) {
+        heroName = aHeroName;
         gold = aGold;
         creatureList = new ArrayList<>();
         heroEquipment = new HeroEquipment();
-        skillList = new HashMap<>();
+        spellList = new ArrayList<>();
+        skillList = new EconomySkillSet();
     }
 
-    public Set<EconomySkill> getSkills() {
-        return skillList.keySet();
+    public String getClassName() {
+        return heroName;
     }
 
     void addCreature(EconomyCreature aCreature){
@@ -67,16 +38,22 @@ public class EconomyHero {
         creatureList.add(aCreature);
     }
 
-//    void addArtifact(Artifact aArtifact){
-//        heroEquipment.equip(aArtifact);
-//    }
+    void addArtifact(EconomyArtifact aArtifact){
+        heroEquipment.equip(aArtifact);
+    }
 
-    public void addSkill(EconomySkill aEconomySklill) {
-
-        if (skillList.containsKey(aEconomySklill)){
-            throw new IllegalStateException("hero already has the item");
+    public void addSkill(EconomySkill aSklill) {
+        if(skillList.contains(aSklill)) {
+            throw new IllegalStateException("hero already has the skill");
         }
-        skillList.put(aEconomySklill,aEconomySklill.getName());
+        skillList.addSkill(aSklill);
+    }
+
+    public void addSpell(EconomySpell aSpell){
+        if (spellList.contains(aSpell)){
+            throw new IllegalStateException("hero already has the spell");
+        }
+        spellList.add(aSpell);
     }
 
     public int getGold() {
@@ -91,11 +68,15 @@ public class EconomyHero {
         return List.copyOf(creatureList);
     }
 
-    public HashMap<String, EconomyArtifact> getArtifacts() {
-        return null;
+    public List<EconomyArtifact> getArtifacts() {
+        return heroEquipment.getArtifacts();
     }
 
+    public List<EconomySkill> getSkillList() {
+        return new ArrayList<EconomySkill>(skillList.getSkillSet());
+    }
 
+    public List<EconomySpell> getSpell() {return List.copyOf(spellList);}
 
     void substractGold(int aAmount){
         if (aAmount > gold){

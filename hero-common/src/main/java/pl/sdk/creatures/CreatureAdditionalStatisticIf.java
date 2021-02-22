@@ -6,5 +6,7 @@ public interface CreatureAdditionalStatisticIf {
     int getAdditionalMoveRange();
     int getAdditionalHp();
     int getResistance();
+    int getAdditionalAttack();
+    int getAdditionalDefence();
     Range<Integer> getAdditionalDamage();
 }
