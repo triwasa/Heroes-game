@@ -26,6 +26,7 @@ class BallistaTest {
 
     @Test
     void shouldShoot() {
+
         Ballista ballista=new Ballista.BuilderForTesting()
                 .name("Ballista")
                 .attack(10)
@@ -45,6 +46,7 @@ class BallistaTest {
                 .build();
         ballista.getAttackStrategy().attack(ballista, defender1);
         assertEquals(94, defender1.getCurrentHp());
+
     }
 
     @Test

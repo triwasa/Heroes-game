@@ -33,6 +33,7 @@ public class FortressFactory extends AbstractFactory {
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.MIGHTY_GORGON)
                             .amount(aAmount)
+                            .damageCalculator(new CalculateDamageWithChanceToKillTopCreatureStrategy(10))
                             .build();
                 case 6:
                     return new Creature.Builder()

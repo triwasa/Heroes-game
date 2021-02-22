@@ -1,179 +1,147 @@
 package pl.sdk.hero;
 
 
+import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
-import pl.sdk.converter.Converter;
+import pl.sdk.artifacts.EconomyArtifactPrimaryFactory;
+import static pl.sdk.converter.Converter.convert;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.EconomyNecropolisFactory;
+import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.skills.EconomySkillFactory;
+import pl.sdk.spell.EconomySpellFactory;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static pl.sdk.hero.HeroClassName.DEATH_KNIGHT;
 
 class ConverterTest {
 
-    private static final int NOT_IMPORTANT = 5;
+    private static final int NOT_IMPORTANT = 500;
+    private final EconomyNecropolisFactory economyCreatureNecropolisFactory = new EconomyNecropolisFactory();
+    private final EconomyArtifactPrimaryFactory economyArtifactFactory = new EconomyArtifactPrimaryFactory();
+    private final EconomySkillFactory economySkillFactory = new EconomySkillFactory();
+    private final EconomySpellFactory economySpellFactory = new EconomySpellFactory();
+    private final NecropolisFactory necropolisFactory = new NecropolisFactory();
 
     @Test
-    void heroStatsAffectCreature(){
-//        EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
-//        EconomyHero ecoHero = new EconomyHero.Builder()
-//                .attack(10)
-//                .defence(NOT_IMPORTANT)
-//                .power(NOT_IMPORTANT)
-//                .knowldge(NOT_IMPORTANT)
-//                .build();
-//
-//        ecoHero.addCreature(factory.create(false,1,1));
-//
-//        Hero hero = Converter.convert(ecoHero);
-//
-//        assertEquals(4 + 10,hero.getCreatures().get(0).getAttack());
+    void heroStatsShouldAffectCreatureStats(){
+        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
+        economyHero.addCreature(economyCreatureNecropolisFactory.create(false,1,1));
+
+        Hero hero = convert(economyHero);
+
+        assertEquals(5 + 1, hero.getCreatures().get(0).getAttack());
+        assertEquals(4 + 2, hero.getCreatures().get(0).getArmor());
     }
 
 
     @Test
-    void artifactAffectsCreature() {
-//        EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
-//        EconomyArtifactPrimary1Factory artifactPrimary1Factory = new EconomyArtifactPrimary1Factory();
-//        EconomyHero ecoHero = new EconomyHero.Builder()
-//                .attack(10)
-//                .defence(NOT_IMPORTANT)
-//                .power(NOT_IMPORTANT)
-//                .knowldge(NOT_IMPORTANT)
-//                .build();
-//
-//        ecoHero.addCreature(factory.create(false,1,1));
-//        ecoHero.addArtifact(artifactPrimary1Factory.create("Centaur's Ax"));
-//
-//        Hero hero = Converter.convert(ecoHero);
-//
-//        // hero's attack, creature's attack, artifact's attack
-//        assertEquals(10 + 5 + 2, hero.getCreatures().get(0).getAttack());
+    void artifactShouldAffectCreatureStats() {
+        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
+        economyHero.addCreature(economyCreatureNecropolisFactory.create(false,1,1));
+        economyHero.addArtifact(economyArtifactFactory.create("Dragon Scale Shield"));
+
+        Hero hero = convert(economyHero);
+
+        assertEquals(1 + 5 + 3, hero.getCreatures().get(0).getAttack());
+        assertEquals(2 + 4 + 3, hero.getCreatures().get(0).getArmor());
     }
 
     @Test
-    void skillAffectsCreature() {
+    void skillShouldAffectCreature() {
+        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
+        // 5 - lich is shooting creature
+        economyHero.addCreature(economyCreatureNecropolisFactory.create(false,5,1));
+        // adds 50% damage to attack to all shooting creatures
+        economyHero.addSkill(economySkillFactory.create("archery", 1));
 
-        EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
-        EconomySkillFactory skillFactory = new EconomySkillFactory();
-//        EconomyHero ecoHero = new EconomyHero.Builder()
-//                .attack(10)
-//                .defence(NOT_IMPORTANT)
-//                .power(NOT_IMPORTANT)
-//                .knowldge(NOT_IMPORTANT)
-//                .build();
-//        // 5 - lich is shooting creature
-//        ecoHero.addCreature(factory.create(false,5,1));
-//        // adds 50% damage to attack to all shooting creatures
-//        ecoHero.addSkill(skillFactory.create("Archery", 3));
+        Creature creature = necropolisFactory.create(false,5,1);
+        int lowerEndpoint = creature.getBasicDamage().lowerEndpoint();
+        int upperEndpoint = creature.getBasicDamage().upperEndpoint();
 
-//        Hero hero = Converter.convert(ecoHero);
+        Hero hero = convert(economyHero);
 
-//        assertEquals(Range.closed((11 + 10) * 1.5, (15 + 10) * 1.5 ), hero.getCreatures().get(0).getDamage());
+        assertEquals(Range.closed( (int) Math.round(lowerEndpoint * 1.1), (int) Math.round(upperEndpoint * 1.1)), hero.getCreatures().get(0).getDamage());
     }
 
     @Test
     void skillDoesNotAffectCreatureWhenItDoesNotMeetConditions() {
-//        EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
-//        EconomySkillFactory skillFactory = new EconomySkillFactory();
-//        EconomyHero ecoHero = new EconomyHero.Builder()
-//                .attack(10)
-//                .defence(NOT_IMPORTANT)
-//                .power(NOT_IMPORTANT)
-//                .knowldge(NOT_IMPORTANT)
-//                .build();
-//
-//        // 4 - not shooting creature
-//        ecoHero.addCreature(factory.create(false,4,1));
-//        // adds 50% to attack to all shooting creatures
-//        ecoHero.addSkill(skillFactory.create("Archery", 3));
-//
-//        Hero hero = Converter.convert(ecoHero);
-//
-//        assertEquals(Range.closed(5, 8), hero.getCreatures().get(0).getDamage());
+        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
+
+        // 4 - not shooting creature
+        economyHero.addCreature(economyCreatureNecropolisFactory.create(false,4,1));
+        // adds 50% to attack to all shooting creatures
+        economyHero.addSkill(economySkillFactory.create("archery", 3));
+
+        Creature creature = necropolisFactory.create(false,4,1);
+        int lowerEndpoint = creature.getBasicDamage().lowerEndpoint();
+        int upperEndpoint = creature.getBasicDamage().upperEndpoint();
+
+        Hero hero = convert(economyHero);
+
+        assertEquals(Range.closed( lowerEndpoint, upperEndpoint), hero.getCreatures().get(0).getDamage());
     }
 
 
-    @Test
-    void artifactAffectsSpell() {
-//        EconomyArtifactPrimary1Factory artifactFactory = new EconomyArtifactPrimary1Factory();
-//        EconomySpellFactory spellFactory = new EconomySpellFactory();
-//        EconomyHero ecoHero = new EconomyHero.Builder()
-//                .attack(NOT_IMPORTANT)
-//                .defence(NOT_IMPORTANT)
-//                .power(10)
-//                .knowldge(NOT_IMPORTANT)
-//                .build();
+//    @Test
+//    void artifactAffectsSpell() {
+//        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
 //
 //        // Hero's fire spells to extra 50% damage
-//        ecoHero.addArtifact(artifactFactory.create("Orb of Tempstuous Fire"));
+//        economyHero.addArtifact(economyArtifactFactory.create("Orb of Tempstuous Fire"));
 //        // Target, enemy troop receives ((Power x 10) + 30) damage.
-//        ecoHero.addSpell(spellFactory.create("Magic Arrow", 3));
+//        economyHero.addSpell(economySpellFactory.create("Magic Arrow", 3));
 //
-//        Hero hero = Converter.convert(ecoHero);
+//        Hero hero = convert(economyHero);
 //
 //        assertEquals((10 * 10 + 30) * 1.5 , hero.getSpells().get(0).getDamage());
-    }
+//    }
 
-    @Test
-    void skillAffectsSpell() {
-//        EconomySkillFactory skillFactory = new EconomySkillFactory();
-//        EconomySpellFactory spellFactory = new EconomySpellFactory();
-//        EconomyHero ecoHero = new EconomyHero.Builder()
-//                .attack(NOT_IMPORTANT)
-//                .defence(NOT_IMPORTANT)
-//                .power(10)
-//                .knowldge(NOT_IMPORTANT)
-//                .build();
+//    @Test
+//    void skillAffectsSpell() {
+//        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
 //
 //        //  Fire Magic spells are cast at the expert level
-//        ecoHero.addSkill(skillFactory.create("Fire Magic", 3));
+//        economyHero.addSkill(economySkillFactory.create("Fire Magic", 3));
 //        // Target, enemy troop receives ((Power x 10) + 10) damage.
-//        ecoHero.addSpell(spellFactory.create("Magic Arrow", 1));
+//        economyHero.addSpell(economySpellFactory.create("Magic Arrow", 1));
 //
-//        Hero hero = Converter.convert(ecoHero);
+//        Hero hero = convert(economyHero);
 //
 //        assertNotEquals(10 * 10 + 10 , hero.getSpells().get(0).getDamage());
 //        assertEquals(10 * 10 + 30 , hero.getSpells().get(0).getDamage());
+//    }
 
-    }
-
-    @Test
-    void skillLuckCanAffectCreatureLuck() {
-//        EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
-//        EconomyHero ecoHero = new EconomyHero.Builder()
-//                .attack(NOT_IMPORTANT)
-//                .defence(NOT_IMPORTANT)
-//                .power(NOT_IMPORTANT)
-//                .knowldge(NOT_IMPORTANT)
-//                .build();
+//    @Test
+//    void skillLuckCanAffectCreatureLuck() {
+//        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
 //
-//        ecoHero.addCreature(factory.create(false,5,1));
-//        ecoHero.addSkill("Luck", 3);
+//        economyHero.addCreature(economyCreatureNecropolisFactory.create(false,5,1));
+//        economyHero.addSkill(economySkillFactory.create("Luck", 3));
 //
-//        Hero hero = Converter.convert(ecoHero);
+//        Hero hero = convert(economyHero);
 //
 //        assertEquals(3, hero.getCreatures().get(0).getLuck());
-    }
+//    }
 
 
     @Test
     void shouldConvertCreaturesCorrectly(){
-        EconomyHero ecoHero = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
-        EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
-        ecoHero.addCreature(factory.create(false,1,1));
-        ecoHero.addCreature(factory.create(false,2,2));
-        ecoHero.addCreature(factory.create(false,3,3));
-        ecoHero.addCreature(factory.create(false,4,4));
-        ecoHero.addCreature(factory.create(false,5,5));
-        ecoHero.addCreature(factory.create(false,6,6));
-        ecoHero.addCreature(factory.create(false,7,7));
+        EconomyHero ecoHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
+        ecoHero.addCreature(economyCreatureNecropolisFactory.create(false,1,1));
+        ecoHero.addCreature(economyCreatureNecropolisFactory.create(false,2,2));
+        ecoHero.addCreature(economyCreatureNecropolisFactory.create(false,3,3));
+        ecoHero.addCreature(economyCreatureNecropolisFactory.create(false,4,4));
+        ecoHero.addCreature(economyCreatureNecropolisFactory.create(false,5,5));
+        ecoHero.addCreature(economyCreatureNecropolisFactory.create(false,6,6));
+        ecoHero.addCreature(economyCreatureNecropolisFactory.create(false,7,7));
 
-        Hero hero = Converter.convert(ecoHero);
+        Hero hero = convert(ecoHero);
         List<Creature> convertedCreatures = hero.getCreatures();
+
+        assertEquals(convertedCreatures.get(0).getClass(), Creature.class);
 
         assertEquals(7,convertedCreatures.size());
 
@@ -198,49 +166,19 @@ class ConverterTest {
         assertEquals("Bone Dragon",convertedCreatures.get(6).getName());
         assertEquals(7,convertedCreatures.get(6).getAmount());
     }
-//
-//
-//    @Test
-//    void shouldConvertArtifactsCorrectly() {
-//        EconomyHero ecoHero = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
-//        ArtifactFactory factory = new ArtifactFactory();
-//        ecoHero.addArtifact(factory.create("Centaur's Ax"));
-//        ecoHero.addArtifact(factory.create("Blackshard of the Dead Knight"));
-//        ecoHero.addArtifact(factory.create("Greater Gnoll's Flail"));
-//        ecoHero.addArtifact(factory.create("Ogre's Club of Havoc"));
-//        ecoHero.addArtifact(factory.create("Sword of Hellfire"));
-//
-//        Hero hero = Converter.convert(ecoHero);
-//
-//        List<Artifact> convertedArtifacts = hero.getArtifacts();
-//
-//        assertEquals(5, convertedArtifacts.size());
-//
-//        assertEquals("Centaur's Ax",convertedArtifacts.get(0).getName());
-//
-//        assertEquals("Blackshard of the Dead Knight",convertedArtifacts.get(1).getName());
-//
-//        assertEquals("Greater Gnoll's Flail",convertedArtifacts.get(2).getName());
-//
-//        assertEquals("Ogre's Club of Havoc",convertedArtifacts.get(3).getName());
-//
-//        assertEquals("Sword of Hellfire",convertedArtifacts.get(4).getName());
-//
-//    }
-//
+
+
 //    @Test
 //    void shouldConvertSpellsCorrectly() {
-//        EconomyHero ecoHero = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
-//        SpellFactory factory = new SpellFactory();
+//        EconomyHero ecoHero = new EconomyHero(DEATH_KNIGHT,  NOT_IMPORTANT);
 //
-//        ecoHero.addSpell(factory.create("Shield", 2));
-//        ecoHero.addSpell(factory.create("Stoneskin", 1));
-//        ecoHero.addSpell(factory.create("Magic Arrow", 3));
-//        ecoHero.addSpell(factory.create("Death Ripple", 3));
-//        ecoHero.addSpell(factory.create("Fortune", 2));
+//        ecoHero.addSpell(economySpellFactory.create("Shield", 2));
+//        ecoHero.addSpell(economySpellFactory.create("Stoneskin", 1));
+//        ecoHero.addSpell(economySpellFactory.create("Magic Arrow", 3));
+//        ecoHero.addSpell(economySpellFactory.create("Death Ripple", 3));
+//        ecoHero.addSpell(economySpellFactory.create("Fortune", 2));
 //
-//        Hero hero = Converter.convert(ecoHero);
-//
+//        Hero hero = convert(ecoHero);
 //        List<Spell> convertedSpells = hero.getSpells();
 //
 //        assertEquals(5, convertedSpells.size());
@@ -259,36 +197,5 @@ class ConverterTest {
 //
 //        assertEquals("Fortune",convertedSpells.get(4).getName());
 //        assertEquals(2, convertedSpells.get(4).getLevel());
-//
 //    }
-//
-//    @Test
-//    void shouldConvertSkillsCorrectly() {
-//        EconomyHero ecoHero = new EconomyHero(EconomyHero.Fraction.NECROPOLIS, 1000);
-//        SpellFactory factory = new SpellFactory();
-//
-//        ecoHero.addSkill(factory.create("Archery", 2));
-//        ecoHero.addSkill(factory.create("Offence", 1));
-//        ecoHero.addSkill(factory.create("Armourer", 1));
-//        ecoHero.addSkill(factory.create("Resistance", 3));
-//
-//        Hero hero = Converter.convert(ecoHero);
-//
-//        List<Skill> convertedSkills = hero.getSkills();
-//
-//        assertEquals(4, convertedSkills.size());
-//
-//        assertEquals("Archery",convertedSkills.get(0).getName());
-//        assertEquals(2, convertedSkills.get(0).getLevel());
-//
-//        assertEquals("Offence",convertedSkills.get(1).getName());
-//        assertEquals(1, convertedSkills.get(1).getLevel());
-//
-//        assertEquals("Armourer",convertedSkills.get(2).getName());
-//        assertEquals(1, convertedSkills.get(2).getLevel());
-//
-//        assertEquals("Resistance",convertedSkills.get(3).getName());
-//        assertEquals(3, convertedSkills.get(3).getLevel());
-//    }
-//
 }

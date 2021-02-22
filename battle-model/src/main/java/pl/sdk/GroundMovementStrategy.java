@@ -1,6 +1,7 @@
 package pl.sdk;
 
 import pl.sdk.creatures.BattleObject;
+import pl.sdk.special_fields.Field;
 
 import java.util.LinkedList;
 
@@ -18,6 +19,7 @@ public class GroundMovementStrategy implements MovementStrategy {
     public LinkedList<Point> getPath(Board board,Point aSourcePoint, Point aTargetPoint) {
         return new PathSearch(board).pathSearch(aSourcePoint,aTargetPoint);
     }
+
 
     //might be moved to other class like "MovePath" or smh
     private double distance(LinkedList<Point> path) {

@@ -51,6 +51,7 @@ class CalculateDamageBallistaStrategyTest {
                 .build();
         ballista.getAttackStrategy().attack(ballista, defender1);
         assertEquals(88, defender1.getCurrentHp());
+
     }
 
 

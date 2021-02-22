@@ -40,8 +40,17 @@ class RegenerationOnEndOfTurnCreatureDecorator extends Creature{
     }
 
     @Override
-    public boolean canFortificationAttack() {
-        return decorated.canFortificationAttack();
+    public boolean canFortificationAttack(Fortification fortification) {
+        return decorated.canFortificationAttack(fortification);
+    }
+    @Override
+    public void increaseAttack(int attackToIncrease) {
+        decorated.increaseAttack(attackToIncrease);
+    }
+
+    @Override
+    public void increaseDefence(int defenceToIncrease) {
+        decorated.increaseDefence(defenceToIncrease);
     }
 
     @Override

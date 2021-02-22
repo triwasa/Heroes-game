@@ -39,6 +39,7 @@ public class NecropolisFactory extends AbstractFactory {
                     Creature lich = new Creature.Builder()
                             .statistic(CreatureStatistic.LICH)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
                     return new ShootingCreatureDecorator(new SplashDamageCreatureDecorator(lich, getSplashForLich()));
                 case 6:

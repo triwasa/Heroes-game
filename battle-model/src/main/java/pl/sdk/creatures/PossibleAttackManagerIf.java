@@ -1,6 +1,6 @@
 package pl.sdk.creatures;
 
 public interface PossibleAttackManagerIf {
-    boolean canFortificationAttack();
+    boolean canFortificationAttack(Fortification fortification);
     boolean canCreatureAttack();
 }

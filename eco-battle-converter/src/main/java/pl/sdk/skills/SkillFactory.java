@@ -223,15 +223,6 @@ public class SkillFactory {
                 case 3:
                     return new Skill(SkillStatistic.RESISTANCE3);
             }
-        } else if (aName == SkillStatistic.ARCHERY1.getCoreName()) {
-            switch (tier) {
-                case 1:
-                    return new Skill(SkillStatistic.INTELLIGENCE1);
-                case 2:
-                    return new Skill(SkillStatistic.INTELLIGENCE2);
-                case 3:
-                    return new Skill(SkillStatistic.INTELLIGENCE3);
-            }
         } else if (aName == SkillStatistic.WISDOM1.getCoreName()) {
             switch (tier) {
                 case 1:
