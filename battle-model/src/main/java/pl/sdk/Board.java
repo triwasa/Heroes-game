@@ -26,7 +26,7 @@ public class Board {
         fieldsMap = new HashMap<>();
     }
 
-    void add(Point aPoint, BattleObject aCreature) {
+   public void add(Point aPoint, BattleObject aCreature) {
         throwExceptionWhenIsOutsideMap(aPoint);
         throwExceptionIfTileIsTaken(aPoint);
         // added for special fields

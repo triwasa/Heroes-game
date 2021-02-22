@@ -10,6 +10,7 @@ import pl.sdk.FieldsHolder;
 import pl.sdk.PointHolder;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
+import pl.sdk.creatures.Wall;
 import pl.sdk.gui.BattleMapController;
 import pl.sdk.gui.MapEditorController;
 import pl.sdk.hero.EconomyHero;
@@ -120,7 +121,10 @@ public class EcoBattleConverter {
             PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal(new FileReader("./point.xml"));
 
             for (int i = 0; i < holder1.getThings().size(); i++) {
-                board.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
+                if(holder1.getThings().get(i).getName().equals("Stone"))
+                {
+                    board.add(pointHolder1.getThings().get(i),new Wall());
+                }else board.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
             }
         }
         return board;
