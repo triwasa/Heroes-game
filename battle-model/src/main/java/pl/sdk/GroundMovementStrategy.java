@@ -13,7 +13,7 @@ public class GroundMovementStrategy implements MovementStrategy {
     @Override
     public boolean canMove(Board board, BattleObject aCreature, Point targetPoint) {
         pointsToGo = new GroundPathSearch(board).pathSearch(board.get(aCreature), targetPoint);
-            return distance(pointsToGo) <= aCreature.getMoveRange();
+            return board.distance(pointsToGo) <= aCreature.getMoveRange();
     }
 
     @Override
@@ -33,17 +33,5 @@ public class GroundMovementStrategy implements MovementStrategy {
         }
     }
 
-    //might be moved to other class like "MovePath" or smh
-    private double distance(LinkedList<Point> path) {
-        if(path.size() == 0 ){
-            return Integer.MAX_VALUE;
-        }
-        double distance = 0;
-        Point aPoint = path.get(0);
-        for(Point aPoint1 : path) {
-            distance = distance + aPoint.distance(aPoint1);
-            aPoint = aPoint1;
-        }
-        return distance;
-    }
+
 }

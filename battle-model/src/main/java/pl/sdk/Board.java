@@ -143,6 +143,18 @@ public class Board {
        MovementStrategy movementStrategy = getMovementStrategy(aCreature);
        return movementStrategy.canMove(this,aCreature, new Point(aX, aY));
     }
+     double distance(LinkedList<Point> path) {
+        if(path.size() == 0 ){
+            return Integer.MAX_VALUE;
+        }
+        double distance = 0;
+        Point aPoint = path.get(0);
+        for(Point aPoint1 : path) {
+            distance = distance + aPoint.distance(aPoint1);
+            aPoint = aPoint1;
+        }
+        return distance;
+    }
 
     MovementStrategy getMovementStrategy(BattleObject aCreature) {
         switch (aCreature.getMovementType().toUpperCase()) {

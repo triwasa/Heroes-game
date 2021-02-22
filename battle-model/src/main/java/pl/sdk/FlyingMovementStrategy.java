@@ -13,7 +13,7 @@ public class FlyingMovementStrategy implements MovementStrategy {
     @Override
     public boolean canMove(Board board, BattleObject aCreature, Point targetPoint) {
         pointsToGo = new FlyingPathSearch(board).pathSearch(board.get(aCreature), targetPoint);
-        return distance(pointsToGo) <= aCreature.getMoveRange() && board.getField(targetPoint.getX(),targetPoint.getY()).getCanStand();
+        return board.distance(pointsToGo) <= aCreature.getMoveRange() && board.getField(targetPoint.getX(),targetPoint.getY()).getCanStand();
     }
 
     @Override
@@ -32,18 +32,6 @@ public class FlyingMovementStrategy implements MovementStrategy {
            // }
        }
 
-    }
-    private double distance(LinkedList<Point> path) {
-        if(path.size() == 0 ){
-            return Integer.MAX_VALUE;
-        }
-        double distance = 0;
-        Point aPoint = path.get(0);
-        for(Point aPoint1 : path) {
-            distance = distance + aPoint.distance(aPoint1);
-            aPoint = aPoint1;
-        }
-        return distance;
     }
 
 
