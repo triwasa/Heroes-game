@@ -119,7 +119,6 @@ public class Board {
         LinkedList<Point> pathToGo = movementStrategy.getPath(this, get(aCreature), aTargetPoint1);
         for(Point point : pathToGo) {
         aTargetPoint1 = point;
-
             field = getField(point.getX(), point.getY());
 
         }*/

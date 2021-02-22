@@ -20,6 +20,12 @@ public class GroundMovementStrategy implements MovementStrategy {
         return new PathSearch(board).pathSearch(aSourcePoint,aTargetPoint);
     }
 
+    /*public void visitField(GroundField field, BattleObject creature) {
+        field.apply(creature);
+    }
+    public void visitField(CloudField field, BattleObject creature) {
+        field.apply(creature);
+    }*/
 
     //might be moved to other class like "MovePath" or smh
     private double distance(LinkedList<Point> path) {
