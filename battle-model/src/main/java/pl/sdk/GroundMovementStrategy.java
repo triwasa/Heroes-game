@@ -12,13 +12,13 @@ public class GroundMovementStrategy implements MovementStrategy {
 
     @Override
     public boolean canMove(Board board, BattleObject aCreature, Point targetPoint) {
-        pointsToGo = new PathSearch(board).pathSearch(board.get(aCreature), targetPoint);
+        pointsToGo = new GroundPathSearch(board).pathSearch(board.get(aCreature), targetPoint);
             return distance(pointsToGo) <= aCreature.getMoveRange();
     }
 
     @Override
     public LinkedList<Point> getPath(Board board,Point aSourcePoint, Point aTargetPoint) {
-        return new PathSearch(board).pathSearch(aSourcePoint,aTargetPoint);
+        return new GroundPathSearch(board).pathSearch(aSourcePoint,aTargetPoint);
     }
 
 
@@ -26,10 +26,10 @@ public class GroundMovementStrategy implements MovementStrategy {
         List<Point> path = getPath(board, board.get(aCreature), aTargetPoint);
         path.remove(0);
         for(Point point : path) {
-            if(board.getField(point.getX(),point.getY()).isGroundField()) {
-                Field field = board.getField(point.getX(), point.getY());
-                field.apply(aCreature);
-            }
+//            if(board.getField(point.getX(),point.getY()).isGroundField()) {
+//                Field field = board.getField(point.getX(), point.getY());
+//                field.apply(aCreature);
+//            }
         }
     }
 
