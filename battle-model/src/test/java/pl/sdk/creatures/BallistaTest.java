@@ -15,34 +15,38 @@ class BallistaTest {
 
     public static final int NOT_IMPORTANT=5;
     private AttackEngine attackEngine;
+    private Hero hero;
 
     @BeforeEach
     void init() {
         attackEngine=new AttackEngine(new Board());
+        hero = new Hero.BuilderForTesting().attack(1).defence(2).power(3).knowledge(4).luck(0).morale(0).build();
 
     }
 
     @Test
     void shouldShoot() {
-//        Hero hero = new Hero.BuilderForTesting().attack(1).defence(2).power(3).knowledge(4).build();
-//        Ballista ballista=new Ballista.BuilderForTesting()
-//                .name("Ballista")
-//                .attack(10)
-//                .armor(NOT_IMPORTANT)
-//                .maxHp(NOT_IMPORTANT)
-//                .moveRange(NOT_IMPORTANT)
-//                .damage(Range.closed(3, 3))
-//                .build();
-//        Creature defender1=new Creature.BuilderForTesting()
-//                .name("Defender")
-//                .attack(NOT_IMPORTANT)
-//                .armor(10)
-//                .maxHp(100)
-//                .moveRange(NOT_IMPORTANT)
-//                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
-//                .build();
-//        ballista.getAttackStrategy().attack(ballista, defender1, hero);
-//        assertEquals(94, defender1.getCurrentHp());
+
+        Ballista ballista=new Ballista.BuilderForTesting()
+                .name("Ballista")
+                .attack(10)
+                .hero(hero)
+                .armor(NOT_IMPORTANT)
+                .maxHp(NOT_IMPORTANT)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(3, 3))
+                .build();
+        Creature defender1=new Creature.BuilderForTesting()
+                .name("Defender")
+                .attack(NOT_IMPORTANT)
+                .armor(10)
+                .maxHp(100)
+                .moveRange(NOT_IMPORTANT)
+                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
+                .build();
+        ballista.getAttackStrategy().attack(ballista, defender1);
+        assertEquals(94, defender1.getCurrentHp());
+
     }
 
     @Test
@@ -51,6 +55,7 @@ class BallistaTest {
                 .name("Ballista")
                 .attack(NOT_IMPORTANT)
                 .armor(NOT_IMPORTANT)
+                .hero(hero)
                 .maxHp(100)
                 .moveRange(NOT_IMPORTANT)
                 .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
@@ -72,6 +77,7 @@ class BallistaTest {
         Ballista ballista=new Ballista.BuilderForTesting()
                 .name("Ballista")
                 .attack(NOT_IMPORTANT)
+                .hero(hero)
                 .armor(NOT_IMPORTANT)
                 .maxHp(5)
                 .moveRange(NOT_IMPORTANT)

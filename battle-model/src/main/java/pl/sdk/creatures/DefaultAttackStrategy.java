@@ -17,11 +17,7 @@ public  class DefaultAttackStrategy implements AttackStrategy {
             counterAttack(aAttacker,aDefender);
         }
     }
-
-    @Override
-    public void attack(BattleObject aAttacker, BattleObject aDefender, Hero aHero) {
-
-    }
+    
 
     public void afterAttack(BattleObject aAttacker, BattleObject aDefender) {
 

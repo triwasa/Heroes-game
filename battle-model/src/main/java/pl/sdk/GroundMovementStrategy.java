@@ -24,7 +24,7 @@ public class GroundMovementStrategy implements MovementStrategy {
         field.apply(creature);
     }
     public void visitField(CloudField field, BattleObject creature) {
-        field.apply(creature);
+
     }*/
 
     //might be moved to other class like "MovePath" or smh

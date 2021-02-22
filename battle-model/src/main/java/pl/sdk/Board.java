@@ -114,14 +114,14 @@ public class Board {
 
 
     void move(BattleObject aCreature, Point aTargetPoint1){
-        /*MovementStrategy movementStrategy = getMovementStrategy(aCreature);
+        MovementStrategy movementStrategy = getMovementStrategy(aCreature);
         Field field;
         LinkedList<Point> pathToGo = movementStrategy.getPath(this, get(aCreature), aTargetPoint1);
         for(Point point : pathToGo) {
         aTargetPoint1 = point;
             field = getField(point.getX(), point.getY());
 
-        }*/
+        }
         move(get(aCreature), aTargetPoint1);
     }
 
