@@ -28,7 +28,7 @@ public class FlyingPathSearch extends PathSearch {
                 if(tmp != null) {
                     continue;
                 }
-
+                neighborsList.add(neighbor);
             }
         }
         return neighborsList;

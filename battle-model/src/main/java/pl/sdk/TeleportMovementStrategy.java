@@ -22,7 +22,8 @@ public class TeleportMovementStrategy implements MovementStrategy {
 
     @Override
     public void move(BattleObject aCreature, Point aTargetPoint, Board board) {
-
+        Point aSourcePoint = board.get(aCreature);
+        List<Point> pathToGo = getPath(board, aSourcePoint, aTargetPoint);
     }
 
 
