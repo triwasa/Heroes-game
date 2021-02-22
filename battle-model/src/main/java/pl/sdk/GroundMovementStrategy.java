@@ -4,6 +4,7 @@ import pl.sdk.creatures.BattleObject;
 import pl.sdk.special_fields.Field;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class GroundMovementStrategy implements MovementStrategy {
     public static final String GROUND = "GROUND";
@@ -20,12 +21,17 @@ public class GroundMovementStrategy implements MovementStrategy {
         return new PathSearch(board).pathSearch(aSourcePoint,aTargetPoint);
     }
 
-    /*public void visitField(GroundField field, BattleObject creature) {
-        field.apply(creature);
-    }
-    public void visitField(CloudField field, BattleObject creature) {
 
-    }*/
+    public void move(BattleObject aCreature, Point aTargetPoint, Board board) {
+        List<Point> path = getPath(board, board.get(aCreature), aTargetPoint);
+        path.remove(0);
+        for(Point point : path) {
+            if(board.getField(point.getX(),point.getY()).isGroundField()) {
+                Field field = board.getField(point.getX(), point.getY());
+                field.apply(aCreature);
+            }
+        }
+    }
 
     //might be moved to other class like "MovePath" or smh
     private double distance(LinkedList<Point> path) {
