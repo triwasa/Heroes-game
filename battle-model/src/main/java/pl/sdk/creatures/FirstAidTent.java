@@ -17,6 +17,7 @@ public class FirstAidTent implements BattleObject {
     private CalculateDamageStrategy calculateDamageStrategy;
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
+    private CreatureAdditionalStatistic additionalStats;
     private int amount;
 
 
@@ -24,9 +25,10 @@ public class FirstAidTent implements BattleObject {
         this.stats=aStats;
         currentHp=stats.getMaxHp();
         possibleAttackManager=new PossibleAttackManagerForCreature();
-        calculateDamageStrategy = new HealCalculateDamageStrategy();
-        damageApplier = new DefaultDamageApplier();
-        attackStrategy = new DefaultAttackStrategy();
+        calculateDamageStrategy=new HealCalculateDamageStrategy();
+        damageApplier=new DefaultDamageApplier();
+        attackStrategy=new DefaultAttackStrategy();
+        additionalStats=new CreatureAdditionalStatistic();
     }
 
     @Override
@@ -41,7 +43,12 @@ public class FirstAidTent implements BattleObject {
 
     @Override
     public Range<Integer> getDamage() {
-        return stats.getDamage();
+        return Range.closed(stats.getDamage().lowerEndpoint() + additionalStats.getAdditionalDamage().lowerEndpoint(),
+                stats.getDamage().upperEndpoint() + additionalStats.getAdditionalDamage().upperEndpoint());
+    }
+
+    public void increaseDamage(int aLowerBound, int aUpperBound) {
+        additionalStats.increaseDamage(aLowerBound, aUpperBound);
     }
 
     @Override
@@ -63,9 +70,6 @@ public class FirstAidTent implements BattleObject {
     public boolean canCreatureAttack() {
         return possibleAttackManager.canCreatureAttack();
     }
-
-
-
 
 
     @Override
@@ -146,10 +150,8 @@ public class FirstAidTent implements BattleObject {
     }
 
 
-
-
-
-    public void counterAttackedInThisTurn() {}
+    public void counterAttackedInThisTurn() {
+    }
 
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {

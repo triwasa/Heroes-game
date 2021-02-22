@@ -229,7 +229,7 @@ public class SkillEffectOnCreaturesTest {
     void ballistick1AttackStrategyTest() {
         Random successCalculator = new MyCalculator();
         Creature catapult = new Creature.BuilderForTesting()
-                .name("catapult")
+                .name("Catapult")
                 .attack(5)
                 .armor(NOT_IMPORTANT)
                 .damage(Range.closed(10,50))
@@ -245,7 +245,7 @@ public class SkillEffectOnCreaturesTest {
     void ballistickSecondHitAttackStrategyTest() {
         Random successCalculator = new MyCalculator();
         Creature catapult = new Creature.BuilderForTesting()
-                .name("catapult")
+                .name("Catapult")
                 .attack(5)
                 .armor(NOT_IMPORTANT)
                 .damage(Range.closed(10,50))
@@ -293,6 +293,43 @@ public class SkillEffectOnCreaturesTest {
         ballista.getAttackStrategy().attack(ballista, defender);
         assertEquals(100, defender.getCurrentHp());
     }
+
+    @Test
+    void FirstAidTentBoostDamageTest() {
+        Skill firstAid = SkillFactory.createForTest(SkillStatistic.FIRSTAID1.getCoreName(), 3);
+        BattleObject FirstAidTent = new FirstAidTent.BuilderForTesting()
+                .name("First Aid Tent")
+                .damage(Range.closed(0,25))
+                .maxHp(NOT_IMPORTANT)
+                .moveRange(NOT_IMPORTANT)
+                .attack(NOT_IMPORTANT)
+                .armor(NOT_IMPORTANT)
+                .build();
+        hero.getMachines().add(FirstAidTent);
+        applier.apply(firstAid, hero);
+        FirstAidTent = hero.getMachines().get(0);
+        assertEquals(0, FirstAidTent.getDamage().lowerEndpoint());
+        assertEquals(100, FirstAidTent.getDamage().upperEndpoint());
+    }
+
+    @Test
+    void ballistickApplieTest() {
+        Skill ballistics3 = SkillFactory.createForTest(SkillStatistic.BALLISTICS3.getCoreName(), 3);
+        BattleObject catapult = new Catapult.BuilderForTesting()
+                .name("Catapult")
+                .attack(5)
+                .armor(NOT_IMPORTANT)
+                .damage(Range.closed(10,50))
+                .maxHp(NOT_IMPORTANT)
+                .moveRange(NOT_IMPORTANT)
+                .build();
+        hero.getMachines().add(catapult);
+        applier.apply(ballistics3, hero);
+        catapult = hero.getMachines().get(0);
+        catapult.getAttackStrategy().attack(catapult, defender);
+        assertEquals(76, defender.getCurrentHp());
+    }
+
 
 
 }
