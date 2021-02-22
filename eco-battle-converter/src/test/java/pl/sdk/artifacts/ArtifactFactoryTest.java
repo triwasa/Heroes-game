@@ -13,7 +13,7 @@ public class ArtifactFactoryTest {
     private EconomyArtifactPrimaryFactory economyArtifactFactory = new EconomyArtifactPrimaryFactory();
 
     @Test
-    void FactoryShouldCreateArtifactsCorrectly(){
+    void factoryShouldCreateArtifactsCorrectly(){
         List<EconomyArtifact> economyArtifacts = new ArrayList<>();
         List<AbstractArtifact> artifacts = new ArrayList<>();
 

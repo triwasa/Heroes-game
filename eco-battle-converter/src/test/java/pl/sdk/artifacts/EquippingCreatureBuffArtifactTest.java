@@ -28,7 +28,7 @@ public class EquippingCreatureBuffArtifactTest {
     }
 
     @Test
-    void ArtifactHealthShouldIncreaseCreatureHealthCorrectly(){
+    void artifactHealthShouldIncreaseCreatureHealthCorrectly(){
         Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
@@ -40,7 +40,7 @@ public class EquippingCreatureBuffArtifactTest {
         assertEquals(primaryCreatureHealth + 2, creatureForTests.getCurrentHp());
     }
     @Test
-    void FewArtifactHealthShouldIncreaseCreatureHealthCorrectly(){
+    void fewArtifactHealthShouldIncreaseCreatureHealthCorrectly(){
         Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
@@ -54,7 +54,7 @@ public class EquippingCreatureBuffArtifactTest {
     }
 
     @Test
-    void ArtifactSpeedShouldIncreaseCreatureSpeedCorrectly(){
+    void artifactSpeedShouldIncreaseCreatureSpeedCorrectly(){
         Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
@@ -67,7 +67,7 @@ public class EquippingCreatureBuffArtifactTest {
     }
 
     @Test
-    void FewArtifactSpeedShouldIncreaseCreatureSpeedCorrectly(){
+    void fewArtifactSpeedShouldIncreaseCreatureSpeedCorrectly(){
         Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
@@ -81,7 +81,7 @@ public class EquippingCreatureBuffArtifactTest {
     }
 
     @Test
-    void ArtifactResistanceShouldIncreaseCreatureResistanceCorrectly(){
+    void artifactResistanceShouldIncreaseCreatureResistanceCorrectly(){
          Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
@@ -94,7 +94,7 @@ public class EquippingCreatureBuffArtifactTest {
     }
 
     @Test
-    void FewArtifactResistanceShouldIncreaseCreatureResistanceCorrectly(){
+    void fewArtifactResistanceShouldIncreaseCreatureResistanceCorrectly(){
         Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
@@ -108,7 +108,7 @@ public class EquippingCreatureBuffArtifactTest {
     }
 
 //    @Test
-//    void ArtifactImmunityShouldAddImmunityToCreatureCorrectly(){
+//    void artifactImmunityShouldAddImmunityToCreatureCorrectly(){
 //        Creature creatureForTests = NecropolisFactory.createDefaultForTests();
 //        creatures.add(creatureForTests);
 //        hero.addCreatures(creatures);
