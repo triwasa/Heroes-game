@@ -1,6 +1,9 @@
 package pl.sdk.artifacts;
 
 public enum ArtifactDescription {
+    // DESCRIPTION FOR TEST
+    TEST("artifact for tests"),
+
     CENTAURS_AX("+2 attack skill"),
     BLACKSHARD_OF_THE_DEAD_KNIGHT("+3 attack skill"),
     GREATER_GNOLLS_FLAIL("+4 attack skill"),

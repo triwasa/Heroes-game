@@ -2,6 +2,23 @@ package pl.sdk.artifacts;
 
 enum ArtifactStatistic implements ArtifactStatisticIf {
 
+    // ARTIFACTS FOR TESTS
+    TEST_LEFT_HAND_SLOT(ArtifactName.TEST_LEFT_HAND_SLOT, ArtifactSlotName.LEFT_HAND, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_RIGHT_HAND_SLOT(ArtifactName.TEST_RIGHT_HAND_SLOT, ArtifactSlotName.RIGHT_HAND, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_TOO_EXPENSIVE(ArtifactName.TEST_TOO_EXPENSIVE, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_INCREASE_HEALTH_1(ArtifactName.TEST_INCREASE_HEALTH_1, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_INCREASE_HEALTH_2(ArtifactName.TEST_INCREASE_HEALTH_2, ArtifactSlotName.HEAD, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_INCREASE_MOVERANGE_1(ArtifactName.TEST_INCREASE_MOVERANGE_1, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_INCREASE_MOVERANGE_2(ArtifactName.TEST_INCREASE_MOVERANGE_2, ArtifactSlotName.HEAD, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_INCREASE_RESISTANCE_5(ArtifactName.TEST_INCREASE_RESISTANCE_5, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_INCREASE_RESISTANCE_10(ArtifactName.TEST_INCREASE_RESISTANCE_10, ArtifactSlotName.HEAD, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_KNOWLEDGE_SPELLPOWER(ArtifactName.TEST_KNOWLEDGE_SPELLPOWER, ArtifactSlotName.HEAD, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_ATTACK(ArtifactName.TEST_ATTACK, ArtifactSlotName.LEFT_HAND, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_DEFENCE(ArtifactName.TEST_DEFENCE, ArtifactSlotName.RIGHT_HAND, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_LUCK(ArtifactName.TEST_LUCK, ArtifactSlotName.HEAD, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_MORALE(ArtifactName.TEST_MORALE, ArtifactSlotName.HEAD, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+    TEST_LUCK_MORALE(ArtifactName.TEST_LUCK_MORALE, ArtifactSlotName.HEAD, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
+
     // PRIMARY 1
     CENTAURS_AX(ArtifactName.CENTAURS_AX, ArtifactSlotName.RIGHT_HAND, ArtifactRarity.TREASURE, ArtifactDescription.CENTAURS_AX),
     BLACKSHARD_OF_THE_DEAD_KNIGHT(ArtifactName.BLACKSHARD_OF_THE_DEAD_KNIGHT, ArtifactSlotName.RIGHT_HAND,ArtifactRarity.MINOR, ArtifactDescription.BLACKSHARD_OF_THE_DEAD_KNIGHT),

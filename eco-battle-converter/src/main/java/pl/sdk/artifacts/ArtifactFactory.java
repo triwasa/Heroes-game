@@ -7,6 +7,40 @@ import static pl.sdk.artifacts.ArtifactName.*;
 public class ArtifactFactory {
     private static final String EXCEPTION_MESSAGE = "There is no artifact with that name";
 
+    public AbstractArtifact createArtifactForTests(String aName){
+        switch (aName) {
+            case TEST_INCREASE_HEALTH_1:
+                return new ArtifactHealth(ArtifactStatistic.TEST_INCREASE_HEALTH_1, 1);
+            case TEST_INCREASE_HEALTH_2:
+                return new ArtifactHealth(ArtifactStatistic.TEST_INCREASE_HEALTH_2, 2);
+            case TEST_INCREASE_MOVERANGE_1:
+                return new ArtifactSpeed(ArtifactStatistic.TEST_INCREASE_MOVERANGE_1, 1);
+            case TEST_INCREASE_MOVERANGE_2:
+                return new ArtifactSpeed(ArtifactStatistic.TEST_INCREASE_MOVERANGE_2, 2);
+            case TEST_INCREASE_RESISTANCE_5:
+                return new ArtifactResistance(ArtifactStatistic.TEST_INCREASE_RESISTANCE_5, 5);
+            case TEST_INCREASE_RESISTANCE_10:
+                return new ArtifactResistance(ArtifactStatistic.TEST_INCREASE_RESISTANCE_10, 10);
+            case TEST_KNOWLEDGE_SPELLPOWER:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_KNOWLEDGE_SPELLPOWER, ArtifactPrimaryStatistic.TEST_KNOWLEDGE_SPELLPOWER);
+            case TEST_ATTACK:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_ATTACK, ArtifactPrimaryStatistic.TEST_ATTACK);
+            case TEST_DEFENCE:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_DEFENCE, ArtifactPrimaryStatistic.TEST_DEFENCE);
+            case TEST_LUCK:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_LUCK, ArtifactPrimaryStatistic.TEST_LUCK);
+            case TEST_MORALE:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_MORALE, ArtifactPrimaryStatistic.TEST_MORALE);
+            case TEST_LUCK_MORALE:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_LUCK_MORALE, ArtifactPrimaryStatistic.TEST_LUCK_MORALE);
+
+
+
+            default:
+                throw new IllegalArgumentException(EXCEPTION_MESSAGE);
+        }
+    }
+
     public AbstractArtifact create(String aName){
         switch (aName) {
             // ArtifactPrimary

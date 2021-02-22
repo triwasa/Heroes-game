@@ -3,7 +3,15 @@ package pl.sdk.artifacts;
 import pl.sdk.hero.HeroClassStatisticIf;
 
 enum ArtifactPrimaryStatistic implements HeroClassStatisticIf {
-    // PRIMARY 1
+
+    // ARTIFACTS FOR TESTS
+    TEST_KNOWLEDGE_SPELLPOWER(0, 0, -2, 10, 0, 0),
+    TEST_ATTACK(2, 0, 0, 0, 0, 0),
+    TEST_DEFENCE(0, 2, 0, 0, 0, 0),
+    TEST_LUCK(0, 0, 0, 0, 1, 0),
+    TEST_MORALE(2, 0, 0, 0, 0, 1),
+    TEST_LUCK_MORALE(2, 0, 0, 0, 2, 2),
+
     CENTAURS_AX(2, 0, 0, 0, 0, 0),
     BLACKSHARD_OF_THE_DEAD_KNIGHT(3, 0, 0, 0, 0, 0),
     GREATER_GNOLLS_FLAIL(4, 0, 0, 0, 0, 0),
@@ -53,15 +61,15 @@ enum ArtifactPrimaryStatistic implements HeroClassStatisticIf {
 
     private final int attack;
     private final int defence;
-    private final int power;
+    private final int spellPower;
     private final int knowledge;
     private final int luck;
     private final int morale;
 
-    ArtifactPrimaryStatistic(int aAttack, int aDefence, int aPower, int aKnowledge, int aLuck, int aMorale) {
+    ArtifactPrimaryStatistic(int aAttack, int aDefence, int aSpellPower, int aKnowledge, int aLuck, int aMorale) {
         this.attack = aAttack;
         this.defence = aDefence;
-        this.power = aPower;
+        this.spellPower = aSpellPower;
         this.knowledge = aKnowledge;
         this.luck = aLuck;
         this.morale = aMorale;
@@ -76,7 +84,7 @@ enum ArtifactPrimaryStatistic implements HeroClassStatisticIf {
     }
 
     public int getPower() {
-        return power;
+        return spellPower;
     }
 
     public int getKnowledge() {

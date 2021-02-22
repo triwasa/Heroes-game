@@ -1,6 +1,24 @@
 package pl.sdk.artifacts;
 
 public class ArtifactName {
+    // FOR TEST
+    public final static String TEST_LEFT_HAND_SLOT = "First slot test artifact";
+    public final static String TEST_RIGHT_HAND_SLOT = "Right hand slot test artifact";
+    public final static String TEST_TOO_EXPENSIVE = "Too expensive test artifact";
+    public final static String TEST_INCREASE_HEALTH_1 = "Health 1 test artifact";
+    public final static String TEST_INCREASE_HEALTH_2 = "Health 2 test artifact";
+    public final static String TEST_INCREASE_MOVERANGE_1 = "Move range 1 test artifact";
+    public final static String TEST_INCREASE_MOVERANGE_2 = "Move range 2 test artifact";
+    public final static String TEST_INCREASE_RESISTANCE_5 = "Resistance 5 test artifact";
+    public final static String TEST_INCREASE_RESISTANCE_10 = "Resistance 10 test artifact";
+    public final static String TEST_KNOWLEDGE_SPELLPOWER = "Knowledge and spellpower test artifact";
+    public final static String TEST_ATTACK = "Attack test artifact";
+    public final static String TEST_DEFENCE = "Defence test artifact";
+    public final static String TEST_LUCK = "Luck test artifact";
+    public final static String TEST_MORALE = "Morale test artifact";
+    public final static String TEST_LUCK_MORALE = "Luck and morale test artifact";
+
+
     // PRIMARY 1
     public final static String CENTAURS_AX = "Centaur's Ax";
     public final static String BLACKSHARD_OF_THE_DEAD_KNIGHT = "Blackshard of the Knight";

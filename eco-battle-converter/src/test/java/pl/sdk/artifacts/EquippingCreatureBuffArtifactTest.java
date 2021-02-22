@@ -22,7 +22,7 @@ public class EquippingCreatureBuffArtifactTest {
     private final SpellFactory spellFactory = new SpellFactory();
 
     @BeforeEach
-    void init(){
+    void prepareHero(){
         creatures = new ArrayList<>();
         hero = new Hero();
     }
@@ -35,7 +35,7 @@ public class EquippingCreatureBuffArtifactTest {
 
         int primaryCreatureHealth = creatureForTests.getCurrentHp();
 
-        (artifactFactory.create(VIAL_OF_LIFEBLOOD)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_HEALTH_2)).buff(hero);
 
         assertEquals(primaryCreatureHealth + 2, creatureForTests.getCurrentHp());
     }
@@ -47,8 +47,8 @@ public class EquippingCreatureBuffArtifactTest {
 
         int primaryCreatureHealth = creatureForTests.getCurrentHp();
 
-        (artifactFactory.create(VIAL_OF_LIFEBLOOD)).buff(hero);
-        (artifactFactory.create(RING_OF_VITALITY)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_HEALTH_1)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_HEALTH_2)).buff(hero);
 
         assertEquals(primaryCreatureHealth + 3, creatureForTests.getCurrentHp());
     }
@@ -61,7 +61,7 @@ public class EquippingCreatureBuffArtifactTest {
 
         int primaryMoveRange = creatureForTests.getMoveRange();
 
-        (artifactFactory.create(CAPE_OF_VELOCITY)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_MOVERANGE_2)).buff(hero);
 
         assertEquals(primaryMoveRange + 2, creatureForTests.getMoveRange());
     }
@@ -74,8 +74,8 @@ public class EquippingCreatureBuffArtifactTest {
 
         int primaryMoveRange = creatureForTests.getMoveRange();
 
-        (artifactFactory.create(CAPE_OF_VELOCITY)).buff(hero);
-        (artifactFactory.create(RING_OF_THE_WAYFARER)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_MOVERANGE_1)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_MOVERANGE_2)).buff(hero);
 
         assertEquals(primaryMoveRange + 3, creatureForTests.getMoveRange());
     }
@@ -88,7 +88,7 @@ public class EquippingCreatureBuffArtifactTest {
 
         int primaryResistance = creatureForTests.getResistance();
 
-        (artifactFactory.create(SURCOAT_OF_COUNTERPOISE)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_RESISTANCE_10)).buff(hero);
 
         assertEquals(primaryResistance + 10, creatureForTests.getResistance());
     }
@@ -101,8 +101,8 @@ public class EquippingCreatureBuffArtifactTest {
 
         int primaryResistance = creatureForTests.getResistance();
 
-        (artifactFactory.create(SURCOAT_OF_COUNTERPOISE)).buff(hero);
-        (artifactFactory.create(GARNITURE_OF_INTERFERENCE)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_RESISTANCE_5)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_RESISTANCE_10)).buff(hero);
 
        assertEquals(primaryResistance + 15, creatureForTests.getResistance());
     }
