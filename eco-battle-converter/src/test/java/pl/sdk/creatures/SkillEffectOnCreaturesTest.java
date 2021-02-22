@@ -277,10 +277,21 @@ public class SkillEffectOnCreaturesTest {
 
     @Test
     void NewBallistaTest() {
-//        Skill ballistick1 = SkillFactory.createForTest(SkillStatistic.BALLISTICS1.getCoreName(), 1);
-//        Ballista ballista = new Ballista.BuilderForTesting().name("Ballsita").build();
-//        hero.getMachines().add(ballista);
-//        applier.apply(ballistick1, hero);
+        Skill artillery1 = SkillFactory.createForTest(SkillStatistic.ARTILLERY1.getCoreName(), 3);
+        BattleObject ballista = new Ballista.BuilderForTesting()
+                .name("Ballista")
+                .attack(5)
+                .armor(NOT_IMPORTANT)
+                .damage(Range.closed(50,50))
+                .maxHp(NOT_IMPORTANT)
+                .moveRange(NOT_IMPORTANT)
+                .hero(hero)
+                .build();
+        hero.getMachines().add(ballista);
+        applier.apply(artillery1, hero);
+        ballista = hero.getMachines().get(0);
+        ballista.getAttackStrategy().attack(ballista, defender);
+        assertEquals(100, defender.getCurrentHp());
     }
 
 

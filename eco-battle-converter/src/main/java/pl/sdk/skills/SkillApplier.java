@@ -187,24 +187,24 @@ public class SkillApplier {
         }
     }
 
-    private void buffBallista(Hero hero,int skillTier){
-        List<Creature> creatures = hero.getCreatures();
-        ListIterator<Creature> listIter = creatures.listIterator();
+    private void buffBallista(Hero hero,int percentToDealDoubleDamage){
+        List<BattleObject> machines = hero.getMachines();
+        ListIterator<BattleObject> listIter = machines.listIterator();
         while (listIter.hasNext()) {
-            Creature buffedCreature = listIter.next();
-            if (buffedCreature.getName() == "Ballista"){
-                //metoda buffowania do ustalenia
+            BattleObject buffedMachine = listIter.next();
+            if (buffedMachine.getName() == "Ballista"){
+                buffedMachine = new ArtilleryDecorator(buffedMachine, percentToDealDoubleDamage);
             }
-            listIter.set(buffedCreature);
+            listIter.set(buffedMachine);
         }
     }
 
     private void buffCatapult(Hero hero, int skillTier){
-        List<Creature> creatures = hero.getCreatures();
-        ListIterator<Creature> listIter = creatures.listIterator();
+        List<BattleObject> machines = hero.getMachines();
+        ListIterator<BattleObject> listIter = machines.listIterator();
         while (listIter.hasNext()) {
-            Creature buffedCreature = listIter.next();
-            if (buffedCreature.getName() == "Catapult"){
+            BattleObject buffedMachine = listIter.next();
+            if (buffedMachine.getName() == "First Aid Tent"){
                 switch (skillTier){
                     case 1:{
                         //buffedMachine.increaseDamage(0,25);
@@ -220,8 +220,9 @@ public class SkillApplier {
                     }
 
                 }
+
             }
-            listIter.set(buffedCreature);
+            listIter.set(buffedMachine);
         }
     }
 

@@ -67,7 +67,7 @@ public class Converter {
 
         economyHero.getCreatures().forEach(ecoCreature -> {
             if (ecoCreature.getFraction().equals(WARMACHINE))  {
-                BattleObject warmachine = warMachineFactory.create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
+                BattleObject warmachine = warMachineFactory.create(ecoCreature.getTier(), hero);
                 warmachines.add(warmachine);
             }
             else {
