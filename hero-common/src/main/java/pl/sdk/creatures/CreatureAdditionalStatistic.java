@@ -8,6 +8,8 @@ public class CreatureAdditionalStatistic implements CreatureAdditionalStatisticI
     private int additionalMoveRange;
     private int additionalHp;
     private int resistance;
+    private int additionalAttack;
+    private int additionalDefence;
     private Range<Integer> additionalDamage;
 
     CreatureAdditionalStatistic() {
@@ -27,6 +29,16 @@ public class CreatureAdditionalStatistic implements CreatureAdditionalStatisticI
     @Override
     public int getResistance() {
         return resistance;
+    }
+
+    @Override
+    public int getAdditionalAttack() {
+        return additionalAttack;
+    }
+
+    @Override
+    public int getAdditionalDefence() {
+        return additionalDefence;
     }
 
     @Override
@@ -50,5 +62,11 @@ public class CreatureAdditionalStatistic implements CreatureAdditionalStatisticI
     }
 
     void increaseDamage(int aLowerBound, int aUpperBound) { additionalDamage = Range.closed(additionalDamage.lowerEndpoint() + aLowerBound, additionalDamage.upperEndpoint() + aUpperBound);
+    }
+    void increaseAttack(int attackToIncrease) {
+        additionalAttack += attackToIncrease;
+    }
+    void increaseDefence(int defenceToIncrease) {
+        additionalDefence += defenceToIncrease;
     }
 }

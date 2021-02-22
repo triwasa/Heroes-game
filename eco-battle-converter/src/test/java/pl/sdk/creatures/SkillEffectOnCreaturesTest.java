@@ -277,10 +277,10 @@ public class SkillEffectOnCreaturesTest {
 
     @Test
     void NewBallistaTest() {
-        Skill ballistick1 = SkillFactory.createForTest(SkillStatistic.BALLISTICS1.getCoreName(), 1);
-        Ballista ballista = new Ballista.BuilderForTesting().name("Ballsita").build();
-        hero.getMachines().add(ballista);
-        applier.apply(ballistick1, hero);
+//        Skill ballistick1 = SkillFactory.createForTest(SkillStatistic.BALLISTICS1.getCoreName(), 1);
+//        Ballista ballista = new Ballista.BuilderForTesting().name("Ballsita").build();
+//        hero.getMachines().add(ballista);
+//        applier.apply(ballistick1, hero);
     }
 
 

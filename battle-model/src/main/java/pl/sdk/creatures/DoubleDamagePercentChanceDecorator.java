@@ -5,7 +5,6 @@ import pl.sdk.spells.Immunity;
 import pl.sdk.spells.SpellEnum;
 
 import java.beans.PropertyChangeEvent;
-import java.util.Random;
 
 public class DoubleDamagePercentChanceDecorator extends Creature {
 
@@ -49,8 +48,8 @@ public class DoubleDamagePercentChanceDecorator extends Creature {
     }
 
     @Override
-    public boolean canFortificationAttack() {
-        return decorated.canFortificationAttack();
+    public boolean canFortificationAttack(Fortification fortification) {
+        return decorated.canFortificationAttack(fortification);
     }
 
     @Override

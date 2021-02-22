@@ -11,7 +11,7 @@ public interface Attacker extends BattleObjectStatistic {
     double getAttackRange();
 
 
-    boolean canFortificationAttack();
+    boolean canFortificationAttack(Fortification fortification);
     boolean canCreatureAttack();
 
 }

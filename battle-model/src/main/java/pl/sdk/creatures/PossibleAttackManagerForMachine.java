@@ -2,7 +2,7 @@ package pl.sdk.creatures;
 
 public class PossibleAttackManagerForMachine implements PossibleAttackManagerIf {
     @Override
-    public boolean canFortificationAttack() {
+    public boolean canFortificationAttack(Fortification fortification) {
         return true;
     }
 

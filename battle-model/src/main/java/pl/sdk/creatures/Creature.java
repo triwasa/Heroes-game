@@ -138,7 +138,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
 
 
     public int getAttack() {
-        return stats.getAttack();
+        return stats.getAttack() + additionalStats.getAdditionalAttack();
     }
 
     @Override
@@ -152,7 +152,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
     }
 
     public int getArmor() {
-        return stats.getArmor();
+        return stats.getArmor() + additionalStats.getAdditionalDefence();
     }
 
     public Range<Integer> getDamage() {
@@ -166,6 +166,13 @@ public class Creature implements PropertyChangeListener, BattleObject{
 
     public void increaseDamage(int aLowerBound, int aUpperBound) {
         additionalStats.increaseDamage(aLowerBound,aUpperBound);
+    }
+    public void increaseAttack(int attackToIncrease) {
+        additionalStats.increaseAttack(attackToIncrease);
+    }
+
+    public void increaseDefence(int defenceToIncrease) {
+        additionalStats.increaseDefence(defenceToIncrease);
     }
 
     public int getAmount(){
@@ -205,8 +212,8 @@ public class Creature implements PropertyChangeListener, BattleObject{
     }
 
     @Override
-    public boolean canFortificationAttack() {
-        return possibleAttackManager.canFortificationAttack();
+    public boolean canFortificationAttack(Fortification fortification) {
+        return possibleAttackManager.canFortificationAttack(fortification);
     }
 
     @Override

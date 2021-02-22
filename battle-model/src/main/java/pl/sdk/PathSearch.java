@@ -53,17 +53,17 @@ public class PathSearch {
                     if (!cameFrom.containsKey(point)) {
                         cameFrom.put(point, current);
                     } else {
-                        cameFrom.computeIfPresent(point, (k, v) -> v = current);
+                        cameFrom.compute(point, (k, v) -> v = current);
                     }
                     if (!gScore.containsKey(point)) {
                         gScore.put(point, tentative_gScore);
                     } else {
-                        gScore.computeIfPresent(point, (k, v) -> v = tentative_gScore);
+                        gScore.compute(point, (k, v) -> v = tentative_gScore);
                     }
                     if (!fScore.containsKey(point)) {
                         fScore.put(point, gScore.get(point) + point.distance(targetPoint));
                     } else {
-                        fScore.computeIfPresent(point, (k, v) -> v = gScore.get(point) + point.distance(sourcePoint));
+                        fScore.compute(point, (k, v) -> v = gScore.get(point) + point.distance(sourcePoint));
                     }
                     if(!openlist.contains(point)) {
                         openlist.add(point);

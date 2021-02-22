@@ -13,7 +13,7 @@ public class HeroSpellMastery {
     HashMap<String, Integer> heroSpellMastery = new HashMap<>();
 
     HeroSpellMastery(EconomyHero economyHero) {
-        List<EconomySkill> skills = new ArrayList<>(economyHero.getSkills());
+        List<EconomySkill> skills = new ArrayList<>(economyHero.getSkillList());
 
         for (EconomySkill skill : skills) {
             switch (skill.getName()) {

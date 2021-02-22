@@ -22,11 +22,12 @@ public class CastleFactory extends AbstractFactory {
                             .build();
                     return new ShootingCreatureDecorator(marksman);
                 case 3:
-                    return new  Creature.Builder()
+                    Creature royalGriffin =  new Creature.Builder()
                             .statistic(CreatureStatistic.ROYAL_GRIFFIN)
                             .amount(aAmount)
                             .attackStrategy(new BlockCounterAttackAttackStrategy(new DefaultAttackStrategy()))
                             .build();
+                    return new MultipleRetaliationsCreatureDecorator(royalGriffin,Integer.MAX_VALUE);
                 case 4:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.CRUSADER)

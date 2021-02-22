@@ -10,24 +10,21 @@ public class EconomySkill {
         this.cost = aCost;
     }
 
-    public int getCost(){
-        return this.cost;
-    }
     public SkillStatistic getStats() {return this.skill; }
 
     public String getName() {
-        return "make me better";
+        return skill.getName();
     }
 
     public String getCoreName(){
-        return "make me better";
+        return skill.getCoreName();
     }
 
     public int getGoldCost() {
-        return 0;
+        return this.cost;
     }
 
     public Integer getLevel() {
-        return null;
+        return skill.getTier();
     }
 }

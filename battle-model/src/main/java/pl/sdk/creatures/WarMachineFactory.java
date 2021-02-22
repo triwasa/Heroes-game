@@ -4,11 +4,11 @@ import pl.sdk.hero.Hero;
 
 import static pl.sdk.creatures.CreatureStatistic.*;
 
-public class WarMachineFactory{
+public class WarMachineFactory {
     private static final String EXCEPTION_MESSAGE="We support tiers from 1 to 3";
 
 
-    public BattleObject create(int aTier, Hero hero) {
+    public BattleObject create(boolean aIsUpgraded, int aTier, int aAmount) {
         switch (aTier) {
             case 1:
                 return new Catapult(CATAPULT);
