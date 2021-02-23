@@ -2,6 +2,7 @@ package pl.sdk;
 
 import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.FirstAidTent;
 import pl.sdk.creatures.GuiBattleObject;
 import pl.sdk.hero.Hero;
 import pl.sdk.special_fields.Field;
@@ -167,12 +168,19 @@ public class GameEngine {
 
     public boolean canAttack(int aX, int aY) {
         boolean isP1Unit = sideOneUnits.contains(getActiveCreature());
-
         boolean theSamePlayerUnit;
+
+
+
+
         if (isP1Unit) {
             theSamePlayerUnit = isPlayerOneUnit(aX, aY);
         } else {
             theSamePlayerUnit = isPlayerTwoUnit(aX, aY);
+        }
+
+        if(getActiveCreature() instanceof FirstAidTent){  //wiem że to giga niefajne ale chciałem żeby działało :( po prezentacji zmienie
+            theSamePlayerUnit = !theSamePlayerUnit;
         }
 
 

@@ -27,6 +27,7 @@ public class Wall implements BattleObject, Fortification {
         this.stats=aStats;
         currentHp=stats.getMaxHp();
         damageApplier=new DefaultDamageApplier();
+        amount = 1;
     }
 
 
