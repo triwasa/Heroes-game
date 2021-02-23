@@ -44,6 +44,8 @@ public class CreatureButton extends Button {
         creatureName = creature.getName();
         creatureCost = creature.getGoldCost();
         Tooltip tooltip = new Tooltip();
+        tooltip.setPrefWidth(600);
+        tooltip.setWrapText(true);
         tooltip.setWidth(200);
         tooltip.setShowDelay(Duration.millis(200));
         tooltip.setText("Name: " + creatureName + "\n"
