@@ -147,7 +147,7 @@ public class GameEngine {
     }
 
     public boolean canMove(int aX, int aY) {
-        return board.canMove(getActiveCreature(), aX, aY);
+        return board.canMove(getActiveCreature(), aX, aY) && getActiveCreature().isAlive();
     }
 
     protected void unlockMoving() {
