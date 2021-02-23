@@ -80,6 +80,10 @@ public class Hero {
 
 
 
+    public Object getSpellBook() {
+        return spellBook;
+    }
+
     public static class BuilderForTesting {
         private Integer attack;
         private  Integer defence;

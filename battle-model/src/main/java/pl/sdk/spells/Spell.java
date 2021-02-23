@@ -10,9 +10,11 @@ public class Spell {
     private final SpellEnum.durationOfSpell duration;
     private final SpellEnum.magicTypeOfSpell magicType;
     private final Integer level;
+    private final SpellEnum techName;
 
     protected Spell(SpellEnum base){
         this.name = base.getName();
+        this.techName = base;
         this.duration = base.getDuration();
         this.type = base.getType();
         this.magicType = base.getMagicType();
@@ -30,5 +32,17 @@ public class Spell {
 
     public String getName(){
         return this.name;
+    }
+
+    public SpellEnum.typeOfSpell getType() {
+        return this.type;
+    }
+
+    public int getLevel() {
+        return this.level;
+    }
+
+    public SpellEnum getTechName() {
+        return this.techName;
     }
 }

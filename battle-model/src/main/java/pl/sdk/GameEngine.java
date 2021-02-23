@@ -5,6 +5,7 @@ import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.GuiBattleObject;
 import pl.sdk.hero.Hero;
 import pl.sdk.special_fields.Field;
+import pl.sdk.spells.SpellBook;
 
 import javax.management.MBeanAttributeInfo;
 import java.beans.PropertyChangeEvent;
@@ -56,10 +57,9 @@ public class GameEngine {
         twoSidesCreatures.sort((c1, c2) -> c2.getMoveRange() - c1.getMoveRange());
         queue = new CreatureTurnQueue(twoSidesCreatures);
         twoSidesCreatures.forEach(queue::addObserver);
-
         observerSupport = new PropertyChangeSupport(this);
-
-
+        addObserver(END_OF_TURN, (PropertyChangeListener) hero1.getSpellBook());
+        addObserver(END_OF_TURN, (PropertyChangeListener) hero2.getSpellBook());
     }
 
 

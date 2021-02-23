@@ -1,9 +1,17 @@
 package pl.sdk.spells;
 
+import pl.sdk.creatures.Creature;
+import pl.sdk.hero.Hero;
+import pl.sdk.spells.cast.ChangeStatisticBySpellStrategy;
+import pl.sdk.spells.cast.DefaultAttackSpellStrategy;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
-public class SpellBook {
+public class SpellBook implements PropertyChangeListener {
     private HashMap<Spell, Integer> spellBook = new HashMap<Spell, Integer>();
 
     public SpellBook(){
@@ -50,5 +58,37 @@ public class SpellBook {
 
     public int getUsesOfSpell(Spell spell) {
         return this.spellBook.get(getSpellOfName(spell.getName()));
+    }
+    public Creature castSpell(Spell spell, Creature creature, Hero owner){
+        perpareToCastSpell(spell, creature);
+                if (spell.getType().equals(SpellEnum.typeOfSpell.ATTACK)) {
+                    DefaultAttackSpellStrategy str = new DefaultAttackSpellStrategy();
+                    str.castSpell(creature, spell, owner);
+                } else if (spell.getType().equals(SpellEnum.typeOfSpell.CANGESTATISTIC)) {
+                    ChangeStatisticBySpellStrategy str = new ChangeStatisticBySpellStrategy();
+                    creature = str.castSpell(creature, spell, owner);
+                }
+                return creature;
+            }
+
+    public List<Creature> castSpell(Spell spell, List<Creature> creatures, Hero owner){
+        for(Creature creature: creatures){
+            castSpell(spell, creature, owner);
+        }
+        return creatures;
+    }
+
+    public void perpareToCastSpell(Spell spell, Creature creature){
+        try {
+            if(contains(spell) && creature.isCreature()) {
+            }
+        }catch (Exception ex){
+            System.err.println(ex);
+        }
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
     }
 }
