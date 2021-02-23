@@ -3,19 +3,19 @@ package pl.sdk.creatures;
 public abstract class AbstractFactory {
     public abstract Creature create(boolean aIsUpgraded, int aTier, int aAmount);
 
-    public static final String CASTLE = "Castle";
-    public static final String TOWER = "Tower";
-    public static final String INFERNO = "Inferno";
-    public static final String FORTRESS = "Fortress";
-    public static final String RAMPART = "Rampart";
-    public static final String DUNGEON = "Dungeon";
-    public static final String STRONGHOLD = "Stronghold";
-    public static final String NECROPOLIS = "Nectropolis";
-    public static final String NEUTRAL = "Neutral";
+    public static final String CASTLE = "CASTLE";
+    public static final String TOWER = "TOWER";
+    public static final String INFERNO = "INFERNO";
+    public static final String FORTRESS = "FORTRESS";
+    public static final String RAMPART = "RAMPART";
+    public static final String DUNGEON = "DUNGEON";
+    public static final String STRONGHOLD = "STRONGHOLD";
+    public static final String NECROPOLIS = "NECROPOLIS";
+    public static final String NEUTRAL = "NEUTRAL";
     private static final String EXCEPTION = "Fraction does not exist";
 
     public static AbstractFactory getFraction(String fraction) {
-        switch (fraction) {
+        switch (fraction.toUpperCase()) {
             case CASTLE:
                 return new CastleFactory();
             case TOWER:
