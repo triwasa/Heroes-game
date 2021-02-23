@@ -13,10 +13,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import pl.sdk.creatures.AbstractFactory;
-import pl.sdk.creatures.EconomyAbstractFactory;
-import pl.sdk.creatures.EconomyCreature;
-import pl.sdk.creatures.EconomyNecropolisFactory;
+import pl.sdk.creatures.*;
 
 
 public class CreatureButton extends Button {
@@ -32,7 +29,13 @@ public class CreatureButton extends Button {
         getStyleClass().add("creatureButton");
 
         addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
-            int amount = startDialogAndGetCreatureAmount();
+            int amount;
+            if(creature.getFraction().equals(EconomyAbstractFactory.WARMACHINE.toUpperCase())) {
+                amount = 1;
+            }
+            else {
+                amount = startDialogAndGetCreatureAmount();
+            }
             if(amount != 0){
                 aEcoController.buy(aFactory.create(aUpgraded,aTier,amount));
             }
@@ -44,6 +47,8 @@ public class CreatureButton extends Button {
         creatureName = creature.getName();
         creatureCost = creature.getGoldCost();
         Tooltip tooltip = new Tooltip();
+        tooltip.setPrefWidth(600);
+        tooltip.setWrapText(true);
         tooltip.setWidth(200);
         tooltip.setShowDelay(Duration.millis(200));
         tooltip.setText("Name: " + creatureName + "\n"
