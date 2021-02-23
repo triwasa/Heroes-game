@@ -116,6 +116,7 @@ public class EcoController implements PropertyChangeListener {
                 shop.getChildren().add(new CreatureButton(this, factory, true,i));
             }
             createShopButtons(shop);
+            
         });
     }
 
