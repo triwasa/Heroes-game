@@ -166,7 +166,7 @@ public class GameEngine {
     }
 
     public boolean canAttack(int aX, int aY) {
-        boolean isP1Unit = creatures1.contains(getActiveCreature());
+        boolean isP1Unit = sideOneUnits.contains(getActiveCreature());
 
         boolean theSamePlayerUnit;
         if (isP1Unit) {

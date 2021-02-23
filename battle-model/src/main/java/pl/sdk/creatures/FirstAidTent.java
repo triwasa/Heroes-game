@@ -29,6 +29,7 @@ public class FirstAidTent implements BattleObject {
         damageApplier=new DefaultDamageApplier();
         attackStrategy=new DefaultAttackStrategy();
         additionalStats=new CreatureAdditionalStatistic();
+        amount = 1;
     }
 
     @Override
