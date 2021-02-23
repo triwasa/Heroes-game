@@ -12,18 +12,14 @@
         <HBox>
             <HBox fx:id="heroStateHBox" styleClass="centerHBox" BorderPane.alignment="CENTER">
             <children>
-               <VBox prefHeight="927.0" prefWidth="274.0">
-                  <children>
-
-            </children>
-               </VBox>
+               <VBox prefHeight="927.0" prefWidth="274.0" />
             </children></HBox>
             <HBox fx:id="shopsBox" styleClass="centerHBox" BorderPane.alignment="TOP_RIGHT">
             </HBox>
         </HBox>
     </center>
     <top>
-        <HBox BorderPane.alignment="CENTER">
+        <HBox prefHeight="33.0" prefWidth="1652.0" BorderPane.alignment="CENTER">
             <children>
                 <Label fx:id="playerLabel" text="Player" />
                 <Label fx:id="roundNumberStaticLabel" text="Round: " />
@@ -34,15 +30,19 @@
         </HBox>
     </top>
     <right>
-            <VBox>
+        <HBox BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="editMapButton" mnemonicParsing="false" text="EDIT MAP" />
-                <Button fx:id="artifactShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="182.0" text="Artifacts" />
-                <Button fx:id="skillShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="181.0" text="Skills" />
-                <Button fx:id="warmachineShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="182.0" text="Warmachines" />
-                <Button fx:id="creatureShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="183.0" text="Creatures" />
-            </children>
+            <VBox prefHeight="200.0" prefWidth="200.0">
+               <children>
+                      <Button fx:id="editMapButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="201.0" text="EDIT MAP" />
+                  <Button fx:id="creatureShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Creature Shop" />
+                  <Button fx:id="skillShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="204.0" text="Skill Shop" />
+                  <Button fx:id="spellShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Spell Shop" />
+                   <Button fx:id="artifactShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="206.0" text="Artifact Shoop" />
+               </children>
             </VBox>
+            </children>
+        </HBox>
     </right>
     <bottom>
         <HBox BorderPane.alignment="CENTER">
