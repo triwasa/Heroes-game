@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Field {
     private String fieldName;
     private boolean canStand;
+    private FlyFieldOptions canFly;
     private boolean fieldCanAttack;
     private int fieldDamage;
     private double moveRange;
@@ -20,9 +21,10 @@ public class Field {
     public Field(){}
 
 
-    public Field(String name, boolean canStand, boolean fieldCanAttack, int damage, double moveRange) {
+    public Field(String name, boolean canStand, FlyFieldOptions canFly, boolean fieldCanAttack, int damage, double moveRange) {
         this.fieldName = name;
         this.canStand = canStand;
+        this.canFly = canFly;
         this.fieldCanAttack = fieldCanAttack;
         this.fieldDamage = damage;
         this.moveRange = moveRange;
@@ -30,8 +32,9 @@ public class Field {
     }
 
     public String getFieldName() { return fieldName; }
-    public boolean getCanAttack() { return fieldCanAttack; }
-    public boolean getCanStand() { return canStand; }
+    public boolean canAttack() { return fieldCanAttack; }
+    public boolean canStand() { return canStand; }
+    public FlyFieldOptions canFly() { return canFly; }
     public int getFieldDamage() { return fieldDamage; }
     private double getMoveRange() { return moveRange; }
     public String getName(){return name;}

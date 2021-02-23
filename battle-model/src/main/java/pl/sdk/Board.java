@@ -2,8 +2,6 @@ package pl.sdk;
 
 
 import pl.sdk.creatures.BattleObject;
-import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.GuiBattleObject;
 import pl.sdk.special_fields.Field;
 import pl.sdk.special_fields.FieldsFactory;
 
@@ -88,7 +86,7 @@ public class Board {
 
     // added for special fields
     boolean canStand(Point aPoint) {
-        return getField(aPoint.getX(), aPoint.getY()).getCanStand();
+        return getField(aPoint.getX(), aPoint.getY()).canStand();
     }
     // added for special fields
     private void throwExceptionIfCanNotStand(Point aPoint) {
