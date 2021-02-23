@@ -76,7 +76,9 @@ public class CreatureButton extends Button {
         Label slideValueLabel = new Label("0");
         aSlider.valueProperty().addListener((slider, aOld, aNew) -> slideValueLabel.setText(String.valueOf(aNew.intValue())));
         aTopPane.getChildren().add(slideValueLabel);
-        aTopPane.getChildren().add(new Label ("Purchase Cost: " + (int)aSlider.getValue() * creatureCost));
+        Label purchaseCost = new Label ("Purchase Cost: " + (int)aSlider.getValue() * creatureCost);
+        aSlider.valueProperty().addListener((slider,aOld,aNew) -> purchaseCost.setText("Purchase Cost: " + (int)aSlider.getValue() * creatureCost));
+        aTopPane.getChildren().add(purchaseCost);
     }
 
     private Stage prepareWindow(Pane aCenter, Pane aBottom, Pane aTop) {
