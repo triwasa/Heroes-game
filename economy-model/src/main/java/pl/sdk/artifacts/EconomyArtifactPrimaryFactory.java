@@ -119,12 +119,6 @@ public class EconomyArtifactPrimaryFactory {
                 return new EconomyArtifact(ArtifactStatistic.RING_OF_LIFE, 450);
             case VIAL_OF_LIFEBLOOD:
                 return new EconomyArtifact(ArtifactStatistic.VIAL_OF_LIFEBLOOD, 900);
-            case COLLAR_OF_CONJURING:
-                return new EconomyArtifact(ArtifactStatistic.COLLAR_OF_CONJURING, 300);
-            case RING_OF_CONJURING:
-                return new EconomyArtifact(ArtifactStatistic.RING_OF_CONJURING, 400);
-            case CAPE_OF_CONJURING:
-                return new EconomyArtifact(ArtifactStatistic.CAPE_OF_CONJURING, 600);
             case GARNITURE_OF_INTERFERENCE:
                 return new EconomyArtifact(ArtifactStatistic.GARNITURE_OF_INTERFERENCE, 200);
             case SURCOAT_OF_COUNTERPOISE:
@@ -137,46 +131,7 @@ public class EconomyArtifactPrimaryFactory {
                 return new EconomyArtifact(ArtifactStatistic.RING_OF_THE_WAYFARER, 120);
             case CAPE_OF_VELOCITY:
                 return new EconomyArtifact(ArtifactStatistic.CAPE_OF_VELOCITY, 360);
-            case ORB_OF_THE_FIRMAMENT:
-                return new EconomyArtifact(ArtifactStatistic.ORB_OF_THE_FIRMAMENT, 700);
-            case ORB_OF_SILT:
-                return new EconomyArtifact(ArtifactStatistic.ORB_OF_SILT, 700);
-            case ORB_OF_TEMPSTUOUS_FIRE:
-                return new EconomyArtifact(ArtifactStatistic.ORB_OF_TEMPSTUOUS_FIRE, 700);
-            case ORB_OF_DRIVING_RAIN:
-                return new EconomyArtifact(ArtifactStatistic.ORB_OF_DRIVING_RAIN, 700);
-            case TOME_OF_AIR_MAGIC:
-                return new EconomyArtifact(ArtifactStatistic.TOME_OF_AIR_MAGIC, 1500);
-            case TOME_OF_EARTH_MAGIC:
-                return new EconomyArtifact(ArtifactStatistic.TOME_OF_EARTH_MAGIC, 1500);
-            case TOME_OF_FIRE_MAGIC:
-                return new EconomyArtifact(ArtifactStatistic.TOME_OF_FIRE_MAGIC, 1500);
-            case TOME_OF_WATER_MAGIC:
-                return new EconomyArtifact(ArtifactStatistic.TOME_OF_WATER_MAGIC, 1500);
-            case SPELLBINDERS_HAT:
-                return new EconomyArtifact(ArtifactStatistic.SPELLBINDERS_HAT, 4000);
-            case PENDANT_OF_DEATH:
-                return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_DEATH, 450);
-            case PENDANT_OF_DISPASSION:
-                return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_DISPASSION, 450);
-            case PENDANT_OF_FREE_WILL:
-                return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_FREE_WILL, 450);
-            case PENDANT_OF_HOLINESS:
-                return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_HOLINESS, 450);
-            case PENDANT_OF_LIFE:
-                return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_LIFE, 450);
-            case PENDANT_OF_NEGATIVITY:
-                return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_NEGATIVITY, 450);
-            case PENDANT_OF_SECOND_SIGHT:
-                return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_SECOND_SIGHT, 450);
-            case PENDANT_OF_TOTAL_RECALL:
-                return new EconomyArtifact(ArtifactStatistic.PENDANT_OF_TOTAL_RECALL, 450);
-            case SPHERE_OF_PERMANENCE:
-                return new EconomyArtifact(ArtifactStatistic.SPHERE_OF_PERMANENCE, 450);
-            case RECANTERS_CLOAK:
-                return new EconomyArtifact(ArtifactStatistic.RECANTERS_CLOAK, 900);
-            case ORB_OF_INHIBITION:
-                return new EconomyArtifact(ArtifactStatistic.ORB_OF_INHIBITION, 2000);
+
 
             default:
                     throw new IllegalArgumentException(EXCEPTION_MESSAGE);

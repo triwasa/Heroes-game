@@ -19,7 +19,7 @@ public class ArtifactName {
     public final static String TEST_LUCK_MORALE = "Luck and morale test artifact";
 
 
-    // PRIMARY 1
+    // PRIMARY ARTIFACTS
     public final static String CENTAURS_AX = "Centaur's Ax";
     public final static String BLACKSHARD_OF_THE_DEAD_KNIGHT = "Blackshard of the Knight";
     public final static String GREATER_GNOLLS_FLAIL = "Greater Gnoll's Flail";
@@ -44,8 +44,6 @@ public class ArtifactName {
     public final static String CROWN_OF_THE_SUPREME_MAGI = "Crown of the Supreme Magi";
     public final static String HELLSTORM_HELMET = "Hellstorm Helmet";
     public final static String THUNDER_HELMET = "Thunder Helmet";
-
-    // PRIMARY 2
     public final static String QUIET_EYE_OF_THE_DRAGON = "Quiet Eye of the Dragon";
     public final static String RED_DRAGON_FLAME_TONGUE = "Red Dragon Flame Tongue";
     public final static String DRAGON_SCALE_SHIELD = "Dragon Scale Shield";
@@ -69,44 +67,14 @@ public class ArtifactName {
     public final static String STILL_EYE_OF_THE_DRAGON = "Still Eye of the Dragon";
     public final static String PENDANT_OF_COURAGE = "Pendant of Courage";
 
-    // COMBAT
-    public final static String GOLDEN_BOW = "Golden Bow";
+    // CREATURE BUFF ARTIFACTS
     public final static String RING_OF_VITALITY = "Ring of Vitality";
     public final static String RING_OF_LIFE = "Ring of Life";
     public final static String VIAL_OF_LIFEBLOOD = "Vial of Lifeblood";
-
     public final static String GARNITURE_OF_INTERFERENCE = "Garniture of Interference";
     public final static String SURCOAT_OF_COUNTERPOISE = "Surcoat of Counterpoise";
     public final static String BOOTS_OF_POLARITY = "Boots of Polarity";
     public final static String NECKLACE_OF_SWIFTNESS = "Necklace of Swiftness";
     public final static String RING_OF_THE_WAYFARER = "Ring of the Wayfarer";
     public final static String CAPE_OF_VELOCITY = "Cape of Velocity";
-
-    // SPELL
-    public final static String COLLAR_OF_CONJURING = "Collar of Conjuring";
-    public final static String RING_OF_CONJURING = "Ring of Conjuring";
-    public final static String CAPE_OF_CONJURING = "Cape of Conjuring";
-
-    public final static String ORB_OF_THE_FIRMAMENT = "Orb of Firmament";
-    public final static String ORB_OF_SILT = "Orb of Silt";
-    public final static String ORB_OF_TEMPSTUOUS_FIRE = "Orb of Tempstuous Fire";
-    public final static String ORB_OF_DRIVING_RAIN = "Orb of Driving Rain";
-
-    public final static String TOME_OF_AIR_MAGIC = "Tome of Air Magic";
-    public final static String TOME_OF_EARTH_MAGIC = "Tome of Earth Magic";
-    public final static String TOME_OF_FIRE_MAGIC = "Tome of Fire Magic";
-    public final static String TOME_OF_WATER_MAGIC = "Tome of Water Magic";
-    public final static String SPELLBINDERS_HAT = "Spellbinder's Hat";
-
-    public final static String PENDANT_OF_DISPASSION = "Pendant of Dispassion";
-    public final static String PENDANT_OF_SECOND_SIGHT = "Pendant of Second Sight";
-    public final static String PENDANT_OF_HOLINESS = "Pendant of Holiness";
-    public final static String PENDANT_OF_LIFE = "Pendant of Life";
-    public final static String PENDANT_OF_DEATH = "Pendant of Death";
-    public final static String PENDANT_OF_FREE_WILL = "Pendant of Free Will";
-    public final static String PENDANT_OF_NEGATIVITY = "Pendant of Negativity";
-    public final static String PENDANT_OF_TOTAL_RECALL = "Pendant of Total Recall";
-    public final static String SPHERE_OF_PERMANENCE = "Sphere of Permanence";
-    public final static String RECANTERS_CLOAK = "Recanter's Cloak";
-    public final static String ORB_OF_INHIBITION = "Orb of Inhibition";
 }

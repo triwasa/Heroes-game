@@ -4,6 +4,7 @@ public enum ArtifactDescription {
     // DESCRIPTION FOR TEST
     TEST("artifact for tests"),
 
+    // PRIMARY ARTIFACTS
     CENTAURS_AX("+2 attack skill"),
     BLACKSHARD_OF_THE_DEAD_KNIGHT("+3 attack skill"),
     GREATER_GNOLLS_FLAIL("+4 attack skill"),
@@ -28,7 +29,6 @@ public enum ArtifactDescription {
     CROWN_OF_THE_SUPREME_MAGI("+4 knowledge"),
     HELLSTORM_HELMET("+5 knowledge"),
     THUNDER_HELMET("+10 knowledge, -2 spell power"),
-
     QUIET_EYE_OF_THE_DRAGON("+1 to attack and defence skills"),
     RED_DRAGON_FLAME_TONGUE("+2 to attack and defence skills"),
     DRAGON_SCALE_SHIELD("+3 to attack and defence skills"),
@@ -52,45 +52,16 @@ public enum ArtifactDescription {
     STILL_EYE_OF_THE_DRAGON("+1 luck and morale"),
     PENDANT_OF_COURAGE("+3 luck and morale"),
 
-    GOLDEN_BOW("Your troops can shoot at any distance, through any obstacle without penalty"),
+    // CREATURE BUFF ARTIFACTS
     RING_OF_VITALITY("Increases health of all your units by 1"),
     RING_OF_LIFE("Increases health of all your units by 1"),
     VIAL_OF_LIFEBLOOD("Increases health of all your units by 2"),
-
     GARNITURE_OF_INTERFERENCE("+5% to magic resistance"),
     SURCOAT_OF_COUNTERPOISE("+10 to magic resistance"),
     BOOTS_OF_POLARITY("+15% to magic resistance"),
     NECKLACE_OF_SWIFTNESS("Increases the combat speed of all your units by 1"),
     RING_OF_THE_WAYFARER("Increases the combat speed of all your units by 1"),
-    CAPE_OF_VELOCITY("Increases the combat speed of all your units by 2"),
-
-    COLLAR_OF_CONJURING("Increases duration of all your spells by 1"),
-    RING_OF_CONJURING("Increases duration of all your spells by 2"),
-    CAPE_OF_CONJURING("Increases duration of all your spells by 3"),
-
-    ORB_OF_THE_FIRMAMENT("Hero's air spells to extra 50% damage"),
-    ORB_OF_SILT("Hero's earth spells to extra 50% damage"),
-    ORB_OF_TEMPSTUOUS_FIRE("Hero's fire spells to extra 50% damage"),
-    ORB_OF_DRIVING_RAIN("Hero's water spells to extra 50% damage"),
-
-    TOME_OF_AIR_MAGIC("All air spells are available to hero when equipped"),
-    TOME_OF_EARTH_MAGIC("All earth spells are available to hero when equipped"),
-    TOME_OF_FIRE_MAGIC("All fire spells are available to hero when equipped"),
-    TOME_OF_WATER_MAGIC("All water spells are available to hero when equipped"),
-    SPELLBINDERS_HAT("All 5th level spells are available to hero when worn"),
-
-    PENDANT_OF_DISPASSION("Renders your units immune to the berserk spell"),
-    PENDANT_OF_SECOND_SIGHT("Renders your units immune to the blind spell"),
-    PENDANT_OF_HOLINESS("Renders your units immune to the curse spell"),
-    PENDANT_OF_LIFE("Renders your units immune to the death ripple spell"),
-    PENDANT_OF_DEATH("Renders your units immune to the destroy undead spell"),
-    PENDANT_OF_FREE_WILL("Renders your units immune to the hypnotize spell"),
-    PENDANT_OF_NEGATIVITY("Renders your units immune to the lightning spell"),
-    PENDANT_OF_TOTAL_RECALL("Renders your units immune to the forgetfulness spell"),
-    SPHERE_OF_PERMANENCE("Renders your units immune to the dispel magic spell"),
-    RECANTERS_CLOAK("Prevents casting spells of level 3 and higher in combat"),
-    ORB_OF_INHIBITION("Prevents all spell casting in combat");
-
+    CAPE_OF_VELOCITY("Increases the combat speed of all your units by 2");
 
     ArtifactDescription(String aName){}
 }
