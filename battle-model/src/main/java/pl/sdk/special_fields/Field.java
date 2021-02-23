@@ -1,6 +1,7 @@
 package pl.sdk.special_fields;
 
 
+import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,7 +13,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Field {
     private String fieldName;
     private boolean canStand;
-    private FlyFieldOptions canFly;
+    private boolean isGroundField;
+    private boolean isFlyingField;
     private boolean fieldCanAttack;
     private int fieldDamage;
     private double moveRange;
@@ -20,11 +22,11 @@ public class Field {
 
     public Field(){}
 
-
-    public Field(String name, boolean canStand, FlyFieldOptions canFly, boolean fieldCanAttack, int damage, double moveRange) {
+    public Field(String name, boolean canStand, boolean isGroundField, boolean isFlyingField, boolean fieldCanAttack, int damage, double moveRange) {
         this.fieldName = name;
         this.canStand = canStand;
-        this.canFly = canFly;
+        this.isGroundField = isGroundField;
+        this.isFlyingField = isFlyingField;
         this.fieldCanAttack = fieldCanAttack;
         this.fieldDamage = damage;
         this.moveRange = moveRange;
@@ -34,10 +36,15 @@ public class Field {
     public String getFieldName() { return fieldName; }
     public boolean canAttack() { return fieldCanAttack; }
     public boolean canStand() { return canStand; }
-    public FlyFieldOptions canFly() { return canFly; }
+    public boolean isGroundField() { return isGroundField; }
+    public boolean isFlyingField() { return isFlyingField; }
     public int getFieldDamage() { return fieldDamage; }
     private double getMoveRange() { return moveRange; }
     public String getName(){return name;}
 
-
+    public void apply(BattleObject creature) {
+        if (this.canAttack()) {
+            creature.applyDamage(getFieldDamage());
+        }
+    }
 }
