@@ -20,8 +20,10 @@ import pl.sdk.converter.EcoBattleConverter;
 import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.creatures.EconomyNecropolisFactory;
 import pl.sdk.creatures.EconomyTowerFactory;
+import pl.sdk.creatures.EconomyWarmachineFactory;
 import pl.sdk.hero.EconomyHero;
 import pl.sdk.skills.EconomySkill;
+import pl.sdk.skills.EconomySkillFactory;
 import pl.sdk.spell.EconomySpell;
 
 import java.beans.PropertyChangeEvent;
@@ -48,10 +50,11 @@ public class EcoController implements PropertyChangeListener {
     @FXML
     Button artifactShop;
     @FXML
-    Button spellShop;
-    @FXML
     Button skillShop;
+    @FXML
+    Button warmachineShop;
     private final EconomyEngine economyEngine;
+    VBox shop;
 
     public EcoController(EconomyHero aHero1, EconomyHero aHero2) {
         economyEngine = new EconomyEngine(aHero1, aHero2);
@@ -83,18 +86,31 @@ public class EcoController implements PropertyChangeListener {
 
         artifactShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
-            EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
-            VBox shop = new VBox();
-            for (int i = 1; i < 8; i++) {
+            EconomyArtifactPrimaryFactory factory = new EconomyArtifactPrimaryFactory();
+            shop = new VBox();
+
+            createShopButtons(shop);
+        });
+        warmachineShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
+        {
+            EconomyWarmachineFactory factory = new EconomyWarmachineFactory();
+            shop = new VBox();
+            for (int i = 1; i < 4; i++) {
                 shop.getChildren().add(new CreatureButton(this, factory, false, i));
-                shop.getChildren().add(new CreatureButton(this, factory, true,i));
             }
+            createShopButtons(shop);
+        });
+        skillShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
+        {
+            EconomySkillFactory factory = new EconomySkillFactory();
+            shop = new VBox();
+
             createShopButtons(shop);
         });
         creatureShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
             EconomyTowerFactory factory = new EconomyTowerFactory();
-            VBox shop = new VBox();
+            shop = new VBox();
             for (int i = 1; i < 8; i++) {
                 shop.getChildren().add(new CreatureButton(this, factory, false, i));
                 shop.getChildren().add(new CreatureButton(this, factory, true,i));
