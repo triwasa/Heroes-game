@@ -19,7 +19,7 @@ public class Immunity {
         }
     }
 
-    protected Boolean checkImmunity(Spell aSpell){
+    public Boolean checkImmunity(Spell aSpell){
         if(spells.contains(aSpell)){
             return true;
         }
