@@ -6,6 +6,19 @@ public class EconomyArtifactPrimaryFactory {
 
     private static final String EXCEPTION_MESSAGE = "There is no artifact with that name";
 
+    public EconomyArtifact createArtifactForTests(String aName){
+        switch (aName) {
+            case TEST_LEFT_HAND_SLOT:
+                return new EconomyArtifact(ArtifactStatistic.TEST_LEFT_HAND_SLOT, 120);
+             case TEST_RIGHT_HAND_SLOT:
+                return new EconomyArtifact(ArtifactStatistic.TEST_RIGHT_HAND_SLOT, 140);
+             case TEST_TOO_EXPENSIVE:
+                return new EconomyArtifact(ArtifactStatistic.TEST_TOO_EXPENSIVE, 5000);
+            default:
+                throw new IllegalArgumentException(EXCEPTION_MESSAGE);
+        }
+    }
+
     public EconomyArtifact create(String aName){
         switch (aName) {
             case CENTAURS_AX:

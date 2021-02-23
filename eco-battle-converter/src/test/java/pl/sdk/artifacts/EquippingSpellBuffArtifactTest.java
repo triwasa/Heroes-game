@@ -27,7 +27,7 @@ public class EquippingSpellBuffArtifactTest {
     }
 
     @Test
-    void ArtifactDamageShouldIncreaseSpellDamageOfOneSpell(){
+    void artifactDamageShouldIncreaseSpellDamageOfOneSpell(){
 //        Spell airSpell = spellFactory.create(MAGIC_ARROW);
 //        spells.add(airSpell);
 //        hero.addSpells(spells);
@@ -39,7 +39,7 @@ public class EquippingSpellBuffArtifactTest {
     }
 
     @Test
-    void ArtifactDamageShouldIncreaseSpellDamageOfFewSpells(){
+    void artifactDamageShouldIncreaseSpellDamageOfFewSpells(){
 //        Spell airSpell = spellFactory.create(MAGIC_ARROW);
 //        Spell airSpell2 = spellFactory.create(LIGHTNING_BOLT);
 //        Spell fireSpell = spellFactory.create(FIRE_BALL);
@@ -57,7 +57,7 @@ public class EquippingSpellBuffArtifactTest {
     }
 
     @Test
-    void ArtifactDurationShouldIncreaseSpellDurationOfOneSpell(){
+    void artifactDurationShouldIncreaseSpellDurationOfOneSpell(){
 //        Spell spell = new spellFactory.create(BLOODLUST);
 //        spells.add(spell);
 //        hero.addSpells(spells);
@@ -70,7 +70,7 @@ public class EquippingSpellBuffArtifactTest {
     }
 
     @Test
-    void ArtifactDurationShouldIncreaseSpellDurationOfFewSpells(){
+    void artifactDurationShouldIncreaseSpellDurationOfFewSpells(){
 //        Spell spell1 = spellFactory.create(BLOODLUST);
 //        Spell spell2 = spellFactory.create(SHIELD);
 //        Spell spell3 = spellFactory.create(SLOW);
@@ -91,7 +91,7 @@ public class EquippingSpellBuffArtifactTest {
     }
 
     @Test
-    void ArtifactSpellBookShouldAddEarthSpellsToHeroCorrectly(){
+    void artifactSpellBookShouldAddEarthSpellsToHeroCorrectly(){
 //        hero.addSpells(spells);
 //
 //        (artifactFactory.create(TOME_OF_EARTH_MAGIC)).buff(hero); // + all earth spells
@@ -100,7 +100,7 @@ public class EquippingSpellBuffArtifactTest {
     }
 
     @Test
-    void ArtifactSpellBookShouldAddAirSpellsToHeroCorrectly(){
+    void artifactSpellBookShouldAddAirSpellsToHeroCorrectly(){
 //        hero.addSpells(spells);
 //
 //        (artifactFactory.create(TOME_OF_AIR_MAGIC)).buff(hero); // + all air spells
@@ -109,7 +109,7 @@ public class EquippingSpellBuffArtifactTest {
     }
 
     @Test
-    void ArtifactSpellBookShouldAddFireSpellsToHeroCorrectly(){
+    void artifactSpellBookShouldAddFireSpellsToHeroCorrectly(){
 //        hero.addSpells(spells);
 //
 //        (artifactFactory.create(TOME_OF_FIRE_MAGIC)).buff(hero); // + all fire spells
@@ -118,7 +118,7 @@ public class EquippingSpellBuffArtifactTest {
     }
 
     @Test
-    void ArtifactSpellBookShouldAddWaterSpellsToHeroCorrectly(){
+    void artifactSpellBookShouldAddWaterSpellsToHeroCorrectly(){
 //        hero.addSpells(spells);
 //
 //        (artifactFactory.create(TOME_OF_WATER_MAGIC)).buff(hero); // + all water spells
@@ -127,7 +127,7 @@ public class EquippingSpellBuffArtifactTest {
     }
 
     @Test
-    void ArtifactSpellBookShouldAdd5TierSpellsToHeroCorrectly(){
+    void artifactSpellBookShouldAdd5TierSpellsToHeroCorrectly(){
 //        hero.addSpells(spells);
 //
 //        (artifactFactory.create(SPELLBINDERS_HAT)).buff(hero); // + all 5 tier spells

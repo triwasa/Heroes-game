@@ -22,93 +22,93 @@ public class EquippingCreatureBuffArtifactTest {
     private final SpellFactory spellFactory = new SpellFactory();
 
     @BeforeEach
-    void init(){
+    void prepareHero(){
         creatures = new ArrayList<>();
         hero = new Hero();
     }
 
     @Test
-    void ArtifactHealthShouldIncreaseCreatureHealthCorrectly(){
+    void artifactHealthShouldIncreaseCreatureHealthCorrectly(){
         Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
 
         int primaryCreatureHealth = creatureForTests.getCurrentHp();
 
-        (artifactFactory.create(VIAL_OF_LIFEBLOOD)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_HEALTH_2)).buff(hero);
 
         assertEquals(primaryCreatureHealth + 2, creatureForTests.getCurrentHp());
     }
     @Test
-    void FewArtifactHealthShouldIncreaseCreatureHealthCorrectly(){
+    void fewArtifactHealthShouldIncreaseCreatureHealthCorrectly(){
         Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
 
         int primaryCreatureHealth = creatureForTests.getCurrentHp();
 
-        (artifactFactory.create(VIAL_OF_LIFEBLOOD)).buff(hero);
-        (artifactFactory.create(RING_OF_VITALITY)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_HEALTH_1)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_HEALTH_2)).buff(hero);
 
         assertEquals(primaryCreatureHealth + 3, creatureForTests.getCurrentHp());
     }
 
     @Test
-    void ArtifactSpeedShouldIncreaseCreatureSpeedCorrectly(){
+    void artifactSpeedShouldIncreaseCreatureSpeedCorrectly(){
         Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
 
         int primaryMoveRange = creatureForTests.getMoveRange();
 
-        (artifactFactory.create(CAPE_OF_VELOCITY)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_MOVERANGE_2)).buff(hero);
 
         assertEquals(primaryMoveRange + 2, creatureForTests.getMoveRange());
     }
 
     @Test
-    void FewArtifactSpeedShouldIncreaseCreatureSpeedCorrectly(){
+    void fewArtifactSpeedShouldIncreaseCreatureSpeedCorrectly(){
         Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
 
         int primaryMoveRange = creatureForTests.getMoveRange();
 
-        (artifactFactory.create(CAPE_OF_VELOCITY)).buff(hero);
-        (artifactFactory.create(RING_OF_THE_WAYFARER)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_MOVERANGE_1)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_MOVERANGE_2)).buff(hero);
 
         assertEquals(primaryMoveRange + 3, creatureForTests.getMoveRange());
     }
 
     @Test
-    void ArtifactResistanceShouldIncreaseCreatureResistanceCorrectly(){
+    void artifactResistanceShouldIncreaseCreatureResistanceCorrectly(){
          Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
 
         int primaryResistance = creatureForTests.getResistance();
 
-        (artifactFactory.create(SURCOAT_OF_COUNTERPOISE)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_RESISTANCE_10)).buff(hero);
 
         assertEquals(primaryResistance + 10, creatureForTests.getResistance());
     }
 
     @Test
-    void FewArtifactResistanceShouldIncreaseCreatureResistanceCorrectly(){
+    void fewArtifactResistanceShouldIncreaseCreatureResistanceCorrectly(){
         Creature creatureForTests = NecropolisFactory.createDefaultForTests();
         creatures.add(creatureForTests);
         hero.addCreatures(creatures);
 
         int primaryResistance = creatureForTests.getResistance();
 
-        (artifactFactory.create(SURCOAT_OF_COUNTERPOISE)).buff(hero);
-        (artifactFactory.create(GARNITURE_OF_INTERFERENCE)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_RESISTANCE_5)).buff(hero);
+        (artifactFactory.createArtifactForTests(TEST_INCREASE_RESISTANCE_10)).buff(hero);
 
        assertEquals(primaryResistance + 15, creatureForTests.getResistance());
     }
 
 //    @Test
-//    void ArtifactImmunityShouldAddImmunityToCreatureCorrectly(){
+//    void artifactImmunityShouldAddImmunityToCreatureCorrectly(){
 //        Creature creatureForTests = NecropolisFactory.createDefaultForTests();
 //        creatures.add(creatureForTests);
 //        hero.addCreatures(creatures);
