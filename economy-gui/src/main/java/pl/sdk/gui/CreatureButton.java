@@ -9,6 +9,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pl.sdk.creatures.AbstractFactory;
+import pl.sdk.creatures.EconomyAbstractFactory;
 import pl.sdk.creatures.EconomyNecropolisFactory;
 
 
@@ -17,7 +19,7 @@ public class CreatureButton extends Button {
     private final String creatureName;
     private Stage dialog;
 
-    public CreatureButton(EcoController aEcoController, EconomyNecropolisFactory aFactory, boolean aUpgraded, int aTier) {
+    public CreatureButton(EcoController aEcoController, EconomyAbstractFactory aFactory, boolean aUpgraded, int aTier) {
         super(aFactory.create(aUpgraded,aTier,1).getName());
         creatureName = aFactory.create(aUpgraded,aTier,1).getName();
         getStyleClass().add("creatureButton");
