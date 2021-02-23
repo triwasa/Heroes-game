@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.hero.Hero;
-import pl.sdk.spells.Spell;
-import pl.sdk.spells.SpellFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +17,6 @@ public class EquippingCreatureBuffArtifactTest {
     private Hero hero;
     private List<Creature> creatures;
     private ArtifactFactory artifactFactory = new ArtifactFactory();
-    private final SpellFactory spellFactory = new SpellFactory();
 
     @BeforeEach
     void prepareHero(){
@@ -106,17 +103,4 @@ public class EquippingCreatureBuffArtifactTest {
 
        assertEquals(primaryResistance + 15, creatureForTests.getResistance());
     }
-
-//    @Test
-//    void artifactImmunityShouldAddImmunityToCreatureCorrectly(){
-//        Creature creatureForTests = NecropolisFactory.createDefaultForTests();
-//        creatures.add(creatureForTests);
-//        hero.addCreatures(creatures);
-//
-//        (artifactFactory.create(PENDANT_OF_NEGATIVITY)).buff(hero); // immunity to  the lightning spell
-//        Spell lightningBoltSpell = spellFactory.create(LIGHTNING_BOLT);
-//
-//        assertEquals(true, creatureForTests.checkImmunity(lightningBoltSpell));
-//    }
-
 }

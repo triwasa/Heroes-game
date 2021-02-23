@@ -19,7 +19,7 @@ enum ArtifactStatistic implements ArtifactStatisticIf {
     TEST_MORALE(ArtifactName.TEST_MORALE, ArtifactSlotName.HEAD, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
     TEST_LUCK_MORALE(ArtifactName.TEST_LUCK_MORALE, ArtifactSlotName.HEAD, ArtifactRarity.TREASURE, ArtifactDescription.TEST),
 
-    // PRIMARY 1
+    // PRIMARY ARTIFACTS
     CENTAURS_AX(ArtifactName.CENTAURS_AX, ArtifactSlotName.RIGHT_HAND, ArtifactRarity.TREASURE, ArtifactDescription.CENTAURS_AX),
     BLACKSHARD_OF_THE_DEAD_KNIGHT(ArtifactName.BLACKSHARD_OF_THE_DEAD_KNIGHT, ArtifactSlotName.RIGHT_HAND,ArtifactRarity.MINOR, ArtifactDescription.BLACKSHARD_OF_THE_DEAD_KNIGHT),
     GREATER_GNOLLS_FLAIL(ArtifactName.GREATER_GNOLLS_FLAIL, ArtifactSlotName.RIGHT_HAND,ArtifactRarity.MINOR, ArtifactDescription.GREATER_GNOLLS_FLAIL),
@@ -44,8 +44,6 @@ enum ArtifactStatistic implements ArtifactStatisticIf {
     CROWN_OF_THE_SUPREME_MAGI(ArtifactName.CROWN_OF_THE_SUPREME_MAGI, ArtifactSlotName.HEAD,ArtifactRarity.MINOR, ArtifactDescription.CROWN_OF_THE_SUPREME_MAGI),
     HELLSTORM_HELMET(ArtifactName.HELLSTORM_HELMET, ArtifactSlotName.HEAD,ArtifactRarity.MAJOR, ArtifactDescription.HELLSTORM_HELMET),
     THUNDER_HELMET(ArtifactName.THUNDER_HELMET, ArtifactSlotName.HEAD,ArtifactRarity.RELIC, ArtifactDescription.THUNDER_HELMET),
-
-    // PRIMARY 2
     QUIET_EYE_OF_THE_DRAGON(ArtifactName.QUIET_EYE_OF_THE_DRAGON, ArtifactSlotName.FINGER, ArtifactRarity.TREASURE, ArtifactDescription.QUIET_EYE_OF_THE_DRAGON),
     RED_DRAGON_FLAME_TONGUE(ArtifactName.RED_DRAGON_FLAME_TONGUE, ArtifactSlotName.RIGHT_HAND, ArtifactRarity.MINOR, ArtifactDescription.RED_DRAGON_FLAME_TONGUE),
     DRAGON_SCALE_SHIELD(ArtifactName.DRAGON_SCALE_SHIELD, ArtifactSlotName.LEFT_HAND, ArtifactRarity.MAJOR, ArtifactDescription.DRAGON_SCALE_SHIELD),
@@ -69,47 +67,16 @@ enum ArtifactStatistic implements ArtifactStatisticIf {
     STILL_EYE_OF_THE_DRAGON(ArtifactName.STILL_EYE_OF_THE_DRAGON, ArtifactSlotName.FINGER, ArtifactRarity.TREASURE, ArtifactDescription.STILL_EYE_OF_THE_DRAGON),
     PENDANT_OF_COURAGE(ArtifactName.PENDANT_OF_COURAGE, ArtifactSlotName.NECK, ArtifactRarity.MAJOR, ArtifactDescription.PENDANT_OF_COURAGE),
 
-    // COMBAT
-    GOLDEN_BOW(ArtifactName.GOLDEN_BOW, ArtifactSlotName.MISC, ArtifactRarity.MAJOR, ArtifactDescription.GOLDEN_BOW),
+    // CREATURE BUFF ARTIFACTS
     RING_OF_VITALITY(ArtifactName.RING_OF_VITALITY, ArtifactSlotName.FINGER, ArtifactRarity.TREASURE, ArtifactDescription.RING_OF_VITALITY),
     RING_OF_LIFE(ArtifactName.RING_OF_LIFE, ArtifactSlotName.FINGER, ArtifactRarity.MINOR, ArtifactDescription.RING_OF_LIFE),
     VIAL_OF_LIFEBLOOD(ArtifactName.VIAL_OF_LIFEBLOOD, ArtifactSlotName.MISC, ArtifactRarity.MAJOR, ArtifactDescription.VIAL_OF_LIFEBLOOD),
-
     GARNITURE_OF_INTERFERENCE(ArtifactName.GARNITURE_OF_INTERFERENCE, ArtifactSlotName.NECK, ArtifactRarity.MAJOR, ArtifactDescription.GARNITURE_OF_INTERFERENCE),
     SURCOAT_OF_COUNTERPOISE(ArtifactName.SURCOAT_OF_COUNTERPOISE, ArtifactSlotName.SHOULDERS, ArtifactRarity.MAJOR, ArtifactDescription.SURCOAT_OF_COUNTERPOISE),
     BOOTS_OF_POLARITY(ArtifactName.BOOTS_OF_POLARITY, ArtifactSlotName.FEET, ArtifactRarity.RELIC, ArtifactDescription.BOOTS_OF_POLARITY),
     NECKLACE_OF_SWIFTNESS(ArtifactName.NECKLACE_OF_SWIFTNESS, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.NECKLACE_OF_SWIFTNESS),
     RING_OF_THE_WAYFARER(ArtifactName.RING_OF_THE_WAYFARER, ArtifactSlotName.FINGER, ArtifactRarity.MAJOR, ArtifactDescription.RING_OF_THE_WAYFARER),
-    CAPE_OF_VELOCITY(ArtifactName.CAPE_OF_VELOCITY, ArtifactSlotName.SHOULDERS, ArtifactRarity.MAJOR, ArtifactDescription.CAPE_OF_VELOCITY),
-
-    // SPELL
-    COLLAR_OF_CONJURING(ArtifactName.COLLAR_OF_CONJURING, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.COLLAR_OF_CONJURING),
-    RING_OF_CONJURING(ArtifactName.RING_OF_CONJURING, ArtifactSlotName.FINGER, ArtifactRarity.TREASURE, ArtifactDescription.RING_OF_CONJURING),
-    CAPE_OF_CONJURING(ArtifactName.CAPE_OF_CONJURING, ArtifactSlotName.SHOULDERS, ArtifactRarity.TREASURE, ArtifactDescription.CAPE_OF_CONJURING),
-
-    ORB_OF_THE_FIRMAMENT(ArtifactName.ORB_OF_THE_FIRMAMENT, ArtifactSlotName.MISC, ArtifactRarity.MAJOR, ArtifactDescription.ORB_OF_THE_FIRMAMENT),
-    ORB_OF_SILT(ArtifactName.ORB_OF_SILT, ArtifactSlotName.MISC, ArtifactRarity.MAJOR, ArtifactDescription.ORB_OF_SILT),
-    ORB_OF_TEMPSTUOUS_FIRE(ArtifactName.ORB_OF_TEMPSTUOUS_FIRE, ArtifactSlotName.MISC, ArtifactRarity.MAJOR, ArtifactDescription.ORB_OF_TEMPSTUOUS_FIRE),
-    ORB_OF_DRIVING_RAIN(ArtifactName.ORB_OF_DRIVING_RAIN, ArtifactSlotName.MISC, ArtifactRarity.MAJOR, ArtifactDescription.ORB_OF_DRIVING_RAIN),
-
-    TOME_OF_AIR_MAGIC(ArtifactName.TOME_OF_AIR_MAGIC, ArtifactSlotName.MISC, ArtifactRarity.RELIC, ArtifactDescription.TOME_OF_AIR_MAGIC),
-    TOME_OF_EARTH_MAGIC(ArtifactName.TOME_OF_EARTH_MAGIC, ArtifactSlotName.MISC, ArtifactRarity.RELIC, ArtifactDescription.TOME_OF_EARTH_MAGIC),
-    TOME_OF_FIRE_MAGIC(ArtifactName.TOME_OF_FIRE_MAGIC, ArtifactSlotName.MISC, ArtifactRarity.RELIC, ArtifactDescription.TOME_OF_FIRE_MAGIC),
-    TOME_OF_WATER_MAGIC(ArtifactName.TOME_OF_WATER_MAGIC, ArtifactSlotName.MISC, ArtifactRarity.RELIC, ArtifactDescription.TOME_OF_WATER_MAGIC),
-    SPELLBINDERS_HAT(ArtifactName.SPELLBINDERS_HAT, ArtifactSlotName.HEAD, ArtifactRarity.RELIC, ArtifactDescription.SPELLBINDERS_HAT),
-
-    PENDANT_OF_DISPASSION(ArtifactName.PENDANT_OF_DISPASSION, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.PENDANT_OF_DISPASSION),
-    PENDANT_OF_SECOND_SIGHT(ArtifactName.PENDANT_OF_SECOND_SIGHT, ArtifactSlotName.NECK, ArtifactRarity.MAJOR, ArtifactDescription.PENDANT_OF_SECOND_SIGHT),
-    PENDANT_OF_HOLINESS(ArtifactName.PENDANT_OF_HOLINESS, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.PENDANT_OF_HOLINESS),
-    PENDANT_OF_LIFE(ArtifactName.PENDANT_OF_LIFE, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.PENDANT_OF_LIFE),
-    PENDANT_OF_DEATH(ArtifactName.PENDANT_OF_DEATH, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.PENDANT_OF_DEATH),
-    PENDANT_OF_FREE_WILL(ArtifactName.PENDANT_OF_FREE_WILL, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.PENDANT_OF_FREE_WILL),
-    PENDANT_OF_NEGATIVITY(ArtifactName.PENDANT_OF_NEGATIVITY, ArtifactSlotName.NECK, ArtifactRarity.MAJOR, ArtifactDescription.PENDANT_OF_NEGATIVITY),
-    PENDANT_OF_TOTAL_RECALL(ArtifactName.PENDANT_OF_TOTAL_RECALL, ArtifactSlotName.NECK, ArtifactRarity.TREASURE, ArtifactDescription.PENDANT_OF_TOTAL_RECALL),
-    SPHERE_OF_PERMANENCE(ArtifactName.SPHERE_OF_PERMANENCE, ArtifactSlotName.MISC, ArtifactRarity.MAJOR, ArtifactDescription.SPHERE_OF_PERMANENCE),
-    RECANTERS_CLOAK(ArtifactName.RECANTERS_CLOAK, ArtifactSlotName.SHOULDERS, ArtifactRarity.MAJOR, ArtifactDescription.RECANTERS_CLOAK),
-    ORB_OF_INHIBITION(ArtifactName.ORB_OF_INHIBITION, ArtifactSlotName.MISC, ArtifactRarity.RELIC, ArtifactDescription.ORB_OF_INHIBITION);
-
+    CAPE_OF_VELOCITY(ArtifactName.CAPE_OF_VELOCITY, ArtifactSlotName.SHOULDERS, ArtifactRarity.MAJOR, ArtifactDescription.CAPE_OF_VELOCITY);
 
     private final String name;
     private final ArtifactSlotName slotName;
