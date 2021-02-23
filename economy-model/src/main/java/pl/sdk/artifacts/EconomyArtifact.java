@@ -19,4 +19,6 @@ public class EconomyArtifact {
 
     public String getDescription() { return stats.getDescription(); }
 
+    public String getRarity() { return  stats.getRarity(); }
+
 }

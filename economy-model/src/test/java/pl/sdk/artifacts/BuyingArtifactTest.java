@@ -26,31 +26,31 @@ public class BuyingArtifactTest {
 
     @Test
     void heroShouldCanBuyArtifact() {
-        economyEngine.buyArtifact(economyArtifactFactory.create(CENTAURS_AX));
+        economyEngine.buyArtifact(economyArtifactFactory.createArtifactForTests(TEST_LEFT_HAND_SLOT));
 
         assertEquals(880, hero1.getGold());
     }
 
     @Test
     void heroShouldCanBuyFewArtifacts() {
-        economyEngine.buyArtifact(economyArtifactFactory.create(CENTAURS_AX));
-        economyEngine.buyArtifact(economyArtifactFactory.create(SHIELD_OF_THE_DWARVEN_LORDS));
+        economyEngine.buyArtifact(economyArtifactFactory.createArtifactForTests(TEST_LEFT_HAND_SLOT));
+        economyEngine.buyArtifact(economyArtifactFactory.createArtifactForTests(TEST_RIGHT_HAND_SLOT));
 
-        assertEquals(760, hero1.getGold());
+        assertEquals(740, hero1.getGold());
     }
 
     @Test
     void heroCannotBuyArtifactWhenHasNotEnoughGold() {
-        assertThrows(IllegalStateException.class, () -> economyEngine.buyArtifact(economyArtifactFactory.create(TITANS_GLADIUS)));
+        assertThrows(IllegalStateException.class, () -> economyEngine.buyArtifact(economyArtifactFactory.createArtifactForTests(TEST_TOO_EXPENSIVE)));
         assertEquals(1000, hero1.getGold());
         assertEquals(0, hero1.getArtifacts().size());
     }
 
     @Test
     void heroCannotBuyArtifactWhenHasOneAlreadyInSlot() {
-        economyEngine.buyArtifact(economyArtifactFactory.create(CENTAURS_AX));
+        economyEngine.buyArtifact(economyArtifactFactory.createArtifactForTests(TEST_LEFT_HAND_SLOT));
 
-        assertThrows(IllegalStateException.class, () -> economyEngine.buyArtifact(economyArtifactFactory.create(BLACKSHARD_OF_THE_DEAD_KNIGHT)));
+        assertThrows(IllegalStateException.class, () -> economyEngine.buyArtifact(economyArtifactFactory.createArtifactForTests(TEST_LEFT_HAND_SLOT)));
         assertEquals(880, hero1.getGold());
         assertEquals(1, hero1.getArtifacts().size());
     }
