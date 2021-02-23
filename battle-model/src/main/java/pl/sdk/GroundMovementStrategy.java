@@ -4,6 +4,7 @@ import pl.sdk.creatures.BattleObject;
 import pl.sdk.special_fields.Field;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class GroundMovementStrategy implements MovementStrategy {
     public static final String GROUND = "GROUND";
@@ -11,27 +12,26 @@ public class GroundMovementStrategy implements MovementStrategy {
 
     @Override
     public boolean canMove(Board board, BattleObject aCreature, Point targetPoint) {
-        pointsToGo = new PathSearch(board).pathSearch(board.get(aCreature), targetPoint);
-            return distance(pointsToGo) <= aCreature.getMoveRange();
+        pointsToGo = new GroundPathSearch(board).pathSearch(board.get(aCreature), targetPoint);
+            return board.distance(pointsToGo) <= aCreature.getMoveRange();
     }
 
     @Override
     public LinkedList<Point> getPath(Board board,Point aSourcePoint, Point aTargetPoint) {
-        return new PathSearch(board).pathSearch(aSourcePoint,aTargetPoint);
+        return new GroundPathSearch(board).pathSearch(aSourcePoint,aTargetPoint);
     }
 
 
-    //might be moved to other class like "MovePath" or smh
-    private double distance(LinkedList<Point> path) {
-        if(path.size() == 0 ){
-            return Integer.MAX_VALUE;
+    public void move(BattleObject aCreature, Point aTargetPoint, Board board) {
+        List<Point> path = getPath(board, board.get(aCreature), aTargetPoint);
+        path.remove(0);
+        for(Point point : path) {
+            Field field = board.getField(point.getX(), point.getY());
+//            if(field.isGroundField()) {
+//                field.apply(aCreature);
+//            }
         }
-        double distance = 0;
-        Point aPoint = path.get(0);
-        for(Point aPoint1 : path) {
-            distance = distance + aPoint.distance(aPoint1);
-            aPoint = aPoint1;
-        }
-        return distance;
     }
+
+
 }

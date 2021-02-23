@@ -5,21 +5,30 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import pl.sdk.creatures.AbstractFactory;
+import pl.sdk.creatures.EconomyAbstractFactory;
+import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.creatures.EconomyNecropolisFactory;
 
 
 public class CreatureButton extends Button {
 
-    private final String creatureName;
+    private String creatureName;
+    private int creatureCost;
     private Stage dialog;
 
-    public CreatureButton(EcoController aEcoController, EconomyNecropolisFactory aFactory, boolean aUpgraded, int aTier) {
+    public CreatureButton(EcoController aEcoController, EconomyAbstractFactory aFactory, boolean aUpgraded, int aTier) {
         super(aFactory.create(aUpgraded,aTier,1).getName());
-        creatureName = aFactory.create(aUpgraded,aTier,1).getName();
+        EconomyCreature creature = aFactory.create(aUpgraded,aTier,1);
+        createCreatureInfo(creature);
         getStyleClass().add("creatureButton");
 
         addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
@@ -29,6 +38,17 @@ public class CreatureButton extends Button {
             }
             aEcoController.refreshGui();
         });
+    }
+
+    private void createCreatureInfo(EconomyCreature creature) {
+        creatureName = creature.getName();
+        creatureCost = creature.getGoldCost();
+        Tooltip tooltip = new Tooltip();
+        tooltip.setWidth(200);
+        tooltip.setShowDelay(Duration.millis(200));
+        tooltip.setText("Name: " + creatureName + "\n"
+        + creature.getDescription());
+        setTooltip(tooltip);
     }
 
     private int startDialogAndGetCreatureAmount() {
@@ -47,12 +67,11 @@ public class CreatureButton extends Button {
     }
 
     private void prepareTop(HBox aTopPane, Slider aSlider) {
-        //TODO creature cops should be visible here
-        aTopPane.getChildren().add(new Label ("Single Cost: " + "0"));
+        aTopPane.getChildren().add(new Label ("Single Cost: " + creatureCost));
         Label slideValueLabel = new Label("0");
         aSlider.valueProperty().addListener((slider, aOld, aNew) -> slideValueLabel.setText(String.valueOf(aNew.intValue())));
         aTopPane.getChildren().add(slideValueLabel);
-        aTopPane.getChildren().add(new Label ("Purchase Cost: "));
+        aTopPane.getChildren().add(new Label ("Purchase Cost: " + (int)aSlider.getValue() * creatureCost));
     }
 
     private Stage prepareWindow(Pane aCenter, Pane aBottom, Pane aTop) {

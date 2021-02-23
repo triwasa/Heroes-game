@@ -115,20 +115,22 @@ class BoardMovingTest {
         board.add(new Point(7,4), FieldsFactory.create("Stone"));
         assertFalse(board.canMove(groundCreature,5,3));
         assertTrue(board.canMove(groundCreature,1,4));
+        assertFalse(board.canMove(groundCreature,5,4));
 
     }
     @Test
     void pathSearchForFlyingCreatureUsingFields() {
-        BattleObject groundCreature = new NecropolisFactory().create(false , 3, 1);
-        board.add(new Point(4,5),groundCreature);
+        BattleObject flyingCreature = new NecropolisFactory().create(false , 3, 1);
+        board.add(new Point(4,5),flyingCreature);
         board.add(new Point(4,4),  FieldsFactory.create("Stone"));
         board.add(new Point(3,4),FieldsFactory.create("Stone"));
         board.add(new Point(2,4), FieldsFactory.create("Stone"));
         board.add(new Point(5,4), FieldsFactory.create("Stone"));
         board.add(new Point(6,4), FieldsFactory.create("Stone"));
         board.add(new Point(7,4), FieldsFactory.create("Stone"));
-        assertTrue(board.canMove(groundCreature,5,3));
-        assertTrue(board.canMove(groundCreature,1,4));
+        assertTrue(board.canMove(flyingCreature,5,3));
+        assertTrue(board.canMove(flyingCreature,1,4));
+        assertFalse(board.canMove(flyingCreature,5,4));
 
     }
 

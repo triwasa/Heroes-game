@@ -6,7 +6,7 @@ import pl.sdk.special_fields.Field;
 
 import java.util.*;
 
-public class PathSearch {
+public abstract class PathSearch {
     private LinkedList<Point> openlist;
     private Map<Point, Point> cameFrom;
     private Map<Point, Double> gScore;
@@ -86,28 +86,5 @@ public class PathSearch {
         return minKey;
     }
 
-    private LinkedList<Point> getNeighbor(Point point) {
-        LinkedList<Point> neighborsList = new LinkedList<>();
-        for(int i = 0; i <= 2; i++){
-            for(int j = 0; j <=2; j++) {
-                Point neighbor = new Point(point.getX() + 1 - i, point.getY() + 1 - j);
-                BattleObject tmp = board.get(point.getX() + 1 - i, point.getY() + 1 - j);
-                Field field = board.getField(point.getX() + 1 - i, point.getY() + 1 - j);
-                if(neighbor.getX() < 0 || neighbor.getX() > GameEngine.BOARD_WIDTH
-                        || neighbor.getY() < 0
-                        || neighbor.getY() > GameEngine.BOARD_HEIGHT
-                        || neighbor.equals(point)) {
-                    continue;
-                }
-                if(tmp != null) {
-                        continue;
-                }
-                else if(field.getCanStand()) {
-                    neighborsList.add(neighbor);
-                }
-            }
-        }
-        return neighborsList;
-    }
-
+     abstract LinkedList<Point> getNeighbor(Point point);
 }
