@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fields>
+    <fields>
+        <fieldName>Stone</fieldName>
+        <canStand>false</canStand>
+        <fieldCanAttack>false</fieldCanAttack>
+        <fieldDamage>0</fieldDamage>
+        <moveRange>0.0</moveRange>
+        <name>Stone</name>
+    </fields>
+    <fields>
+        <fieldName>Stone</fieldName>
+        <canStand>false</canStand>
+        <fieldCanAttack>false</fieldCanAttack>
+        <fieldDamage>0</fieldDamage>
+        <moveRange>0.0</moveRange>
+        <name>Stone</name>
+    </fields>
+    <fields>
+        <fieldName>Stone</fieldName>
+        <canStand>false</canStand>
+        <fieldCanAttack>false</fieldCanAttack>
+        <fieldDamage>0</fieldDamage>
+        <moveRange>0.0</moveRange>
+        <name>Stone</name>
+    </fields>
+</fields>
