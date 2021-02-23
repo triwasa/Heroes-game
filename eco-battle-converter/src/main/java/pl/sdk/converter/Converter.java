@@ -63,7 +63,7 @@ public class Converter {
         WarMachineFactory warMachineFactory = new WarMachineFactory();
         List<Creature> creatures = new ArrayList<>();
         List<BattleObject> warmachines = new ArrayList<>();
-        String WARMACHINE = "WARMACHINES";
+        String WARMACHINE = EconomyAbstractFactory.WARMACHINE; //zmieniłem Ci na statyka bo string by sie rozjechal ;/ Kraton
 
         economyHero.getCreatures().forEach(ecoCreature -> {
             if (ecoCreature.getFraction().equals(WARMACHINE))  {
