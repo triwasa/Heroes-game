@@ -18,7 +18,7 @@ public class TeleportMovementStrategy implements MovementStrategy {
 
     @Override
     public LinkedList<Point> getPath(Board board, Point aSourcePoint, Point aTargetPoint) {
-        return (LinkedList<Point>) List.of(aSourcePoint, aTargetPoint);
+        return new LinkedList<>(List.of(aSourcePoint, aTargetPoint));
     }
 
     @Override
