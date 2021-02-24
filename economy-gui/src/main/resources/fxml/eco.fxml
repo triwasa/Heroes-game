@@ -14,11 +14,8 @@
             <children>
                <VBox prefHeight="927.0" prefWidth="274.0">
                   <children>
-                      <Button fx:id="artifactShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="182.0" text="Artifact Shoop" />
-                     <Button fx:id="skillShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="181.0" text="Skill Shop" />
-                     <Button fx:id="spellShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="182.0" text="Spell Shop" />
-                     <Button fx:id="creatureShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="183.0" text="Creature Shop" />
-                  </children>
+
+            </children>
                </VBox>
             </children></HBox>
             <HBox fx:id="shopsBox" styleClass="centerHBox" BorderPane.alignment="TOP_RIGHT">
@@ -37,11 +34,15 @@
         </HBox>
     </top>
     <right>
-        <HBox BorderPane.alignment="CENTER">
+            <VBox>
             <children>
                 <Button fx:id="editMapButton" mnemonicParsing="false" text="EDIT MAP" />
+                <Button fx:id="artifactShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="182.0" text="Artifacts" />
+                <Button fx:id="skillShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="181.0" text="Skills" />
+                <Button fx:id="warmachineShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="182.0" text="Warmachines" />
+                <Button fx:id="creatureShop" mnemonicParsing="false" prefHeight="38.0" prefWidth="183.0" text="Creatures" />
             </children>
-        </HBox>
+            </VBox>
     </right>
     <bottom>
         <HBox BorderPane.alignment="CENTER">

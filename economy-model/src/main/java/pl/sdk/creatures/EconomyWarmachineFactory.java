@@ -7,7 +7,7 @@ public class EconomyWarmachineFactory extends EconomyAbstractFactory {
 
         switch (aTier) {
             case 1:
-                return new EconomyCreature(CreatureStatistic.CATAPULT, 1, 0);
+                return new EconomyCreature(CreatureStatistic.CATAPULT, 1, 1000);
             case 2:
                 return new EconomyCreature(CreatureStatistic.FIRSTAIDTENT, 1, 750);
             case 3:
