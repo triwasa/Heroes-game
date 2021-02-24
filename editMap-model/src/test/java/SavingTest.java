@@ -40,7 +40,7 @@ public class SavingTest {
             FieldsHolder holder1 = (FieldsHolder) contextFields.createUnmarshaller().unmarshal(new FileReader("fields.xml"));
             PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal(new FileReader("point.xml"));
             for (int i = 0; i < holder1.getThings().size(); i++) {
-                boardFromFile.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
+                boardFromFile.add(pointHolder1.getThings().get(i), FieldsFactory.create(holder1.getThings().get(i)));
             }
         }
         assertEquals(boardFromFile.getFieldsMap().get(new Point(2,2)).getName(),board.getFieldsMap().get(new Point(2,2)).getName());
