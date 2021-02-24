@@ -30,7 +30,7 @@ public class FieldWorkingTest {
         Field lava = FieldsFactory.create("Lava");
         Creature movingCreature = NecropolisFactory.createDefaultForTests();
         lava.apply(movingCreature);
-        assertEquals(0, movingCreature.getCurrentHp(), "Lava is not giving damage");
+        assertEquals(5, movingCreature.getCurrentHp(), "Lava is not giving damage");
     }
 
     @Test
