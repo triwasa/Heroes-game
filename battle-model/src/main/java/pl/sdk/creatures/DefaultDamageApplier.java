@@ -7,7 +7,9 @@ public class DefaultDamageApplier extends AbstractDamageApplier {
 
     @Override
     public int changeDamageApplied(int aDamageToDecrease) {
+        System.out.println("damage applied: " + aDamageToDecrease);
         return aDamageToDecrease;
+
     }
 
     @Override

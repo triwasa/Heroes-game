@@ -39,6 +39,7 @@ public class Catapult  implements BattleObject {
         damageApplier = new DefaultDamageApplier();
         attackStrategy = new DefaultAttackStrategy();
         damageCalculator = new DefaultCalculateStrategy();
+        amount = 1;
     }
 
 
