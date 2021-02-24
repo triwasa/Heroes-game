@@ -20,11 +20,11 @@ public class Field {
 
     public Field(){}
 
-    public Field(String name, boolean canStand, boolean isGroundField, boolean isFlyingField, double moveRange, FieldsApplyStrategy fieldsApplyStrategy) {
+    public Field(String name, boolean canStand, boolean groundField, boolean flyingField, double moveRange, FieldsApplyStrategy fieldsApplyStrategy) {
         this.fieldName = name;
         this.canStand = canStand;
-        this.isGroundField = isGroundField;
-        this.isFlyingField = isFlyingField;
+        this.isGroundField = groundField;
+        this.isFlyingField = flyingField;
         this.moveRange = moveRange;
         this.name = name;
         this.fieldsApplyStrategy = fieldsApplyStrategy;

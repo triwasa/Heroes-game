@@ -1,12 +1,10 @@
 package pl.sdk;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
-import pl.sdk.special_fields.Field;
 import pl.sdk.special_fields.FieldsFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,7 +20,6 @@ class BoardMovingTest {
         creature = NecropolisFactory.createDefaultForTests();
         board.add(new Point(0,0), creature);
 
-        // added for special fields
         board.add(new Point(5,5), FieldsFactory.create("Lava"));
         board.add(new Point(6,6), FieldsFactory.create("Stone"));
         board.add(new Point(7,7), FieldsFactory.create("Water"));
@@ -65,7 +62,6 @@ class BoardMovingTest {
             board.add(new Point(5,5), creature);
 
             assertFalse(board.canMove(creature, 6,6));
-
     }
 
     @Test
@@ -74,20 +70,6 @@ class BoardMovingTest {
         board.add(new Point(5,5), creature);
 
         assertFalse(board.canMove(creature, 0,0 ));
-    }
-
-
-    void canNotStandOnTheField(){
-        Creature movingCreature = NecropolisFactory.createDefaultForTests();
-        board.add(new Point(4,4), creature);
-
-
-    }
-
-    // added for special fields
-    @Test
-    void LavaFieldDamage(){
-
     }
 
     @Test
@@ -133,9 +115,5 @@ class BoardMovingTest {
         assertFalse(board.canMove(flyingCreature,5,4));
 
     }
-
-
-
-
 
 }
