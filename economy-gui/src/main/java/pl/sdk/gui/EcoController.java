@@ -159,6 +159,9 @@ public class EcoController implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
+        if(aPropertyChangeEvent.getPropertyName().equals(EconomyEngine.NEXT_ROUND)) {
+            shopsBox.getChildren().clear();
+        }
         refreshGui();
     }
 
