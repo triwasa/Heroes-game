@@ -17,10 +17,7 @@ import pl.sdk.EconomyEngine;
 import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.artifacts.EconomyArtifactPrimaryFactory;
 import pl.sdk.converter.EcoBattleConverter;
-import pl.sdk.creatures.EconomyCreature;
-import pl.sdk.creatures.EconomyNecropolisFactory;
-import pl.sdk.creatures.EconomyTowerFactory;
-import pl.sdk.creatures.EconomyWarmachineFactory;
+import pl.sdk.creatures.*;
 import pl.sdk.hero.EconomyHero;
 import pl.sdk.skills.EconomySkill;
 import pl.sdk.skills.EconomySkillFactory;
@@ -29,6 +26,7 @@ import pl.sdk.spell.EconomySpell;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.util.Random;
 
 public class EcoController implements PropertyChangeListener {
     @FXML
@@ -55,6 +53,7 @@ public class EcoController implements PropertyChangeListener {
     Button warmachineShop;
     private final EconomyEngine economyEngine;
     VBox shop;
+    private EconomyAbstractFactory economyAbstractFactory;
 
     public EcoController(EconomyHero aHero1, EconomyHero aHero2) {
         economyEngine = new EconomyEngine(aHero1, aHero2);
@@ -69,6 +68,8 @@ public class EcoController implements PropertyChangeListener {
         economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_SKILL, this);
         economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_SPELL,this);
         economyEngine.addObserver(EconomyEngine.NEXT_ROUND, this);
+        economyAbstractFactory = economyEngine.getEconomyAbstractFactory();
+
 
         readyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
@@ -86,7 +87,6 @@ public class EcoController implements PropertyChangeListener {
 
         artifactShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
-            EconomyArtifactPrimaryFactory factory = new EconomyArtifactPrimaryFactory();
             shop = new VBox();
 
             createShopButtons(shop);
@@ -109,11 +109,10 @@ public class EcoController implements PropertyChangeListener {
         });
         creatureShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
-            EconomyTowerFactory factory = new EconomyTowerFactory();
             shop = new VBox();
             for (int i = 1; i < 8; i++) {
-                shop.getChildren().add(new CreatureButton(this, factory, false, i));
-                shop.getChildren().add(new CreatureButton(this, factory, true,i));
+                shop.getChildren().add(new CreatureButton(this, economyAbstractFactory, false, i));
+                shop.getChildren().add(new CreatureButton(this, economyAbstractFactory, true,i));
             }
             createShopButtons(shop);
         });
@@ -133,6 +132,7 @@ public class EcoController implements PropertyChangeListener {
     }
 
     void refreshGui() {
+        economyAbstractFactory = economyEngine.getEconomyAbstractFactory();
         playerLabel.setText(economyEngine.getActiveHero().toString());
         currentGoldLabel.setText(String.valueOf(economyEngine.getActiveHero().getGold()));
         roundNumberLabel.setText(String.valueOf(economyEngine.getRoundNumber()));
@@ -161,4 +161,6 @@ public class EcoController implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         refreshGui();
     }
+
+
 }

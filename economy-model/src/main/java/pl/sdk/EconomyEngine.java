@@ -1,7 +1,7 @@
 package pl.sdk;
 
 import pl.sdk.artifacts.EconomyArtifact;
-import pl.sdk.creatures.EconomyCreature;
+import pl.sdk.creatures.*;
 import pl.sdk.hero.*;
 import pl.sdk.skills.EconomySkill;
 import pl.sdk.spell.EconomySpell;
@@ -9,6 +9,7 @@ import pl.sdk.hero.SpellShop;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Random;
 
 public class EconomyEngine {
     public static final String HERO_BOUGHT_CREATURE = "HERO_BOUGHT_CREATURE";
@@ -26,12 +27,14 @@ public class EconomyEngine {
     private final SpellShop spellShop = new SpellShop();
     private int roundNumber;
     private final PropertyChangeSupport observerSupport;
+    private EconomyAbstractFactory economyAbstractFactory;
 
     public EconomyEngine(EconomyHero aHero1, EconomyHero aHero2) {
         hero1 = aHero1;
         hero2 = aHero2;
         activeHero = hero1;
         roundNumber = 1;
+        randomizeCreatureFactory();
         observerSupport = new PropertyChangeSupport(this);
     }
 
@@ -76,6 +79,7 @@ public class EconomyEngine {
         roundNumber += 1;
         hero1.addGold(2000*roundNumber);
         hero2.addGold(2000*roundNumber);
+        randomizeCreatureFactory();
         observerSupport.firePropertyChange(NEXT_ROUND, roundNumber - 1, roundNumber);
     }
 
@@ -95,6 +99,41 @@ public class EconomyEngine {
     public EconomyHero getPlayer2() {
         //TODO make copy
         return hero2;
+    }
+
+    public EconomyAbstractFactory getEconomyAbstractFactory() {
+        return economyAbstractFactory;
+    }
+
+    public void randomizeCreatureFactory() {
+        int rand = new Random().nextInt(8);
+
+        switch (rand) {
+            case 0:
+                economyAbstractFactory = new EconomyNecropolisFactory();
+                return;
+            case 1:
+                economyAbstractFactory = new EconomyStrongholdFactory();
+                return;
+            case 2:
+                economyAbstractFactory = new EconomyDungeonFactory();
+                return;
+            case 3:
+                economyAbstractFactory = new EconomyRampartFactory();
+                return;
+            case 4:
+                economyAbstractFactory = new EconomyFortressFactory();
+                return;
+            case 5:
+                economyAbstractFactory = new EconomyInfernoFactory();
+                return;
+            case 6:
+                economyAbstractFactory = new EconomyTowerFactory();
+                return;
+            case 7:
+                economyAbstractFactory = new EconomyCastleFactory();
+                return;
+        }
     }
 
 }

@@ -90,6 +90,7 @@ public class BattleMapController implements PropertyChangeListener {
                     //rec.addToolTip(c);
                     if (c == gameEngine.getActiveCreature()) {
                         rec.setBackground(Color.GREEN);
+                        rec.setBorder(Color.GREEN);
                     } else if (gameEngine.canAttack(x, y)) {
                         final int x1 = x;
                         final int y1 = y;
