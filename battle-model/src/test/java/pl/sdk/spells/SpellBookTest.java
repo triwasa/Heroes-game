@@ -96,7 +96,7 @@ public class SpellBookTest {
     }
 
     @Test
-    void cannotSpellToAttackManyTargetsIfItNotIsAreaTypeSpell(){
+    void cannotApplySpellToAttackManyTargetsIfItNotIsAreaTypeSpell(){
         listOfCreatures.add(creature);
         listOfCreatures.add(copyCreature);
         Integer amout = creature.getAmount();
