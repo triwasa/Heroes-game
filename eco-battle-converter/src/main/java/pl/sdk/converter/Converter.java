@@ -63,7 +63,7 @@ public class Converter {
         WarMachineFactory warMachineFactory = new WarMachineFactory();
         List<Creature> creatures = new ArrayList<>();
         List<BattleObject> warmachines = new ArrayList<>();
-        String WARMACHINE = "WARMACHINES";
+        String WARMACHINE = EconomyAbstractFactory.WARMACHINE.toUpperCase(); //zmieniłem Ci na statyka bo string by sie rozjechal ;/ Kraton
 
         economyHero.getCreatures().forEach(ecoCreature -> {
             if (ecoCreature.getFraction().equals(WARMACHINE))  {
@@ -71,7 +71,7 @@ public class Converter {
                 warmachines.add(warmachine);
             }
             else {
-                Creature c = FractionFactory.getFraction(ecoCreature.getFraction()).create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
+                Creature c = AbstractFactory.getFraction(ecoCreature.getFraction()).create(ecoCreature.isUpgraded(), ecoCreature.getTier(), ecoCreature.getAmount());
                 creatures.add(c);
             }
         });
