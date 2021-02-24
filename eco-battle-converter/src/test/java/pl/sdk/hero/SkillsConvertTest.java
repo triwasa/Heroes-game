@@ -303,7 +303,7 @@ public class SkillsConvertTest {
 
         hero2.getMachines().get(0).getAttackStrategy().attack(hero2.getMachines().get(0), hero.getCreatures().get(0));
 
-        assertTrue(104 == hero.getCreatures().get(0).getCurrentHp() || hero.getCreatures().get(0).getCurrentHp()== 106);
+        assertTrue(98 == hero.getCreatures().get(0).getCurrentHp() || hero.getCreatures().get(0).getCurrentHp()== 102);
     }
 
     @Test
