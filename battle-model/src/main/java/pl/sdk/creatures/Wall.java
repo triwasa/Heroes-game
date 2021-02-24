@@ -19,7 +19,8 @@ public class Wall implements BattleObject, Fortification {
     public Wall() {
         stats=FortificationStatistic.WALL;
         damageApplier=new DefaultDamageApplier();
-
+        currentHp=stats.getMaxHp();
+        amount = 1;
     }
 
 

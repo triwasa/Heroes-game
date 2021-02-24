@@ -140,7 +140,7 @@ public class GameEngine {
 
     private void putMachinesFromOneSideToBoard(List<BattleObject> aMachines, int aX) {
         for (int i = 0; i < aMachines.size(); i++) {
-            board.add(new Point(aX, 13-i*2), aMachines.get(i));
+            board.add(new Point(aX, 14-2*i), aMachines.get(i));
         }
     }
 

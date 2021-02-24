@@ -15,7 +15,6 @@ public class Keep implements BattleObject, Fortification {
     private DamageApplierIf damageApplier;
     private AttackStrategy attackStrategy;
     private int amount;
-    boolean counterAttackedThisTurn=true;
 
 
     Keep(FortificationStatisticIf aStats){
