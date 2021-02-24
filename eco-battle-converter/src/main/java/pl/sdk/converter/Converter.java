@@ -30,7 +30,7 @@ public class Converter {
 
 
         economyHero.getSkillList().forEach(ecoSkill ->
-                skills.add(skillFactory.create(ecoSkill.getCoreName(),ecoSkill.getLevel())));
+                skills.add(skillFactory.create(ecoSkill.getCoreName(),ecoSkill.getTier())));
         economyHero.getArtifacts().forEach(ecoArtifact -> {
             artifacts.add(artifactFactory.create(ecoArtifact.getName()));
         });
