@@ -45,4 +45,8 @@ public class Spell {
     public SpellEnum getTechName() {
         return this.techName;
     }
+
+    public SpellEnum.durationOfSpell getDuration() {
+        return this.duration;
+    }
 }

@@ -10,17 +10,17 @@ public enum SpellEnum {
     ICE_BOLD3("Ice Bold", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 1),
     BLESS("Bless", durationOfSpell.ROUND, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 1 ),
     BLESS2("Bless", durationOfSpell.ROUND, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 2 ),
-    BLESS3("Bless", durationOfSpell.ROUND, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 3),
-    FROST_RING("Frost Ring", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 1),
-    FROST_RING2("Frost Ring", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 2),
-    FROST_RING3("Frost Ring", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 3);
+    BLESS3("Bless", durationOfSpell.AREA, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 3),
+    FROST_RING("Frost Ring", durationOfSpell.AREA, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 1),
+    FROST_RING2("Frost Ring", durationOfSpell.AREA, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 2),
+    FROST_RING3("Frost Ring", durationOfSpell.AREA, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 3);
 
     public enum typeOfSpell{
         CANGESTATISTIC, ATTACK;
 
     }
     public enum durationOfSpell{
-        INSTANT, ROUND;
+        INSTANT, ROUND, AREA;
     }
 
     public enum magicTypeOfSpell {

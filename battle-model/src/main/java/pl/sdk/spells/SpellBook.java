@@ -13,8 +13,9 @@ import java.util.Set;
 
 public class SpellBook implements PropertyChangeListener {
     private HashMap<Spell, Integer> spellBook = new HashMap<Spell, Integer>();
-
+    private Spell spellInThisTurn;
     public SpellBook(){
+        this.spellInThisTurn= null;
     }
 
     public Set<Spell> getSpellBook(){
@@ -59,6 +60,7 @@ public class SpellBook implements PropertyChangeListener {
     public int getUsesOfSpell(Spell spell) {
         return this.spellBook.get(getSpellOfName(spell.getName()));
     }
+
     public Creature castSpell(Spell spell, Creature creature, Hero owner){
         perpareToCastSpell(spell, creature);
                 if (spell.getType().equals(SpellEnum.typeOfSpell.ATTACK)) {
@@ -72,8 +74,11 @@ public class SpellBook implements PropertyChangeListener {
             }
 
     public List<Creature> castSpell(Spell spell, List<Creature> creatures, Hero owner){
-        for(Creature creature: creatures){
-            castSpell(spell, creature, owner);
+        if(spell.getDuration().equals(SpellEnum.durationOfSpell.AREA)) {
+            perpareToCastSpell(spell, creatures.get(0));
+            for (Creature creature : creatures) {
+                castSpell(spell, creature, owner);
+            }
         }
         return creatures;
     }
@@ -81,6 +86,7 @@ public class SpellBook implements PropertyChangeListener {
     public void perpareToCastSpell(Spell spell, Creature creature){
         try {
             if(contains(spell) && creature.isCreature()) {
+                spellInThisTurn = spell;
             }
         }catch (Exception ex){
             System.err.println(ex);
@@ -89,6 +95,6 @@ public class SpellBook implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        this.spellInThisTurn=null;
     }
 }

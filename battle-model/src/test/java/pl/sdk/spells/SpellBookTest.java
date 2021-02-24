@@ -87,4 +87,15 @@ public class SpellBookTest {
         assertNotEquals(creature.getAmount(), amout);
     }
 
+    @Test
+    void castSpellToAttackManyTargetsButThisSpellISNotArea(){
+        List<Creature> listOfCreatures = new ArrayList<>();
+        listOfCreatures.add(creature);
+        listOfCreatures.add(copyCreature);
+        Integer amout = creature.getAmount();
+        this.spellBook.castSpell(spellFactory.create(SpellEnum.MAGIC_ARROW_AIR), listOfCreatures, owner);
+        assertEquals(creature.getAmount(), copyCreature.getAmount());
+        assertEquals(creature.getAmount(), amout);
+    }
+
 }
