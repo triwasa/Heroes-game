@@ -19,6 +19,7 @@ public class SpellBookTest {
     private Creature creature;
     private Creature copyCreature;
     private NeutralFactory neutralFactory;
+    private List<Creature> listOfCreatures;
 
     @BeforeEach
     void init(){
@@ -29,6 +30,7 @@ public class SpellBookTest {
         this.spellBook.addSpell(spellFactory.create(SpellEnum.BLESS));
         this.creature = this.neutralFactory.create(false, 1, 20);
         this.copyCreature=this.neutralFactory.create(false, 1, 20);
+        this.listOfCreatures = new ArrayList<Creature>();
     }
 
     @Test
@@ -67,12 +69,16 @@ public class SpellBookTest {
     @Test
     void castSpellToAttackCreature(){
         Integer amount = creature.getAmount();
-        this.spellBook.castSpell(spellFactory.create(SpellEnum.MAGIC_ARROW_AIR), creature, owner);
+        Spell spell = spellFactory.create(SpellEnum.MAGIC_ARROW_AIR);
+        this.spellBook.addSpell(spell);
+        creature = this.spellBook.castSpell(spellFactory.create(SpellEnum.MAGIC_ARROW_AIR), creature, owner);
         assertNotEquals(amount, creature.getAmount());
     }
     @Test
     void castSpellToChangeStatisticOfCreature(){
         Integer attack = creature.getAttack();
+        Spell spell = spellFactory.create(SpellEnum.BLESS);
+        this.spellBook.addSpell(spell);
         Creature creature1 = this.spellBook.castSpell(spellFactory.create(SpellEnum.BLESS), creature, owner);
         assertNotEquals(attack, creature1.getAttack());
     }
@@ -82,14 +88,15 @@ public class SpellBookTest {
         listOfCreatures.add(creature);
         listOfCreatures.add(copyCreature);
         Integer amout = creature.getAmount();
+        Spell spell = spellFactory.create(SpellEnum.FROST_RING2);
+        this.spellBook.addSpell(spell);
         this.spellBook.castSpell(spellFactory.create(SpellEnum.FROST_RING2), listOfCreatures, owner);
         assertEquals(creature.getAmount(), copyCreature.getAmount());
         assertNotEquals(creature.getAmount(), amout);
     }
 
     @Test
-    void castSpellToAttackManyTargetsButThisSpellISNotArea(){
-        List<Creature> listOfCreatures = new ArrayList<>();
+    void cannotSpellToAttackManyTargetsIfItNotIsAreaTypeSpell(){
         listOfCreatures.add(creature);
         listOfCreatures.add(copyCreature);
         Integer amout = creature.getAmount();
@@ -98,4 +105,16 @@ public class SpellBookTest {
         assertEquals(creature.getAmount(), amout);
     }
 
+    @Test
+    void youCanCastOnlyOneSpellInTurn(){
+        Spell spell = spellFactory.create(SpellEnum.MAGIC_ARROW_AIR);
+        this.spellBook.addSpell(spell);
+        this.spellBook.addSpell(spell);
+        Integer amount = creature.getAmount();
+        creature = this.spellBook.castSpell(spellFactory.create(SpellEnum.MAGIC_ARROW_AIR), creature, owner);
+        assertNotEquals(amount, creature.getAmount());
+        Integer amountAfterOneSpell = creature.getAmount();
+        creature = this.spellBook.castSpell(spellFactory.create(SpellEnum.MAGIC_ARROW_AIR), creature, owner);
+        assertEquals(amountAfterOneSpell, creature.getAmount());
+    }
 }
