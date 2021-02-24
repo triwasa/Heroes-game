@@ -2,6 +2,7 @@ package pl.sdk;
 
 import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
+import pl.sdk.creatures.FirstAidTent;
 import pl.sdk.creatures.GuiBattleObject;
 import pl.sdk.hero.Hero;
 import pl.sdk.special_fields.Field;
@@ -35,6 +36,9 @@ public class GameEngine {
     private List<BattleObject> machines1;
     private List<BattleObject> machines2;
     private final AttackEngine attackEngine;
+    private List<BattleObject> sideOneUnits;
+    private List<BattleObject> sideTwoUnits;
+
 
 //    public GameEngine(List<Creature> aCreatures1, List<Creature> aCreatures2) {
 //        this(aCreatures1, aCreatures2, new Board());
@@ -54,6 +58,14 @@ public class GameEngine {
         List<BattleObject> twoSidesCreatures = new ArrayList<>();
         twoSidesCreatures.addAll(creatures1);
         twoSidesCreatures.addAll(creatures2);
+        twoSidesCreatures.addAll(machines1);
+        twoSidesCreatures.addAll(machines2);
+        sideOneUnits = new ArrayList<>();
+        sideTwoUnits = new ArrayList<>();
+        sideOneUnits.addAll(creatures1);
+        sideOneUnits.addAll(machines1);
+        sideTwoUnits.addAll(creatures2);
+        sideTwoUnits.addAll(machines2);
         twoSidesCreatures.sort((c1, c2) -> c2.getMoveRange() - c1.getMoveRange());
         queue = new CreatureTurnQueue(twoSidesCreatures);
         twoSidesCreatures.forEach(queue::addObserver);
@@ -128,7 +140,7 @@ public class GameEngine {
 
     private void putMachinesFromOneSideToBoard(List<BattleObject> aMachines, int aX) {
         for (int i = 0; i < aMachines.size(); i++) {
-            board.add(new Point(aX, 13-i*2), aMachines.get(i));
+            board.add(new Point(aX, 14-2*i), aMachines.get(i));
         }
     }
 
@@ -147,7 +159,7 @@ public class GameEngine {
     }
 
     public boolean canMove(int aX, int aY) {
-        return board.canMove(getActiveCreature(), aX, aY);
+        return board.canMove(getActiveCreature(), aX, aY) && getActiveCreature().isAlive();
     }
 
     protected void unlockMoving() {
@@ -155,21 +167,33 @@ public class GameEngine {
     }
 
     public boolean canAttack(int aX, int aY) {
-        boolean isP1Creature = creatures1.contains(getActiveCreature());
+        boolean isP1Unit = sideOneUnits.contains(getActiveCreature());
         boolean theSamePlayerUnit;
-        if (isP1Creature) {
+
+
+
+
+        if (isP1Unit) {
             theSamePlayerUnit = isPlayerOneUnit(aX, aY);
         } else {
             theSamePlayerUnit = isPlayerTwoUnit(aX, aY);
         }
 
+        if(getActiveCreature() instanceof FirstAidTent){  //wiem że to giga niefajne ale chciałem żeby działało :( po prezentacji zmienie
+            theSamePlayerUnit = !theSamePlayerUnit;
+        }
+
+
         return !theSamePlayerUnit && board.get(getActiveCreature()).distance(new Point(aX, aY)) <= getActiveCreature().getAttackRange()
                 && attackEngine.canAttack(getActiveCreature(), get(aX, aY));
     }
+
+
+
     public boolean isPlayerOneUnit(int aX,int aY) {
-        return creatures1.contains(board.get(aX, aY));
+        return sideOneUnits.contains(board.get(aX, aY));
     }
     public boolean isPlayerTwoUnit(int aX,int aY){
-        return creatures2.contains(board.get(aX, aY));
+        return sideTwoUnits.contains(board.get(aX, aY));
     }
 }

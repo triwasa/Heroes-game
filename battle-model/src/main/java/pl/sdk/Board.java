@@ -2,8 +2,6 @@ package pl.sdk;
 
 
 import pl.sdk.creatures.BattleObject;
-import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.GuiBattleObject;
 import pl.sdk.special_fields.Field;
 import pl.sdk.special_fields.FieldsFactory;
 
@@ -88,7 +86,7 @@ public class Board {
 
     // added for special fields
     boolean canStand(Point aPoint) {
-        return getField(aPoint.getX(), aPoint.getY()).getCanStand();
+        return getField(aPoint.getX(), aPoint.getY()).canStand();
     }
     // added for special fields
     private void throwExceptionIfCanNotStand(Point aPoint) {
@@ -114,15 +112,8 @@ public class Board {
 
 
     void move(BattleObject aCreature, Point aTargetPoint1){
-        /*MovementStrategy movementStrategy = getMovementStrategy(aCreature);
-        Field field;
-        LinkedList<Point> pathToGo = movementStrategy.getPath(this, get(aCreature), aTargetPoint1);
-        for(Point point : pathToGo) {
-        aTargetPoint1 = point;
-
-            field = getField(point.getX(), point.getY());
-
-        }*/
+        MovementStrategy movementStrategy = getMovementStrategy(aCreature);
+        movementStrategy.move(aCreature, aTargetPoint1,  this);
         move(get(aCreature), aTargetPoint1);
     }
 
@@ -149,6 +140,18 @@ public class Board {
         }*/
        MovementStrategy movementStrategy = getMovementStrategy(aCreature);
        return movementStrategy.canMove(this,aCreature, new Point(aX, aY));
+    }
+     double distance(LinkedList<Point> path) {
+        if(path.size() == 0 ){
+            return Integer.MAX_VALUE;
+        }
+        double distance = 0;
+        Point aPoint = path.get(0);
+        for(Point aPoint1 : path) {
+            distance = distance + aPoint.distance(aPoint1);
+            aPoint = aPoint1;
+        }
+        return distance;
     }
 
     MovementStrategy getMovementStrategy(BattleObject aCreature) {

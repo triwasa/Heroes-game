@@ -21,7 +21,7 @@ class KeepTest {
     }
 
     @Test
-    void shouldShot() {
+    void shouldShoot() {
         Keep keep = new Keep(FortificationStatistic.KEEP);
         Creature defender1 = new Creature.BuilderForTesting()
                 .name("defender1")

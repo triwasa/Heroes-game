@@ -9,5 +9,5 @@ public interface MovementStrategy {
 
     boolean canMove(Board board, BattleObject aCreature, Point targetPoint);
     LinkedList<Point> getPath(Board board,Point aSourcePoint, Point aTargetPoint);
-
+    void move(BattleObject aCreature, Point aTargetPoint, Board board);
 }
