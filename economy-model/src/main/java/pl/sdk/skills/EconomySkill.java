@@ -24,7 +24,7 @@ public class EconomySkill {
         return this.cost;
     }
 
-    public Integer getLevel() {
+    public Integer getTier() {
         return skill.getTier();
     }
 }

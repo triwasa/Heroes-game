@@ -2,7 +2,6 @@ package pl.sdk.converter;
 
 import pl.sdk.hero.EconomyHero;
 import pl.sdk.skills.EconomySkill;
-import pl.sdk.skills.Skill;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,16 +17,16 @@ public class HeroSpellMastery {
         for (EconomySkill skill : skills) {
             switch (skill.getName()) {
                 case "Air Magic":
-                    heroSpellMastery.put("Air Magic", skill.getLevel());
+                    heroSpellMastery.put("Air Magic", skill.getTier());
                     break;
                 case "Water Magic":
-                    heroSpellMastery.put("Water Magic", skill.getLevel());
+                    heroSpellMastery.put("Water Magic", skill.getTier());
                     break;
                 case "Fire Magic":
-                    heroSpellMastery.put("Fire Magic", skill.getLevel());
+                    heroSpellMastery.put("Fire Magic", skill.getTier());
                     break;
                 case "Earth Magic":
-                    heroSpellMastery.put("Earth Magic", skill.getLevel());
+                    heroSpellMastery.put("Earth Magic", skill.getTier());
                     break;
             }
         }

@@ -9,7 +9,6 @@ public class WarMachineFactory{
 
 
     public BattleObject create(int aTier, Hero hero) {
-
         switch (aTier) {
             case 1:
                 return new Catapult(CATAPULT);
@@ -22,4 +21,3 @@ public class WarMachineFactory{
         }
     }
 }
-
