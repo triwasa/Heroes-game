@@ -24,7 +24,7 @@ public class Creature implements PropertyChangeListener, BattleObject{
     private Immunity immunity;
 
     // Constructor for mockito. Don't use it! You have builder here.
-    Creature(){
+    protected Creature(){
         stats = CreatureStatistic.TEST;
         calculateDamageStrategy = new DefaultCalculateStrategy();
         damageApplier = new DefaultDamageApplier();
