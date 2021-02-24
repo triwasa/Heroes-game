@@ -46,10 +46,6 @@ public class MapEditorController implements PropertyChangeListener {
         this.board= board;
         mapEditorEngine = new MapEditorEngine(board);
         this.sideMap = new GridPane();
-        //TODO
-        // deserializacja
-        // # poprawki w EcoBattleConverter
-        // polaczenie wszystkiego w BattleControllerze
     }
 
 
