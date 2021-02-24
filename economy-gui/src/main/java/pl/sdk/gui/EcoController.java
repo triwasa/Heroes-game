@@ -12,13 +12,18 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.checkerframework.checker.units.qual.C;
 import pl.sdk.EconomyEngine;
 import pl.sdk.artifacts.EconomyArtifact;
+import pl.sdk.artifacts.EconomyArtifactPrimaryFactory;
 import pl.sdk.converter.EcoBattleConverter;
 import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.creatures.EconomyNecropolisFactory;
+import pl.sdk.creatures.EconomyTowerFactory;
+import pl.sdk.creatures.EconomyWarmachineFactory;
 import pl.sdk.hero.EconomyHero;
 import pl.sdk.skills.EconomySkill;
+import pl.sdk.skills.EconomySkillFactory;
 import pl.sdk.spell.EconomySpell;
 
 import java.beans.PropertyChangeEvent;
@@ -45,10 +50,11 @@ public class EcoController implements PropertyChangeListener {
     @FXML
     Button artifactShop;
     @FXML
-    Button spellShop;
-    @FXML
     Button skillShop;
+    @FXML
+    Button warmachineShop;
     private final EconomyEngine economyEngine;
+    VBox shop;
 
     public EcoController(EconomyHero aHero1, EconomyHero aHero2) {
         economyEngine = new EconomyEngine(aHero1, aHero2);
@@ -80,18 +86,36 @@ public class EcoController implements PropertyChangeListener {
 
         artifactShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Demo.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setTitle("ABC");
-                stage.setScene(new Scene(root1));
-                stage.show();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            EconomyArtifactPrimaryFactory factory = new EconomyArtifactPrimaryFactory();
+            shop = new VBox();
+
+            createShopButtons(shop);
+        });
+        warmachineShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
+        {
+            EconomyWarmachineFactory factory = new EconomyWarmachineFactory();
+            shop = new VBox();
+            for (int i = 1; i < 4; i++) {
+                shop.getChildren().add(new CreatureButton(this, factory, false, i));
             }
+            createShopButtons(shop);
+        });
+        skillShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
+        {
+            EconomySkillFactory factory = new EconomySkillFactory();
+            shop = new VBox();
+
+            createShopButtons(shop);
+        });
+        creatureShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
+        {
+            EconomyTowerFactory factory = new EconomyTowerFactory();
+            shop = new VBox();
+            for (int i = 1; i < 8; i++) {
+                shop.getChildren().add(new CreatureButton(this, factory, false, i));
+                shop.getChildren().add(new CreatureButton(this, factory, true,i));
+            }
+            createShopButtons(shop);
         });
     }
 
@@ -102,21 +126,18 @@ public class EcoController implements PropertyChangeListener {
     private void goToEditor() {
         EcoBattleConverter.startEditing();
     }
+    void createShopButtons(VBox box) {
+        shopsBox.getChildren().clear();
+        shopsBox.getChildren().add(box);
+        refreshGui();
+    }
 
     void refreshGui() {
         playerLabel.setText(economyEngine.getActiveHero().toString());
         currentGoldLabel.setText(String.valueOf(economyEngine.getActiveHero().getGold()));
         roundNumberLabel.setText(String.valueOf(economyEngine.getRoundNumber()));
-        shopsBox.getChildren().clear();
         heroStateHBox.getChildren().clear();
 
-        EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
-        VBox creatureShop = new VBox();
-        for (int i = 1; i < 8; i++) {
-            creatureShop.getChildren().add(new CreatureButton(this, factory, false, i));
-            creatureShop.getChildren().add(new CreatureButton(this, factory, true, i));
-        }
-        shopsBox.getChildren().add(creatureShop);
 
         VBox creaturesBox = new VBox();
         economyEngine.getActiveHero().getCreatures().forEach(c ->

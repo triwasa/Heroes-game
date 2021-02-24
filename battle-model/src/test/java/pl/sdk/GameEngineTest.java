@@ -31,16 +31,18 @@ class GameEngineTest {
     void canAttackTestForSpecifiedBattleObjects() {
         AttackEngine attackEngine = new AttackEngine(new Board());
         Creature creature = AbstractFactory.getFraction(AbstractFactory.NECROPOLIS).create(true,1,1);
+
         BattleObject balista = new WarMachineFactory().create(3, new Hero());
         BattleObject catapult = new WarMachineFactory().create(1, new Hero());
+
         BattleObject wall = new Wall();
 
-       assertTrue(attackEngine.canAttack(balista,creature));
-       assertTrue(attackEngine.canAttack(creature,balista));
-       assertFalse(attackEngine.canAttack(catapult,creature));
-       assertFalse(attackEngine.canAttack(catapult,catapult));
-       assertTrue(attackEngine.canAttack(balista,balista));
-       assertTrue(attackEngine.canAttack(catapult,wall));
+        assertTrue(attackEngine.canAttack(balista,creature));
+        assertTrue(attackEngine.canAttack(creature,balista));
+        assertFalse(attackEngine.canAttack(catapult,creature));
+        assertFalse(attackEngine.canAttack(catapult,catapult));
+        assertTrue(attackEngine.canAttack(balista,balista));
+        assertTrue(attackEngine.canAttack(catapult,wall));
 
    }
    @Test

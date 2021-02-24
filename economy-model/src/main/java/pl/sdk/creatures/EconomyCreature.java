@@ -35,4 +35,6 @@ public class EconomyCreature {
     public String getFraction() {
         return stats.getFraction();
     }
+
+    public String getDescription() {return stats.getDescription();}
 }
