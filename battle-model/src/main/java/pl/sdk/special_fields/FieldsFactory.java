@@ -19,9 +19,9 @@ public class FieldsFactory {
             case "Mountain":
                 return new Field(name, false, true, true, 0, new FieldsApplyNothingStrategy());
             case "ThunderStorm":
-                return new Field(name, true, false, true, 0, new FieldsApplyDamageStrategy(5));
+                return new Field(name, true, false, true, 1, new FieldsApplyDamageStrategy(5));
             case "Charm":
-                return new Field(name, true, true, true, 0, new FieldsApplyModifyStatisticStrategy());
+                return new Field(name, true, true, true, 1, new FieldsApplyModifyStatisticStrategy());
             case "Wall":
                 return new Field(name, false, true, false, 1, new FieldsApplyNothingStrategy());
             default:

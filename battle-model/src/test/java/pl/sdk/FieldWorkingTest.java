@@ -1,9 +1,7 @@
 package pl.sdk;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import pl.sdk.Board;
-import pl.sdk.Point;
-import pl.sdk.creatures.BattleObject;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.InfernoFactory;
 import pl.sdk.creatures.NecropolisFactory;
@@ -107,5 +105,18 @@ public class FieldWorkingTest {
         board.add(new Point(4,2), movingCreature);
         board.move( movingCreature, new Point(4, 5));
         assertEquals(160, movingCreature.getCurrentHp(), "ThunderStorm is giving damage!");
+    }
+
+    @RepeatedTest(10)
+    void applyRandomStatisticStrategy() {
+        board.add(new Point(6, 6), FieldsFactory.create("Charm"));
+        NecropolisFactory factory = new NecropolisFactory();
+        Creature movingCreature = factory.create(false, 1, 1);
+        board.add(new Point(6,5), movingCreature);
+        board.move( movingCreature, new Point(6, 6));
+        assertTrue(movingCreature.getCurrentHp() == 11 ||
+                movingCreature.getCurrentHp() == 4 ||
+                movingCreature.getMoveRange() == 5 ||
+                movingCreature.getMoveRange() == 3, "Does not work!");
     }
 }
