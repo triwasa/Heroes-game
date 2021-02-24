@@ -1,14 +1,15 @@
 package pl.sdk.hero;
+import java.lang.Math;
 
 public class HeroMana {
     private double mana;
     
     public HeroMana(int heroKnowledge) {
-        mana = heroKnowledge * 10;
+        mana = (double) heroKnowledge * 10.0;
     }
 
     public void increaseMana(int value) {
-        mana += value * 10;
+        mana += (double) value * 10.0;
     }
 
     public void increaseManaPercent(double percent) {

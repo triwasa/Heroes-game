@@ -21,7 +21,7 @@ class CalculateDamageBallistaStrategyTest {
 
 
     @Test
-    void shouldShoot() {
+    void shouldCalculateDamageBasedOnHeroAttack() {
 
         Hero hero = new Hero.BuilderForTesting()
                 .attack(3)

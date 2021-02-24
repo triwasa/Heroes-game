@@ -16,7 +16,7 @@ public abstract class AbstractFactory {
     private static final String EXCEPTION = "Fraction does not exist";
 
     public static AbstractFactory getFraction(String fraction) {
-        switch (fraction) {
+        switch (fraction.toUpperCase()) {
             case CASTLE:
                 return new CastleFactory();
             case TOWER:

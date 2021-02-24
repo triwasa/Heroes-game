@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import pl.sdk.Board;
 import pl.sdk.FieldsHolder;
 import pl.sdk.PointHolder;
+import pl.sdk.special_fields.FieldsFactory;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -137,7 +138,7 @@ public class TemplateButton extends Button {
             PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal( new File(ImageTile.class.getClassLoader().getResource("graphics/maps/"+ name + "Points.xml").getFile()));
 
             for (int i = 0; i < holder1.getThings().size(); i++) {
-                board.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
+                board.add(pointHolder1.getThings().get(i), FieldsFactory.create(holder1.getThings().get(i)));
             }
         }
         return board;

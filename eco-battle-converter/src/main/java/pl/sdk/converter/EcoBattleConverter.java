@@ -8,13 +8,13 @@ import javafx.stage.WindowEvent;
 import pl.sdk.Board;
 import pl.sdk.FieldsHolder;
 import pl.sdk.PointHolder;
-import pl.sdk.creatures.Creature;
-import pl.sdk.creatures.NecropolisFactory;
 import pl.sdk.creatures.Wall;
 import pl.sdk.gui.BattleMapController;
 import pl.sdk.gui.MapEditorController;
 import pl.sdk.hero.EconomyHero;
 import pl.sdk.hero.Hero;
+import pl.sdk.special_fields.FieldsFactory;
+
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -23,8 +23,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 import static pl.sdk.converter.Converter.convert;
 
@@ -64,16 +62,6 @@ public class EcoBattleConverter {
             aE.printStackTrace();
         }
     }
-
-//    public static Hero convert(EconomyHero aPlayer1) {
-//        List<Creature>ret = new ArrayList<>();
-//        NecropolisFactory factory = new NecropolisFactory();
-//        aPlayer1.getCreatures().forEach(ecoCreature ->
-//                ret.add(factory.create(ecoCreature.isUpgraded(),ecoCreature.getTier(),ecoCreature.getAmount())));
-//        Hero a = new Hero();
-//        a.addCreatures(ret);
-//        return a;
-//    }
 
     public static void startEditing()
     {
@@ -121,10 +109,10 @@ public class EcoBattleConverter {
             PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal(new FileReader("./point.xml"));
 
             for (int i = 0; i < holder1.getThings().size(); i++) {
-                if(holder1.getThings().get(i).getName().equals("Wall"))
+                if(holder1.getThings().get(i).equals("Wall"))
                 {
                     board.add(pointHolder1.getThings().get(i),new Wall());
-                }else board.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
+                }else board.add(pointHolder1.getThings().get(i), FieldsFactory.create(holder1.getThings().get(i)));
             }
         }
         return board;
