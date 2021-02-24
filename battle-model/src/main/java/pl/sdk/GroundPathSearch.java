@@ -31,7 +31,7 @@ public class GroundPathSearch extends PathSearch {
                 if(tmp != null) {
                     continue;
                 }
-                else if(field.getCanStand()) {
+                else if(field.canStand()) {
                     neighborsList.add(neighbor);
                 }
             }
