@@ -53,7 +53,6 @@ public enum ArtifactStatistic implements ArtifactStatisticIf {
     PENDANT_OF_COURAGE(ArtifactName.PENDANT_OF_COURAGE, "neck", "major", "+3 luck and morale"),
 
     // COMBAT
-    GOLDEN_BOW(ArtifactName.GOLDEN_BOW, "misc", "major", "Your troops can shoot at any distance, through any obstacle without penalty"),
     RING_OF_VITALITY(ArtifactName.RING_OF_VITALITY, "finger", "treasure", "Increases health of all your units by 1"),
     RING_OF_LIFE(ArtifactName.RING_OF_LIFE, "finger", "minor", "Increases health of all your units by 1"),
     VIAL_OF_LIFEBLOOD(ArtifactName.VIAL_OF_LIFEBLOOD, "misc", "major", "Increases health of all your units by 2"),
