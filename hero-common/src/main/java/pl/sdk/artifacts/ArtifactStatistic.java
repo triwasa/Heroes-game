@@ -1,6 +1,6 @@
 package pl.sdk.artifacts;
 
-enum ArtifactStatistic implements ArtifactStatisticIf {
+public enum ArtifactStatistic implements ArtifactStatisticIf {
 
     // PRIMARY 1
     CENTAURS_AX(ArtifactName.CENTAURS_AX, "right hand", "treasure", "+2 attack skill"),
