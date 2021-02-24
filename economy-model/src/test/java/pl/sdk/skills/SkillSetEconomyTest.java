@@ -16,6 +16,7 @@ public class SkillSetEconomyTest {
         EconomySkill offence = skillFactory.create("offence",1);
         aSkillSet.addSkill(offence);
         assertEquals(true, aSkillSet.contains(offence));
+        assertEquals(1, aSkillSet.getSize());
     }
 
     @Test
@@ -28,6 +29,20 @@ public class SkillSetEconomyTest {
         aSkillSet.addSkill(offence2);
         assertEquals(false, aSkillSet.contains(offence1));
         assertEquals(true, aSkillSet.contains(offence2));
+        assertEquals(1, aSkillSet.getSize());
+    }
+
+    @Test
+    void skillWithLowerTierShouldNotBeAdded(){
+        EconomySkillSet aSkillSet = new EconomySkillSet();
+        EconomySkillFactory skillFactory = new EconomySkillFactory();
+        EconomySkill offence2 = skillFactory.create("offence",2);
+        aSkillSet.addSkill(offence2);
+        EconomySkill offence1 = skillFactory.create("offence",1);
+        aSkillSet.addSkill(offence1);
+        assertEquals(false, aSkillSet.contains(offence1));
+        assertEquals(true, aSkillSet.contains(offence2));
+        assertEquals(1, aSkillSet.getSize());
     }
 }
 

@@ -3,14 +3,27 @@ package pl.sdk.spells;
 public enum SpellEnum {
 
     MAGIC_ARROW_AIR("Magic Arrow", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.AIR, 1),
-    BLESS("Bless", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 1 );
+    MAGIC_ARROW_AIR2("Magic Arrow", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.AIR, 2),
+    MAGIC_ARROW_AIR3("Magic Arrow", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.AIR, 3),
+    ICE_BOLD("Ice Bold", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 1),
+    ICE_BOLD2("Ice Bold", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 1),
+    ICE_BOLD3("Ice Bold", durationOfSpell.INSTANT, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 1),
+    BLESS("Bless", durationOfSpell.ROUND, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 1 ),
+    BLESS2("Bless", durationOfSpell.ROUND, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 2 ),
+    BLESS3("Bless", durationOfSpell.AREA, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 3),
+    FROST_RING("Frost Ring", durationOfSpell.AREA, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 1),
+    FROST_RING2("Frost Ring", durationOfSpell.AREA, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 2),
+    FROST_RING3("Frost Ring", durationOfSpell.AREA, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 3),
+    WEAKNESS("Weakness", durationOfSpell.INSTANT, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 1),
+    WEAKNESS2("Weakness", durationOfSpell.INSTANT, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 2),
+    WEAKNESS3("Weakness", durationOfSpell.AREA, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 3);
 
     public enum typeOfSpell{
-        CURE, ATTACK, OTHER;
+        CANGESTATISTIC, ATTACK;
 
     }
     public enum durationOfSpell{
-        INSTANT, ROUND, DAY;
+        INSTANT, ROUND, AREA;
     }
 
     public enum magicTypeOfSpell {

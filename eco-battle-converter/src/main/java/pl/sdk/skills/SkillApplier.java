@@ -96,31 +96,9 @@ public class SkillApplier {
                     buffBallista(hero,100);
                     break;
             }
-        } else if (aName == SkillStatistic.BALLISTICS1.getCoreName()) {
-            switch (aTier) {
-                case 1:
-                    buffCatapult(hero,1);
-                    break;
-                case 2:
-                    buffCatapult(hero,2);
-                    break;
-                case 3:
-                    buffCatapult(hero,3);
-                    break;
-            }
-        } else if (aName == SkillStatistic.FIRSTAID1.getCoreName()) {
-            switch (aTier) {
-                case 1:
-                    buffFirstAidTent(hero,1);
-                    break;
-                case 2:
-                    buffFirstAidTent(hero,2);
-                    break;
-                case 3:
-                    buffFirstAidTent(hero,3);
-                    break;
-            }
-        }else if (aName == SkillStatistic.INTELLIGENCE1.getCoreName()) {
+        } else if (aName == SkillStatistic.BALLISTICS1.getCoreName()) { buffCatapult(hero,aTier);
+        } else if (aName == SkillStatistic.FIRSTAID1.getCoreName()) { buffFirstAidTent(hero,aTier);
+        } else if (aName == SkillStatistic.INTELLIGENCE1.getCoreName()) {
             switch (aTier) {
                 case 1:
                     hero.increaseManaPercent(0.25);
@@ -187,41 +165,28 @@ public class SkillApplier {
         }
     }
 
-    private void buffBallista(Hero hero,int skillTier){
-        List<Creature> creatures = hero.getCreatures();
-        ListIterator<Creature> listIter = creatures.listIterator();
+    private void buffBallista(Hero hero,int percentToDealDoubleDamage){
+        List<BattleObject> machines = hero.getMachines();
+        ListIterator<BattleObject> listIter = machines.listIterator();
         while (listIter.hasNext()) {
-            Creature buffedCreature = listIter.next();
-            if (buffedCreature.getName() == "Ballista"){
-                //metoda buffowania do ustalenia
+            BattleObject buffedMachine = listIter.next();
+            if (buffedMachine.getName() == "Ballista"){
+                buffedMachine = new ArtilleryDecorator(buffedMachine, percentToDealDoubleDamage);
             }
-            listIter.set(buffedCreature);
+            listIter.set(buffedMachine);
         }
     }
 
-    private void buffCatapult(Hero hero, int skillTier){
-        List<Creature> creatures = hero.getCreatures();
-        ListIterator<Creature> listIter = creatures.listIterator();
+    //TODO Create decorator for catapult
+    private void buffCatapult(Hero hero, int tier){
+        List<BattleObject> machines = hero.getMachines();
+        ListIterator<BattleObject> listIter = machines.listIterator();
         while (listIter.hasNext()) {
-            Creature buffedCreature = listIter.next();
-            if (buffedCreature.getName() == "Catapult"){
-                switch (skillTier){
-                    case 1:{
-                        //buffedMachine.increaseDamage(0,25);
-                        break;
-                    }
-                    case 2:{
-                        //buffedMachine.increaseDamage(0, 50);
-                        break;
-                    }
-                    case 3:{
-                        //buffedMachine.increaseDamage(0,75);
-                        break;
-                    }
-
-                }
+            BattleObject buffedMachine = listIter.next();
+            if (buffedMachine.getName() == "Catapult"){
+                buffedMachine = new BallistickDecorator(buffedMachine, tier);
             }
-            listIter.set(buffedCreature);
+            listIter.set(buffedMachine);
         }
     }
 
@@ -231,17 +196,21 @@ public class SkillApplier {
         while (listIter.hasNext()) {
             BattleObject buffedMachine = listIter.next();
             if (buffedMachine.getName() == "First Aid Tent"){
+                FirstAidTent buffedTent = (FirstAidTent) buffedMachine;
                 switch (skillTier){
                     case 1:{
-                        //buffedMachine.increaseDamage(0,25);
+                        buffedTent.increaseDamage(0,25);
+                        buffedMachine = buffedTent;
                         break;
                     }
                     case 2:{
-                        //buffedMachine.increaseDamage(0, 50);
+                        buffedTent.increaseDamage(0, 50);
+                        buffedMachine = buffedTent;
                         break;
                     }
                     case 3:{
-                        //buffedMachine.increaseDamage(0,75);
+                        buffedTent.increaseDamage(0,75);
+                        buffedMachine = buffedTent;
                         break;
                     }
 
@@ -251,6 +220,7 @@ public class SkillApplier {
             listIter.set(buffedMachine);
         }
     }
+
 
     private void increaseResistance(Hero hero, int additionalResistance){
         List<Creature> creatures = hero.getCreatures();

@@ -81,7 +81,7 @@ public class MapEditorEngine {
 
     public void addFieldBySingleClick(int aX,int aY)
     {
-        if(activePointList != null && getChosenGuiTile() != null) {
+        if(activePointList != null && getChosenGuiTile() != null && !board.isTileTakenByField(new Point(aX,aY))) {
             board.add(new Point(aX,aY), getChosenGuiTile());
             notifyObservers(new PropertyChangeEvent(this,ADDING_OBSTACLES_BUTTON,null, false));
         }
