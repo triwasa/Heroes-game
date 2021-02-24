@@ -12,7 +12,9 @@
 //    public static final String STRONGHOLD = "STRONGHOLD";
 //    public static final String NECROPOLIS = "NECROPOLIS";
 //    public static final String NEUTRAL = "NEUTRAL";
+
 //    public static final String WARMACHINE = "WARMACHINES";
+
 //    private static final String EXCEPTION = "Fraction does not exist";
 //
 //    public static AbstractFactory getFraction(String fraction) {

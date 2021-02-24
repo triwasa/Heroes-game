@@ -9,6 +9,7 @@ import java.util.List;
 public class TeleportMovementStrategy implements MovementStrategy {
 
     public static final String TELEPORT = "TELEPORT";
+
     @Override
     public boolean canMove(Board board, BattleObject aCreature, Point targetPoint) {
         Point currentPoint = board.get(aCreature);
@@ -25,14 +26,14 @@ public class TeleportMovementStrategy implements MovementStrategy {
         Point aSourcePoint = board.get(aCreature);
         List<Point> pathToGo = getPath(board, aSourcePoint, aTargetPoint);
         pathToGo.remove(0);
-        for(Point point : pathToGo) {
-//            if(board.getField(point.getX(),point.getY()).isGroundField()) {
-//                Field field = board.getField(point.getX(), point.getY());
-//                field.apply(aCreature);
-//
+        for (Point point : pathToGo) {
+            if (board.getField(point.getX(), point.getY()).isGroundField()) {
+                Field field = board.getField(point.getX(), point.getY());
+                field.apply(aCreature);
+
+            }
         }
+
+
     }
-
-
-
 }

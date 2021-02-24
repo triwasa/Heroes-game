@@ -1,0 +1,67 @@
+package pl.sdk.artifacts;
+
+public enum ArtifactDescription {
+    // DESCRIPTION FOR TEST
+    TEST("artifact for tests"),
+
+    // PRIMARY ARTIFACTS
+    CENTAURS_AX("+2 attack skill"),
+    BLACKSHARD_OF_THE_DEAD_KNIGHT("+3 attack skill"),
+    GREATER_GNOLLS_FLAIL("+4 attack skill"),
+    OGRES_CLUB_OF_HOVOC("+5 attack skill"),
+    SWORD_OF_HELLFIRE("+6 attack skill"),
+    TITANS_GLADIUS("+12 attack skill, -3 defence skill"),
+    SHIELD_OF_THE_DWARVEN_LORDS("+2 defence skill"),
+    SHIELD_OF_THE_YAWNING_DEAD("+3 defence skill"),
+    BUCKLER_OF_THE_GNOLL_KING("+4 defence skill"),
+    TARG_OF_THE_RAMPAGING_OGRE("+5 defence skill"),
+    SHIELD_OF_THE_DAMNED("+6 defence skill"),
+    SENTINELS_SHIELD("+12 defence skill, -3 attack skill"),
+    BREASTPLATE_OF_PETRIFIED_WOOD("+1 spell power"),
+    RIB_CAGE("+2 spell power"),
+    SCALES_OF_THE_GREATER_BASILISK("+3 spell power"),
+    TUNIC_OF_THE_CYCLOPS_KING("+4 spell power"),
+    BREASTPLATE_OF_BRIMSTONE("+5 spell power"),
+    TITANS_CUIRAS("+10 spell power, -2 knowledge"),
+    HELM_OF_THE_ALABASTER_UNICORN("+1 knowledge"),
+    SKULL_HELMET("+2 knowledge"),
+    HELM_OF_CHAOS("+3 knowledge"),
+    CROWN_OF_THE_SUPREME_MAGI("+4 knowledge"),
+    HELLSTORM_HELMET("+5 knowledge"),
+    THUNDER_HELMET("+10 knowledge, -2 spell power"),
+    QUIET_EYE_OF_THE_DRAGON("+1 to attack and defence skills"),
+    RED_DRAGON_FLAME_TONGUE("+2 to attack and defence skills"),
+    DRAGON_SCALE_SHIELD("+3 to attack and defence skills"),
+    DRAGON_SCALE_ARMOR("+4 to attack and defence skills"),
+    DRAGONBONE_GREAVES("+1 to spell power and knowledge skills"),
+    DRAGON_WING_TABARD("+2 to spell power and knowledge skills"),
+    NECKLACE_OF_DRAGONTEETH("+3 to spell power and knowledge skills"),
+    CROWN_OF_DRAGONTOOTH("+4 to spell power and knowledge skills"),
+    ARMOR_OF_WONDER("+1 to all 4 primary skills"),
+    SANDALS_OF_THE_SAINT("+2 to all 4 primary skills"),
+    CELESTIAL_NECKLACE_OF_BLISS("+3 to all 4 primary skills"),
+    LIONS_SHIELD_OF_COURAGE("+4 to all 4 primary skills"),
+    SWORD_OF_JUJEMENT("+5 to all 4 primary skills"),
+    HELM_OF_HEAVENLY_ENLIGHTENMENT("+6 to all 4 primary skills"),
+    BADGE_OF_COURAGE("+1 morale"),
+    CREST_OF_VALOR("+1 morale"),
+    GLYPH_OF_GALLANTRY("+1 morale "),
+    CLOVER_OF_FORTUNE("+1 luck"),
+    CARDS_OF_PROPHECY("+1 luck"),
+    LADYBIRD_OF_LUCK("+1 luck"),
+    STILL_EYE_OF_THE_DRAGON("+1 luck and morale"),
+    PENDANT_OF_COURAGE("+3 luck and morale"),
+
+    // CREATURE BUFF ARTIFACTS
+    RING_OF_VITALITY("Increases health of all your units by 1"),
+    RING_OF_LIFE("Increases health of all your units by 1"),
+    VIAL_OF_LIFEBLOOD("Increases health of all your units by 2"),
+    GARNITURE_OF_INTERFERENCE("+5% to magic resistance"),
+    SURCOAT_OF_COUNTERPOISE("+10 to magic resistance"),
+    BOOTS_OF_POLARITY("+15% to magic resistance"),
+    NECKLACE_OF_SWIFTNESS("Increases the combat speed of all your units by 1"),
+    RING_OF_THE_WAYFARER("Increases the combat speed of all your units by 1"),
+    CAPE_OF_VELOCITY("Increases the combat speed of all your units by 2");
+
+    ArtifactDescription(String aName){}
+}

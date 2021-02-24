@@ -1,15 +1,44 @@
 package pl.sdk.artifacts;
 
-import pl.sdk.spells.SpellEnum;
-
 import static pl.sdk.artifacts.ArtifactName.*;
 
 public class ArtifactFactory {
     private static final String EXCEPTION_MESSAGE = "There is no artifact with that name";
 
+    public AbstractArtifact createArtifactForTests(String aName){
+        switch (aName) {
+            case TEST_INCREASE_HEALTH_1:
+                return new ArtifactHealth(ArtifactStatistic.TEST_INCREASE_HEALTH_1, 1);
+            case TEST_INCREASE_HEALTH_2:
+                return new ArtifactHealth(ArtifactStatistic.TEST_INCREASE_HEALTH_2, 2);
+            case TEST_INCREASE_MOVERANGE_1:
+                return new ArtifactSpeed(ArtifactStatistic.TEST_INCREASE_MOVERANGE_1, 1);
+            case TEST_INCREASE_MOVERANGE_2:
+                return new ArtifactSpeed(ArtifactStatistic.TEST_INCREASE_MOVERANGE_2, 2);
+            case TEST_INCREASE_RESISTANCE_5:
+                return new ArtifactResistance(ArtifactStatistic.TEST_INCREASE_RESISTANCE_5, 5);
+            case TEST_INCREASE_RESISTANCE_10:
+                return new ArtifactResistance(ArtifactStatistic.TEST_INCREASE_RESISTANCE_10, 10);
+            case TEST_KNOWLEDGE_SPELLPOWER:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_KNOWLEDGE_SPELLPOWER, ArtifactPrimaryStatistic.TEST_KNOWLEDGE_SPELLPOWER);
+            case TEST_ATTACK:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_ATTACK, ArtifactPrimaryStatistic.TEST_ATTACK);
+            case TEST_DEFENCE:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_DEFENCE, ArtifactPrimaryStatistic.TEST_DEFENCE);
+            case TEST_LUCK:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_LUCK, ArtifactPrimaryStatistic.TEST_LUCK);
+            case TEST_MORALE:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_MORALE, ArtifactPrimaryStatistic.TEST_MORALE);
+            case TEST_LUCK_MORALE:
+                return new ArtifactPrimary(ArtifactStatistic.TEST_LUCK_MORALE, ArtifactPrimaryStatistic.TEST_LUCK_MORALE);
+
+            default:
+                throw new IllegalArgumentException(EXCEPTION_MESSAGE);
+        }
+    }
+
     public AbstractArtifact create(String aName){
         switch (aName) {
-            // ArtifactPrimary
             case CENTAURS_AX:
                 return new ArtifactPrimary(ArtifactStatistic.CENTAURS_AX, ArtifactPrimaryStatistic.CENTAURS_AX);
             case BLACKSHARD_OF_THE_DEAD_KNIGHT:
@@ -102,8 +131,6 @@ public class ArtifactFactory {
                 return new ArtifactPrimary(ArtifactStatistic.STILL_EYE_OF_THE_DRAGON, ArtifactPrimaryStatistic.STILL_EYE_OF_THE_DRAGON);
             case PENDANT_OF_COURAGE:
                 return new ArtifactPrimary(ArtifactStatistic.PENDANT_OF_COURAGE, ArtifactPrimaryStatistic.PENDANT_OF_COURAGE);
-
-             // ArtifactCreatureBuff
             case RING_OF_VITALITY:
                 return new ArtifactHealth(ArtifactStatistic.RING_OF_VITALITY, 1);
             case RING_OF_LIFE:
@@ -122,51 +149,6 @@ public class ArtifactFactory {
                 return new ArtifactSpeed(ArtifactStatistic.RING_OF_THE_WAYFARER, 1);
             case CAPE_OF_VELOCITY:
                 return new ArtifactSpeed(ArtifactStatistic.CAPE_OF_VELOCITY, 2);
-//            case PENDANT_OF_DISPASSION:
-//                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_DISPASSION, SpellEnum.BERZERK);
-//            case PENDANT_OF_SECOND_SIGHT:
-//                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_SECOND_SIGHT, SpellEnum.BLIND);
-//            case PENDANT_OF_HOLINESS:
-//                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_HOLINESS, SpellEnum.CURSE);
-//            case PENDANT_OF_LIFE:
-//                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_LIFE, SpellEnum.DEATH_RIPPLE);
-//            case PENDANT_OF_DEATH:
-//                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_DEATH, SpellEnum.DESTROY_UNDEAD);
-//            case PENDANT_OF_FREE_WILL:
-//                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_FREE_WILL, SpellEnum.HYPNOTIZE);
-//            case PENDANT_OF_NEGATIVITY:
-//                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_NEGATIVITY, SpellEnum.LIGHTNING_BOLT);
-//            case PENDANT_OF_TOTAL_RECALL:
-//                return new ArtifactImmunity(ArtifactStatistic.PENDANT_OF_TOTAL_RECALL, SpellEnum.FORGETFULNESS);
-//            case SPHERE_OF_PERMANENCE:
-//                return new ArtifactImmunity(ArtifactStatistic.SPHERE_OF_PERMANENCE, SpellEnum.DISPEL);
-
-             // ArtifactSpellBuff
-            case COLLAR_OF_CONJURING:
-                return new ArtifactDuration(ArtifactStatistic.COLLAR_OF_CONJURING, 1);
-            case RING_OF_CONJURING:
-                return new ArtifactDuration(ArtifactStatistic.RING_OF_CONJURING, 2);
-            case CAPE_OF_CONJURING:
-                return new ArtifactDuration(ArtifactStatistic.CAPE_OF_CONJURING, 3);
-            case ORB_OF_THE_FIRMAMENT:
-                return new ArtifactDamage(ArtifactStatistic.ORB_OF_THE_FIRMAMENT, 0.5, SpellEnum.magicTypeOfSpell.AIR);
-            case ORB_OF_SILT:
-                return new ArtifactDamage(ArtifactStatistic.ORB_OF_SILT, 0.5, SpellEnum.magicTypeOfSpell.EARTH);
-            case ORB_OF_TEMPSTUOUS_FIRE:
-                return new ArtifactDamage(ArtifactStatistic.ORB_OF_TEMPSTUOUS_FIRE, 0.5, SpellEnum.magicTypeOfSpell.FIRE);
-            case ORB_OF_DRIVING_RAIN:
-                return new ArtifactDamage(ArtifactStatistic.ORB_OF_DRIVING_RAIN, 0.5, SpellEnum.magicTypeOfSpell.WATER);
-            case TOME_OF_AIR_MAGIC:
-                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_AIR_MAGIC, SpellEnum.magicTypeOfSpell.AIR);
-            case TOME_OF_EARTH_MAGIC:
-                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_EARTH_MAGIC, SpellEnum.magicTypeOfSpell.EARTH);
-            case TOME_OF_FIRE_MAGIC:
-                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_FIRE_MAGIC, SpellEnum.magicTypeOfSpell.FIRE);
-            case TOME_OF_WATER_MAGIC:
-                return new ArtifactSpellBookType(ArtifactStatistic.TOME_OF_WATER_MAGIC, SpellEnum.magicTypeOfSpell.WATER);
-            case SPELLBINDERS_HAT:
-                return new ArtifactSpellBookTier(ArtifactStatistic.SPELLBINDERS_HAT, 5);
-
 
             default:
                 throw new IllegalArgumentException(EXCEPTION_MESSAGE);
