@@ -28,8 +28,9 @@ public class FieldWorkingTest {
     @Test
     void isLavaHurtingCreature(){
         Field lava = FieldsFactory.create("Lava");
-        assertTrue(lava.getFieldDamage() > 0, "Lava is not giving damage");
-
+        Creature movingCreature = NecropolisFactory.createDefaultForTests();
+        lava.apply(movingCreature);
+        assertEquals(0, movingCreature.getCurrentHp(), "Lava is not giving damage");
     }
 
     @Test
