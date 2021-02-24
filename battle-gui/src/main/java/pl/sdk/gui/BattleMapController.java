@@ -79,8 +79,14 @@ public class BattleMapController implements PropertyChangeListener {
                 BattleObject c = gameEngine.get(x, y);
                 Field field = gameEngine.getField(x, y);
                 if (c != null) {
-                    boolean isRightPlayerCreature = gameEngine.isPlayerTwoUnit(x,y);
-                    rec.addObject(c.getName(), c.getAmount(), isRightPlayerCreature);
+                    if(c.getName().equals("Wall"))
+                    {
+                        rec.addCreatureWithoutAmount(c.getName());
+                    }else
+                    {
+                        boolean isRightPlayerCreature = gameEngine.isPlayerTwoUnit(x,y);
+                        rec.addObject(c.getName(), c.getAmount(), isRightPlayerCreature);
+                    }
                     //rec.addToolTip(c);
                     if (c == gameEngine.getActiveCreature()) {
                         rec.setBackground(Color.GREEN);

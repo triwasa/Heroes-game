@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static pl.sdk.artifacts.ArtifactName.*;
 import static pl.sdk.hero.HeroClassName.DEATH_KNIGHT;
 
+
 public class BuyingArtifactTest {
 
     private EconomyHero hero1, hero2;
@@ -55,3 +56,4 @@ public class BuyingArtifactTest {
     }
 
 }
+

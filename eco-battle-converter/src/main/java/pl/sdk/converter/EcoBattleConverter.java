@@ -6,10 +6,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import pl.sdk.Board;
-import pl.sdk.Holder;
+import pl.sdk.FieldsHolder;
 import pl.sdk.PointHolder;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.NecropolisFactory;
+import pl.sdk.creatures.Wall;
 import pl.sdk.gui.BattleMapController;
 import pl.sdk.gui.MapEditorController;
 import pl.sdk.hero.EconomyHero;
@@ -111,15 +112,19 @@ public class EcoBattleConverter {
     private static Board xmlToBoardConverter() throws IOException, JAXBException {
         Board board = new Board();
 
-        JAXBContext contextFields = JAXBContext.newInstance(Holder.class);
+        JAXBContext contextFields = JAXBContext.newInstance(FieldsHolder.class);
         JAXBContext contextPoints = JAXBContext.newInstance(PointHolder.class);
         File file = new File("./fields.xml");
-        if (file.canRead() && file.isFile()) {
-            Holder holder1 = (Holder) contextFields.createUnmarshaller().unmarshal(new FileReader("./fields.xml"));
+        if(file.canRead() && file.isFile()) {
+            FieldsHolder holder1 = (FieldsHolder) contextFields.createUnmarshaller().unmarshal(new FileReader("./fields.xml"));
+
             PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal(new FileReader("./point.xml"));
 
             for (int i = 0; i < holder1.getThings().size(); i++) {
-                board.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
+                if(holder1.getThings().get(i).getName().equals("Stone"))
+                {
+                    board.add(pointHolder1.getThings().get(i),new Wall());
+                }else board.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
             }
         }
         return board;

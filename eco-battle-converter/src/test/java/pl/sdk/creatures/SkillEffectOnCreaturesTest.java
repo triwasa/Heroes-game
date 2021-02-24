@@ -16,6 +16,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
+
 public class SkillEffectOnCreaturesTest {
 
     private SkillSet skillSet;
@@ -28,7 +29,7 @@ public class SkillEffectOnCreaturesTest {
     List<BattleObject> machines;
 
     @BeforeEach
-    void init(){
+    void init() {
         hero = new Hero();
         applier = new SkillApplier();
         creatures = new ArrayList<>();
@@ -37,7 +38,7 @@ public class SkillEffectOnCreaturesTest {
                 .name("attacker")
                 .attack(5)
                 .armor(NOT_IMPORTANT)
-                .damage(Range.closed(50,50))
+                .damage(Range.closed(50, 50))
                 .attackStrategy(new DefaultAttackStrategy())
                 .maxHp(NOT_IMPORTANT)
                 .moveRange(NOT_IMPORTANT)
@@ -47,33 +48,33 @@ public class SkillEffectOnCreaturesTest {
                 .attack(NOT_IMPORTANT)
                 .armor(0)
                 .maxHp(200)
-                .damage(Range.closed(NOT_IMPORTANT,NOT_IMPORTANT))
+                .damage(Range.closed(NOT_IMPORTANT, NOT_IMPORTANT))
                 .moveRange(NOT_IMPORTANT)
                 .build();
     }
     //standard dmg = 62
 
     @Test
-    void offenceShouldNotWorkOnRangeCreatures(){
-        Skill offence = SkillFactory.createForTest("offence",1);
+    void offenceShouldNotWorkOnRangeCreatures() {
+        Skill offence = SkillFactory.createForTest("offence", 1);
         attacker = new ShootingCreatureDecorator(attacker);
         creatures.add(attacker);
         hero.addCreatures(creatures);
-        applier.apply(offence,hero);
+        applier.apply(offence, hero);
         attacker = hero.getCreatures().get(0);
-        attacker.getAttackStrategy().attack(attacker,defender);
-        assertEquals(138,defender.getCurrentHp());
+        attacker.getAttackStrategy().attack(attacker, defender);
+        assertEquals(138, defender.getCurrentHp());
     }
 
     @Test
-    void archeryShouldNotWorkOnMeleeCreatures(){
-        Skill offence = SkillFactory.createForTest("archery",1);
+    void archeryShouldNotWorkOnMeleeCreatures() {
+        Skill offence = SkillFactory.createForTest("archery", 1);
         creatures.add(attacker);
         hero.addCreatures(creatures);
-        applier.apply(offence,hero);
+        applier.apply(offence, hero);
         attacker = hero.getCreatures().get(0);
-        attacker.getAttackStrategy().attack(attacker,defender);
-        assertEquals(138,defender.getCurrentHp());
+        attacker.getAttackStrategy().attack(attacker, defender);
+        assertEquals(138, defender.getCurrentHp());
     }
 
     @Test
@@ -84,69 +85,69 @@ public class SkillEffectOnCreaturesTest {
         hero.addCreatures(creatures);
         applier.apply(offence, hero);
         attacker = hero.getCreatures().get(0);
-        attacker.getAttackStrategy().attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker, defender);
         assertEquals(132, defender.getCurrentHp());
     }
 
     @Test
-    void offence2ShouldIncreaseDamage(){
+    void offence2ShouldIncreaseDamage() {
         //offence zwiększa zadawany dmg o 10%
-        Skill offence = SkillFactory.createForTest("offence",2);
+        Skill offence = SkillFactory.createForTest("offence", 2);
         creatures.add(attacker);
         hero.addCreatures(creatures);
-        applier.apply(offence,hero);
+        applier.apply(offence, hero);
         attacker = hero.getCreatures().get(0);
-        attacker.getAttackStrategy().attack(attacker,defender);
-        assertEquals(125,defender.getCurrentHp());
+        attacker.getAttackStrategy().attack(attacker, defender);
+        assertEquals(125, defender.getCurrentHp());
     }
 
     @Test
-    void offence3ShouldIncreaseDamage(){
+    void offence3ShouldIncreaseDamage() {
         //offence zwiększa zadawany dmg o 10%
-        Skill offence = SkillFactory.createForTest("offence",3);
+        Skill offence = SkillFactory.createForTest("offence", 3);
         creatures.add(attacker);
         hero.addCreatures(creatures);
-        applier.apply(offence,hero);
+        applier.apply(offence, hero);
         attacker = hero.getCreatures().get(0);
-        attacker.getAttackStrategy().attack(attacker,defender);
-        assertEquals(119,defender.getCurrentHp());
+        attacker.getAttackStrategy().attack(attacker, defender);
+        assertEquals(119, defender.getCurrentHp());
     }
 
 
     @Test
-    void archery1ShouldIncreaseDamage(){
+    void archery1ShouldIncreaseDamage() {
         Skill archery = SkillFactory.createForTest("archery", 1);
         attacker = new ShootingCreatureDecorator(attacker);
         creatures.add(attacker);
         hero.addCreatures(creatures);
-        applier.apply(archery,hero);
+        applier.apply(archery, hero);
         attacker = hero.getCreatures().get(0);
-        attacker.getAttackStrategy().attack(attacker,defender);
-        assertEquals(132,defender.getCurrentHp());
+        attacker.getAttackStrategy().attack(attacker, defender);
+        assertEquals(132, defender.getCurrentHp());
     }
 
     @Test
-    void archery2ShouldIncreaseDamage(){
-        Skill archery = SkillFactory.createForTest("archery",2);
+    void archery2ShouldIncreaseDamage() {
+        Skill archery = SkillFactory.createForTest("archery", 2);
         attacker = new ShootingCreatureDecorator(attacker);
         creatures.add(attacker);
         hero.addCreatures(creatures);
-        applier.apply(archery,hero);
+        applier.apply(archery, hero);
         attacker = hero.getCreatures().get(0);
-        attacker.getAttackStrategy().attack(attacker,defender);
-        assertEquals(122,defender.getCurrentHp());
+        attacker.getAttackStrategy().attack(attacker, defender);
+        assertEquals(122, defender.getCurrentHp());
     }
 
     @Test
-    void archery3ShouldIncreaseDamage(){
-        Skill archery = SkillFactory.createForTest("archery",3);
+    void archery3ShouldIncreaseDamage() {
+        Skill archery = SkillFactory.createForTest("archery", 3);
         attacker = new ShootingCreatureDecorator(attacker);
         creatures.add(attacker);
         hero.addCreatures(creatures);
-        applier.apply(archery,hero);
+        applier.apply(archery, hero);
         attacker = hero.getCreatures().get(0);
-        attacker.getAttackStrategy().attack(attacker,defender);
-        assertEquals(107,defender.getCurrentHp());
+        attacker.getAttackStrategy().attack(attacker, defender);
+        assertEquals(107, defender.getCurrentHp());
     }
 
     @Test
@@ -160,8 +161,8 @@ public class SkillEffectOnCreaturesTest {
                 .maxHp(NOT_IMPORTANT)
                 .moveRange(NOT_IMPORTANT)
                 .build();
-        Skill archery = SkillFactory.createForTest("archery",3);
-        Skill offence = SkillFactory.createForTest("offence",1);
+        Skill archery = SkillFactory.createForTest("archery", 3);
+        Skill offence = SkillFactory.createForTest("offence", 1);
         attacker2 = new ShootingCreatureDecorator(attacker2);
         creatures.add(attacker);
         creatures.add(attacker2);
@@ -170,42 +171,42 @@ public class SkillEffectOnCreaturesTest {
         applier.apply(offence, hero);
         attacker = hero.getCreatures().get(0);
         attacker2 = hero.getCreatures().get(1);
-        attacker.getAttackStrategy().attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker, defender);
         assertEquals(132, defender.getCurrentHp());
-        attacker2.getAttackStrategy().attack(attacker2,defender);
+        attacker2.getAttackStrategy().attack(attacker2, defender);
         assertEquals(39, defender.getCurrentHp());
     }
 
     @Test
     void armourer1ShouldDecreaseDamage() {
-        Skill armourer = SkillFactory.createForTest("armourer",1);
+        Skill armourer = SkillFactory.createForTest("armourer", 1);
         creatures.add(defender);
         hero.addCreatures(creatures);
         applier.apply(armourer, hero);
         defender = hero.getCreatures().get(0);
-        attacker.getAttackStrategy().attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker, defender);
         assertEquals(141, defender.getCurrentHp());
     }
 
     @Test
     void armourer2ShouldDecreaseDamage() {
-        Skill armourer = SkillFactory.createForTest("armourer",2);
+        Skill armourer = SkillFactory.createForTest("armourer", 2);
         creatures.add(defender);
         hero.addCreatures(creatures);
         applier.apply(armourer, hero);
         defender = hero.getCreatures().get(0);
-        attacker.getAttackStrategy().attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker, defender);
         assertEquals(144, defender.getCurrentHp());
     }
 
     @Test
     void armourer3ShouldDecreaseDamage() {
-        Skill armourer = SkillFactory.createForTest("armourer",3);
+        Skill armourer = SkillFactory.createForTest("armourer", 3);
         creatures.add(defender);
         hero.addCreatures(creatures);
         applier.apply(armourer, hero);
         defender = hero.getCreatures().get(0);
-        attacker.getAttackStrategy().attack(attacker,defender);
+        attacker.getAttackStrategy().attack(attacker, defender);
         assertEquals(147, defender.getCurrentHp());
     }
 
@@ -216,12 +217,12 @@ public class SkillEffectOnCreaturesTest {
                 .name("ballista")
                 .attack(5)
                 .armor(NOT_IMPORTANT)
-                .damage(Range.closed(50,50))
+                .damage(Range.closed(50, 50))
                 .maxHp(NOT_IMPORTANT)
                 .moveRange(NOT_IMPORTANT)
                 .attackStrategy(new DoubleDamagePercentChanceAttackStrategy(50, successCalculator))
                 .build();
-        ballista.getAttackStrategy().attack(attacker,defender);
+        ballista.getAttackStrategy().attack(attacker, defender);
         assertEquals(76, defender.getCurrentHp());
     }
 
@@ -232,12 +233,12 @@ public class SkillEffectOnCreaturesTest {
                 .name("catapult")
                 .attack(5)
                 .armor(NOT_IMPORTANT)
-                .damage(Range.closed(10,50))
-                .attackStrategy(new ballistickAttackStrategy(successCalculator, 60,false))
+                .damage(Range.closed(10, 50))
+                .attackStrategy(new ballistickAttackStrategy(successCalculator, 60, false))
                 .maxHp(NOT_IMPORTANT)
                 .moveRange(NOT_IMPORTANT)
                 .build();
-        catapult.getAttackStrategy().attack(attacker,defender);
+        catapult.getAttackStrategy().attack(attacker, defender);
         assertEquals(138, defender.getCurrentHp());
     }
 
@@ -248,18 +249,18 @@ public class SkillEffectOnCreaturesTest {
                 .name("catapult")
                 .attack(5)
                 .armor(NOT_IMPORTANT)
-                .damage(Range.closed(10,50))
-                .attackStrategy(new ballistickAttackStrategy(successCalculator, 60,true))
+                .damage(Range.closed(10, 50))
+                .attackStrategy(new ballistickAttackStrategy(successCalculator, 60, true))
                 .maxHp(NOT_IMPORTANT)
                 .moveRange(NOT_IMPORTANT)
                 .build();
-        catapult.getAttackStrategy().attack(attacker,defender);
+        catapult.getAttackStrategy().attack(attacker, defender);
         assertEquals(76, defender.getCurrentHp());
     }
 
-    public class MyCalculator extends Random{
+    public class MyCalculator extends Random {
         @Override
-        public int nextInt(int aNumber){
+        public int nextInt(int aNumber) {
             return 1;
         }
     }
@@ -282,6 +283,4 @@ public class SkillEffectOnCreaturesTest {
 //        hero.getMachines().add(ballista);
 //        applier.apply(ballistick1, hero);
     }
-
-
 }

@@ -86,5 +86,6 @@ public abstract class PathSearch {
         return minKey;
     }
 
-     abstract LinkedList<Point> getNeighbor(Point point);
+    abstract LinkedList<Point> getNeighbor(Point point);
+
 }

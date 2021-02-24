@@ -8,11 +8,11 @@ import java.util.List;
 
 @XmlRootElement(name = "fields")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Holder {
+public class FieldsHolder {
     @XmlElement(name = "fields")
     private List<Field> things= null;
 
-    public Holder() {
+    public FieldsHolder() {
         things = new ArrayList<>();
     }
 

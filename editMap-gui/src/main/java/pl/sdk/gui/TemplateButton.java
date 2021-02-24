@@ -8,7 +8,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.sdk.Board;
-import pl.sdk.Holder;
+import pl.sdk.FieldsHolder;
 import pl.sdk.PointHolder;
 
 import javax.xml.bind.JAXBContext;
@@ -129,11 +129,11 @@ public class TemplateButton extends Button {
     private static Board xmlToBoardConverter(String name) throws IOException, JAXBException {
         Board board = new Board();
 
-        JAXBContext contextFields = JAXBContext.newInstance(Holder.class);
+        JAXBContext contextFields = JAXBContext.newInstance(FieldsHolder.class);
         JAXBContext contextPoints = JAXBContext.newInstance(PointHolder.class);
         File file = new File(ImageTile.class.getClassLoader().getResource("graphics/maps/"+ name + ".xml").getFile());
         if(file.canRead() && file.isFile()) {
-            Holder holder1 = (Holder) contextFields.createUnmarshaller().unmarshal( new File(ImageTile.class.getClassLoader().getResource("graphics/maps/"+ name + ".xml").getFile()));
+            FieldsHolder holder1 = (FieldsHolder) contextFields.createUnmarshaller().unmarshal( new File(ImageTile.class.getClassLoader().getResource("graphics/maps/"+ name + ".xml").getFile()));
             PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal( new File(ImageTile.class.getClassLoader().getResource("graphics/maps/"+ name + "Points.xml").getFile()));
 
             for (int i = 0; i < holder1.getThings().size(); i++) {
