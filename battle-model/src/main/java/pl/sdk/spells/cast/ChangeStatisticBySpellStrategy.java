@@ -21,6 +21,15 @@ public class ChangeStatisticBySpellStrategy implements CastSpellStrategy {
         if (spell.getTechName().equals(SpellEnum.BLESS3)) {
             creature = new CreatureStatisticDecorator(creature, 1);
         }
+        if (spell.getTechName().equals(SpellEnum.WEAKNESS)){
+            creature = new CreatureStatisticDecorator(creature, -3);
+        }
+        if (spell.getTechName().equals(SpellEnum.WEAKNESS2)){
+            creature = new CreatureStatisticDecorator(creature, -6);
+        }
+        if (spell.getTechName().equals(SpellEnum.WEAKNESS)){
+            creature = new CreatureStatisticDecorator(creature, -6);
+        }
         return creature;
     }
 }

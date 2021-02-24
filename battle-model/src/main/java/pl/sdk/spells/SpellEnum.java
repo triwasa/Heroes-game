@@ -13,7 +13,10 @@ public enum SpellEnum {
     BLESS3("Bless", durationOfSpell.AREA, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 3),
     FROST_RING("Frost Ring", durationOfSpell.AREA, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 1),
     FROST_RING2("Frost Ring", durationOfSpell.AREA, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 2),
-    FROST_RING3("Frost Ring", durationOfSpell.AREA, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 3);
+    FROST_RING3("Frost Ring", durationOfSpell.AREA, typeOfSpell.ATTACK, magicTypeOfSpell.WATER, 3),
+    WEAKNESS("Weakness", durationOfSpell.INSTANT, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 1),
+    WEAKNESS2("Weakness", durationOfSpell.INSTANT, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 2),
+    WEAKNESS3("Weakness", durationOfSpell.AREA, typeOfSpell.CANGESTATISTIC, magicTypeOfSpell.WATER, 3);
 
     public enum typeOfSpell{
         CANGESTATISTIC, ATTACK;
