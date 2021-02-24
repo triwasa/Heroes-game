@@ -26,10 +26,10 @@ public class TeleportMovementStrategy implements MovementStrategy {
         List<Point> pathToGo = getPath(board, aSourcePoint, aTargetPoint);
         pathToGo.remove(0);
         for(Point point : pathToGo) {
-//            if(board.getField(point.getX(),point.getY()).isGroundField()) {
-//                Field field = board.getField(point.getX(), point.getY());
-//                field.apply(aCreature);
-//
+            if(board.getField(point.getX(),point.getY()).isGroundField()) {
+                Field field = board.getField(point.getX(), point.getY());
+                field.apply(aCreature);
+
         }
     }
 

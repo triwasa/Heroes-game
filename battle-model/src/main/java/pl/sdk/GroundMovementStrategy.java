@@ -27,9 +27,9 @@ public class GroundMovementStrategy implements MovementStrategy {
         path.remove(0);
         for(Point point : path) {
             Field field = board.getField(point.getX(), point.getY());
-//            if(field.isGroundField()) {
-//                field.apply(aCreature);
-//            }
+            if(field.isGroundField()) {
+                field.apply(aCreature);
+            }
         }
     }
 
