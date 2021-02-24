@@ -11,17 +11,14 @@ import javafx.stage.Modality;
 import pl.sdk.skills.EconomySkillFactory;
 
 public class SkillButton extends Button {
-    /*
+
     private final String skillName;
-    private final int tier;
     private Stage dialog;
 
-    public SkillButton(EcoController aEcoController, EconomySkillFactory aFactory, int tier) {
-        super(aFactory.create().getName());
-        skillName = aFactory.create().getName();
-        this.tier = tier;
+    public SkillButton(EcoController aEcoController, EconomySkillFactory aFactory, int tier,int a) {
+        super(aFactory.listAllSkill(a,tier).getName());
+        skillName = aFactory.listAllSkill(a,tier).getName();
         getStyleClass().add("skillButton");
-
         String finalSkillName = skillName;
         addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             int amount = startDialogAndGetCreatureAmount();
@@ -101,5 +98,5 @@ public class SkillButton extends Button {
         slider.setBlockIncrement(10);
         return slider;
     }
-    */
+
 }

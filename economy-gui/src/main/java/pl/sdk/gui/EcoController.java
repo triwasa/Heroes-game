@@ -6,14 +6,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.checkerframework.checker.units.qual.C;
 import pl.sdk.EconomyEngine;
+import pl.sdk.artifacts.ArtifactStatistic;
+import pl.sdk.artifacts.ArtifactStatisticIf;
 import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.artifacts.EconomyArtifactPrimaryFactory;
 import pl.sdk.converter.EcoBattleConverter;
@@ -29,6 +31,8 @@ import pl.sdk.spell.EconomySpell;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class EcoController implements PropertyChangeListener {
     @FXML
@@ -55,6 +59,7 @@ public class EcoController implements PropertyChangeListener {
     Button warmachineShop;
     private final EconomyEngine economyEngine;
     VBox shop;
+    Random generator = new Random();
 
     public EcoController(EconomyHero aHero1, EconomyHero aHero2) {
         economyEngine = new EconomyEngine(aHero1, aHero2);
@@ -88,10 +93,19 @@ public class EcoController implements PropertyChangeListener {
         {
             EconomyArtifactPrimaryFactory factory = new EconomyArtifactPrimaryFactory();
             shop = new VBox();
+            List<EconomyArtifact> economyArtifactsList = new ArrayList<>();
+            Arrays.asList(ArtifactStatistic.values()).forEach(artifact -> economyArtifactsList.add(factory.create(artifact.getTranslatedName())));
+            Collections.shuffle(economyArtifactsList);
+            List<EconomyArtifact> economyArtifacts = economyArtifactsList
+                    .stream()
+                    .limit(5)
+                    .collect(Collectors.toList());
+            economyArtifacts.forEach(artifact -> shop.getChildren().add(new ArtifactButton(this,factory,artifact)));
+
 
             createShopButtons(shop);
         });
-        warmachineShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
+/*        warmachineShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
             EconomyWarmachineFactory factory = new EconomyWarmachineFactory();
             shop = new VBox();
@@ -99,24 +113,25 @@ public class EcoController implements PropertyChangeListener {
                 shop.getChildren().add(new CreatureButton(this, factory, false, i));
             }
             createShopButtons(shop);
-        });
+        });*/
         skillShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
             EconomySkillFactory factory = new EconomySkillFactory();
             shop = new VBox();
-
+            for (int i = 1; i < 4 ; i++){
+                shop.getChildren().add(new SkillButton(this,factory,(generator.nextInt(17)+1),1));
+            }
             createShopButtons(shop);
         });
         creatureShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
-            EconomyTowerFactory factory = new EconomyTowerFactory();
+            EconomyNecropolisFactory factory = new EconomyNecropolisFactory();
             shop = new VBox();
             for (int i = 1; i < 8; i++) {
                 shop.getChildren().add(new CreatureButton(this, factory, false, i));
                 shop.getChildren().add(new CreatureButton(this, factory, true,i));
             }
             createShopButtons(shop);
-            
         });
     }
 
