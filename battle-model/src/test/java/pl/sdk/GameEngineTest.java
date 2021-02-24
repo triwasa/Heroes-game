@@ -48,8 +48,6 @@ class GameEngineTest {
     @Test
     void tentShouldTargetAllyUnits(){
         WarMachineFactory warMachineFactory= new WarMachineFactory();
-        NecropolisFactory factory = new NecropolisFactory();
-
         List<Creature> listOfCreatures = List.of(NecropolisFactory.createDefaultForTests());
         Hero h1 = new Hero();
         Hero h2 = new Hero();
@@ -58,8 +56,10 @@ class GameEngineTest {
         listOfMachines.add(warMachineFactory.create(2, h2));
         h1.addWarmachines(listOfMachines);
         h1.addCreatures(listOfCreatures);
+        h2.addCreatures(listOfCreatures);
 
         GameEngine engine = new GameEngine(h1,h2, new Board());
+        engine.pass();
         engine.pass();
         assertTrue(engine.canAttack(0, 1));
 
@@ -93,5 +93,23 @@ class GameEngineTest {
         assertFalse(attackEngine.canAttack(creature,wall));
 
    }
+
+    @Test
+    void addMachinesToBoardTest() {
+        WarMachineFactory warMachineFactory= new WarMachineFactory();
+        List<Creature> listOfCreatures = List.of(NecropolisFactory.createDefaultForTests());
+        Hero h1 = new Hero();
+        Hero h2 = new Hero();
+        h1.addCreatures(listOfCreatures);
+        h2.addCreatures(listOfCreatures);
+
+        List<BattleObject> listOfMachines = new ArrayList<>();
+        listOfMachines.add(warMachineFactory.create(2, h2));
+        h1.addWarmachines(listOfMachines);
+
+        GameEngine engine = new GameEngine(h1,h2, new Board());
+
+        assertEquals(engine.get(0, 14), listOfMachines.get(0));
+    }
 
 }
