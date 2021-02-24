@@ -5,62 +5,48 @@ import pl.sdk.hero.Hero;
 import pl.sdk.spells.cast.ChangeStatisticBySpellStrategy;
 import pl.sdk.spells.cast.DefaultAttackSpellStrategy;
 
-import javax.activation.UnsupportedDataTypeException;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class SpellBook implements PropertyChangeListener {
-    private HashMap<Spell, Integer> spellBook = new HashMap<Spell, Integer>();
+    private Set<Spell> spellBook = new HashSet<Spell>();
     private Spell spellInThisTurn;
     public SpellBook(){
         this.spellInThisTurn= null;
     }
 
     public Set<Spell> getSpellBook(){
-        return spellBook.keySet();
+        return this.spellBook;
     }
 
     boolean contains(Spell spell) {
-        return getSpellOfName(spell.getName()) != null;
+        return getSpellOfName(spell.getTechName()) != null;
     }
 
     public void addSpell(Spell spell){
         if(contains(spell)){
-            spellBook.put(getSpellOfName(spell.getName()), spellBook.get(getSpellOfName(spell.getName()))+1);
+            spellBook.add(getSpellOfName(spell.getTechName()));
         }
         else {
-            spellBook.put(spell, 1);
+            spellBook.add(spell);
         }
     }
 
     public void removeSpell(Spell spell){
-        if(contains(spell)){
-            spellBook.put(getSpellOfName(spell.getName()), getUsesOfSpell(getSpellOfName(spell.getName())) -1);
-            if(getUsesOfSpell(getSpellOfName(spell.getName()))==0){
-                spellBook.remove(getSpellOfName(spell.getName()));
-            }
-        }
+        spellBook.remove(getSpellOfName(spell.getTechName()));
     }
     public Integer getSize(){
         return spellBook.size();
     }
 
-    public Spell getSpellOfName(String name){
-        for(Spell i: spellBook.keySet()){
-            if(i.getName().equals(name)){
+    public Spell getSpellOfName(SpellEnum techName){
+        for(Spell i: spellBook){
+            if(i.getTechName().equals(techName)){
                 return i;
             }
         }
         return null;
-    }
-
-
-    public int getUsesOfSpell(Spell spell) {
-        return this.spellBook.get(getSpellOfName(spell.getName()));
     }
 
     private Creature checkTypeOfSpell(Spell spell, Creature creature, Hero owner) {
@@ -120,5 +106,9 @@ public class SpellBook implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         this.spellInThisTurn=null;
+    }
+
+    public void clearSpell() {
+        this.spellBook.clear();
     }
 }

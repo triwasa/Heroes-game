@@ -42,16 +42,14 @@ public class SpellBookTest {
     @Test
     void removeSpellToTheSpellBook(){
         Spell spell = spellFactory.create(SpellEnum.BLESS);
-        this.spellBook.addSpell(spell);
         this.spellBook.removeSpell(spell);
-        assertEquals(1, this.spellBook.getUsesOfSpell(spell));
+        assertEquals(0, this.spellBook.getSize());
 
     }
 
     @Test
     void removeAllSpellToTheSpellBook(){
-        Spell spell = spellFactory.create(SpellEnum.BLESS);
-        this.spellBook.removeSpell(spell);
+        this.spellBook.clearSpell();
         assertEquals(0, this.spellBook.getSize());
 
     }
@@ -63,7 +61,6 @@ public class SpellBookTest {
         this.spellBook.addSpell(spell);
         this.spellBook.addSpell(spell);
         assertEquals(1, this.spellBook.getSize());
-        assertEquals(4, this.spellBook.getUsesOfSpell(spell));
     }
 
     @Test
@@ -87,22 +84,22 @@ public class SpellBookTest {
         List<Creature> listOfCreatures = new ArrayList<>();
         listOfCreatures.add(creature);
         listOfCreatures.add(copyCreature);
-        Integer amout = creature.getAmount();
+        Integer amount = creature.getAmount();
         Spell spell = spellFactory.create(SpellEnum.FROST_RING2);
         this.spellBook.addSpell(spell);
         this.spellBook.castSpell(spellFactory.create(SpellEnum.FROST_RING2), listOfCreatures, owner);
         assertEquals(creature.getAmount(), copyCreature.getAmount());
-        assertNotEquals(creature.getAmount(), amout);
+        assertNotEquals(creature.getAmount(), amount);
     }
 
     @Test
     void cannotApplySpellToAttackManyTargetsIfItNotIsAreaTypeSpell(){
         listOfCreatures.add(creature);
         listOfCreatures.add(copyCreature);
-        Integer amout = creature.getAmount();
+        Integer amount = creature.getAmount();
         this.spellBook.castSpell(spellFactory.create(SpellEnum.MAGIC_ARROW_AIR), listOfCreatures, owner);
         assertEquals(creature.getAmount(), copyCreature.getAmount());
-        assertEquals(creature.getAmount(), amout);
+        assertEquals(creature.getAmount(), amount);
     }
 
     @Test
