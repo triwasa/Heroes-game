@@ -18,6 +18,7 @@ public class ArtifactButton extends Button {
     private Stage dialog;
 
     public ArtifactButton(EcoController aEcoController, EconomyArtifactPrimaryFactory aFactory, EconomyArtifact artifact) {
+        super(artifact.getName());
         artifactName = artifact.getName();
         getStyleClass().add("artifactButton");
 
