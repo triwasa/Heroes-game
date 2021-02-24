@@ -46,10 +46,6 @@ public class MapEditorController implements PropertyChangeListener {
         this.board= board;
         mapEditorEngine = new MapEditorEngine(board);
         this.sideMap = new GridPane();
-        //TODO
-        // deserializacja
-        // # poprawki w EcoBattleConverter
-        // polaczenie wszystkiego w BattleControllerze
     }
 
 
@@ -80,18 +76,38 @@ public class MapEditorController implements PropertyChangeListener {
         MapTile waterTile = new MapTile();
         MapTile stoneTile = new MapTile();
         MapTile poisonTile = new MapTile();
+        MapTile mountainTile = new MapTile();
+        MapTile charmTile = new MapTile();
+        MapTile thunderStormTile = new MapTile();
+        MapTile wallTile = new MapTile();
+
         Field lava = FieldsFactory.create("Lava");
         Field stone = FieldsFactory.create("Stone");
         Field water = FieldsFactory.create("Water");
         Field poison = FieldsFactory.create("Poison");
+        Field mountain = FieldsFactory.create("Mountain");
+        Field charm = FieldsFactory.create("Charm");
+        Field thunderStorm = FieldsFactory.create("ThunderStorm");
+        Field wall = FieldsFactory.create("Wall");
+
         addingField(lavaTile, lava);
         addingField(waterTile, water);
         addingField(stoneTile, stone);
         addingField(poisonTile, poison);
+        addingField(mountainTile, mountain);
+        addingField(charmTile, charm);
+        addingField(thunderStormTile, thunderStorm);
+        addingField(wallTile, wall);
+
         sideMap.add(lavaTile,1,1);
         sideMap.add(waterTile,1,2);
         sideMap.add(stoneTile,1,3);
         sideMap.add(poisonTile,1,4);
+        sideMap.add(mountainTile, 1, 5);
+        sideMap.add(charmTile, 1 , 6);
+        sideMap.add(thunderStormTile, 1, 7);
+        sideMap.add(wallTile, 1, 8);
+
         buttonLabel.getChildren().add(sideMap);
 
         buttonLabel.getChildren().add(new InformationButton());

@@ -1,13 +1,14 @@
 package pl.sdk.hero;
 
 
-import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
-import pl.sdk.artifacts.EconomyArtifactPrimaryFactory;
 import static pl.sdk.converter.Converter.convert;
+
+import pl.sdk.artifacts.ArtifactName;
+import pl.sdk.artifacts.EconomyArtifactPrimaryFactory;
 import pl.sdk.creatures.Creature;
 import pl.sdk.creatures.EconomyNecropolisFactory;
-import pl.sdk.creatures.NecropolisFactory;
+import pl.sdk.creatures.EconomyWarmachineFactory;
 import pl.sdk.skills.EconomySkillFactory;
 import pl.sdk.spell.EconomySpellFactory;
 
@@ -20,10 +21,11 @@ class ConverterTest {
 
     private static final int NOT_IMPORTANT = 500;
     private final EconomyNecropolisFactory economyCreatureNecropolisFactory = new EconomyNecropolisFactory();
-    private final EconomyArtifactPrimaryFactory economyArtifactFactory = new EconomyArtifactPrimaryFactory();
     private final EconomySkillFactory economySkillFactory = new EconomySkillFactory();
+    private final EconomyArtifactPrimaryFactory economyArtifactPrimaryFactory = new EconomyArtifactPrimaryFactory();
+    private final EconomyWarmachineFactory economyWarmachineFactory = new EconomyWarmachineFactory();
     private final EconomySpellFactory economySpellFactory = new EconomySpellFactory();
-    private final NecropolisFactory necropolisFactory = new NecropolisFactory();
+
 
     @Test
     void heroStatsShouldAffectCreatureStats(){
@@ -36,96 +38,25 @@ class ConverterTest {
         assertEquals(4 + 2, hero.getCreatures().get(0).getArmor());
     }
 
-
     @Test
-    void artifactShouldAffectCreatureStats() {
+    void shouldConvertHeroCorrectly() {
         EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
         economyHero.addCreature(economyCreatureNecropolisFactory.create(false,1,1));
-        economyHero.addArtifact(economyArtifactFactory.create("Dragon Scale Shield"));
+        economyHero.addCreature(economyWarmachineFactory.create(false, 1, 1));
+        economyHero.addSkill(economySkillFactory.create("intelligence", 1));
+        economyHero.addSkill(economySkillFactory.create("resistance", 1));
+        //economyHero.addSpell(economySpellFactory.create("Magic Arrow"));
+        economyHero.addArtifact(economyArtifactPrimaryFactory.create(ArtifactName.HELM_OF_HEAVENLY_ENLIGHTENMENT));
 
         Hero hero = convert(economyHero);
 
-        assertEquals(1 + 5 + 3, hero.getCreatures().get(0).getAttack());
-        assertEquals(2 + 4 + 3, hero.getCreatures().get(0).getArmor());
+        assertEquals("Catapult", hero.getMachines().get(0).getName());
+        assertEquals(1 + 6 + 5, hero.getCreatures().get(0).getAttack());
+        assertEquals(Math.round((1 + 6) * 10 * 1.25), hero.getMana());
+        assertEquals(5, hero.getCreatures().get(0).getResistance());
+        //assertEquals("Magic Arrow", hero.getSpells().stream().findFirst().get().getName());
+
     }
-
-    @Test
-    void skillShouldAffectCreature() {
-        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
-        // 5 - lich is shooting creature
-        economyHero.addCreature(economyCreatureNecropolisFactory.create(false,5,1));
-        // adds 50% damage to attack to all shooting creatures
-        economyHero.addSkill(economySkillFactory.create("archery", 1));
-
-        Creature creature = necropolisFactory.create(false,5,1);
-        int lowerEndpoint = creature.getBasicDamage().lowerEndpoint();
-        int upperEndpoint = creature.getBasicDamage().upperEndpoint();
-
-        Hero hero = convert(economyHero);
-
-        assertEquals(Range.closed( (int) Math.round(lowerEndpoint * 1.1), (int) Math.round(upperEndpoint * 1.1)), hero.getCreatures().get(0).getDamage());
-    }
-
-    @Test
-    void skillDoesNotAffectCreatureWhenItDoesNotMeetConditions() {
-        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
-
-        // 4 - not shooting creature
-        economyHero.addCreature(economyCreatureNecropolisFactory.create(false,4,1));
-        // adds 50% to attack to all shooting creatures
-        economyHero.addSkill(economySkillFactory.create("archery", 3));
-
-        Creature creature = necropolisFactory.create(false,4,1);
-        int lowerEndpoint = creature.getBasicDamage().lowerEndpoint();
-        int upperEndpoint = creature.getBasicDamage().upperEndpoint();
-
-        Hero hero = convert(economyHero);
-
-        assertEquals(Range.closed( lowerEndpoint, upperEndpoint), hero.getCreatures().get(0).getDamage());
-    }
-
-
-//    @Test
-//    void artifactAffectsSpell() {
-//        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
-//
-//        // Hero's fire spells to extra 50% damage
-//        economyHero.addArtifact(economyArtifactFactory.create("Orb of Tempstuous Fire"));
-//        // Target, enemy troop receives ((Power x 10) + 30) damage.
-//        economyHero.addSpell(economySpellFactory.create("Magic Arrow", 3));
-//
-//        Hero hero = convert(economyHero);
-//
-//        assertEquals((10 * 10 + 30) * 1.5 , hero.getSpells().get(0).getDamage());
-//    }
-
-//    @Test
-//    void skillAffectsSpell() {
-//        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
-//
-//        //  Fire Magic spells are cast at the expert level
-//        economyHero.addSkill(economySkillFactory.create("Fire Magic", 3));
-//        // Target, enemy troop receives ((Power x 10) + 10) damage.
-//        economyHero.addSpell(economySpellFactory.create("Magic Arrow", 1));
-//
-//        Hero hero = convert(economyHero);
-//
-//        assertNotEquals(10 * 10 + 10 , hero.getSpells().get(0).getDamage());
-//        assertEquals(10 * 10 + 30 , hero.getSpells().get(0).getDamage());
-//    }
-
-//    @Test
-//    void skillLuckCanAffectCreatureLuck() {
-//        EconomyHero economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
-//
-//        economyHero.addCreature(economyCreatureNecropolisFactory.create(false,5,1));
-//        economyHero.addSkill(economySkillFactory.create("Luck", 3));
-//
-//        Hero hero = convert(economyHero);
-//
-//        assertEquals(3, hero.getCreatures().get(0).getLuck());
-//    }
-
 
     @Test
     void shouldConvertCreaturesCorrectly(){

@@ -12,37 +12,43 @@ public SkillSet(){
     skillSet = new HashSet<Skill>();
 }
 
-void addSkill(Skill skill) {
-    if (skill.getTier() == 1) {
-        skillSet.add(skill);
-    } else {
+    void addSkill(Skill skill) {
+        boolean canAdd = true;
         Iterator<Skill> value = skillSet.iterator();
         while (value.hasNext()) {
             Skill skillToCompare = value.next();
-            if (skill.getCoreName() == skillToCompare.getCoreName()) {
-                if (skill.getTier() > skillToCompare.getTier()) {
+            if (skillToCompare.getCoreName() == skill.getCoreName()){
+                if (skill.getTier() > skillToCompare.getTier()){
                     skillSet.remove(skillToCompare);
-                    skillSet.add(skill);
-                    break;
+                }
+                else {
+                    canAdd = false;
                 }
             }
         }
-    }
+        if (canAdd == true){
+            skillSet.add(skill);
+        }
 }
-public void apply(Hero hero) {
-    SkillApplier applier = new SkillApplier();
-    Iterator<Skill> value = skillSet.iterator();
-    while (value.hasNext()) {
-        applier.apply(value.next(), hero);
+
+    public void apply(Hero hero) {
+        SkillApplier applier = new SkillApplier();
+        Iterator<Skill> value = skillSet.iterator();
+        while (value.hasNext()) {
+            applier.apply(value.next(), hero);
+        }
     }
-}
-void removeSkill(Skill skill){
+
+    void removeSkill(Skill skill){
     skillSet.remove(skill);
     }
 
-public boolean contains(Skill skill){
+    public boolean contains(Skill skill){
        return skillSet.contains(skill);
     }
 
+    public int getSize(Skill skill){
+        return skillSet.size();
+    }
 
 }

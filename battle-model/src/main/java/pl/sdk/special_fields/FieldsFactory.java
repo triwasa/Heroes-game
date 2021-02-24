@@ -22,6 +22,8 @@ public class FieldsFactory {
                 return new Field(name, true, false, true, 0, new FieldsApplyDamageStrategy(2));
             case "Charm":
                 return new Field(name, true, true, true, 0, new FieldsApplyModifyStatisticStrategy());
+            case "Wall":
+                return new Field(name, false, true, false, 1, new FieldsApplyNothingStrategy());
             default:
                 throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }

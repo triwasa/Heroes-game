@@ -10,21 +10,21 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FieldsHolder {
     @XmlElement(name = "fields")
-    private List<Field> things= null;
+    private List<String> things= null;
 
     public FieldsHolder() {
         things = new ArrayList<>();
     }
 
-    public List<Field> getThings() {
+    public List<String> getThings() {
         return things;
     }
 
-    public void setThings(List<Field> things) {
+    public void setThings(List<String> things) {
         this.things = things;
     }
 
-    public void addThing(Field thing) {
+    public void addThing(String thing) {
         things.add(thing);
     }
 }

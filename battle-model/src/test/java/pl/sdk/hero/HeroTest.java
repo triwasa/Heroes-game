@@ -24,6 +24,7 @@ public class HeroTest {
         assertEquals(3, hero.getKnowledge());
         assertEquals(2, hero.getLuck());
         assertEquals(1, hero.getMorale());
+        assertEquals(30, hero.getMana());
     }
 
     @Test
@@ -36,6 +37,7 @@ public class HeroTest {
         assertEquals(1, hero.getKnowledge());
         assertEquals(0, hero.getLuck());
         assertEquals(0, hero.getMorale());
+        assertEquals(10, hero.getMana());
     }
 
     @Test
@@ -63,7 +65,7 @@ public class HeroTest {
 
         // Intelligence	skill can increase mana by 25%, 50%, 100%
         hero.increaseManaPercent(0.25);
-        assertEquals(((int) Math.round(10 + 10 * 0.25)), hero.getMana());
+        assertEquals(((int) Math.round(10.0 * 1.25)), hero.getMana());
     }
 
     @Test

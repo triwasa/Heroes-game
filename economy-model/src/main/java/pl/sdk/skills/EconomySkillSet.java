@@ -11,20 +11,21 @@ public class EconomySkillSet {
     }
 
     public void addSkill(EconomySkill skill) {
-        if (skill.getStats().getTier() == 1) {
-            skillSet.add(skill);
-        } else {
-            Iterator<EconomySkill> value = skillSet.iterator();
-            while (value.hasNext()) {
-                EconomySkill skillToCompare = value.next();
-                if (skill.getStats().getCoreName() == skillToCompare.getStats().getCoreName()) {
-                    if (skill.getStats().getTier() > skillToCompare.getStats().getTier()) {
-                        skillSet.remove(skillToCompare);
-                        skillSet.add(skill);
-                        break;
-                    }
+        boolean canAdd = true;
+        Iterator<EconomySkill> value = skillSet.iterator();
+        while (value.hasNext()) {
+            EconomySkill skillToCompare = value.next();
+            if (skillToCompare.getCoreName() == skill.getCoreName()){
+                if (skill.getTier() > skillToCompare.getTier()){
+                    skillSet.remove(skillToCompare);
+                }
+                else {
+                    canAdd = false;
                 }
             }
+        }
+        if (canAdd == true){
+            skillSet.add(skill);
         }
     }
 
@@ -38,5 +39,9 @@ public class EconomySkillSet {
 
     public HashSet<EconomySkill> getSkillSet() {
         return skillSet;
+    }
+
+    public int getSize(){
+        return skillSet.size();
     }
 }

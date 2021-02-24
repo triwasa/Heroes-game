@@ -213,12 +213,12 @@
         <y>3</y>
     </point>
     <point>
-        <x>13</x>
-        <y>4</y>
-    </point>
-    <point>
         <x>9</x>
         <y>0</y>
+    </point>
+    <point>
+        <x>13</x>
+        <y>4</y>
     </point>
     <point>
         <x>9</x>
@@ -277,12 +277,12 @@
         <y>13</y>
     </point>
     <point>
-        <x>5</x>
-        <y>10</y>
-    </point>
-    <point>
         <x>9</x>
         <y>14</y>
+    </point>
+    <point>
+        <x>5</x>
+        <y>10</y>
     </point>
     <point>
         <x>5</x>
@@ -297,12 +297,12 @@
         <y>3</y>
     </point>
     <point>
-        <x>14</x>
-        <y>4</y>
-    </point>
-    <point>
         <x>10</x>
         <y>0</y>
+    </point>
+    <point>
+        <x>14</x>
+        <y>4</y>
     </point>
     <point>
         <x>10</x>
@@ -337,23 +337,23 @@
         <y>11</y>
     </point>
     <point>
-        <x>6</x>
-        <y>3</y>
-    </point>
-    <point>
         <x>10</x>
         <y>7</y>
+    </point>
+    <point>
+        <x>6</x>
+        <y>3</y>
     </point>
     <point>
         <x>14</x>
         <y>12</y>
     </point>
     <point>
-        <x>6</x>
-        <y>4</y>
-    </point>
-    <point>
         <x>10</x>
         <y>8</y>
+    </point>
+    <point>
+        <x>6</x>
+        <y>4</y>
     </point>
 </points>

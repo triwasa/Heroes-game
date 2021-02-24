@@ -12,6 +12,9 @@ import pl.sdk.creatures.Wall;
 import pl.sdk.gui.BattleMapController;
 import pl.sdk.gui.MapEditorController;
 import pl.sdk.hero.EconomyHero;
+import pl.sdk.hero.Hero;
+import pl.sdk.special_fields.FieldsFactory;
+
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -106,10 +109,10 @@ public class EcoBattleConverter {
             PointHolder pointHolder1 = (PointHolder) contextPoints.createUnmarshaller().unmarshal(new FileReader("./point.xml"));
 
             for (int i = 0; i < holder1.getThings().size(); i++) {
-                if(holder1.getThings().get(i).getName().equals("Stone"))
+                if(holder1.getThings().get(i).equals("Wall"))
                 {
                     board.add(pointHolder1.getThings().get(i),new Wall());
-                }else board.add(pointHolder1.getThings().get(i), holder1.getThings().get(i));
+                }else board.add(pointHolder1.getThings().get(i), FieldsFactory.create(holder1.getThings().get(i)));
             }
         }
         return board;

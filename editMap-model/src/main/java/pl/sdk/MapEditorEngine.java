@@ -81,7 +81,7 @@ public class MapEditorEngine {
 
     public void addFieldBySingleClick(int aX,int aY)
     {
-        if(activePointList != null && getChosenGuiTile() != null) {
+        if(activePointList != null && getChosenGuiTile() != null && !board.isTileTakenByField(new Point(aX,aY))) {
             board.add(new Point(aX,aY), getChosenGuiTile());
             notifyObservers(new PropertyChangeEvent(this,ADDING_OBSTACLES_BUTTON,null, false));
         }
@@ -145,7 +145,7 @@ public class MapEditorEngine {
         PointHolder pointHolder = new PointHolder();
         Set<Point> list = board.getFieldsMap().keySet();
         List<Field> guiTileList = board.getFieldsMap().values().stream().collect(Collectors.toList());
-        guiTileList.stream().forEach((p)-> holder.addThing(p));
+        guiTileList.stream().forEach((p)-> holder.addThing(p.getFieldName()));
         list.stream().forEach((p)->pointHolder.addThing(p) );
 
         Marshaller jaxbMarshaller = contextPoint.createMarshaller();
@@ -195,7 +195,7 @@ public class MapEditorEngine {
         int randomAmountOfObstacles = random.nextInt(19*14);
         int randomX,randomY;
 
-        List<Field> guiTileList = Arrays.asList(FieldsFactory.create("Lava"),FieldsFactory.create("Stone"),FieldsFactory.create("Water"),FieldsFactory.create("Poison"));
+        List<Field> guiTileList = Arrays.asList(FieldsFactory.create("Lava"),FieldsFactory.create("Stone"),FieldsFactory.create("Water"),FieldsFactory.create("Poison"),FieldsFactory.create("Mountain"),FieldsFactory.create("Charm"),FieldsFactory.create("ThunderStorm"),FieldsFactory.create("Wall"));
         for(int i=0;i<randomAmountOfObstacles;i++)
         {
             randomX= random.nextInt(18) + 1;

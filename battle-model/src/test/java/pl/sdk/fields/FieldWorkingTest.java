@@ -15,7 +15,6 @@ public class FieldWorkingTest {
     void shouldReturCorrectFieldType(){
     }
 
-
     @Test
     void canNotStandOnTheField(){
         Creature movingCreature = NecropolisFactory.createDefaultForTests();
@@ -28,6 +27,7 @@ public class FieldWorkingTest {
     @Test
     void isLavaHurtingCreature(){
         Field lava = FieldsFactory.create("Lava");
+
         Creature movingCreature = NecropolisFactory.createDefaultForTests();
         lava.apply(movingCreature);
         assertEquals(5, movingCreature.getCurrentHp(), "Lava is not giving damage");

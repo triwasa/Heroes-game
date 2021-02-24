@@ -24,7 +24,7 @@ public  class ballistickAttackStrategy implements AttackStrategy {
             }
             case 3:{
                 percentToDealDoubleDamage = 100;
-                secondHit = false;
+                secondHit = true;
             }
         }
     }
