@@ -116,6 +116,11 @@ public class FirstAidTent implements BattleObject {
     }
 
     @Override
+    public boolean canTargetOnlyAllies(){
+        return true;
+    }
+
+    @Override
     public boolean[][] getSplashRange() {
         return new boolean[0][];
     }

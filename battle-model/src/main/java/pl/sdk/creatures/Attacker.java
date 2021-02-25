@@ -13,5 +13,6 @@ public interface Attacker extends BattleObjectStatistic {
 
     boolean canFortificationAttack(Fortification fortification);
     boolean canCreatureAttack();
+    default boolean canTargetOnlyAllies(){return false;}
 
 }
