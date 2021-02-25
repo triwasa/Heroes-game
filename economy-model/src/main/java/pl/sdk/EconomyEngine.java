@@ -1,6 +1,8 @@
 package pl.sdk;
 
+import pl.sdk.artifacts.ArtifactStatistic;
 import pl.sdk.artifacts.EconomyArtifact;
+import pl.sdk.artifacts.EconomyArtifactPrimaryFactory;
 import pl.sdk.creatures.EconomyCreature;
 import pl.sdk.hero.*;
 import pl.sdk.skills.EconomySkill;
@@ -9,6 +11,11 @@ import pl.sdk.hero.SpellShop;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class EconomyEngine {
     public static final String HERO_BOUGHT_CREATURE = "HERO_BOUGHT_CREATURE";
@@ -26,8 +33,11 @@ public class EconomyEngine {
     private final SpellShop spellShop = new SpellShop();
     private int roundNumber;
     private final PropertyChangeSupport observerSupport;
+    private final EconomyArtifactPrimaryFactory economyArtifactFactory = new EconomyArtifactPrimaryFactory();
+    private List<EconomyArtifact> economyArtifactList;
 
     public EconomyEngine(EconomyHero aHero1, EconomyHero aHero2) {
+        randomizeArtifactShop();
         hero1 = aHero1;
         hero2 = aHero2;
         activeHero = hero1;
@@ -76,7 +86,23 @@ public class EconomyEngine {
         roundNumber += 1;
         hero1.addGold(2000*roundNumber);
         hero2.addGold(2000*roundNumber);
+        randomizeArtifactShop();
         observerSupport.firePropertyChange(NEXT_ROUND, roundNumber - 1, roundNumber);
+    }
+
+    public void randomizeArtifactShop() {
+
+        List<EconomyArtifact> economyArtifactsList = new ArrayList<>();
+        Arrays.asList(ArtifactStatistic.values()).forEach(artifact -> economyArtifactsList.add(economyArtifactFactory.create(artifact.getTranslatedName())));
+        Collections.shuffle(economyArtifactsList);
+        economyArtifactList = economyArtifactsList
+                .stream()
+                .limit(5)
+                .collect(Collectors.toList());
+    }
+
+    public List<EconomyArtifact> getEconomyArtifactList(){
+        return List.copyOf(economyArtifactList);
     }
 
     public int getRoundNumber() {

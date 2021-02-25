@@ -46,6 +46,6 @@ public class BuyingSkillTest {
     void heroCanNotBuyOwnedSkills(){
         economyEngine.buySkill(skillFactory.create("offence",1));
         economyEngine.buySkill(skillFactory.create("offence",1));
-        assertEquals(2,hero1.getSkillList().size());
+        assertEquals(1,hero1.getSkillList().size());
     }
 }

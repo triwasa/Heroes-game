@@ -60,6 +60,7 @@ public class EcoController implements PropertyChangeListener {
     private final EconomyEngine economyEngine;
     VBox shop;
     Random generator = new Random();
+    private List<EconomyArtifact> economyArtifactList;
 
     public EcoController(EconomyHero aHero1, EconomyHero aHero2) {
         economyEngine = new EconomyEngine(aHero1, aHero2);
@@ -74,6 +75,7 @@ public class EcoController implements PropertyChangeListener {
         economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_SKILL, this);
         economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_SPELL,this);
         economyEngine.addObserver(EconomyEngine.NEXT_ROUND, this);
+        economyArtifactList = economyEngine.getEconomyArtifactList();
 
         readyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
@@ -91,16 +93,10 @@ public class EcoController implements PropertyChangeListener {
 
         artifactShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
-            EconomyArtifactPrimaryFactory factory = new EconomyArtifactPrimaryFactory();
+
             shop = new VBox();
-            List<EconomyArtifact> economyArtifactsList = new ArrayList<>();
-            Arrays.asList(ArtifactStatistic.values()).forEach(artifact -> economyArtifactsList.add(factory.create(artifact.getTranslatedName())));
-            Collections.shuffle(economyArtifactsList);
-            List<EconomyArtifact> economyArtifacts = economyArtifactsList
-                    .stream()
-                    .limit(5)
-                    .collect(Collectors.toList());
-            economyArtifacts.forEach(artifact -> shop.getChildren().add(new ArtifactButton(this,factory,artifact)));
+            EconomyArtifactPrimaryFactory factory = new EconomyArtifactPrimaryFactory();
+            economyArtifactList.forEach(artifact -> shop.getChildren().add(new ArtifactButton(this,factory,artifact)));
 
 
             createShopButtons(shop);
