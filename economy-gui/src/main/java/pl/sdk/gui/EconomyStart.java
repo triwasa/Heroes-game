@@ -14,7 +14,7 @@ public class EconomyStart extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("fxml/eco.fxml"));
         // TODO: implement choosing heroClassName
-        loader.setController(new EcoController(new EconomyHero(DEATH_KNIGHT,  3000), new EconomyHero(DEATH_KNIGHT , 3000)));
+        loader.setController(new EcoController(new EconomyHero(DEATH_KNIGHT,  3000), new EconomyHero(ALCHEMIST , 3000)));
         Scene scene = new Scene(loader.load());
         aStage.setScene(scene);
         aStage.setX(5);

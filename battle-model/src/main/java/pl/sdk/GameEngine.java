@@ -179,7 +179,7 @@ public class GameEngine {
             theSamePlayerUnit = isPlayerTwoUnit(aX, aY);
         }
 
-        if(getActiveCreature() instanceof FirstAidTent){  //wiem że to giga niefajne ale chciałem żeby działało :( po prezentacji zmienie
+        if(getActiveCreature().canTargetOnlyAllies()){
             theSamePlayerUnit = !theSamePlayerUnit;
         }
 
