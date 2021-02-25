@@ -30,8 +30,6 @@ public class SkillsConvertTest {
         economyHero = new EconomyHero(DEATH_KNIGHT, NOT_IMPORTANT);
     }
 
-    // ADDING SKILLS ABOVE LEVEL 1 NOT WORKING
-
     @Test
     void offenceShouldNotWorkOnRangeCreatures(){
 
