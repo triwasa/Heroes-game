@@ -12,7 +12,6 @@ import pl.sdk.creatures.Wall;
 import pl.sdk.gui.BattleMapController;
 import pl.sdk.gui.MapEditorController;
 import pl.sdk.hero.EconomyHero;
-import pl.sdk.hero.Hero;
 import pl.sdk.special_fields.FieldsFactory;
 
 

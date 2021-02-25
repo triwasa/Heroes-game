@@ -27,6 +27,11 @@ public class EconomyHero {
         skillList = new EconomySkillSet();
     }
 
+    @Override
+    public String toString() {
+        return heroName;
+    }
+
     public String getClassName() {
         return heroName;
     }
