@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -51,6 +52,7 @@ public class CreatureButton extends Button {
         tooltip.setWrapText(true);
         tooltip.setWidth(200);
         tooltip.setShowDelay(Duration.millis(200));
+        tooltip.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/graphics/creatures/" + creatureName + ".png"))));
         tooltip.setText("Name: " + creatureName + "\n"
         + creature.getDescription());
         setTooltip(tooltip);
