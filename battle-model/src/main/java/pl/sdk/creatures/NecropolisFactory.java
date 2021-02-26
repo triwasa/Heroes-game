@@ -25,10 +25,10 @@ public class NecropolisFactory extends AbstractFactory {
                             .amount(aAmount)
                             .build();
                 case 3:
-                    return new Creature.Builder()
+                    return new RegenerationOnEndOfTurnCreatureDecorator(new Creature.Builder()
                             .statistic(CreatureStatistic.WIGHT)
                             .amount(aAmount)
-                            .build();
+                            .build());
                 case 4:
                     return new Creature.Builder()
                             .statistic(CreatureStatistic.VAMPIRE)
@@ -72,6 +72,7 @@ public class NecropolisFactory extends AbstractFactory {
                     return new RegenerationOnEndOfTurnCreatureDecorator(new Creature.Builder()
                             .statistic(CreatureStatistic.WRAITH)
                             .amount(aAmount)
+                            .attackStrategy(new BlockCounterAttackAttackStrategy(new HealAfterAttackAttackStrategy(new DefaultAttackStrategy(),0.2)))
                             .build());
                 case 4:
                     return new Creature.Builder()

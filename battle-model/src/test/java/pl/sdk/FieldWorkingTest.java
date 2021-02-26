@@ -21,6 +21,7 @@ public class FieldWorkingTest {
         board.add(new Point(1,2), FieldsFactory.create("Lava"));
         board.add(new Point(4,4), FieldsFactory.create("ThunderStorm"));
         board.add(new Point(3,3), FieldsFactory.create("Stone"));
+        board.add(new Point(2,2), FieldsFactory.create("Poison"));
     }
 
     @Test
@@ -55,6 +56,14 @@ public class FieldWorkingTest {
         board.add(new Point(1,1), movingCreature);
         board.move( movingCreature, new Point(1, 3));
         assertEquals(1, movingCreature.getCurrentHp(), "Lava is not giving damage!");
+    }
+    @Test
+    void isPoisionHurtingFlyingCreature() {
+        NecropolisFactory factory = new NecropolisFactory();
+        Creature movingCreature = factory.create(false, 3, 1);
+        board.add(new Point(1,1), movingCreature);
+        board.move(movingCreature, new Point(2,2));
+        assertEquals(15,movingCreature.getCurrentHp());
     }
 
     @Test
