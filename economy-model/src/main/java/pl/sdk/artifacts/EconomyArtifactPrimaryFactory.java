@@ -32,7 +32,7 @@ public class EconomyArtifactPrimaryFactory {
             case SWORD_OF_HELLFIRE:
                 return new EconomyArtifact(ArtifactStatistic.SWORD_OF_HELLFIRE, 630);
             case TITANS_GLADIUS:
-                return new EconomyArtifact(ArtifactStatistic.TITANS_GLADIUS, 1400);
+                return new EconomyArtifact(ArtifactStatistic.TITANS_GLADIUS, 900);
             case SHIELD_OF_THE_DWARVEN_LORDS:
                 return new EconomyArtifact(ArtifactStatistic.SHIELD_OF_THE_DWARVEN_LORDS, 120);
             case SHIELD_OF_THE_YAWNING_DEAD:

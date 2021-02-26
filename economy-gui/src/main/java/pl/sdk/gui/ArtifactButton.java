@@ -1,6 +1,7 @@
 package pl.sdk.gui;
 
 import javafx.stage.Stage;
+import pl.sdk.artifacts.EconomyArtifact;
 import pl.sdk.artifacts.EconomyArtifactPrimaryFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,17 +17,15 @@ public class ArtifactButton extends Button {
     private final String artifactName;
     private Stage dialog;
 
-    public ArtifactButton(EcoController aEcoController, EconomyArtifactPrimaryFactory aFactory, String artifactName, String artifactName1) {
-        super(aFactory.create(artifactName).getName());
-        this.artifactName = artifactName1;
-        artifactName = aFactory.create(artifactName1).getName();
+    public ArtifactButton(EcoController aEcoController, EconomyArtifactPrimaryFactory aFactory, EconomyArtifact artifact) {
+        super(artifact.getName());
+        this.artifactName = artifact.getName();
         getStyleClass().add("artifactButton");
 
-        String finalArtifactName = artifactName;
         addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             int amount = startDialogAndGetCreatureAmount();
             if(amount != 0){
-                aEcoController.buyArtifact(aFactory.create(finalArtifactName));
+                aEcoController.buyArtifact(aFactory.create(artifactName));
             }
             aEcoController.refreshGui();
         });

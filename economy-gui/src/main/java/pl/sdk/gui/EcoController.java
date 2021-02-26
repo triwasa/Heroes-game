@@ -26,7 +26,11 @@ import pl.sdk.spell.EconomySpell;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+
+import static pl.sdk.artifacts.ArtifactName.*;
 
 public class EcoController implements PropertyChangeListener {
     @FXML
@@ -68,8 +72,7 @@ public class EcoController implements PropertyChangeListener {
         economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_SKILL, this);
         economyEngine.addObserver(EconomyEngine.HERO_BOUGHT_SPELL,this);
         economyEngine.addObserver(EconomyEngine.NEXT_ROUND, this);
-        economyAbstractFactory = economyEngine.getEconomyAbstractFactory();
-
+        economyAbstractFactory = new EconomyRampartFactory();
 
         readyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
@@ -81,13 +84,23 @@ public class EcoController implements PropertyChangeListener {
         });
 
         editMapButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
-        {
-            goToEditor();
-        });
+                goToEditor());
 
         artifactShop.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
         {
             shop = new VBox();
+
+            EconomyArtifactPrimaryFactory factory = new EconomyArtifactPrimaryFactory();
+            List<EconomyArtifact> economyArtifactList = new ArrayList<>();
+
+            economyArtifactList.add(factory.create(NECKLACE_OF_SWIFTNESS));
+            economyArtifactList.add(factory.create(RING_OF_THE_WAYFARER));
+            economyArtifactList.add(factory.create(CAPE_OF_VELOCITY));
+            economyArtifactList.add(factory.create(TITANS_GLADIUS));
+            economyArtifactList.add(factory.create(SHIELD_OF_THE_DAMNED));
+
+            economyArtifactList.forEach(artifact -> shop.getChildren().add(new ArtifactButton(this, factory, artifact)));
+
 
             createShopButtons(shop);
         });

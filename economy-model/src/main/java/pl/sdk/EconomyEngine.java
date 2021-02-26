@@ -106,34 +106,7 @@ public class EconomyEngine {
     }
 
     public void randomizeCreatureFactory() {
-        int rand = new Random().nextInt(8);
-
-        switch (rand) {
-            case 0:
-                economyAbstractFactory = new EconomyNecropolisFactory();
-                return;
-            case 1:
-                economyAbstractFactory = new EconomyStrongholdFactory();
-                return;
-            case 2:
-                economyAbstractFactory = new EconomyDungeonFactory();
-                return;
-            case 3:
-                economyAbstractFactory = new EconomyRampartFactory();
-                return;
-            case 4:
-                economyAbstractFactory = new EconomyFortressFactory();
-                return;
-            case 5:
-                economyAbstractFactory = new EconomyInfernoFactory();
-                return;
-            case 6:
-                economyAbstractFactory = new EconomyTowerFactory();
-                return;
-            case 7:
-                economyAbstractFactory = new EconomyCastleFactory();
-                return;
-        }
+        economyAbstractFactory = new EconomyRampartFactory();
     }
 
 }
